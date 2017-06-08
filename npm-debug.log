@@ -1,0 +1,369 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'i',
+1 verbose cli   '--save',
+1 verbose cli   'react-clipboard.js' ]
+2 info using npm@2.7.5
+3 info using node@v0.12.2
+4 verbose node symlink /usr/local/bin/node
+5 verbose install react-clipboard.js is installed as 1.1.2
+6 silly cache add args [ 'react-clipboard.js', null ]
+7 verbose cache add spec react-clipboard.js
+8 silly cache add parsed spec { raw: 'react-clipboard.js',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'react-clipboard.js',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 verbose addNamed react-clipboard.js@*
+10 silly addNamed semver.valid null
+11 silly addNamed semver.validRange *
+12 silly addNameRange { name: 'react-clipboard.js', range: '*', hasData: false }
+13 silly mapToRegistry name react-clipboard.js
+14 silly mapToRegistry using default registry
+15 silly mapToRegistry registry https://registry.npmjs.org/
+16 silly mapToRegistry uri https://registry.npmjs.org/react-clipboard.js
+17 verbose addNameRange registry:https://registry.npmjs.org/react-clipboard.js not in flight; fetching
+18 verbose request uri https://registry.npmjs.org/react-clipboard.js
+19 verbose request no auth needed
+20 info attempt registry request try #1 at 19:55:59
+21 verbose request id e5f60f64f848fa46
+22 verbose etag W/"591f2f86-a041"
+23 verbose lastModified Fri, 19 May 2017 17:46:46 GMT
+24 http request GET https://registry.npmjs.org/react-clipboard.js
+25 http 304 https://registry.npmjs.org/react-clipboard.js
+26 silly get cb [ 304,
+26 silly get   { date: 'Sun, 04 Jun 2017 23:55:59 GMT',
+26 silly get     via: '1.1 varnish',
+26 silly get     'cache-control': 'max-age=300',
+26 silly get     etag: 'W/"591f2f86-a041"',
+26 silly get     age: '203',
+26 silly get     connection: 'keep-alive',
+26 silly get     'x-served-by': 'cache-yyz8335-YYZ',
+26 silly get     'x-cache': 'HIT',
+26 silly get     'x-cache-hits': '1',
+26 silly get     'x-timer': 'S1496620560.757696,VS0,VE0',
+26 silly get     vary: 'Accept-Encoding' } ]
+27 verbose etag https://registry.npmjs.org/react-clipboard.js from cache
+28 verbose get saving react-clipboard.js to /Users/naveedulislam/.npm/registry.npmjs.org/react-clipboard.js/.cache.json
+29 silly addNameRange number 2 { name: 'react-clipboard.js', range: '*', hasData: true }
+30 silly addNameRange versions [ 'react-clipboard.js',
+30 silly addNameRange   [ '0.0.0',
+30 silly addNameRange     '0.0.1',
+30 silly addNameRange     '0.0.2',
+30 silly addNameRange     '0.0.3',
+30 silly addNameRange     '0.0.4',
+30 silly addNameRange     '0.0.5',
+30 silly addNameRange     '0.0.6',
+30 silly addNameRange     '0.1.0',
+30 silly addNameRange     '0.1.1',
+30 silly addNameRange     '0.1.2',
+30 silly addNameRange     '0.1.3',
+30 silly addNameRange     '0.1.4',
+30 silly addNameRange     '0.1.5',
+30 silly addNameRange     '0.1.6',
+30 silly addNameRange     '0.1.7',
+30 silly addNameRange     '0.2.0',
+30 silly addNameRange     '0.2.1',
+30 silly addNameRange     '0.2.2',
+30 silly addNameRange     '0.2.3',
+30 silly addNameRange     '0.2.4',
+30 silly addNameRange     '0.2.5',
+30 silly addNameRange     '1.0.0',
+30 silly addNameRange     '1.0.1',
+30 silly addNameRange     '1.1.1',
+30 silly addNameRange     '1.1.2' ] ]
+31 verbose addNamed react-clipboard.js@1.1.2
+32 silly addNamed semver.valid 1.1.2
+33 silly addNamed semver.validRange 1.1.2
+34 silly cache afterAdd react-clipboard.js@1.1.2
+35 verbose afterAdd /Users/naveedulislam/.npm/react-clipboard.js/1.1.2/package/package.json not in flight; writing
+36 verbose afterAdd /Users/naveedulislam/.npm/react-clipboard.js/1.1.2/package/package.json written
+37 silly install resolved [ { name: 'react-clipboard.js',
+37 silly install resolved     version: '1.1.2',
+37 silly install resolved     description: 'Clipboard.js wrapper for ReactJS',
+37 silly install resolved     main: 'dist/react-clipboard.js',
+37 silly install resolved     browser: 'dist/react-clipboard.js',
+37 silly install resolved     scripts:
+37 silly install resolved      { 'build-debug': 'webpack -d',
+37 silly install resolved        build: 'webpack && webpack -p --output-filename react-clipboard.min.js',
+37 silly install resolved        watch: 'webpack --watch',
+37 silly install resolved        test: 'eslint index.js && npm run build' },
+37 silly install resolved     keywords: [ 'clipboard', 'react', 'react-component' ],
+37 silly install resolved     repository:
+37 silly install resolved      { type: 'git',
+37 silly install resolved        url: 'git+https://github.com/nihey/react-clipboard.js.git' },
+37 silly install resolved     bugs: { url: 'https://github.com/nihey/react-clipboard.js/issues' },
+37 silly install resolved     author: { name: 'Nihey Takizawa', email: 'nihey.takizawa@gmail.com' },
+37 silly install resolved     license: 'CC0',
+37 silly install resolved     peerDependencies: { react: '>=15.5.0' },
+37 silly install resolved     dependencies: { clipboard: '^1.6.1', 'prop-types': '^15.5.0' },
+37 silly install resolved     devDependencies:
+37 silly install resolved      { 'babel-core': '^5.8.23',
+37 silly install resolved        'babel-eslint': '^4.1.3',
+37 silly install resolved        'babel-loader': '^5.3.2',
+37 silly install resolved        'babel-runtime': '^5.8.20',
+37 silly install resolved        'browser-sync': '^2.8.2',
+37 silly install resolved        eslint: '^1.6.0',
+37 silly install resolved        webpack: '^1.12.1' },
+37 silly install resolved     gitHead: 'a89c736c91a23c407e6e35a5a004290a50c457f9',
+37 silly install resolved     homepage: 'https://github.com/nihey/react-clipboard.js#readme',
+37 silly install resolved     _id: 'react-clipboard.js@1.1.2',
+37 silly install resolved     _shasum: '96c92c928d09873c14287fd5c75f395f1f911490',
+37 silly install resolved     _from: 'react-clipboard.js@*',
+37 silly install resolved     _npmVersion: '4.2.0',
+37 silly install resolved     _nodeVersion: '7.10.0',
+37 silly install resolved     _npmUser: { name: 'nihey', email: 'nihey.takizawa@gmail.com' },
+37 silly install resolved     dist:
+37 silly install resolved      { shasum: '96c92c928d09873c14287fd5c75f395f1f911490',
+37 silly install resolved        tarball: 'https://registry.npmjs.org/react-clipboard.js/-/react-clipboard.js-1.1.2.tgz' },
+37 silly install resolved     maintainers: [ [Object] ],
+37 silly install resolved     _npmOperationalInternal:
+37 silly install resolved      { host: 's3://npm-registry-packages',
+37 silly install resolved        tmp: 'tmp/react-clipboard.js-1.1.2.tgz_1495216006197_0.8464743723161519' },
+37 silly install resolved     directories: {},
+37 silly install resolved     _resolved: 'https://registry.npmjs.org/react-clipboard.js/-/react-clipboard.js-1.1.2.tgz',
+37 silly install resolved     readme: 'ERROR: No README data found!' } ]
+38 info install react-clipboard.js@1.1.2 into /Users/naveedulislam/Documents/Projects/HQVC_v1.1
+39 info installOne react-clipboard.js@1.1.2
+40 verbose installOne of react-clipboard.js to /Users/naveedulislam/Documents/Projects/HQVC_v1.1 not in flight; installing
+41 verbose lock using /Users/naveedulislam/.npm/_locks/react-clipboard-js-fa02823024432b4d.lock for /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+42 silly install write writing react-clipboard.js 1.1.2 to /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+43 silly cache addNamed cb react-clipboard.js@1.1.2
+44 verbose unbuild node_modules/react-clipboard.js
+45 info preuninstall react-clipboard.js@1.1.2
+46 info uninstall react-clipboard.js@1.1.2
+47 verbose unbuild rmStuff react-clipboard.js@1.1.2 from /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules
+48 info postuninstall react-clipboard.js@1.1.2
+49 silly gentlyRm /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js is being purged from base /Users/naveedulislam/Documents/Projects/HQVC_v1.1
+50 verbose gentlyRm don't care about contents; nuking /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+51 silly vacuum-fs purging /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+52 silly vacuum-fs quitting because other entries in /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules
+53 verbose tar unpack /Users/naveedulislam/.npm/react-clipboard.js/1.1.2/package.tgz
+54 verbose tar unpacking to /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+55 silly gentlyRm /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js is being purged
+56 verbose gentlyRm don't care about contents; nuking /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+57 silly gunzTarPerm modes [ '755', '644' ]
+58 silly gunzTarPerm extractEntry package.json
+59 silly gunzTarPerm extractEntry .npmignore
+60 silly gunzTarPerm extractEntry README.md
+61 silly gunzTarPerm extractEntry webpack.config.js
+62 silly gunzTarPerm extractEntry index.js
+63 silly gunzTarPerm extractEntry dist/react-clipboard.js
+64 silly gunzTarPerm extractEntry dist/react-clipboard.min.js
+65 silly gunzTarPerm extractEntry .travis.yml
+66 silly gunzTarPerm extractEntry .eslintrc
+67 silly gunzTarPerm extractEntry bower.json
+68 info preinstall react-clipboard.js@1.1.2
+69 silly prepareForInstallMany adding prop-types@^15.5.0 from react-clipboard.js dependencies
+70 silly prepareForInstallMany adding react@>=15.5.0 from react-clipboard.js peerDependencies
+71 warn peerDependencies The peer dependency react@>=15.5.0 included from react-clipboard.js will no
+72 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+73 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+74 silly cache add args [ 'prop-types@^15.5.0', null ]
+75 verbose cache add spec prop-types@^15.5.0
+76 silly cache add parsed spec { raw: 'prop-types@^15.5.0',
+76 silly cache add   scope: null,
+76 silly cache add   name: 'prop-types',
+76 silly cache add   rawSpec: '^15.5.0',
+76 silly cache add   spec: '>=15.5.0 <16.0.0',
+76 silly cache add   type: 'range' }
+77 verbose addNamed prop-types@>=15.5.0 <16.0.0
+78 silly addNamed semver.valid null
+79 silly addNamed semver.validRange >=15.5.0 <16.0.0
+80 silly addNameRange { name: 'prop-types', range: '>=15.5.0 <16.0.0', hasData: false }
+81 silly mapToRegistry name prop-types
+82 silly mapToRegistry using default registry
+83 silly mapToRegistry registry https://registry.npmjs.org/
+84 silly mapToRegistry uri https://registry.npmjs.org/prop-types
+85 verbose addNameRange registry:https://registry.npmjs.org/prop-types not in flight; fetching
+86 verbose request uri https://registry.npmjs.org/prop-types
+87 verbose request no auth needed
+88 info attempt registry request try #1 at 19:55:59
+89 verbose etag W/"593478fd-9e00"
+90 verbose lastModified Sun, 04 Jun 2017 21:17:49 GMT
+91 http request GET https://registry.npmjs.org/prop-types
+92 http 304 https://registry.npmjs.org/prop-types
+93 silly get cb [ 304,
+93 silly get   { date: 'Sun, 04 Jun 2017 23:55:59 GMT',
+93 silly get     via: '1.1 varnish',
+93 silly get     'cache-control': 'max-age=300',
+93 silly get     etag: 'W/"593478fd-9e00"',
+93 silly get     age: '252',
+93 silly get     connection: 'keep-alive',
+93 silly get     'x-served-by': 'cache-yyz8320-YYZ',
+93 silly get     'x-cache': 'HIT',
+93 silly get     'x-cache-hits': '1',
+93 silly get     'x-timer': 'S1496620560.921965,VS0,VE0',
+93 silly get     vary: 'Accept-Encoding' } ]
+94 verbose etag https://registry.npmjs.org/prop-types from cache
+95 verbose get saving prop-types to /Users/naveedulislam/.npm/registry.npmjs.org/prop-types/.cache.json
+96 silly addNameRange number 2 { name: 'prop-types', range: '>=15.5.0 <16.0.0', hasData: true }
+97 silly addNameRange versions [ 'prop-types',
+97 silly addNameRange   [ '0.1.0',
+97 silly addNameRange     '0.2.0',
+97 silly addNameRange     '15.5.0-alpha.0',
+97 silly addNameRange     '15.5.0',
+97 silly addNameRange     '15.5.1',
+97 silly addNameRange     '15.5.2',
+97 silly addNameRange     '15.5.3',
+97 silly addNameRange     '15.5.4',
+97 silly addNameRange     '15.5.5',
+97 silly addNameRange     '15.5.6',
+97 silly addNameRange     '15.5.7-alpha',
+97 silly addNameRange     '15.5.7-alpha.1',
+97 silly addNameRange     '15.5.7',
+97 silly addNameRange     '15.5.8',
+97 silly addNameRange     '15.5.9',
+97 silly addNameRange     '15.5.10' ] ]
+98 verbose addNamed prop-types@15.5.10
+99 silly addNamed semver.valid 15.5.10
+100 silly addNamed semver.validRange 15.5.10
+101 silly cache afterAdd prop-types@15.5.10
+102 verbose afterAdd /Users/naveedulislam/.npm/prop-types/15.5.10/package/package.json not in flight; writing
+103 verbose afterAdd /Users/naveedulislam/.npm/prop-types/15.5.10/package/package.json written
+104 silly install resolved [ { name: 'prop-types',
+104 silly install resolved     version: '15.5.10',
+104 silly install resolved     description: 'Runtime type checking for React props and similar objects.',
+104 silly install resolved     main: 'index.js',
+104 silly install resolved     license: 'BSD-3-Clause',
+104 silly install resolved     files:
+104 silly install resolved      [ 'LICENSE',
+104 silly install resolved        'PATENTS',
+104 silly install resolved        'README.md',
+104 silly install resolved        'checkPropTypes.js',
+104 silly install resolved        'factory.js',
+104 silly install resolved        'factoryWithThrowingShims.js',
+104 silly install resolved        'factoryWithTypeCheckers.js',
+104 silly install resolved        'index.js',
+104 silly install resolved        'prop-types.js',
+104 silly install resolved        'prop-types.min.js',
+104 silly install resolved        'lib' ],
+104 silly install resolved     repository:
+104 silly install resolved      { type: 'git',
+104 silly install resolved        url: 'git+https://github.com/reactjs/prop-types.git' },
+104 silly install resolved     keywords: [ 'react' ],
+104 silly install resolved     bugs: { url: 'https://github.com/reactjs/prop-types/issues' },
+104 silly install resolved     homepage: 'https://facebook.github.io/react/',
+104 silly install resolved     dependencies: { fbjs: '^0.8.9', 'loose-envify': '^1.3.1' },
+104 silly install resolved     scripts:
+104 silly install resolved      { test: 'jest',
+104 silly install resolved        umd: 'NODE_ENV=development browserify index.js -t envify --standalone PropTypes -o prop-types.js',
+104 silly install resolved        'umd-min': 'NODE_ENV=production browserify index.js -t envify -t uglifyify --standalone PropTypes  -p bundle-collapser/plugin -o | uglifyjs --compress unused,dead_code -o prop-types.min.js',
+104 silly install resolved        build: 'yarn umd && yarn umd-min',
+104 silly install resolved        prepublish: 'yarn build' },
+104 silly install resolved     devDependencies:
+104 silly install resolved      { 'babel-jest': '^19.0.0',
+104 silly install resolved        'babel-preset-react': '^6.24.1',
+104 silly install resolved        browserify: '^14.3.0',
+104 silly install resolved        'bundle-collapser': '^1.2.1',
+104 silly install resolved        envify: '^4.0.0',
+104 silly install resolved        jest: '^19.0.2',
+104 silly install resolved        react: '^15.5.1',
+104 silly install resolved        uglifyify: '^3.0.4',
+104 silly install resolved        uglifyjs: '^2.4.10' },
+104 silly install resolved     browserify: { transform: [Object] },
+104 silly install resolved     gitHead: '1cc445d64db9143a4c9c5505c6c3657e2f68bfc6',
+104 silly install resolved     _id: 'prop-types@15.5.10',
+104 silly install resolved     _shasum: '2797dfc3126182e3a95e3dfbb2e893ddd7456154',
+104 silly install resolved     _from: 'prop-types@>=15.5.0 <16.0.0',
+104 silly install resolved     _npmVersion: '4.1.2',
+104 silly install resolved     _nodeVersion: '7.7.2',
+104 silly install resolved     _npmUser: { name: 'gaearon', email: 'dan.abramov@gmail.com' },
+104 silly install resolved     dist:
+104 silly install resolved      { shasum: '2797dfc3126182e3a95e3dfbb2e893ddd7456154',
+104 silly install resolved        tarball: 'https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz' },
+104 silly install resolved     maintainers: [ [Object] ],
+104 silly install resolved     _npmOperationalInternal:
+104 silly install resolved      { host: 'packages-18-east.internal.npmjs.com',
+104 silly install resolved        tmp: 'tmp/prop-types-15.5.10.tgz_1494600601653_0.7849957433063537' },
+104 silly install resolved     directories: {},
+104 silly install resolved     _resolved: 'https://registry.npmjs.org/prop-types/-/prop-types-15.5.10.tgz',
+104 silly install resolved     readme: 'ERROR: No README data found!' } ]
+105 info install prop-types@15.5.10 into /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+106 info installOne prop-types@15.5.10
+107 verbose installOne of prop-types to /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js not in flight; installing
+108 verbose lock using /Users/naveedulislam/.npm/_locks/prop-types-2cc6ead3cedad4de.lock for /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+109 silly install write writing prop-types 15.5.10 to /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+110 silly cache addNamed cb prop-types@15.5.10
+111 verbose unbuild node_modules/react-clipboard.js/node_modules/prop-types
+112 silly gentlyRm /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types is being purged from base /Users/naveedulislam/Documents/Projects/HQVC_v1.1
+113 verbose gentlyRm don't care about contents; nuking /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+114 verbose tar unpack /Users/naveedulislam/.npm/prop-types/15.5.10/package.tgz
+115 verbose tar unpacking to /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+116 silly gentlyRm /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types is being purged
+117 verbose gentlyRm don't care about contents; nuking /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+118 silly gunzTarPerm modes [ '755', '644' ]
+119 silly gunzTarPerm extractEntry package.json
+120 silly gunzTarPerm extractEntry README.md
+121 silly gunzTarPerm extractEntry LICENSE
+122 silly gunzTarPerm extractEntry factory.js
+123 silly gunzTarPerm extractEntry checkPropTypes.js
+124 silly gunzTarPerm extractEntry factoryWithTypeCheckers.js
+125 silly gunzTarPerm extractEntry index.js
+126 silly gunzTarPerm extractEntry prop-types.min.js
+127 silly gunzTarPerm extractEntry prop-types.js
+128 silly gunzTarPerm extractEntry factoryWithThrowingShims.js
+129 silly gunzTarPerm extractEntry CHANGELOG.md
+130 silly gunzTarPerm extractEntry lib/ReactPropTypesSecret.js
+131 silly gunzTarPerm extractEntry PATENTS
+132 info preinstall prop-types@15.5.10
+133 silly install resolved []
+134 verbose about to build /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+135 info build /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+136 verbose linkStuff [ false,
+136 verbose linkStuff   false,
+136 verbose linkStuff   false,
+136 verbose linkStuff   '/Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules' ]
+137 info linkStuff prop-types@15.5.10
+138 verbose linkBins prop-types@15.5.10
+139 verbose linkMans prop-types@15.5.10
+140 verbose rebuildBundles prop-types@15.5.10
+141 info install prop-types@15.5.10
+142 info postinstall prop-types@15.5.10
+143 verbose unlock done using /Users/naveedulislam/.npm/_locks/prop-types-2cc6ead3cedad4de.lock for /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js/node_modules/prop-types
+144 verbose about to build /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+145 info build /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+146 verbose linkStuff [ false,
+146 verbose linkStuff   false,
+146 verbose linkStuff   false,
+146 verbose linkStuff   '/Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules' ]
+147 info linkStuff react-clipboard.js@1.1.2
+148 verbose linkBins react-clipboard.js@1.1.2
+149 verbose linkMans react-clipboard.js@1.1.2
+150 verbose rebuildBundles react-clipboard.js@1.1.2
+151 verbose rebuildBundles [ 'prop-types' ]
+152 info install react-clipboard.js@1.1.2
+153 info postinstall react-clipboard.js@1.1.2
+154 verbose already installed skipping react@>=15.5.0 /Users/naveedulislam/Documents/Projects/HQVC_v1.1
+155 silly install resolved []
+156 verbose unlock done using /Users/naveedulislam/.npm/_locks/react-clipboard-js-fa02823024432b4d.lock for /Users/naveedulislam/Documents/Projects/HQVC_v1.1/node_modules/react-clipboard.js
+157 verbose stack Error: The package react does not satisfy its siblings' peerDependencies requirements!
+157 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+157 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:264:7
+157 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:138:5
+157 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+157 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+157 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+157 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+157 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+157 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+157 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+158 verbose cwd /Users/naveedulislam/Documents/Projects/HQVC_v1.1
+159 error Darwin 16.6.0
+160 error argv "node" "/usr/local/bin/npm" "i" "--save" "react-clipboard.js"
+161 error node v0.12.2
+162 error npm  v2.7.5
+163 error code EPEERINVALID
+164 error peerinvalid The package react does not satisfy its siblings' peerDependencies requirements!
+164 error peerinvalid Peer react-addons-pure-render-mixin@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-dom@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-mounter@1.2.0 wants react@0.14.x || 15.x.x
+164 error peerinvalid Peer react-addons-create-fragment@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-addons-css-transition-group@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-addons-linked-state-mixin@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-addons-transition-group@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-addons-update@15.4.2 wants react@^15.4.2
+164 error peerinvalid Peer react-clipboard.js@1.1.2 wants react@>=15.5.0
+165 verbose exit [ 1, true ]

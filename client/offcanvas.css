@@ -1,0 +1,129 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  /* overflow-y: scroll; /* has to be scroll, not auto */
+  /* -webkit-overflow-scrolling: auto;  /*for iOS*/
+}
+/*body {
+  padding-top: 70px;
+}
+footer {
+  padding: 30px 0;
+}*/
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+
+ @media screen and (max-width: 766px) {
+   .row-offcanvas {
+     width: 100%;
+     position: relative;
+     -webkit-transition: all .25s ease-out;
+          -o-transition: all .25s ease-out;
+             transition: all .25s ease-out;
+   }
+
+   .row-offcanvas-right {
+     right:15px
+   }
+
+   .row-offcanvas-right
+   .sidebar-offcanvas {
+     right: -90%; /* 6 columns */
+   }
+
+   button.Summary.sidebar-offcanvas {
+     right:0;
+   }
+
+   .sidebar-offcanvas {
+     /*left: -90%; /* 6 columns */
+   }
+
+   .row-offcanvas-right.active {
+     right: 90%; /* 6 columns */
+   }
+
+   .sidebar-offcanvas {
+     position: absolute;
+     top: 0;
+     width: 90%; /* 6 columns */
+   }
+ }
+
+@media screen and (min-device-width: 767px) and (max-width: 1201px) {
+  .row-offcanvas {
+    width: 100%;
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 15px;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -33%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    /*left: -33%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 33%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 33%; /* 6 columns */
+  }
+}
+
+div.Details.affix-top {
+  position: relative;
+}
+
+@media (min-width: 1201px) {
+    div.Details.affix {
+      position: fixed;
+      width: 31.9%;
+      top:60px;
+      bottom: 50px;
+      overflow-y: scroll;
+      z-index: 1;
+    }
+}
+
+@media (min-width: 993px) {
+  div.Details.affix {
+    position: fixed;
+    /*width: 48.6%;*/
+    top:60px;
+    bottom: 50px;
+    overflow-y: scroll;
+    z-index: 1;
+  }
+}
+
+button.Summary.affix-top {
+  position: relative;
+  width: 200px;
+}
+
+button.Summary.affix {
+  position: fixed;
+  top:50px;
+  z-index: 10;
+  width: 200px;
+}

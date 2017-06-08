@@ -1,0 +1,457 @@
+/* CSS declarations go here */
+.list-group div, a {
+  text-align: right;
+ }
+
+.well {
+  padding: 11px;
+}
+
+ /*.well.pre-scrollable div {
+  overflow: auto;
+ }*/
+
+ .list-group .btn  {
+    float: left;
+    font-size: 8px;
+ }
+
+
+.Results {
+  /*height: 100%;
+  overflow: scroll; */
+  direction:rtl;
+}
+
+.tooltip {
+    position: fixed;
+}
+
+ a.list-group-item.Verse .Arabic {
+  font-weight: bolder;
+}
+
+.tokens {
+  direction:rtl;
+}
+.nav-tabs  li {
+    float: right;
+    padding-right: 0;
+    font-size: 20px;
+}
+
+.nav-tabs a {
+  cursor: pointer;
+}
+
+.list-group-item, button.list-group-item {
+  cursor: pointer;
+}
+
+span.Arabic, .Arabic div {
+  background-color: #ebe7d2;
+}
+
+span.ngram, .ngram div {
+  background-color: #EFEFEF;
+}
+
+span.phonetic, .phonetic div {
+  background-color: #EFFEEF;
+}
+
+div.Verse.base {
+  /*border-bottom-style: solid;
+  border-bottom-width: 1px;*/
+  margin-bottom: 15px
+}
+
+div.Translation.well {
+  margin: 0px;
+  padding: 5px;
+}
+.Translation div.base {
+  /*padding: 3px;*/
+}
+
+div.Analyze.base.well {
+  padding: 0px;
+  margin-bottom: 1px;
+}
+
+div.showAnalyzer {
+  height: 165px;
+  overflow-x: scroll;
+}
+
+h1.bismillah {
+   color: whitesmoke;
+   text-align: center;
+}
+
+div.highlights {
+  float: right;
+  position: absolute;
+  padding-right: 0px;
+  padding-left: 0px;
+  opacity: .3;
+}
+
+div.highlights.Arabic {
+  opacity: .5;
+}
+
+div.highlights.Surah {
+  opacity: .20;
+}
+
+div.highlights.ayah {
+  opacity: 1;
+}
+
+
+div.highlights.visible {
+  opacity: 1;
+}
+div.highlights.base {
+  opacity: .03;
+  position: relative;
+}
+
+div.highlights mark {
+  padding: 0;
+}
+
+.highlights.ngram mark {
+  background: #c2c2d6;
+}
+.highlights.phonetic mark {
+  background: #f0f;
+}
+.highlights.normalized mark {
+  background: #0ff;
+}
+.highlights.stems mark {
+  background: #aa0;
+}
+.highlights.root mark {
+  background: #ff0;
+}
+
+.highlights.Arabic mark {
+  /*background: #fc0; */
+}
+
+.highlights.Arabic {
+  /*top:50px;*/
+}
+
+.query {
+  font-size: xx-small
+}
+
+
+div.Details {
+  bottom: 0px;
+  overflow-y: scroll;
+}
+
+div.DetailsButtons {
+  display: inline-flex;
+}
+
+
+a.list-group-item {
+  /*height: 150px;*/
+  overflow-y: auto;
+  cursor: default;
+}
+
+a.list-group-item.Verse {
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.Arabic, .Surah {
+    font-weight:lighter;
+    font-size: 1em;
+}
+.English, .German, .Spanish, .French, .Urdu, div.btn.btn-default.surah {
+  font-weight:lighter;
+  font-size: .9em;
+}
+.English, .German, .Spanish, .French {
+  direction: ltr;
+  text-align: left;
+}
+
+
+a.list-group-item.Translation {
+  font-weight:lighter;
+  font-size: .9em;
+}
+
+@media all and (max-width: 1200px) { /* screen size until 1200px */
+    h1 {
+        font-size: 1.5em; /* 1.5x default size */
+    }
+}
+@media all and (max-width: 1000px) { /* screen size until 1000px */
+    h1 {
+        font-size: 1.2em; /* 1.2x default size */
+        }
+    }
+@media all and (max-width: 500px) { /* screen size until 500px */
+    h1 {
+        font-size: 0.8em; /* 0.8x default size */
+        }
+    }
+
+table, th, td {
+   padding-right: 3px;
+   padding-left: 3px;
+
+}
+
+table.reference {
+   padding: 0px;
+   width: 100%;
+
+}
+
+table.reference td {
+  width:30%;
+  height: 22px;
+  text-align: left;
+  vertical-align: top;
+}
+table.reference:nth-child(even) td {
+  width:10%;
+}
+.reference div.base {
+  margin: 0px;
+}
+a.reference {
+  padding: 3px;
+}
+
+
+div.modal-header {
+  text-align: center;
+}
+
+td:nth-child(even){
+  background-color: #eee;
+  text-align: center;
+}
+
+
+.nav {
+  padding-right: 0px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.pre-scrollable {
+  min-height: 100%;
+  /*height: 100%;*/
+  /*overflow-y: scroll;*/
+  max-height: 100%;
+}
+
+.noselect {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.blank  {
+  border: none;
+}
+.notblank {
+  border-bottom: none;
+  border-top: 1px solid #cdd0d4;
+  border-right: none;
+  border-left: none;
+}
+
+
+.Suggest div, li {
+  float: right;
+}
+
+
+
+body {
+	background: url("images/bg_al-islam.gif");
+	margin: 0 0px 0px 0px;
+}
+
+body.modal-open {
+  position: fixed;
+}
+
+
+div.container {
+
+}
+
+div.logo {
+  height: 40px;
+  background-position: 60 0;
+  /*background: url("images/logo.png");*/
+  background: url("images/aioplogo.png");
+  /*background: url("images/ailogo.png");*/
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+div.bismillah {
+  background: url("images/bismillah.png");
+  height: 40px;
+  background-position-x: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+div.navbar-inverse  {
+  /*background-color: #003300;
+  opacity: .25;
+  background: url("images/bg_al-islam.gif");*/
+  min-height: 40px;
+}
+
+
+.jumbotron {
+  /*background-image: url("images/dawn.jpeg");*/
+  background-image: url("images/quran_advanced_search_background.jpg");
+  background-size: cover;
+  background-position:center;
+  /*opacity: 0.55;*/
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.navbar-fixed-top div {
+  color: grey;
+  text-align: center;
+}
+
+.alislam div {
+  text-align: left;
+}
+
+.navbar-fixed-top h3 {
+  display: inline;
+  margin-top: 5px;
+  /*font-size: 20pt;*/
+  text-shadow: 1px 1px black;
+}
+
+.navbar-fixed-top div {
+  padding-top: 5px;
+  width: 100%
+}
+
+input[type="checkbox"] {
+    vertical-align: top;
+}
+
+.Help {
+
+}
+
+.Credits a {
+  color:inherit;
+}
+
+nav.navbar-bottom {
+  width: 100%;
+}
+
+iframe {
+  width: 100%;
+  border: none;
+  height: 100%;
+}
+
+@media screen and (max-width: 766px) {
+  .Help div.modal-body {
+     height: 7000px;
+  }
+}
+@media screen and (min-device-width: 767px) {
+  .Help div.modal-body {
+     height: 5875px;
+  }
+}
+
+.Help {
+  direction: ltr;
+  width: 100%;
+  text-align: left;
+  overflow-x:auto;;
+  overflow-y: visible;
+}
+
+.NoResult {
+  text-align: center;
+}
+
+.pagination {
+  margin: 0;
+}
+
+div.resultCount {
+  width: 100%;
+  text-align: left;
+  color: #AAA;
+}
+
+/* =Footer
+----------------------------------------------- */
+#nav-footer {
+    margin: 0 auto;
+    text-align: center;
+    font: .7em Verdana, Arial, Helvetica, sans-serif;
+    color: #a6a695;
+    width: 100%;
+}
+
+#nav-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px 0;
+}
+
+#nav-footer ul li {
+    display: inline;
+    padding: 0 10px 0 10px;
+    margin: 0;
+    border-left: 1px solid #a6a695;
+    float: none;
+}
+
+#nav-footer ul li#first {
+    border-left: 0;
+}
+
+#nav-footer a:link, #nav-footer a:visited {
+    color: #e6e6cf;
+    text-decoration: none;
+}
+
+#nav-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+#nav-footer p {
+    padding: 0;
+    margin: 0;
+}
