@@ -38,6 +38,157 @@ Meteor.methods({
 
     var matches;
 
+    var fields = [
+        "Arabic.ar_ngram_normalized",
+        "Arabic.ar_ngram_original",
+        "Arabic.ar_ngram_stems_normalized",
+        "Arabic.ar_ngram_root",
+        "Arabic.ar_ngram_root_normalized",
+
+
+        // "Arabic.ar_normalized_ngram_phonetic",
+        // "Arabic.ar_ngram_stems_normalized_phonetic",
+        // "Arabic.ar_ngram_root_normalized_phonetic"
+
+        "Arabic.ar_query_suggest_ngram_normalized_phonetic",
+        "Arabic.ar_query_suggest_ngram_stems_normalized_phonetic",
+        "Arabic.ar_query_suggest_ngram_root_normalized_phonetic",
+
+        "Surah.ar_ngram_normalized",
+        "Surah.ar_ngram_stems",
+        "Surah.ar_ngram_stems_normalized",
+
+        //"Surah.ar_ngram_stems_normalized_phonetic",
+        //"Surah.ar_normalized_ngram_phonetic"
+
+      ]
+
+    if (Object.prototype.toString.call(options) === '[object Array]') {
+      options.filter(function(o){
+        return names_array.indexOf(o) !== -1                 //String matchi sanitization
+      }).map(function(o) {
+        if (o=="Urdu") {
+          fields.push("Urdu.ur_normalized_ngram")
+        } else if (o=="English") {
+          fields.push("English.en_normalized_ngram")
+        } else if (o=="German") {
+          fields.push("German.de_normalized_ngram")
+        } else if (o=="Spanish") {
+          fields.push("Spanish.es_normalized_ngram")
+        } else if (o=="French") {
+          fields.push("French.fr_normalized_ngram")
+        }
+      })
+    }
+    //console.log(fields)
+
+    var aggs = {
+        s_Arabic_Trigram: {
+             significant_terms: {
+                 "field": "Arabic.trigram",
+                 "size": 3
+             }
+              //, aggs:{
+              //   "top_Arabic": {
+              //     top_hits:{
+              //         "highlight": {
+              //             "require_field_match": false,
+              //             "fields": {
+              //               "_all" : {//"force_source" : true
+              //                 "matched_fields": ["Arabic.ar_ngram_normalized",
+              //                 "Arabic.ar_ngram_original",
+              //                 "Arabic.ar_ngram_stems_normalized",
+              //                 "Arabic.ar_ngram_root",
+              //                 "Arabic.ar_ngram_root_normalized"],
+              //                 "type" : "fvh"
+              //               }
+              //             }
+              //         },
+              //         "_source": {
+              //             "includes": [
+              //                 "Arabic"
+              //             ]
+              //         },
+              //         "size" : 1
+              //     }
+              //   }
+              // }
+        },
+
+       s_Arabic_Words: {
+            significant_terms: {
+                "field": "Arabic",
+               "size": 3
+            }
+        },
+        s_Arabic_Stems: {
+             significant_terms: {
+                 "field": "Arabic.ar_stems",
+               "size": 2
+             }
+        },
+
+        s_Arabic_root: {
+              significant_terms: {
+                  "field": "Arabic.ar_root_normalized",
+               "size": 1
+              }
+         },
+         s_Arabic_normalized: {
+               significant_terms: {
+                   "field": "Arabic.ar_normalized",
+               "size": 1
+               }
+          }
+
+      }
+
+      //console.log((Object.prototype.toString.call(aggs)))
+      if (Object.prototype.toString.call(options) === '[object Array]') {
+        options.filter(function(o){
+          return names_array.indexOf(o) !== -1                 //String matchi sanitization
+        }).map(function(o) {
+          if (o=="Urdu") {
+            aggs["s_Urdu"] = {
+                        significant_terms: {
+                            "field": "Urdu",
+                           "size": 1
+                        }
+                  }
+          } else if (o=="English") {
+            aggs["s_English"] = {
+                 significant_terms: {
+                     "field": "English",
+                   "size": 1
+                  }
+            }
+          } else if (o=="German") {
+            aggs["s_German"] = {
+                  significant_terms: {
+                      "field": "German",
+                       "size": 1
+                  }
+            }
+          } else if (o=="Spanish") {
+            aggs["s_Spanish"] = {
+                  significant_terms: {
+                      "field": "Spanish",
+                       "size": 1
+                  }
+            }
+          } else if (o=="French") {
+            aggs["s_French"] = {
+                  significant_terms: {
+                      "field": "French",
+                       "size": 1
+                  }
+            }
+          }
+        })
+      }
+
+
+
     var requestSync = Meteor.wrapAsync(function(query,callback) {
 
       esClient.search({
@@ -46,125 +197,20 @@ Meteor.methods({
             size: 0,
             query: {
               multi_match : {
-                      fields : [
-                          "Arabic.ar_ngram_normalized",
-                          "Arabic.ar_ngram_original",
-                          "Arabic.ar_ngram_stems_normalized",
-                          "Arabic.ar_ngram_root",
-                          "Arabic.ar_ngram_root_normalized",
-
-
-                          // "Arabic.ar_normalized_ngram_phonetic",
-                          // "Arabic.ar_ngram_stems_normalized_phonetic",
-                          // "Arabic.ar_ngram_root_normalized_phonetic"
-
-                          "Arabic.ar_query_suggest_ngram_normalized_phonetic",
-                          "Arabic.ar_query_suggest_ngram_stems_normalized_phonetic",
-                          "Arabic.ar_query_suggest_ngram_root_normalized_phonetic",
-
-                          "Surah.ar_ngram_normalized",
-                          "Surah.ar_ngram_stems",
-                          "Surah.ar_ngram_stems_normalized",
-
-                          //"Surah.ar_ngram_stems_normalized_phonetic",
-                          //"Surah.ar_normalized_ngram_phonetic"
-
-                           "English.en_normalized_ngram",
-                          // "Urdu.ur_normalized_ngram",
-                          // "German.de_normalized_ngram"
-                        ],
+                      fields : fields,
                       query : query,
                       //type : "best_fields"
                       type : "phrase_prefix"
                 }
             },
-            aggs: {
-                s_Arabic_Trigram: {
-                     significant_terms: {
-                         "field": "Arabic.trigram",
-                         "size": 3
-                     }
-                      //, aggs:{
-                      //   "top_Arabic": {
-                      //     top_hits:{
-                      //         "highlight": {
-                      //             "require_field_match": false,
-                      //             "fields": {
-                      //               "_all" : {//"force_source" : true
-                      //                 "matched_fields": ["Arabic.ar_ngram_normalized",
-                      //                 "Arabic.ar_ngram_original",
-                      //                 "Arabic.ar_ngram_stems_normalized",
-                      //                 "Arabic.ar_ngram_root",
-                      //                 "Arabic.ar_ngram_root_normalized"],
-                      //                 "type" : "fvh"
-                      //               }
-                      //             }
-                      //         },
-                      //         "_source": {
-                      //             "includes": [
-                      //                 "Arabic"
-                      //             ]
-                      //         },
-                      //         "size" : 1
-                      //     }
-                      //   }
-                      // }
-                },
-
-               s_Arabic_Words: {
-                    significant_terms: {
-                        "field": "Arabic",
-                       "size": 3
-                    }
-                },
-                s_Arabic_Stems: {
-                     significant_terms: {
-                         "field": "Arabic.ar_stems",
-                       "size": 2
-                     }
-                },
-
-                s_Arabic_root: {
-                      significant_terms: {
-                          "field": "Arabic.ar_root_normalized",
-                       "size": 1
-                      }
-                 },
-                 s_Arabic_normalized: {
-                       significant_terms: {
-                           "field": "Arabic.ar_normalized",
-                       "size": 1
-                       }
-                  },
-
-                  // s_Urdu: {
-                  //       significant_terms: {
-                  //           "field": "Urdu",
-                  //          "size": 1
-                  //       }
-                  // },
-                  s_English: {
-                       significant_terms: {
-                           "field": "English",
-                         "size": 1
-                        }
-                  },
-                  // s_German: {
-                  //       significant_terms: {
-                  //           "field": "German",
-                  //            "size": 1
-                  //       }
-                  // }
-              }
+            aggs: aggs
         }
       }, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
             //matches = res.suggest;
             matches=obj;
-            matches;
             // console.log(matches)
-            // console.log("callback..")
             callback(err, {response: matches})
 
       }))

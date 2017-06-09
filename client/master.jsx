@@ -102,6 +102,7 @@ export default class Master extends Component {
     this.queries_panel = this.queries_panel.bind(this);
     this.aggregates_panel = this.aggregates_panel.bind(this);
     this.search = this.search.bind(this);
+    this.showKeyboard = this.showKeyboard.bind(this);
     //this.openMenu = this.openMenu.bind(this);
   }
 
@@ -171,6 +172,8 @@ export default class Master extends Component {
         }
 
         $('#Query')[0].value = q.replace(/^ +/,'')
+
+        window.options=this.state.option_types;
         suggest_e(q.trim());    //50ms
       }
     }
@@ -409,6 +412,7 @@ export default class Master extends Component {
   showKeyboard(event) {
     $('#Query').prop('readonly', true);
     $('#Query').blur();
+    window.options=this.state.option_types;
     VKI_show(document.getElementById('Query'));
   }
 
@@ -456,10 +460,9 @@ export default class Master extends Component {
 
 window.suggest_e = function(query) {
   var complete = []
-  //console.log(query);
 
   if (query != '') {
-    Meteor.call('suggest', query, window.sessionId, function(error, result) {
+    Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.name), function(error, result) {
       //console.log(result.took)
       //console.log(result)
       Object.keys(result.aggregations).map(function (z){
@@ -480,15 +483,18 @@ window.suggest_e = function(query) {
           }
         })
       })
-      if ('options' in document.createElement('datalist')) {
-        $('#datalist').empty();
-        complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
-          $('#datalist').append("<option value='" + query + '-->' + i.key + "'>");
-        })
-      } else {
+      // if ('options' in document.createElement('datalist')) {                            //HTML5 Supported Browsers
+      //   $('#datalist').empty();
+      //   complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
+      //     $('#datalist').append("<option value='" + query + '-->' + i.key + "'>");
+      //   })
+      // } else 
+      {
         $('#datalistUl').empty();
         complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
-          $('#datalistUl').append("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key + "</a></li>");
+          $('#datalistUl').append("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key +
+                  //" ("+ i.type +")" +                  // TODO: To be implemented with good graphics/icons
+                "</a></li>");
         })
         $('#datalistUl').css({display:'block'});
       }
