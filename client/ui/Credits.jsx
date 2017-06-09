@@ -20,7 +20,7 @@ export default class Credits extends Component {
                 <div className="modal-content">
                   <div className="modal-header">
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 className="modal-title">Holy Qur'an Advanced Search v1.3</h4>
+                    <h4 className="modal-title">Holy Qur'an Advanced Search v1.14</h4>
                   </div>
                   <div className="modal-body">
                     <iframe src="credits.html"></iframe>
