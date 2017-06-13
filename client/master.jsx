@@ -345,11 +345,7 @@ export default class Master extends Component {
 
         <div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 className="modal-title">Verse: {this.state.verse}</h4>
-              </div>
+            <div className="modal-content">              
               <div className="modal-body">
                 <Iframe query={this.props.query} verse={this.state.verse}/>
               </div>
@@ -488,7 +484,7 @@ window.suggest_e = function(query) {
       //   complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
       //     $('#datalist').append("<option value='" + query + '-->' + i.key + "'>");
       //   })
-      // } else 
+      // } else
       {
         $('#datalistUl').empty();
         complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
