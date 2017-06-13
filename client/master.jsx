@@ -345,14 +345,7 @@ export default class Master extends Component {
 
         <div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-body">
-                <Iframe query={this.props.query} verse={this.state.verse} setVerse={this.setVerse.bind(this)}/>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
+            <Iframe query={this.props.query} verse={this.state.verse} setVerse={this.setVerse.bind(this)} showClose="true"/>
           </div>
         </div>
 

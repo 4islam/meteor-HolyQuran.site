@@ -14,7 +14,11 @@ class Iframe extends Component {
  }
 
  render() {
-   return <div className="Iframe base">
+   return <div className="Iframe base modal-content">
+     <div className="modal-header">
+       { (this.props.showClose)?
+         <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>:''
+       }
        <div className="head" dir="ltr">
          <h4>
            Verse:
@@ -27,13 +31,22 @@ class Iframe extends Component {
              </a>
          </h4>
        </div>
-       <hr/>
+     </div>
+     <div className="modal-body">
        {
          this.props.pages?
             <span dangerouslySetInnerHTML={{__html: this.props.pages.page}}></span>
          :''
        }
        </div>
+       { (this.props.showClose)?
+         <div className="modal-footer">
+             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+
+         </div>:''
+       }
+     </div>
+
  }
  handleChange(query, e) {
    //console.log(query, options, e.target);
@@ -42,7 +55,9 @@ class Iframe extends Component {
 
  getNextVerse(verse, dir){
    Meteor.call('getPageAdjVerse', verse, dir, function(error, result) {
-     this.props.setVerse(result);
+     Meteor.call('getPage',result, function(e, r) {
+       this.props.setVerse(result);
+     }.bind(this));
    }.bind(this))
  }
 }
