@@ -8,18 +8,22 @@ import { createContainer } from 'meteor/react-meteor-data';
 // App component - represents the whole app
 class Iframe extends Component {
 
+ constructor () {
+   super();
+   //this.getNextVerse = this.getNextVerse.bind(this);
+ }
+
  render() {
-   //this.props? console.log(this.props):'';
    return <div className="Iframe base">
        <div className="head" dir="ltr">
          <h4>
            Verse:
-           <a onClick={(e)=>this.getNextVerse(this.props.verse, "back")}>
-            <span className="glyphicon glyphicon-menu-left"></span>
+           <a className="previous" onClick={(e)=>this.getNextVerse(this.props.verse, "previous")}>
+            <span className="glyphicon glyphicon-menu-right"></span>
            </a>
-             {this.props.verse}
-             <a onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
-              <span className="glyphicon glyphicon-menu-right"></span>
+             {" " + this.props.verse}
+             <a className="next" onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
+              <span className="glyphicon glyphicon-menu-left"></span>
              </a>
          </h4>
        </div>
@@ -38,8 +42,8 @@ class Iframe extends Component {
 
  getNextVerse(verse, dir){
    Meteor.call('getPageAdjVerse', verse, dir, function(error, result) {
-     //alert(verse)
-   });
+     this.props.setVerse(result);
+   }.bind(this))
  }
 }
 
@@ -48,7 +52,6 @@ Iframe.propTypes = {
 }
 
 export default createContainer(props => {
-   //console.log(window.sessionId, props.query, window.query);
    Meteor.subscribe('getPage',props.verse, window.sessionId);
    return {
      pages: Pages.findOne({verse:props.verse})

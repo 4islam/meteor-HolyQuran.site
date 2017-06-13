@@ -300,7 +300,7 @@ export default class Master extends Component {
                 <div className="col-md-6 col-lg-4 visible-md visible-lg">
                   <br className="pull-right hidden-lg"/>
                   <div className="well Details">
-                    <Iframe query={this.props.query} verse={this.state.verse}/>
+                    <Iframe query={this.props.query} verse={this.state.verse} setVerse={this.setVerse.bind(this)}/>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-5">
@@ -345,9 +345,9 @@ export default class Master extends Component {
 
         <div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div className="modal-dialog" role="document">
-            <div className="modal-content">              
+            <div className="modal-content">
               <div className="modal-body">
-                <Iframe query={this.props.query} verse={this.state.verse}/>
+                <Iframe query={this.props.query} verse={this.state.verse} setVerse={this.setVerse.bind(this)}/>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

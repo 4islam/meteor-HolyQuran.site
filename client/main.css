@@ -380,8 +380,16 @@ nav.navbar-bottom {
   height: 100%;
 }*/
 
-.iframe.head {
+.Iframe div.head {
   text-align: center;
+}
+
+.Iframe a.next {
+  float: left;
+}
+
+.Iframe a.previous {
+  float: right;
 }
 
 @media screen and (max-width: 766px) {
