@@ -59,13 +59,18 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"surah",state:true,name:'Chapter Names',options: [
+        {id:"Surah",state:true,name:'Chapter Names',options: [
                   //{id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"Urdu",state:false,name:'Urdu',options: [
+                  {id:"phonetic",state:false,name:'Phonetic'},
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"UrduTS",state:false,name:'Tafseer-e-Sagheer UR',options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -451,7 +456,7 @@ window.suggest_e = function(query) {
   var complete = []
 
   if (query != '') {
-    Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.name), function(error, result) {
+    Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
       //console.log(result.took)
       //console.log(result)
       Object.keys(result.aggregations).map(function (z){

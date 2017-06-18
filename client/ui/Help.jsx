@@ -29,6 +29,7 @@ export default class Help extends Component {
                  <li><em>Roots - Works without spaces)</em><br/><a target="_self" href="/جنن">جنن</a></li>
                  <li><em>Stems</em><br/><a target="_self"  href="/جَنَّة">جَنَّة</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/واتقوا الله">واتقوا الله</a></li>
+                 <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
              </ul>
             </div>
 

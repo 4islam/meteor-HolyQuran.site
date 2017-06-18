@@ -11,7 +11,7 @@ export default class VerseHighlights extends Component {
                 <span dangerouslySetInnerHTML={{__html: this.props.base}}></span>
             </div>
             {Object.keys(this.props.highlights).map(function(k) {
-                var re = new RegExp(this.props.Type, 'g');
+                var re = new RegExp(this.props.Type + '(_.*)?$', 'g')              //Must end with either '_' or end of line
                 return (k.search(re)!=-1?
                   <div key={k + "." + this.props._id} className={"highlights noselect " + k.replace(/\.|_/g,' ')}>
                     <span dangerouslySetInnerHTML={{__html: this.props.highlights[k]}}></span>

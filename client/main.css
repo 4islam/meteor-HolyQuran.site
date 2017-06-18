@@ -177,7 +177,7 @@ a.list-group-item.Verse {
     font-weight:lighter;
     font-size: 1em;
 }
-.English, .German, .Spanish, .French, .Urdu, div.btn.btn-default.surah {
+.English, .German, .Spanish, .French, .Urdu, .UrduTS, div.btn.btn-default.surah {
   font-weight:lighter;
   font-size: .9em;
 }

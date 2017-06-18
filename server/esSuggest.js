@@ -65,10 +65,12 @@ Meteor.methods({
 
     if (Object.prototype.toString.call(options) === '[object Array]') {
       options.filter(function(o){
-        return names_array.indexOf(o) !== -1                 //String matchi sanitization
+        return names_array.indexOf(o) !== -1                 //String matching sanitization
       }).map(function(o) {
         if (o=="Urdu") {
           fields.push("Urdu.ur_normalized_ngram")
+        } else if (o=="UrduTS") {
+          fields.push("UrduTS.ur_normalized_ngram")
         } else if (o=="English") {
           fields.push("English.en_normalized_ngram")
         } else if (o=="German") {
@@ -159,6 +161,13 @@ Meteor.methods({
             aggs["s_English"] = {
                  significant_terms: {
                      "field": "English",
+                   "size": 1
+                  }
+            }
+          } else if (o=="UrduTS") {
+            aggs["s_UrduTS"] = {
+                 significant_terms: {
+                     "field": "UrduTS",
                    "size": 1
                   }
             }

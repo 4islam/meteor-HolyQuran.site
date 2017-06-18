@@ -39,10 +39,10 @@ Meteor.methods({
     } else if (ESCol.findOne({$and:[{query:query}, {options:options_str}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
 
       ESCol.update({$and:[{query:query},{options:options_str}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
-      console.log("Order Shuffled (Query)");
+      console.log("\nOrder Shuffled (Query)");
 
     } else {
-      console.log("ES Query for: " +query);
+      console.log("\nES Query for: " +query);
 
       matchArray = [
         {match: {"Arabic": {query: query,"boost": 10}}},
@@ -96,6 +96,12 @@ Meteor.methods({
         {match: {"Urdu.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"Urdu.ur_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"UrduTS": {query: query,"boost": 5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduTS.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
+
         {match: {"English": {query: query,"boost": 5}}},
         {match: {"English.en_normalized": {query: query,"boost": 3}}},
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
@@ -123,10 +129,11 @@ Meteor.methods({
       options.map(function(y,i){
         //console.log(y);
         y.options.map(function(x,i){
+          var retx = y.id+"\\."
           if (!x.state || !y.state) {
             if (x.id == 'root') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+".*root", 'i'): new RegExp(y.id, 'i');
+                var re = (y.state)? new RegExp(retx+".*root"): new RegExp(retx);
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -136,7 +143,7 @@ Meteor.methods({
             }
             if (x.id == 'normalized') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+".*normal", 'i'): new RegExp(y.id, 'i');
+                var re = (y.state)? new RegExp(retx+".*normal"): new RegExp(retx);
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -146,7 +153,7 @@ Meteor.methods({
             }
             if (x.id == 'stems') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+".*stem", 'i'): new RegExp(y.id, 'i');
+                var re = (y.state)? new RegExp(retx+".*stem"): new RegExp(retx);
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -156,7 +163,7 @@ Meteor.methods({
             }
             if (x.id == 'phonetic') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+".*phonetic", 'i'): new RegExp(y.id, 'i');
+                var re = (y.state)? new RegExp(retx+".*phonetic"): new RegExp(retx);
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -166,7 +173,7 @@ Meteor.methods({
             }
             if (x.id == 'ngram') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+".*ngram", 'i'): new RegExp(y.id, 'i');
+                var re = (y.state)? new RegExp(retx+".*ngram"): new RegExp(retx);
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -438,6 +445,11 @@ Meteor.methods({
                 "s_Urdu": {
                       significant_terms: {
                           field: "Urdu"
+                      }
+                },
+                "s_UrduTS": {
+                      significant_terms: {
+                          field: "UrduTS"
                       }
                 },
                 "s_English": {
