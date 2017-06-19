@@ -374,11 +374,11 @@ nav.navbar-bottom {
   width: 100%;
 }
 
-/*iframe {
+iframe {
   width: 100%;
   border: none;
   height: 100%;
-}*/
+}
 
 .Iframe div.head {
   text-align: center;

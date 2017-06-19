@@ -60,29 +60,51 @@ Meteor.methods({
  }
 }})
 
-getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection) {
+getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchesprev,textOriginal) {      //i for Analyzers loop
   var analyzer = analyzers[0];
+
+  var batchsize = 30
   //console.log('Length: ', text.length)
   esClient.indices.analyze(
     {
       analyzer : analyzer.id,
       index : 'hq',
-      text : text,
+      text : text.slice(0,batchsize)
     }, Meteor.bindEnvironment(function (err, res) {
       if (!err) {
         var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
-        matches=obj
+        matches = obj
 
         //console.log(analyzer.id, ": ", JSON.stringify(matches));
 
-        if (i==0) {    //first entry
-          Collection.insert({id:id, session: [{id:sessionId,date:date}],analysis:{text:text, results:[{analyzer:analyzer.id,name:analyzer.name,tokens:matches}]}});
-        } else {
-          Collection.update({$and:[{id:id},{'session.id':{$in:[sessionId]}}]},{$push:{'analysis.results':{analyzer:analyzer.id,name:analyzer.name,tokens:matches}}},{upsert:true});
+        //console.log("Matches: ", JSON.stringify(matches))
+        //console.log("matchesprev: ", JSON.stringify(matchesprev))
+        if (matchesprev) {
+          matches.tokens.map(x=>(
+            x.position=x.position+matchesprev.length*100
+          ))
+          matches.tokens = matchesprev.concat(matches.tokens)
         }
-      if (analyzers.length > 1) {
-        getAnalysis(analyzers.slice(1),text,id,sessionId,date,i+1,Collection);
-      }
+
+        //console.log(text.length)
+
+        if (text.length > batchsize ) {
+            getAnalysis(analyzers,text.slice(batchsize),id,sessionId,date,i,Collection,matches.tokens,textOriginal?textOriginal:text)  //matches.tokens.concat(matchesprev)
+        } else {
+          if (textOriginal) {
+            text = textOriginal
+          }
+
+          if (i==0) {    //first entry
+            Collection.insert({id:id, session: [{id:sessionId,date:date}],analysis:{text:text, results:[{analyzer:analyzer.id,name:analyzer.name,tokens:matches}]}});
+          } else {
+            Collection.update({$and:[{id:id},{'session.id':{$in:[sessionId]}}]},{$push:{'analysis.results':{analyzer:analyzer.id,name:analyzer.name,tokens:matches}}},{upsert:true});
+          }
+          if (analyzers.length > 1) {
+            getAnalysis(analyzers.slice(1),text,id,sessionId,date,i+1,Collection)
+          }
+        }
+
     } else {
       console.log(err)
     }

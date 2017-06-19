@@ -41,7 +41,8 @@ Meteor.methods({
       ESCol.update({$and:[{query:query},{options:options_str}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log("\nOrder Shuffled (Query)");
 
-    } else {
+    } else
+    {
       console.log("\nES Query for: " +query);
 
       matchArray = [
@@ -129,11 +130,10 @@ Meteor.methods({
       options.map(function(y,i){
         //console.log(y);
         y.options.map(function(x,i){
-          var retx = y.id+"\\."
           if (!x.state || !y.state) {
             if (x.id == 'root') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(retx+".*root"): new RegExp(retx);
+                var re = (y.state)? new RegExp(y.id+"\\..*root"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -143,7 +143,7 @@ Meteor.methods({
             }
             if (x.id == 'normalized') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(retx+".*normal"): new RegExp(retx);
+                var re = (y.state)? new RegExp(y.id+"\\..*normal"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -153,7 +153,7 @@ Meteor.methods({
             }
             if (x.id == 'stems') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(retx+".*stem"): new RegExp(retx);
+                var re = (y.state)? new RegExp(y.id+"\\..*stem"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -163,7 +163,7 @@ Meteor.methods({
             }
             if (x.id == 'phonetic') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(retx+".*phonetic"): new RegExp(retx);
+                var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -173,7 +173,7 @@ Meteor.methods({
             }
             if (x.id == 'ngram') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(retx+".*ngram"): new RegExp(retx);
+                var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -492,7 +492,7 @@ Meteor.methods({
 
             text_array = highlights.map(x=>x.token.id)
             if (text_array.length > 0) {
-              getAnalysis(analyzers,text_array.slice(0,60),query,sessionId,date,0,ESAnalyzerHighlightsCol)
+              getAnalysis(analyzers,text_array,query,sessionId,date,0,ESAnalyzerHighlightsCol)
             }
 
       }))

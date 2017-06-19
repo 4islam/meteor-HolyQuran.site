@@ -109,14 +109,6 @@ componentDidMount() {
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1)?
-                <a className="list-group-item Translation">
-                    <VerseHighlights
-                       base={this.props.UrduTS}
-                       Type="UrduTS"
-                       highlights={this.props.highlights}/>
-                </a>:''
-              }
               {(this.props.options.map(x=>x.id==="English"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
                     <VerseHighlights
@@ -146,6 +138,14 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.French}
                        Type="French"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.UrduTS}
+                       Type="UrduTS"
                        highlights={this.props.highlights}/>
                 </a>:''
               }

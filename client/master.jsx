@@ -70,11 +70,6 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'Tafseer-e-Sagheer UR',options: [
-                  {id:"phonetic",state:false,name:'Phonetic'},
-                  {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
-                ]},
         {id:"English",state:true,name:'English',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -88,6 +83,11 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"French",state:false,name:'French',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"UrduTS",state:false,name:'Tafseer-e-Sagheer UR',options: [
+                  {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]}
