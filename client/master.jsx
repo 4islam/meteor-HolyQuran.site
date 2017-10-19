@@ -161,7 +161,6 @@ export default class Master extends Component {
     window.inputId = '#QueryLTR';
     $('#QueryRTL').css({width: '10%', opacity:.2})
     $(window.inputId).css({width: '90%', opacity:1})
-    console.log(window.inputId);
   }
 
   input_e_focusRTL(e) {
