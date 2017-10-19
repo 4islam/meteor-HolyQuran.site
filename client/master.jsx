@@ -240,7 +240,7 @@ export default class Master extends Component {
                   </button>
                 </div>
                 <Debounce time="0" handler="onChange">
-                    <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search"
+                    <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                         onKeyUp={this.input_e.bind(this)}
                         onChange={this.input_e.bind(this)}
                         onFocus={this.input_e_focusLTR.bind(this)}
@@ -248,7 +248,7 @@ export default class Master extends Component {
                         aria-haspopup="true" aria-expanded="false"/>
                 </Debounce>
                 <Debounce time="0" handler="onChange">
-                      <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="سرج"
+                      <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="...or here"
                           onKeyUp={this.input_e.bind(this)}
                           onChange={this.input_e.bind(this)}
                           onFocus={this.input_e_focusRTL.bind(this)}

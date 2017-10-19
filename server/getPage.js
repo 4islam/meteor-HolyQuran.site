@@ -41,7 +41,7 @@ Meteor.methods({
         //console.log('BODY: ' + chunk);//console.log('inserting...' + chunk);
 
         /////****************************************
-        //Pages.insert({verse:c+':'+v, page:chunk});        //uncomment for production
+        Pages.insert({verse:c+':'+v, page:chunk});        //uncomment for production
         /////****************************************
 
       }));
