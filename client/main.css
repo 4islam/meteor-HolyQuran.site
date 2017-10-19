@@ -356,6 +356,10 @@ div.navbar-inverse  {
   text-align: left;
 }
 
+/*.inputPair {
+  display: inline-block;
+}*/
+
 .navbar-fixed-top h3 {
   display: inline;
   margin-top: 5px;

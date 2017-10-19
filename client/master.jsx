@@ -239,27 +239,29 @@ export default class Master extends Component {
                     <img height="17px" className="Query" src="./images/search-icon-png-23-small.png"/>
                   </button>
                 </div>
-                <Debounce time="0" handler="onChange">
-                    <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
-                        onKeyUp={this.input_e.bind(this)}
-                        onChange={this.input_e.bind(this)}
-                        onFocus={this.input_e_focusLTR.bind(this)}
-                         list="datalist"
-                        aria-haspopup="true" aria-expanded="false"/>
-                </Debounce>
-                <Debounce time="0" handler="onChange">
-                      <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="...or here"
+                <div className="row">
+                  <Debounce time="0" handler="onChange">
+                      <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                           onKeyUp={this.input_e.bind(this)}
                           onChange={this.input_e.bind(this)}
-                          onFocus={this.input_e_focusRTL.bind(this)}
+                          onFocus={this.input_e_focusLTR.bind(this)}
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/>
                   </Debounce>
-                  <datalist id="datalist">
-                    <option value="اللہ"/>
-                    <option value="بسم الله"/>
-                    <option value="الله الرحمان الرحيم"/>
-                  </datalist>
+                  <Debounce time="0" handler="onChange">
+                        <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="or here..."
+                            onKeyUp={this.input_e.bind(this)}
+                            onChange={this.input_e.bind(this)}
+                            onFocus={this.input_e_focusRTL.bind(this)}
+                             list="datalist"
+                            aria-haspopup="true" aria-expanded="false"/>
+                    </Debounce>
+                    <datalist id="datalist">
+                      <option value="اللہ"/>
+                      <option value="بسم الله"/>
+                      <option value="الله الرحمان الرحيم"/>
+                    </datalist>
+                  </div>
                   <ul id="datalistUl" className="dropdown-menu dropdown-menu-right" aria-labelledby="Query">
                     {
                       // this.state.suggestionlist.map(i=>
