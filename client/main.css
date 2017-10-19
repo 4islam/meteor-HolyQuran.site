@@ -150,6 +150,9 @@ div.highlights mark {
   font-size: xx-small
 }
 
+#QueryLTR, #QueryRTL {
+  width: 50%;
+}
 
 div.Details {
   bottom: 0px;

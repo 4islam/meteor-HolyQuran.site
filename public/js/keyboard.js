@@ -1730,8 +1730,8 @@ var VKI_attach, VKI_close;
       if (this.VKI_isIE) {
         setTimeout(function() { self.VKI_target = false; }, 0);
       } else this.VKI_target = false;
-      $('#Query').attr('readonly', false);
-      window.suggest_e($('#Query')[0].value);
+      $(window.inputId).attr('readonly', false);
+      window.suggest_e($(window.inputId)[0].value);
       //$('#Query').focus();
     }
   };

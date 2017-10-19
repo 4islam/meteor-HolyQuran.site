@@ -112,6 +112,7 @@ export default class Master extends Component {
   }
 
   componentDidMount() {
+    window.inputId = '#QueryRTL';
 
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
@@ -154,6 +155,22 @@ export default class Master extends Component {
 
   }
 
+
+
+  input_e_focusLTR(e) {
+    window.inputId = '#QueryLTR';
+    $('#QueryRTL').css({width: '10%', opacity:.2})
+    $(window.inputId).css({width: '90%', opacity:1})
+    console.log(window.inputId);
+  }
+
+  input_e_focusRTL(e) {
+    window.inputId = '#QueryRTL';
+    $('#QueryLTR').css({width: '10%', opacity:.2})
+    $(window.inputId).css({width: '90%', opacity:1})
+  }
+
+
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
 
@@ -176,7 +193,7 @@ export default class Master extends Component {
           q=q[0].split(' ').slice(0,-1).join(' ').trim() + ' ' + q[q.length-1]
         }
 
-        $('#Query')[0].value = q.replace(/^ +/,'')
+        $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
         window.options=this.state.option_types;
         suggest_e(q.trim());    //50ms
@@ -197,7 +214,7 @@ export default class Master extends Component {
   // }
 
   searchButton () {
-    this.search($('#Query')[0].value.replace(/^ +/,''), this.state.option_types);
+    this.search($(window.inputId)[0].value.replace(/^ +/,''), this.state.option_types);
   }
 
   render() {
@@ -223,10 +240,19 @@ export default class Master extends Component {
                     <img height="17px" className="Query" src="./images/search-icon-png-23-small.png"/>
                   </button>
                 </div>
-                  <Debounce time="0" handler="onChange">
-                      <input dir="rtl" id="Query" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search"
+                <Debounce time="0" handler="onChange">
+                    <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search"
+                        onKeyUp={this.input_e.bind(this)}
+                        onChange={this.input_e.bind(this)}
+                        onFocus={this.input_e_focusLTR.bind(this)}
+                         list="datalist"
+                        aria-haspopup="true" aria-expanded="false"/>
+                </Debounce>
+                <Debounce time="0" handler="onChange">
+                      <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="سرج"
                           onKeyUp={this.input_e.bind(this)}
                           onChange={this.input_e.bind(this)}
+                          onFocus={this.input_e_focusRTL.bind(this)}
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/>
                   </Debounce>
@@ -404,10 +430,9 @@ export default class Master extends Component {
 
 
   showKeyboard(event) {
-    $('#Query').prop('readonly', true);
-    $('#Query').blur();
+    $(window.inputId).prop('readonly', true); $(window.inputId).blur()
     window.options=this.state.option_types;
-    VKI_show(document.getElementById('Query'));
+    VKI_show(document.getElementById(window.inputId.substr(1)));
   }
 
   handleChange(event) {
@@ -501,9 +526,9 @@ window.suggest_e = function(query) {
 
 window.search_q = function (query) {
   //$('#Query')[0].value=query
-  q=$('#Query')[0].value
+  q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  $('#Query')[0].value=q.replace(/^ +/,'').trim()
+  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
 
   //this.searchButton()
   $('button.Search').trigger("click")
