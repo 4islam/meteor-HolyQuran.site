@@ -32,6 +32,7 @@
   font-family: "Noor_e_QuranV1.11";
   /*font-family: NafeesWeb*/
   font-size: 1.5em;
+  word-spacing: 5px;
 }
 
 .tokens {
@@ -41,6 +42,16 @@
 .Token {
   font-family: "Noor_e_QuranV1.11";
 }
+
+#datalistUl {
+  font-family: "Noor_e_QuranV1.11";
+}
+
+ul.Queries li {
+  font-family: "Noor_e_QuranV1.11";
+  word-spacing: 3px;
+}
+
 .nav-tabs  li {
     float: right;
     padding-right: 0;
@@ -157,8 +168,21 @@ div.highlights mark {
   font-size: xx-small
 }
 
-#QueryLTR, #QueryRTL {
-  width: 50%;
+#QueryLTR {
+  width: 65%;
+  border-right-width: 0;
+}
+
+#QueryRTL {
+  width: 35%;
+  border-left-width: 0;
+
+  opacity: .8;
+  z-index: 10;
+}
+
+div.input.row {
+  margin:0;
 }
 
 div.Details {
@@ -186,6 +210,8 @@ a.list-group-item.Verse {
 .Arabic, .Surah {
     font-weight:lighter;
     font-size: 1em;
+    font-family: "Noor_e_QuranV1.11";
+    word-spacing: 2px;
 }
 .English, .German, .Spanish, .French, .Urdu, .UrduTS, div.btn.btn-default.surah {
   font-weight:lighter;
@@ -365,7 +391,8 @@ div.navbar-inverse  {
   margin-top: 5px;
   /*font-size: 20pt;*/
   text-shadow: 1px 1px black;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Noor_e_QuranV1.11";
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
 .navbar-fixed-top div {
@@ -375,6 +402,11 @@ div.navbar-inverse  {
 
 input[type="checkbox"] {
     vertical-align: top;
+}
+
+input {
+  font-family: "Noor_e_QuranV1.11";
+  word-spacing: 3px;
 }
 
 .Help {

@@ -239,7 +239,7 @@ export default class Master extends Component {
                     <img height="17px" className="Query" src="./images/search-icon-png-23-small.png"/>
                   </button>
                 </div>
-                <div className="row">
+                <div className="input row">
                   <Debounce time="0" handler="onChange">
                       <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                           onKeyUp={this.input_e.bind(this)}
