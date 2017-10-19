@@ -27,7 +27,7 @@ class HighlightsAnalyzed extends Component {
    handleChange(query, e) {
      //console.log(query, options, e.target);
      this.props.search(query, this.props.options);
-     $('#Query')[0].value = query;
+     $(window.inputId)[0].value = query;
    }
 }
 

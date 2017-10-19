@@ -123,7 +123,7 @@ export default class Master extends Component {
         $('.Summary').addClass('sidebar-offcanvas');
         $('.row-offcanvas').toggleClass('active');
 
-        // $('#Query').focus();
+        // $(window.inputId).focus();
       });
       // $('[data-toggle="offcanvas-left"]').click(function () {
       //   $('.row-offcanvas').removeClass('row-offcanvas-right').addClass('row-offcanvas-left');
@@ -182,7 +182,7 @@ export default class Master extends Component {
 
         if (window.query != q) {
           this.search_e(e);     //750ms
-          //$('#Query')[0].value = query + ' ';
+          //$(window.inputId)[0].value = query + ' ';
         }
 
       } else {
@@ -205,10 +205,10 @@ export default class Master extends Component {
   }
 
   // search_q(query) {
-  //   //$('#Query')[0].value=query
-  //   q=$('#Query')[0].value
+  //   //$(window.inputId)[0].value=query
+  //   q=$(window.inputId)[0].value
   //   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  //   $('#Query')[0].value=q.replace(/^ +/,'').trim()
+  //   $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
   //   this.searchButton()
   // }
 
@@ -412,7 +412,7 @@ export default class Master extends Component {
     $("body").css("cursor", "progress");
     Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
       window.history.pushState("object or string", "Title", "/"+ query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '));
-      //$('#Query')[0].value = window.query;    //  User experience issues when leading space
+      //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                               //  that you just typed disappears, moved this before next line
       window.query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
       this.setState({page: 1});
@@ -524,7 +524,7 @@ window.suggest_e = function(query) {
 
 
 window.search_q = function (query) {
-  //$('#Query')[0].value=query
+  //$(window.inputId)[0].value=query
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
   $(window.inputId)[0].value=q.replace(/^ +/,'').trim()

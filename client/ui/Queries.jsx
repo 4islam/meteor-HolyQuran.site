@@ -39,7 +39,7 @@ class Queries extends Component {
  handleChange(query, options) {
    //console.log(query, options);
    this.props.search(query, JSON.parse(options));
-   $('#Query')[0].value = query;
+   $(window.inputId)[0].value = query;
  }
 }
 

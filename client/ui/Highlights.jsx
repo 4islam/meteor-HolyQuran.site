@@ -26,7 +26,7 @@ class Highlights extends Component {
    var options = this.props.options;
    //options.  //TODO
    this.props.search(query, options);
-   $('#Query')[0].value = query;
+   $(window.inputId)[0].value = query;
  }
 
 

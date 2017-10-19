@@ -46,7 +46,7 @@ class Aggregates extends Component {
  handleChange(query, e) {
    //console.log(query, options, e.target);
    this.props.search(window.query+' '+query, this.props.options);
-   $('#Query')[0].value = window.query+' '+query;
+   $(window.inputId)[0].value = window.query+' '+query;
  }
 }
 

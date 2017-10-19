@@ -1732,7 +1732,7 @@ var VKI_attach, VKI_close;
       } else this.VKI_target = false;
       $(window.inputId).attr('readonly', false);
       window.suggest_e($(window.inputId)[0].value);
-      //$('#Query').focus();
+      //$(window.inputId).focus();
     }
   };
 
