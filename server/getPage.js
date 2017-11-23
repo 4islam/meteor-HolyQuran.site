@@ -24,7 +24,7 @@ Meteor.methods({
     c=verse.split(':')[0]*1;
     v=verse.split(':')[1]*1;
 
-                                                                 //TODO: Caching and checking before insterting
+                                                                 //TODO: Checking before insterting
 
     var options = {
       host: 'www.alislam.org',
@@ -41,7 +41,7 @@ Meteor.methods({
         //console.log('BODY: ' + chunk);//console.log('inserting...' + chunk);
 
         /////****************************************
-        //Pages.insert({verse:c+':'+v, page:chunk});        //uncomment for production
+        Pages.insert({verse:c+':'+v, page:chunk});        //uncomment for production
         /////****************************************
 
       }));

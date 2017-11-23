@@ -117,6 +117,7 @@ div.highlights {
 
 div.highlights.Arabic {
   opacity: .5;
+  color: transparent;
 }
 
 div.highlights.Surah {
@@ -130,6 +131,7 @@ div.highlights.ayah {
 
 div.highlights.visible {
   opacity: 1;
+  color: black;
 }
 div.highlights.base {
   opacity: .03;
@@ -138,6 +140,7 @@ div.highlights.base {
 
 div.highlights mark {
   padding: 0;
+  color: transparent;
 }
 
 .highlights.ngram mark {

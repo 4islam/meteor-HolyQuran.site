@@ -42,6 +42,7 @@ Meteor.methods({
       console.log("\nOrder Shuffled (Query)");
 
     } else
+    
     {
       console.log("\nES Query for: " +query);
 
@@ -485,8 +486,9 @@ Meteor.methods({
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
             //matches = res.suggest;
-            matches=obj;
-            highlights=getMarkedTokens(matches);
+            matches = obj;
+            highlights = getMarkedTokens(matches);
+
             ESCol.insert({query:query, options:options_str, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
             //console.log(matches.hits.hits.length)
 

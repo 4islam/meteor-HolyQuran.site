@@ -1,4 +1,5 @@
-import React, { Component , state, PropTypes } from 'react';
+import React, { Component , state } from 'react';
+import PropTypes from 'prop-types';
 import { createContainer } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 

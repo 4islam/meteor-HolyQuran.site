@@ -1,4 +1,5 @@
-import React, { Component , state, PropTypes } from 'react';
+import React, { Component , state } from 'react';
+import PropTypes from 'prop-types';
 
 export default class TokenHighlights extends Component {
  render() {

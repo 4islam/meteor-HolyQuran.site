@@ -1,5 +1,5 @@
 import React, { Component , state} from 'react';
-import { Debounce } from 'react-throttle';
+//import { Debounce } from 'react-throttle';
 
 import Suggestions from './ui/Suggestions.jsx';
 import Queries from './ui/Queries.jsx';
@@ -240,22 +240,21 @@ export default class Master extends Component {
                   </button>
                 </div>
                 <div className="input row">
-                  <Debounce time="0" handler="onChange">
+
                       <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                           onKeyUp={this.input_e.bind(this)}
                           onChange={this.input_e.bind(this)}
                           onFocus={this.input_e_focusLTR.bind(this)}
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/>
-                  </Debounce>
-                  <Debounce time="0" handler="onChange">
+
                         <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="or here..."
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
                              list="datalist"
                             aria-haspopup="true" aria-expanded="false"/>
-                    </Debounce>
+                  
                     <datalist id="datalist">
                       <option value="اللہ"/>
                       <option value="بسم الله"/>
