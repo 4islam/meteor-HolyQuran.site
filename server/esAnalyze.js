@@ -65,6 +65,7 @@ getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchespre
 
   var batchsize = 30
   //console.log('Length: ', text.length)
+  console.log(analyzer);
   esClient.indices.analyze(
     {
       analyzer : analyzer.id,
