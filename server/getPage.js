@@ -40,9 +40,11 @@ Meteor.methods({
       res.on('data', Meteor.bindEnvironment(function (chunk) {
         //console.log('BODY: ' + chunk);//console.log('inserting...' + chunk);
 
+        if (Meteor.isProduction) {          //For production
         /////****************************************
-        //Pages.insert({verse:c+':'+v, page:chunk});        //uncomment for production
+          Pages.insert({verse:c+':'+v, page:chunk});
         /////****************************************
+        }
 
       }));
     }));
