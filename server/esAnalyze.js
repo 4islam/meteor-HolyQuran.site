@@ -42,7 +42,7 @@ Meteor.methods({
   var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
 
   var date = new Date();
-  console.log(sessionId, this.connection.id);
+  //console.log(sessionId, this.connection.id);
 
   if (verse != "") {
     if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already

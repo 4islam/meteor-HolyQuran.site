@@ -39,10 +39,10 @@ Meteor.methods({
     } else if (ESCol.findOne({$and:[{query:query}, {options:options_str}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
 
       ESCol.update({$and:[{query:query},{options:options_str}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
-      console.log("\nOrder Shuffled (Query)");
+      console.log("\nOrder shuffled for:"+query);
 
     } else
-    
+
     {
       console.log("\nES Query for: " +query);
 
