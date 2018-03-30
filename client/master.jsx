@@ -517,17 +517,12 @@ window.suggest_e = function(query) {
       //   })
       // } else
       {
-        //console.log(complete)
         if (complete.length >0 || query.length < 1) {
           $('#datalistUl').empty();                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
-        //} else if ($('#datalistUl hr').length < 1){
-          //$('#datalistUl').prepend("<hr/>")
         } else {
-          //$('#datalistUl').addClass("bg-light")
           $('#datalistUl').css('background-color','#eee')
         }
-        //console.log(complete)
         complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
           $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key
                   //" ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
@@ -536,7 +531,6 @@ window.suggest_e = function(query) {
                 +"</a></li>");
         })
         $('#datalistUl').css({display:'block'});
-        //window.suggest_query = query;
         $(window.inputId).attr('readonly', false);
       }
 
