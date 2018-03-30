@@ -483,12 +483,12 @@ export default class Master extends Component {
   }
 }
 
-
+//window.suggest_query = ""
 window.suggest_e = function(query) {
   var complete = []
 
-  if (query != '') {
-
+  if (query != ''){ //&& query != window.suggest_query) {
+    $(window.inputId).attr('readonly', true);
     Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
       //console.log(result.took)
       //console.log(result)
@@ -536,6 +536,8 @@ window.suggest_e = function(query) {
                 +"</a></li>");
         })
         $('#datalistUl').css({display:'block'});
+        //window.suggest_query = query;
+        $(window.inputId).attr('readonly', false);
       }
 
       //$('#datalistUl').css({display:'block'});
