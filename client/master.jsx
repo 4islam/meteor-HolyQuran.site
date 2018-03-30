@@ -195,7 +195,14 @@ export default class Master extends Component {
         $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
         window.options=this.state.option_types;
-        suggest_e(q.trim());    //50ms
+        //console.log(e.type)
+        if (e.which != 27) {        //Esc character
+          if (e.type=="change") {   //not on keyup to make it faster
+            suggest_e(q.trim());    //50ms
+          }
+        } else {
+          $('#datalistUl').css({display:'none'});
+        }
       }
     }
   }
@@ -254,7 +261,7 @@ export default class Master extends Component {
                             onFocus={this.input_e_focusRTL.bind(this)}
                              list="datalist"
                             aria-haspopup="true" aria-expanded="false"/>
-                  
+
                     <datalist id="datalist">
                       <option value="اللہ"/>
                       <option value="بسم الله"/>
@@ -481,6 +488,7 @@ window.suggest_e = function(query) {
   var complete = []
 
   if (query != '') {
+
     Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
       //console.log(result.took)
       //console.log(result)
@@ -509,14 +517,27 @@ window.suggest_e = function(query) {
       //   })
       // } else
       {
-        $('#datalistUl').empty();
-        complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
-          $('#datalistUl').append("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key +
-                  //" ("+ i.type +")" +                  // TODO: To be implemented with good graphics/icons
-                "</a></li>");
+        //console.log(complete)
+        if (complete.length >0 || query.length < 1) {
+          $('#datalistUl').empty();                 // Commented to keep older results.
+          $('#datalistUl').css('background-color','#fff')
+        //} else if ($('#datalistUl hr').length < 1){
+          //$('#datalistUl').prepend("<hr/>")
+        } else {
+          //$('#datalistUl').addClass("bg-light")
+          $('#datalistUl').css('background-color','#eee')
+        }
+        //console.log(complete)
+        complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
+          $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key
+                  //" ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
+                  //" "+ i.score
+                  + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
+                +"</a></li>");
         })
         $('#datalistUl').css({display:'block'});
       }
+
       //$('#datalistUl').css({display:'block'});
       //t.setState({suggestionlist:complete.sort(function (a,b){ return b.score - a.score})})
     })
