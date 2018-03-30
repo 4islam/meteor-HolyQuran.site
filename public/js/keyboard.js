@@ -1612,7 +1612,10 @@ var VKI_attach, VKI_close;
         this.VKI_target.range.text = text;
         this.VKI_target.range.collapse(true);
         this.VKI_target.range.select();
-      } else this.VKI_target.value += text;
+      } else {
+        this.VKI_target.value += text;
+        window.suggest_e($(window.inputId)[0].value);
+      }
       if (this.VKI_shift) this.VKI_modify("Shift");
       if (this.VKI_altgr) this.VKI_modify("AltGr");
       this.VKI_target.focus();
