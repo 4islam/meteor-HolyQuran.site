@@ -166,7 +166,10 @@ export default class Master extends Component {
   input_e_focusRTL(e) {
     window.inputId = '#QueryRTL';
     //$('#QueryLTR').css({width: '10%', opacity:.2})
-    $(window.inputId).css({width: '100%', opacity:1})
+    //$(window.inputId).css({width: '100%', opacity:1})
+    q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
+    window.options=this.state.option_types;
+    setTimeout(suggest_e, 150, q.trim());
   }
 
 
@@ -186,10 +189,10 @@ export default class Master extends Component {
 
       } else {
         //console.log(q.substr(-1) != ' ', e.which,[13,32].indexOf(e.which)==-1)
-        if (q.indexOf('-->') != -1) {
-          q=q.split('-->')
-          q=q[0].split(' ').slice(0,-1).join(' ').trim() + ' ' + q[q.length-1]
-        }
+        // if (q.indexOf('-->') != -1) {
+        //   q=q.split('-->')
+        //   q=q[0].split(' ').slice(0,-1).join(' ').trim() + ' ' + q[q.length-1]
+        // }
 
         $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
@@ -220,6 +223,10 @@ export default class Master extends Component {
 
   searchButton () {
     this.search($(window.inputId)[0].value.replace(/^ +/,''), this.state.option_types);
+  }
+
+  suggestDiv_close() {
+    setTimeout(suggestDiv_close_delayed, 500)
   }
 
   render() {
@@ -257,7 +264,7 @@ export default class Master extends Component {
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
-                            onBlur={this.input_e.bind(this)}
+                            onBlur={this.suggestDiv_close.bind(this)}
                              list="datalist"
                             aria-haspopup="true" aria-expanded="false"/>
 
@@ -482,6 +489,12 @@ export default class Master extends Component {
   }
 }
 
+window.suggestDiv_close_delayed = function() {
+  if ($('#keyboardInputMaster').length == 0) {
+    $('#datalistUl').css({display:'none'});
+  }
+  //$(window.inputId).attr('readonly', false);
+}
 //window.suggest_query = ""
 window.suggest_e = function(query) {
   var complete = []
