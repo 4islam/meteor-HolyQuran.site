@@ -177,7 +177,7 @@ div.highlights mark {
 }
 
 #QueryRTL {
-  width: 35%;
+  width: 100%;
   border-left-width: 0;
 
   opacity: .8;

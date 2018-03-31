@@ -165,8 +165,8 @@ export default class Master extends Component {
 
   input_e_focusRTL(e) {
     window.inputId = '#QueryRTL';
-    $('#QueryLTR').css({width: '10%', opacity:.2})
-    $(window.inputId).css({width: '90%', opacity:1})
+    //$('#QueryLTR').css({width: '10%', opacity:.2})
+    $(window.inputId).css({width: '100%', opacity:1})
   }
 
 
@@ -195,10 +195,9 @@ export default class Master extends Component {
         $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
         window.options=this.state.option_types;
-        //console.log(e.type)
         if (e.which != 27) {        //Esc character
           if (e.type=="change") {   //not on keyup to make it faster
-            suggest_e(q.trim());    //50ms
+            setTimeout(suggest_e, 150, q.trim());    //50ms
           }
         } else {
           $('#datalistUl').css({display:'none'});
@@ -247,15 +246,14 @@ export default class Master extends Component {
                   </button>
                 </div>
                 <div className="input row">
-
-                      <input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
+                      {/*}<input dir="ltr" id="QueryLTR" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                           onKeyUp={this.input_e.bind(this)}
                           onChange={this.input_e.bind(this)}
                           onFocus={this.input_e_focusLTR.bind(this)}
                            list="datalist"
-                          aria-haspopup="true" aria-expanded="false"/>
+                          aria-haspopup="true" aria-expanded="false"/> */}
 
-                        <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="or here..."
+                        <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
@@ -268,7 +266,7 @@ export default class Master extends Component {
                       <option value="الله الرحمان الرحيم"/>
                     </datalist>
                   </div>
-                  <ul id="datalistUl" className="dropdown-menu dropdown-menu-right" aria-labelledby="Query">
+                  <ul id="datalistUl" className="datalistUl dropdown-menu dropdown-menu-right" aria-labelledby="Query">
                     {
                       // this.state.suggestionlist.map(i=>
                       //   <li className='btn-block btn btn-xs' key={i.key}><a href="#" onClick={() => this.search_q(i.key)}>{i.key}</a></li>
@@ -530,6 +528,12 @@ window.suggest_e = function(query) {
                   + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                 +"</a></li>");
         })
+        if (complete.length >0) {
+          $('#datalistUl').append("<button type=\"button\" class=\"close\" style=\"float:left\" \
+          onClick=\"$('#datalistUl').css({display:'none'}); $(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
+          <span aria-hidden=\"true\">&times;</span> \
+          </button>")
+        }
         $('#datalistUl').css({display:'block'});
         $(window.inputId).attr('readonly', false);
       }
