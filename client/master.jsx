@@ -172,7 +172,6 @@ export default class Master extends Component {
 
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
-
     q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
 
     if (window.query != e.target.value || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") { //after introducing onKeyUp
@@ -195,9 +194,10 @@ export default class Master extends Component {
         $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
         window.options=this.state.option_types;
-        if (e.which != 27) {        //Esc character
-          if (e.type=="change") {   //not on keyup to make it faster
-            setTimeout(suggest_e, 150, q.trim());    //50ms
+        //console.log(e.type)
+        if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
+          if (e.type=="change") {   //not on keyup, but on change to make it faster
+            setTimeout(suggest_e, 150, q.trim());    //150ms
           }
         } else {
           $('#datalistUl').css({display:'none'});
@@ -257,6 +257,7 @@ export default class Master extends Component {
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
+                            onBlur={this.input_e.bind(this)}
                              list="datalist"
                             aria-haspopup="true" aria-expanded="false"/>
 

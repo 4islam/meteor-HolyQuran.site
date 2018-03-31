@@ -1614,8 +1614,8 @@ var VKI_attach, VKI_close;
         this.VKI_target.range.select();
       } else {
         this.VKI_target.value += text;
-        window.suggest_e($(window.inputId)[0].value);
       }
+      setTimeout(suggest_e, 5,this.VKI_target.value);
       if (this.VKI_shift) this.VKI_modify("Shift");
       if (this.VKI_altgr) this.VKI_modify("AltGr");
       this.VKI_target.focus();
@@ -1734,7 +1734,7 @@ var VKI_attach, VKI_close;
         setTimeout(function() { self.VKI_target = false; }, 0);
       } else this.VKI_target = false;
       $(window.inputId).attr('readonly', false);
-      window.suggest_e($(window.inputId)[0].value);
+      //window.suggest_e($(window.inputId)[0].value);
       //$(window.inputId).focus();
     }
   };
