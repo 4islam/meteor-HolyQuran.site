@@ -549,7 +549,9 @@ window.suggest_e = function(query) {
           </button>")
         }
         $('#datalistUl').css({display:'block'});
-        $(window.inputId).attr('readonly', false);
+        if ($('#keyboardInputMaster').length == 0) {
+          $(window.inputId).attr('readonly', false);
+        }
       }
 
       //$('#datalistUl').css({display:'block'});
