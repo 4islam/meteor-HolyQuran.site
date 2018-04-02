@@ -58,6 +58,8 @@ Meteor.methods({
         "Surah.ar_ngram_stems",
         "Surah.ar_ngram_stems_normalized",
 
+        "ayah"        //This add Surah name suggestion from numeric entries
+
         //"Surah.ar_ngram_stems_normalized_phonetic",
         //"Surah.ar_normalized_ngram_phonetic"
 
@@ -82,6 +84,7 @@ Meteor.methods({
         }
       })
     }
+
     //console.log(fields)
 
     var aggs = {
@@ -141,7 +144,13 @@ Meteor.methods({
                    "field": "Arabic.ar_normalized",
                "size": 1
                }
-          }
+          },
+          s_Surah: {
+                significant_terms: {
+                    "field": "Surah",
+                "size": 1
+                }
+           }
 
       }
 

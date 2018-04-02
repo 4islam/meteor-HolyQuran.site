@@ -537,8 +537,8 @@ window.suggest_e = function(query) {
         }
         complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
           $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key
-                  //" ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
-                  //" "+ i.score
+                  //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
+                  //+ " "+ i.score
                   + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                 +"</a></li>");
         })
