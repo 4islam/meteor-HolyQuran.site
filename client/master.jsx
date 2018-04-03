@@ -167,7 +167,7 @@ export default class Master extends Component {
     window.inputId = '#QueryRTL';
     //$('#QueryLTR').css({width: '10%', opacity:.2})
     //$(window.inputId).css({width: '100%', opacity:1})
-    q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
+    q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ')
     window.options=this.state.option_types;
     setTimeout(suggest_e, 150, q.trim());
   }
@@ -200,7 +200,9 @@ export default class Master extends Component {
         //console.log(e.type)
         if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
           if (e.type=="change") {   //not on keyup, but on change to make it faster
-            setTimeout(suggest_e, 150, q.trim());    //150ms
+
+            setTimeout(suggest_e, 500, $(window.inputId)[0].value.trim());    //150ms
+            //setTimeout(suggest_e, 150, q.trim());    //150ms
           }
         } else {
           $('#datalistUl').css({display:'none'});
@@ -499,8 +501,17 @@ window.suggestDiv_close_delayed = function() {
 window.suggest_e = function(query) {
   var complete = []
 
-  if (query != ''){ //&& query != window.suggest_query) {
-    $(window.inputId).attr('readonly', true);
+if (query != ''){ //&& query != window.suggest_query) {
+  //console.log(query, $(window.inputId)[0].value)   
+
+  q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ').trim()
+  if (query != q) {
+    //$(window.inputId).attr('readonly', true);
+    $(window.inputId).css('color', 'grey');
+  } else {
+    //setTimeout(suggest_e, 0, q);
+    $(window.inputId).css('color', 'black');
+  }
     Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
       //console.log(result.took)
       //console.log(result)

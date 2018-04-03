@@ -1615,7 +1615,7 @@ var VKI_attach, VKI_close;
       } else {
         this.VKI_target.value += text;
       }
-      setTimeout(suggest_e, 5,this.VKI_target.value);
+      setTimeout(suggest_e, 150,this.VKI_target.value);
       if (this.VKI_shift) this.VKI_modify("Shift");
       if (this.VKI_altgr) this.VKI_modify("AltGr");
       this.VKI_target.focus();
