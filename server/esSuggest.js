@@ -52,13 +52,7 @@ Meteor.methods({
 
         "Arabic.ar_query_suggest_ngram_normalized_phonetic",
         "Arabic.ar_query_suggest_ngram_stems_normalized_phonetic",
-        "Arabic.ar_query_suggest_ngram_root_normalized_phonetic",
-
-        "Surah.ar_ngram_normalized",
-        "Surah.ar_ngram_stems",
-        "Surah.ar_ngram_stems_normalized",
-
-        "ayah"        //This add Surah name suggestion from numeric entries
+        "Arabic.ar_query_suggest_ngram_root_normalized_phonetic"
 
         //"Surah.ar_ngram_stems_normalized_phonetic",
         //"Surah.ar_normalized_ngram_phonetic"
@@ -81,6 +75,14 @@ Meteor.methods({
           fields.push("Spanish.es_normalized_ngram")
         } else if (o=="French") {
           fields.push("French.fr_normalized_ngram")
+        } else if (o=="Surah") {
+          fields.push("Surah.ar_ngram_normalized")
+          fields.push("Surah.ar_ngram_stems")
+          fields.push("Surah.ar_ngram_stems_normalized")
+
+          fields.push("ayah")                         // This add Surah name
+          fields.push("ayah.ayah_normalized_ar")      // suggestion from
+          fields.push("ayah.ayah_normalized_ur")      // numeric entries
         }
       })
     }
