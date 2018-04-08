@@ -214,7 +214,14 @@ Meteor.methods({
       esClient.search({
         index: "hq",
         body: {
-            size: 0,
+            size: 3 ,
+            "sort": [
+                {
+                  "_score": {
+                    "order": "asc"
+                  }
+                }
+              ],
             query: {
               multi_match : {
                       fields : fields,
@@ -223,7 +230,20 @@ Meteor.methods({
                       type : "phrase_prefix"
                 }
             },
-            aggs: aggs
+            aggs: aggs,
+            highlight : {
+                pre_tags: [
+                  pre_tag
+                ],
+                post_tags: [
+                  post_tag
+                ],
+               fields: {
+                 "*": {
+                        "number_of_fragments" : 0
+                       }
+                }
+              }
         }
       }, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));

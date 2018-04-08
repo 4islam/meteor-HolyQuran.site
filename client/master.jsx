@@ -502,7 +502,7 @@ window.suggest_e = function(query) {
   var complete = []
 
 if (query != ''){ //&& query != window.suggest_query) {
-  //console.log(query, $(window.inputId)[0].value)   
+  //console.log(query, $(window.inputId)[0].value)
 
   q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ').trim()
   if (query != q) {
@@ -540,6 +540,31 @@ if (query != ''){ //&& query != window.suggest_query) {
       //   })
       // } else
       {
+        //if (complete.length == 0) {
+          // Object.keys(result.hits.hits[0].highlight).map(function(p){
+          //   console.log(result.hits.hits[0].highlight[p][0]);
+          // })
+
+          var hits = result.hits.hits
+          Object.keys(hits).map(function (v,l) {        //controlled by Hit Size:1
+            if (l == 0) {
+              Object.keys(hits[0].highlight).map(function (k,m) {
+                if (m == 0) {                          // to get only first count
+                  var text = hits[v].highlight[k][0].split(' ');
+                  text.map(function (t) {
+                    if (t.search(re_pre) != -1) {
+                      token = t.replace(re_pre,'').replace(re_post,'');
+                      t=complete.map(r=>r.key).indexOf(token)
+                      if (t==-1) {
+                        complete.push({key:token,count:"",score:"",type:["rare"]})
+                      }
+                    }
+                  })
+                }
+              })
+            }
+          })
+        //}
         if (complete.length >0 || query.length < 1) {
           $('#datalistUl').empty();                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')

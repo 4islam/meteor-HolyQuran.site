@@ -6,9 +6,6 @@ var esClient = new es.Client({
   log: 'warning'
 });
 
-var pre_tag = "<mark>";
-var post_tag = "</mark>";
-
 Meteor.startup(() => {
   if (Meteor.isServer) {
        ESCol._ensureIndex( {
@@ -503,8 +500,8 @@ Meteor.methods({
 }})
 
 
-var re_pre = new RegExp(pre_tag, 'g');
-var re_post = new RegExp(post_tag, 'g');
+// var re_pre = new RegExp(pre_tag, 'g');       //Moved to constants
+// var re_post = new RegExp(post_tag, 'g');     //
 
 getMarkedTokens = function (r) {
   var hits = r.hits.hits; var terms = [];var ret = [];
