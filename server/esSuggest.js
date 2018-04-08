@@ -214,7 +214,7 @@ Meteor.methods({
       esClient.search({
         index: "hq",
         body: {
-            size: 3 ,
+            size: 3,
             "sort": [
                 {
                   "_score": {

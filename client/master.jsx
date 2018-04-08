@@ -546,14 +546,14 @@ if (query != ''){ //&& query != window.suggest_query) {
           // })
 
           var hits = result.hits.hits
-          Object.keys(hits).map(function (v,l) {        //controlled by Hit Size:1
+          Object.keys(hits).map(function (v,l) {        //controlled by Hit Size
             if (l == 0) {
               Object.keys(hits[0].highlight).map(function (k,m) {
                 if (m == 0) {                          // to get only first count
                   var text = hits[v].highlight[k][0].split(' ');
                   text.map(function (t) {
                     if (t.search(re_pre) != -1) {
-                      token = t.replace(re_pre,'').replace(re_post,'');
+                      token = t.replace(re_pre,'').replace(re_post,'').replace(re_clean,'').trim()
                       t=complete.map(r=>r.key).indexOf(token)
                       if (t==-1) {
                         complete.push({key:token,count:"",score:"",type:["rare"]})
