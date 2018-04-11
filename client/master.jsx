@@ -112,7 +112,9 @@ export default class Master extends Component {
   }
 
   componentDidMount() {
-    window.inputId = '#QueryRTL';
+    window.inputId = '#QueryRTL'
+    window.highlight = "null"
+    window.termcount = 1
 
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
@@ -172,7 +174,6 @@ export default class Master extends Component {
     setTimeout(suggest_e, 150, q.trim());
   }
 
-
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
     q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
@@ -197,17 +198,53 @@ export default class Master extends Component {
         $('#'+e.target.id)[0].value = q.replace(/^ +/,'')
 
         window.options=this.state.option_types;
-        //console.log(e.type)
-        if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
-          if (e.type=="change") {   //not on keyup, but on change to make it faster
+      }
+    }
 
-            setTimeout(suggest_e, 500, $(window.inputId)[0].value.trim());    //150ms
-            //setTimeout(suggest_e, 150, q.trim());    //150ms
+
+    //console.log(e.type, e.which)
+    if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
+      if (e.type=="change") {   //not on keyup, but on change to make it faster
+
+        setTimeout(suggest_e, 500, $(window.inputId)[0].value.trim());    //150ms
+        //setTimeout(suggest_e, 150, q.trim());    //150ms
+      } else if (e.type=="keyup" && e.which && [38,40].indexOf(e.which)!=-1 ) {
+        if ($('#datalistUl > li').length) {
+          $('#datalistUl').css({display:'block'});
+          if (window.highlight != "null") {
+            if (e.which == 38) {              //up arrow
+              if (window.highlight > 0) {
+                window.highlight --
+              }
+            } else {                         //down arrow
+              if (window.highlight < $('#datalistUl > li').length - 1) {
+                window.highlight ++
+              }
+            }
+          } else {
+            if (e.which == 38) {              //up arrow
+              window.highlight = $('#datalistUl > li').length-1
+            } else {                         //down arrow
+              window.highlight = 0
+            }
           }
-        } else {
-          $('#datalistUl').css({display:'none'});
+          $('#datalistUl > li').removeClass("active")
+          $('#datalistUl > li').eq(window.highlight).addClass("active")
+
+          suggested_term = $('#datalistUl > li.active a').contents().get(0).nodeValue
+
+          q=$(window.inputId)[0].value
+          q=q.split(' ').slice(0,-1*window.termcount)
+              .join(' ')
+              .trim() + ' ' + suggested_term
+          $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
+
+          window.termcount = suggested_term.split(' ').length   //for next switch
+
         }
       }
+    } else {
+      $('#datalistUl').css({display:'none'});
     }
   }
 
@@ -263,6 +300,7 @@ export default class Master extends Component {
                           aria-haspopup="true" aria-expanded="false"/> */}
 
                         <input dir="rtl" id="QueryRTL" defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
+                            maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
@@ -270,11 +308,11 @@ export default class Master extends Component {
                              list="datalist"
                             aria-haspopup="true" aria-expanded="false"/>
 
-                    <datalist id="datalist">
+                    {/*<datalist id="datalist">
                       <option value="اللہ"/>
                       <option value="بسم الله"/>
                       <option value="الله الرحمان الرحيم"/>
-                    </datalist>
+                    </datalist>*/}
                   </div>
                   <ul id="datalistUl" className="datalistUl dropdown-menu dropdown-menu-right" aria-labelledby="Query">
                     {
@@ -291,7 +329,9 @@ export default class Master extends Component {
                </div>
               <Suggestions query={this.props.query} search={this.search} options={this.state.option_types}
                           page={this.state.page} limit={this.state.limit}/>
-              <div>
+
+
+              <div id="collapsible" className="collapse" aria-expanded="false">
                 <div>
                   {
                     this.state.option_types.map(x=>
@@ -338,6 +378,7 @@ export default class Master extends Component {
                   }
                 </div>
               </div>
+              <span className="btn btn-xs glyphicon glyphicon-option-horizontal" aria-hidden="true" data-toggle="collapse" data-target="#collapsible"></span>
             </div>
         </div>
         <div className="container-fluid">
@@ -493,7 +534,7 @@ export default class Master extends Component {
 
 window.suggestDiv_close_delayed = function() {
   if ($('#keyboardInputMaster').length == 0) {
-    $('#datalistUl').css({display:'none'});
+    $('#datalistUl').css({display:'none'})
   }
   //$(window.inputId).attr('readonly', false);
 }
@@ -553,7 +594,10 @@ if (query != ''){ //&& query != window.suggest_query) {
                   var text = hits[v].highlight[k][0].split(' ');
                   text.map(function (t) {
                     if (t.search(re_pre) != -1) {
-                      token = t.replace(re_pre,'').replace(re_post,'').replace(re_clean,'').trim()
+                      token = t.replace(re_pre,'').replace(re_post,'')
+                                .replace(re_clean,'') //To clean commas, semicolons etc.
+                                .trim() //to remove spaces
+                                .toLowerCase() //to match without case
                       t=complete.map(r=>r.key).indexOf(token)
                       if (t==-1) {
                         complete.push({key:token,count:"",score:"",type:["rare"]})
@@ -566,7 +610,7 @@ if (query != ''){ //&& query != window.suggest_query) {
           })
         //}
         if (complete.length >0 || query.length < 1) {
-          $('#datalistUl').empty();                 // Commented to keep older results.
+          $('#datalistUl').empty()                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
         } else {
           $('#datalistUl').css('background-color','#eee')
@@ -584,7 +628,8 @@ if (query != ''){ //&& query != window.suggest_query) {
           <span aria-hidden=\"true\">&times;</span> \
           </button>")
         }
-        $('#datalistUl').css({display:'block'});
+        $('#datalistUl').css({display:'block'})
+        window.highlight = "null"
         if ($('#keyboardInputMaster').length == 0) {
           $(window.inputId).attr('readonly', false);
         }

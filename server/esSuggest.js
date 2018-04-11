@@ -14,10 +14,10 @@ Meteor.methods({
   suggest:function (query, sID, options) {
   // var future = new Future();
   //var sessionId = this.connection.id;
-  query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
+  query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,250);      //max 500 character limit
 
-  query = query.split(' ');
-  query = query[query.length-1];
+  query = query.split(' ')                      //keeps on suggesting previous
+  query = query[query.length-1]                 //terms otherwise
 
   var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
 
@@ -125,13 +125,13 @@ Meteor.methods({
        s_Arabic_Words: {
             significant_terms: {
                 "field": "Arabic",
-               "size": 3
+               "size": 1
             }
         },
         s_Arabic_Stems: {
              significant_terms: {
                  "field": "Arabic.ar_stems",
-               "size": 2
+               "size": 1
              }
         },
 
