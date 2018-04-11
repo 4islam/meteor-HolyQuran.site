@@ -23,5 +23,5 @@ react
 meteor-platform@1.2.6
 session@1.1.7
 dynamic-import@0.3.0
-ecmascript
+ecmascript@0.10.6
 twbs:bootstrap
