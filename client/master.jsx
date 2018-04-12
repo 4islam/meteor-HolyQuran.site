@@ -268,6 +268,12 @@ export default class Master extends Component {
     setTimeout(suggestDiv_close_delayed, 500)
   }
 
+  inputDir_switch() {
+    dir=$(window.inputId)[0].dir
+    $(window.inputId)[0].dir = "rtl"==dir?"ltr":"rtl"
+  }
+
+
   render() {
     Meteor.subscribe('Pages',this.state.verse, window.sessionId);
 
@@ -289,6 +295,11 @@ export default class Master extends Component {
                 <div className="input-group-btn">
                   <button className="btn btn-default Search" type="submit" onClick={this.searchButton.bind(this)}>
                     <img height="17px" className="Query" src="./images/search-icon-png-23-small.png"/>
+                  </button>
+                </div>
+                <div className="input-group-btn">
+                  <button type="button" className="btn btn-default" onClick={this.inputDir_switch}>
+                    <span className="glyphicon glyphicon-transfer"></span>
                   </button>
                 </div>
                 <div className="input row">
