@@ -271,6 +271,8 @@ export default class Master extends Component {
   inputDir_switch() {
     dir=$(window.inputId)[0].dir
     $(window.inputId)[0].dir = "rtl"==dir?"ltr":"rtl"
+    $('#datalistUl').dir = "rtl"==dir?"ltr":"rtl"
+    $(window.inputId).focus()
   }
 
 
