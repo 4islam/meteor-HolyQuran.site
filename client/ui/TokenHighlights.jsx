@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 export default class TokenHighlights extends Component {
  render() {
 
-   tags=this.props.tags;
-   data=this.props.data.results;
+   var tags=this.props.tags;
+   var data=this.props.data.results;
 
-   objCounts=[]
+   var objCounts=[]
    data.map(function(x,i) {
      analyzers.slice(1).reverse().map(function (z){
        if(x.analyzer===z.id){
@@ -54,13 +54,13 @@ export default class TokenHighlights extends Component {
   //   })
   //  })
 
-  var dataTable = []
+   var dataTable = []
    data.map((x,i)=>
      data[0].tokens.tokens.map(function(j){
        if (analyzers.map(z=>z.id).indexOf(x.analyzer) != -1) {
          x.tokens.tokens.map(function(y){
              if(j.position==y.position){
-                 k=y.position
+                 var k=y.position; var c,t
                  if(!dataTable[k]){dataTable[k]=[]}
                  c=(i==0)?
                    tags.map(z=>z.token.id===y.token?z.token.count:'').join('')

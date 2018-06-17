@@ -169,14 +169,14 @@ export default class Master extends Component {
     window.inputId = '#QueryRTL';
     //$('#QueryLTR').css({width: '10%', opacity:.2})
     //$(window.inputId).css({width: '100%', opacity:1})
-    q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ')
+    var q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ')
     window.options=this.state.option_types;
     setTimeout(suggest_e, 150, q.trim());
   }
 
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
-    q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
+    var q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
 
     if (window.query != e.target.value || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") { //after introducing onKeyUp
 

@@ -11,7 +11,7 @@ import Paging from './Paging.jsx';
 // App component - represents the whole app
 class Results extends Component {
  render() {
-   r=this.props.results
+   var r=this.props.results
    //console.log(r);
    return <div className="Result base">
        {

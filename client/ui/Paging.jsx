@@ -6,8 +6,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 // App component - represents the whole app
 export default class Paging extends Component {
  render() {
-   pages_total = this.props.total/this.props.limit;
-   pages=[];
+   var pages_total = this.props.total/this.props.limit;
+   var pages=[]; var dots=false;
    for (var i = 0; i < pages_total && i < 10; i++) {  //  && i < 100 to be removed once ES limits are updated
      if (i < 7) {
       pages.push({page:i+1})
