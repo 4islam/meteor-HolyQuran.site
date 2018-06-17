@@ -231,7 +231,7 @@ export default class Master extends Component {
           $('#datalistUl > li').removeClass("active")
           $('#datalistUl > li').eq(window.highlight).addClass("active")
 
-          suggested_term = $('#datalistUl > li.active a').contents().get(0).nodeValue
+          var suggested_term = $('#datalistUl > li.active a').contents().get(0).nodeValue
 
           q=$(window.inputId)[0].value
           q=q.split(' ').slice(0,-1*window.termcount)
@@ -269,7 +269,7 @@ export default class Master extends Component {
   }
 
   inputDir_switch() {
-    dir=$(window.inputId)[0].dir
+    var dir=$(window.inputId)[0].dir
     $(window.inputId)[0].dir = "rtl"==dir?"ltr":"rtl"
     $('#datalistUl').dir = "rtl"==dir?"ltr":"rtl"
     $(window.inputId).focus()
