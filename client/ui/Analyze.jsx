@@ -11,7 +11,7 @@ class Analyze extends Component {
             {this.props.analyze?
               this.props.analyze.analysis?
                  <Tokens data={this.props.analyze.analysis} verse={this.props.verse}/>
-                 :'':'...'
+                 :null:'...'
             }
        </div>
    }
