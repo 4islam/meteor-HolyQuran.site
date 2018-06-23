@@ -48,7 +48,7 @@ Meteor.methods({
     if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
       ESAnalyzerCol.update({id:verse},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
 
-    } else if (ESAnalyzerCol.findOne({$and:[{verse:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
+    } else if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
 
       ESAnalyzerCol.update({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log("Order Shuffled (Text)");
