@@ -28,8 +28,7 @@ export default class Tokens extends Component {
                                 this.props.data.results[0].tokens.tokens.map(j=>
                                   <td key={Math.random()}>
                                     {x.tokens.tokens.map(y=>
-                                      (j.position==y.position)?
-                                          ' '+y.token:''
+                                      (j.position==y.position)?' '+y.token:null
                                     )}
                                   </td>
                                 )
