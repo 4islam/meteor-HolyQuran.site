@@ -24,12 +24,12 @@ export default class Tokens extends Component {
                                 title="Copy this text"> {x.name} <span className="glyphicon glyphicon-copy small"> </span>
                               </button></th>
                               {
-                                this.props.data.results[0].tokens.tokens.map(j=>
-                                  <td key={Math.random()}>
+                                this.props.data.results[0].tokens.tokens.map((j,k)=>
+                                  <td key={i+'.'+x.analyzer+'.'+j.position}>
                                     {x.tokens.tokens.map(y=>
                                       (j.position==y.position)?' '+y.token:null
                                     )}
-                                  </td>
+                                </td>
                                 )
                               }
                           </tr>

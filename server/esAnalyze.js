@@ -53,17 +53,18 @@ Meteor.methods({
       ESAnalyzerCol.update({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log("Order Shuffled (Text)");
 
-    } else {
+    } else
+    {
       //console.log("ES Text for: " +verse);
       getAnalysis(analyzers,text.split(' '),verse,sessionId,date,0,ESAnalyzerCol);
     }
  }
 }})
 
-getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchesprev,textOriginal) {      //i for Analyzers loop
+getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchesprev,textOriginal,batchId) {      //i for Analyzers loop
   var analyzer = analyzers[0];
 
-  var batchsize = 30
+  var batchsize = 10
   //console.log('Length: ', text.length)
   //console.log(analyzer);
   esClient.indices.analyze(
@@ -78,19 +79,31 @@ getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchespre
 
         //console.log(analyzer.id, ": ", JSON.stringify(matches));
 
+        //console.log(analyzer.id);
         //console.log("Matches: ", JSON.stringify(matches))
-        //console.log("matchesprev: ", JSON.stringify(matchesprev))
+
+        // if (matches) {
+        //   console.log(analyzer.id, i, "Matches last position: ", matches.tokens[matches.tokens.length-1].position, matches.tokens[matches.tokens.length-1].token)
+        // }
+
         if (matchesprev) {
-          matches.tokens.map(x=>(
-            x.position=x.position+matchesprev.length*100
+          //console.log(analyzer.id, i, "matchesprev last position: ", matchesprev[matchesprev.length-1].position, matchesprev[matchesprev.length-1].token)
+          matches.tokens.map((x)=>(
+            //x.position=x.position+matchesprev.length*100
+            //x.position=x.position+i*10000//+matchesprev[matchesprev.length-1].position+101
+            //x.position=x.position+matchesprev[matchesprev.length-1].position+1101
+            x.position=x.position+batchId*100*batchsize
           ))
+          //console.log("batchId:", batchId)
           matches.tokens = matchesprev.concat(matches.tokens)
+          //console.log(analyzer.id, "Matches last position updated: ", matches.tokens[matches.tokens.length-1].position, matches.tokens[matches.tokens.length-1].token)
         }
 
-        //console.log(text.length)
+        //console.log(analyzer.id, "text.length: " + text.length)
 
         if (text.length > batchsize ) {
-            getAnalysis(analyzers,text.slice(batchsize),id,sessionId,date,i,Collection,matches.tokens,textOriginal?textOriginal:text)  //matches.tokens.concat(matchesprev)
+            //console.log(analyzer.id, i, "sliced");
+            getAnalysis(analyzers,text.slice(batchsize),id,sessionId,date,i,Collection,matches.tokens,textOriginal?textOriginal:text,batchId?batchId+1:1)  //matches.tokens.concat(matchesprev)
         } else {
           if (textOriginal) {
             text = textOriginal
