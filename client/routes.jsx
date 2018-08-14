@@ -4,6 +4,7 @@ import {mount} from 'react-mounter';
 import Master from './master.jsx';
 
 FlowRouter.wait();
+
 Meteor.call("getSessionId", function(err, id) {
   window.sessionId = id; //TODO: This needs to be loaded for all routes to work. Subscribtion can be declaired and bound. NI
   if (localStorage.getItem('clientId')) {
@@ -11,7 +12,9 @@ Meteor.call("getSessionId", function(err, id) {
   } else {
     localStorage.setItem('clientId',id);
   }
-  FlowRouter.initialize(); //Flowrouter.go after wait above
+  FlowRouter.initialize(
+   {hashbang: true}
+  ) //Flowrouter.go after wait above
 });
 
 FlowRouter.route("/", {
@@ -20,16 +23,49 @@ FlowRouter.route("/", {
   // },
   action() {
     mount(Master, {
-        query: ""
+        uri: "",
+        query: "",
+        hash: ""
     });
   }
 });
 
+// FlowRouter.route("/:query?#:hash?", {
+//   action(params) {
+//     mount(Master, {
+//         query: params.query,
+//         hash: params.hash
+//     });
+//   }
+// });
+
+// FlowRouter.route("/#:hash", {
+//   action(params) {
+//     mount(Master, {
+//         hash: params.hash
+//     });
+//   }
+// });
+
+var re = new RegExp("#.*")
 
 FlowRouter.route("/:query", {
   action(params) {
     mount(Master, {
-        query: params.query
+        uri: params.query,
+        query:
+        (params.query.search(re)!=-1)?params.query.replace(/^(.*)\#(.*)$/g,'$1'):
+        params.query,
+        hash: (params.query.search(re)!=-1)?params.query.replace(/^(.*)\#(.*)$/g,'$2'):''
     });
   }
 });
+
+// FlowRouter.route("/:query#:hash?", {
+//   action(params) {
+//     mount(Master, {
+//         query: params.query,
+//         hash: "params.hash"
+//     });
+//   }
+// });

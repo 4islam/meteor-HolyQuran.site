@@ -116,6 +116,9 @@ export default class Master extends Component {
     window.highlight = "null"
     window.termcount = 1
 
+    console.log(this.props)
+    window.hash = this.props.hash
+
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
         //$('.row-offcanvas').removeClass('row-offcanvas-left').addClass('row-offcanvas-right');
@@ -142,11 +145,27 @@ export default class Master extends Component {
         $('button.Summary').affix({offset: {top: 326} });
     })
 
-    this.search(this.props.query, this.state.option_types);
+    var hash = this.props.hash
+    window.hash = this.props.hash
+    if (hash != "") {
+
+      var verse = isNaN(parseInt(hash.split(":")[1]))?1:parseInt(hash.split(":")[1])
+      var chapter = isNaN(parseInt(hash.split(":")[0]))?1:parseInt(hash.split(":")[0])
+
+      if (verse > 284) {chapter = chapter+1; verse = 1}
+      if (chapter > 114) {chapter = 114}
+
+      this.setState({verse: chapter + ":" + verse})
+    }
+    window.hash = chapter + ":" + verse
 
     Meteor.call('getPage', this.state.verse, function(error, result) {
       //console.log(1);
     });
+
+    if (this.props.query != "") {
+      this.search(this.props.query, this.state.option_types)
+    }
 
     $(function () {
       $('[data-toggle="tab"]').tooltip()
@@ -481,7 +500,11 @@ export default class Master extends Component {
 
     $("body").css("cursor", "progress");
     Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
-      window.history.pushState("object or string", "Title", "/"+ query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '));
+      window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
+        query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+        +"#" + window.hash
+        );
+
       //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                               //  that you just typed disappears, moved this before next line
       window.query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
@@ -532,7 +555,9 @@ export default class Master extends Component {
     this.setState({aggregates_panel: display});
   }
   setVerse(verse) {
-    this.setState({verse: verse});
+    this.setState({verse: verse})
+    window.hash=verse
+    window.location.hash=verse
   }
   setPage(page,limit) {
     this.setState({page: page, limit:limit});
