@@ -26,6 +26,8 @@
     "react-addons-update": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-mounter": "^1.2.0",
-    "react-transition-group": "^1.2.1"
+    "react-transition-group": "^1.2.1",
+    "workbox-precaching": "^3.4.1",
+    "workbox-sw": "^3.4.1"
   }
 }
