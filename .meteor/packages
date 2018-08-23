@@ -22,7 +22,7 @@ meteorhacks:subs-manager
 react
 meteor-platform@1.2.6
 session@1.1.7
-dynamic-import@0.4.0
+dynamic-import@0.4.2
 ecmascript@0.11.1
 twbs:bootstrap
-underscore
+underscore@1.0.10
