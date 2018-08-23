@@ -13,7 +13,7 @@ Meteor.call("getSessionId", function(err, id) {
     localStorage.setItem('clientId',id);
   }
   FlowRouter.initialize(
-   {hashbang: true}
+   //{hashbang: true}
   ) //Flowrouter.go after wait above
 });
 
@@ -23,40 +23,19 @@ FlowRouter.route("/", {
   // },
   action() {
     mount(Master, {
-        uri: "",
+        uri: params.query,
         query: "",
-        hash: ""
+        hash: window.location.hash
     });
   }
 });
-
-// FlowRouter.route("/:query?#:hash?", {
-//   action(params) {
-//     mount(Master, {
-//         query: params.query,
-//         hash: params.hash
-//     });
-//   }
-// });
-
-// FlowRouter.route("/#:hash", {
-//   action(params) {
-//     mount(Master, {
-//         hash: params.hash
-//     });
-//   }
-// });
-
-var re = new RegExp("#.*")
 
 FlowRouter.route("/:query", {
   action(params) {
     mount(Master, {
         uri: params.query,
-        query:
-        (params.query.search(re)!=-1)?params.query.replace(/^(.*)\#(.*)$/g,'$1'):
-        params.query,
-        hash: (params.query.search(re)!=-1)?params.query.replace(/^(.*)\#(.*)$/g,'$2'):''
+        query: params.query,
+        hash: window.location.hash
     });
   }
 });
