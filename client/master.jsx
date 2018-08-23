@@ -116,8 +116,9 @@ export default class Master extends Component {
     window.highlight = "null"
     window.termcount = 1
 
-    console.log(this.props)
-    window.hash = this.props.hash
+    //console.log(this.props)
+    let hash = this.props.hash.substring(1)
+    window.hash = (hash!='')?this.props.hash:"1:1"
 
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
@@ -145,22 +146,26 @@ export default class Master extends Component {
         $('button.Summary').affix({offset: {top: 326} });
     })
 
-    var hash = this.props.hash
-    window.hash = this.props.hash
     if (hash != "") {
 
-      var verse = isNaN(parseInt(hash.split(":")[1]))?1:parseInt(hash.split(":")[1])
-      var chapter = isNaN(parseInt(hash.split(":")[0]))?1:parseInt(hash.split(":")[0])
+      let verse = isNaN(parseInt(hash.split(":")[1]))?1:parseInt(hash.split(":")[1])
+      let chapter = isNaN(parseInt(hash.split(":")[0]))?1:parseInt(hash.split(":")[0])
 
-      if (verse > 284) {chapter = chapter+1; verse = 1}
       if (chapter > 114) {chapter = 114}
+      if (verse > verse_max[chapter-1]) {verse = verse_max[chapter-1]}
 
       this.setState({verse: chapter + ":" + verse})
+
+      window.hash = chapter + ":" + verse
+    } else {
+      window.hash = "1:1"
     }
-    window.hash = chapter + ":" + verse
+
 
     Meteor.call('getPage', this.state.verse, function(error, result) {
-      //console.log(1);
+      //$('#myModal').modal('toggle'); //Trigger a verse details modal on startup
+                                        // TODO: Need to only open when on a smaller screen <900px
+
     });
 
     if (this.props.query != "") {
