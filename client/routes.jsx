@@ -23,7 +23,6 @@ FlowRouter.route("/", {
   // },
   action() {
     mount(Master, {
-        uri: params.query,
         query: "",
         hash: window.location.hash
     });
@@ -33,18 +32,8 @@ FlowRouter.route("/", {
 FlowRouter.route("/:query", {
   action(params) {
     mount(Master, {
-        uri: params.query,
         query: params.query,
         hash: window.location.hash
     });
   }
 });
-
-// FlowRouter.route("/:query#:hash?", {
-//   action(params) {
-//     mount(Master, {
-//         query: params.query,
-//         hash: "params.hash"
-//     });
-//   }
-// });
