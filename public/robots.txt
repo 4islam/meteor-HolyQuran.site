@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+sitemap: https://holyquran.site/sitemap.xml
