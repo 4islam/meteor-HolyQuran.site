@@ -21,7 +21,7 @@ Meteor.methods({
   // var future = new Future();
   //var sessionId = this.connection.id;
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
-  var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
+  var sessionId = (sID)?sID.replace(/\W/g, ''):''; //Only takes alphanumerics
 
   var date = new Date();
   //console.log(sessionId, this.connection.id);
