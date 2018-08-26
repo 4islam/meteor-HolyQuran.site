@@ -115,6 +115,7 @@ export default class Master extends Component {
     window.inputId = '#QueryRTL'
     window.highlight = "null"
     window.termcount = 1
+    window.query = ""
 
     //console.log(this.props)
     let hash = this.props.hash.substring(1)
@@ -162,11 +163,11 @@ export default class Master extends Component {
     }
 
 
-    Meteor.call('getPage', this.state.verse, function(error, result) {
-      //$('#myModal').modal('toggle'); //Trigger a verse details modal on startup
-                                        // TODO: Need to only open when on a smaller screen <900px
-
-    });
+    // Meteor.call('getPage', this.state.verse, function(error, result) {
+    //   //$('#myModal').modal('toggle'); //Trigger a verse details modal on startup
+    //                                     // TODO: Need to only open when on a smaller screen <900px
+    //   console.log(error,result)
+    // });
 
     if (this.props.query != "") {
       this.search(this.props.query, this.state.option_types)
@@ -175,6 +176,19 @@ export default class Master extends Component {
     $(function () {
       $('[data-toggle="tab"]').tooltip()
     })
+
+    // navigator.serviceWorker.register('sw.js',{scope: './'})
+    //   .then(reg => console.log('SW registered!'))
+    //   .catch(err => console.log('Boo!', err));
+
+    if (localStorage.getItem('clientId')) {
+      window.sessionId = localStorage.getItem('clientId');
+    } else {
+      Meteor.call("getSessionId", function(err, id) {
+        localStorage.setItem('clientId',id);
+      });
+    }
+
   }
 
   componentWillMount() {
