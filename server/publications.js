@@ -6,7 +6,7 @@ Meteor.methods({
 
 
 Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) {
-   console.log(sessionId, this.connection.id);
+   //console.log(sessionId, this.connection.id);
 
   //console.log(page,limit, by)
   return ESCol.find(
