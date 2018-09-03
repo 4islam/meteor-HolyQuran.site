@@ -27,3 +27,4 @@ ecmascript@0.11.1
 twbs:bootstrap
 underscore@1.0.10
 appcache
+ground:db
