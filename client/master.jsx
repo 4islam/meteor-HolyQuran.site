@@ -169,8 +169,20 @@ export default class Master extends Component {
     //   console.log(error,result)
     // });
 
+    if (localStorage.getItem('clientId')) {
+      window.sessionId = localStorage.getItem('clientId');
+    } else {
+      Meteor.call("getSessionId", function(err, id) {
+        localStorage.setItem('clientId',id);
+      });
+    }
+
     if (this.props.query != "") {
-      this.search(this.props.query, this.state.option_types)
+      //console.log("SessionID: ", window.sessionId); 
+      this.search(this.props.query, this.state.option_types)  // TODO: Maybe this will fail
+                                                              // on a new session, time will tell,
+                                                              // should be called only after Meteor
+                                                              // call to get clientID
     }
 
     $(function () {
@@ -180,14 +192,6 @@ export default class Master extends Component {
     // navigator.serviceWorker.register('sw.js',{scope: './'})
     //   .then(reg => console.log('SW registered!'))
     //   .catch(err => console.log('Boo!', err));
-
-    if (localStorage.getItem('clientId')) {
-      window.sessionId = localStorage.getItem('clientId');
-    } else {
-      Meteor.call("getSessionId", function(err, id) {
-        localStorage.setItem('clientId',id);
-      });
-    }
 
   }
 
