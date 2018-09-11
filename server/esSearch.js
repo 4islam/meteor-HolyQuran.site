@@ -48,7 +48,7 @@ Meteor.methods({
         {match: {"Arabic.ar_stems": {query: query,"boost": 6}}},
         {match: {"Arabic.ar_root": {query: query,"boost": 4}}}, //p
 
-        {match: {"Arabic.ar_original_normalized": {query: query,"boost": 9}}},
+        {match: {"Arabic.ar_normalized": {query: query,"boost": 9}}},
         {match: {"Arabic.ar_normalized_phonetic": {query: query,"boost": 5}}},
 
         {match: {"Arabic.ar_stems_normalized": {query: query,"boost": 8}}},
@@ -71,7 +71,7 @@ Meteor.methods({
 
         {match: {"Surah": {query: query,"boost": 3}}},
 
-        {match: {"Surah.ar_original_normalized": {query: query,"boost": 1.7}}},
+        {match: {"Surah.ar_normalized": {query: query,"boost": 1.7}}},
         {match: {"Surah.ar_ngram_original": {query: query,"boost": 1}}},
         {match: {"Surah.ar_normalized_phonetic": {query: query,"boost": 1.7}}},
 
