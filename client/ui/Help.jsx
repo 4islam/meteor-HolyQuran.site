@@ -28,7 +28,7 @@ export default class Help extends Component {
                  <li><em>Phonetic (transliteration) - Works without vowels</em><br/><a target="_self"  href="/msjd">msjd</a></li>
                  <li><em>Search relevance based on Arabic roots</em><br/><a target="_self" href="/جَنَّٰتٍ">جَنَّٰتٍ</a></li>
                  <li><em>Search relevance based on Arabic stems</em><br/><a target="_self"  href="/دَاوُد">دَاوُد</a></li>
-                 <li><em>Roots - Works without spaces)</em><br/><a target="_self" href="/جنن">جنن</a></li>
+                 <li><em>Roots - Works without spaces</em><br/><a target="_self" href="/جنن">جنن</a></li>
                  <li><em>Stems</em><br/><a target="_self"  href="/جَنَّة">جَنَّة</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/واتقوا الله">واتقوا الله</a></li>
                  <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
