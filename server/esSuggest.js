@@ -19,7 +19,7 @@ Meteor.methods({
   query = query.split(' ')                      //keeps on suggesting previous
   query = query[query.length-1]                 //terms otherwise
 
-  var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
+  var sessionId = (sID)?sID.replace(/\W/g, ''):0; //Only takes alphanumerics
 
   var date = new Date();
   //console.log(sessionId, this.connection.id);
