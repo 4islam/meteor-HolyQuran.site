@@ -290,6 +290,21 @@ export default class Master extends Component {
     }
   }
 
+  detectKeyboard(e){
+    console.log(e.key);
+    if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape'].indexOf(e.key)==-1) {
+      let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
+      let a = e.key.match(re);
+      if (a == null){
+        $(window.inputId)[0].dir = "rtl"
+        $('#datalistUl').dir = "rtl"
+      } else {
+        $(window.inputId)[0].dir = "ltr"
+        $('#datalistUl').dir = "ltr"
+      }
+    }
+  }
+
   search_e(e) {
     this.search(e.target.value, this.state.option_types)
   }
@@ -358,6 +373,7 @@ export default class Master extends Component {
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
+                            onKeyDown={this.detectKeyboard.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
                             onBlur={this.suggestDiv_close.bind(this)}
                              list="datalist"
