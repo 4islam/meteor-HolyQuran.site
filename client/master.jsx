@@ -178,7 +178,7 @@ export default class Master extends Component {
     }
 
     if (this.props.query != "") {
-      //console.log("SessionID: ", window.sessionId); 
+      //console.log("SessionID: ", window.sessionId);
       this.search(this.props.query, this.state.option_types)  // TODO: Maybe this will fail
                                                               // on a new session, time will tell,
                                                               // should be called only after Meteor
@@ -291,7 +291,7 @@ export default class Master extends Component {
   }
 
   detectKeyboard(e){
-    console.log(e.key);
+    //console.log(e.key);
     if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape'].indexOf(e.key)==-1) {
       let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
       let a = e.key.match(re);
