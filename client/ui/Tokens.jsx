@@ -26,9 +26,13 @@ export default class Tokens extends Component {
                               {
                                 this.props.data.results[0].tokens.tokens.map((j,k)=>
                                   <td key={i+'.'+x.analyzer+'.'+j.position}>
-                                    {x.tokens.tokens.map(y=>
-                                      (j.position==y.position)?' '+y.token:null
-                                    )}
+                                    {x.tokens.tokens.map(function(y){
+                                      if (x.analyzer.match(/root/)) {
+                                        return (j.position==y.position)?' '+[...y.token].join(' '):null
+                                      } else {
+                                        return (j.position==y.position)?' '+y.token:null
+                                      }
+                                    })}
                                 </td>
                                 )
                               }
