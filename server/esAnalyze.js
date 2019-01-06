@@ -33,7 +33,7 @@ Meteor.methods({
 
   ESCol.findOne({'results.hits.hits':{$elemMatch:{'_source.ayah':verse}}}).results.hits.hits.map(function(x) {
     if (x._source.ayah==verse) {
-      text = x._source.Arabic;
+      text = x._source.Arabic_noor;
     }
   });
 

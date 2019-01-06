@@ -30,7 +30,7 @@ componentDidMount() {
           <a onClick={this.handleChange}
            className="list-group-item Verse">
              <VerseHighlights
-                base={this.props.Arabic}
+                base={this.props.Arabic_noor}
                 Type="Arabic"
                 highlights={this.props.highlights}/>
           </a>
