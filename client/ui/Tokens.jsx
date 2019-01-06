@@ -15,7 +15,7 @@ export default class Tokens extends Component {
             <tbody>
               {this.props.data.results?
                     this.props.data.results.slice(0,3).map((x,i)=>      //Limiting to first 3 entries
-                          <tr key={i+'.'+x.analyzer}>
+                          <tr key={i+'.'+x.analyzer} className={'tokens_'+x.analyzer}>
                               <th><button type="button"
                                 className="btn btn-default btn-xs"
                                 data-toggle="tooltip"
@@ -43,7 +43,7 @@ export default class Tokens extends Component {
        </table>)
  }
  CopyTokens(x,v,event, i) {
-   txt=""
+   var txt=""
    this.props.data.results[0].tokens.tokens.map(j=>
        {x.tokens.tokens.map(y=>
          {
