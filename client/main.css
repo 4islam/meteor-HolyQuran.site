@@ -33,7 +33,7 @@
   font-family: "noorehuda";
   /*font-family: NafeesWeb*/
   font-size: 1.5em;
-  word-spacing: 5px;
+  /* word-spacing: 5px; */
 }
 
 .tokens {
@@ -45,10 +45,14 @@
   font-family: "noorehuda";
 }
 
-.tokens_ar_root, .tokens_ar_root_noor {
+.tokens_ar_root, .tokens_ar_root_noor, .Aggregates .Arabic{
   font-family: "noorehuda";
   white-space: nowrap;
   /* letter-spacing: -4px; */
+}
+
+.Aggregates div.nav {
+  white-space: normal;
 }
 
 #datalistUl {
@@ -220,7 +224,7 @@ a.list-group-item.Verse {
   cursor: pointer;
 }
 
-.Arabic, .Surah {
+.Surah {
     font-weight:lighter;
     font-size: 1em;
     /* font-family: "Noor_e_QuranV1.11"; */
@@ -406,8 +410,8 @@ div.navbar-inverse  {
   margin-top: 5px;
   /*font-size: 20pt;*/
   text-shadow: 1px 1px black;
-  /* font-family: "Noor_e_QuranV1.11"; */
-  font-family: "noorehuda";
+  font-family: "Noor_e_QuranV1.11";
+  /* font-family: "noorehuda"; */
   /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
