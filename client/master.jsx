@@ -52,7 +52,7 @@ export default class Master extends Component {
         //           {id:"ngram",state:true,name:'teilweise'},
         //           {id:"normalized",state:true,name:'normalisierte'}
         //         ]}
-        {id:"Arabic",state:true,name:'Arabic',options: [
+        {id:"Arabic_noor",state:true,name:'Arabic',options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -566,6 +566,7 @@ export default class Master extends Component {
     VKI_show(document.getElementById(window.inputId.substr(1)));
   }
 
+  //handleChange = (event) => {
   handleChange(event) {
     var option_types = this.state.option_types;
     option_types.find(x=>x.id===event.target.name).state = !option_types.find(x=>x.id===event.target.name).state;
