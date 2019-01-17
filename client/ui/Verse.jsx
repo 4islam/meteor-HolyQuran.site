@@ -59,7 +59,7 @@ componentDidMount() {
                     </td>
                     <td>
                       <div className="highlights base hidden-xs">[{this.props.score}]</div>
-                      <div className="highlights hidden-xs">[{this.props.score}]</div>
+                      <div className="highlights invisible hidden-xs">[{this.props.score}]</div>
                       <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons"}>
                         <button type="button"
                           onClick={this.handleChange}
