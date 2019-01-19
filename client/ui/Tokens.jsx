@@ -53,7 +53,7 @@ export default class Tokens extends Component {
          }
        )}
    )
-  txt += (i==0)?' ['+v+']':' '    //only for original
+//  txt += (i==0)?' ['+v+']':' '    //only for original
   this.copyToClipboard(txt);
   var $btn = $(event.target).is('button')?$(event.target):$(event.target).parent();
   $btn.attr('title', 'Copied')

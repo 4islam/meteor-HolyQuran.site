@@ -66,7 +66,14 @@ componentDidMount() {
                           className="btn btn-default btn-xs"
                           data-toggle="tooltip"
                           data-placement="bottom"
-                          title="Copy text">
+                          title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
+                        </button>
+                        <button type="button"
+                          onClick={(e) => this.CopyArabicText(this.props.Arabic_noor, event, this.props.ayah)}
+                          className="btn btn-default btn-xs"
+                          data-toggle="tooltip"
+                          data-placement="bottom"
+                          title="Copy Arabic Text">
                           <span className="glyphicon glyphicon-copy small"></span>
                         </button>
                         <button type="button"
@@ -186,4 +193,18 @@ componentDidMount() {
   hideDetailsButton(e){
     $('.'+this.props.ayah.replace(/:/, '_')+'.DetailsButtons').addClass('hidden');
   }
+
+  CopyArabicText(txt,event,v) {
+   txt += ' ['+v+']';
+   this.copyToClipboard(txt);
+   var $btn = $(event.target).is('button')?$(event.target):$(event.target).parent();
+   $btn.attr('title', 'Copied')
+  }
+   copyToClipboard(txt) {
+     var $temp = $("<input>");
+     $("body").append($temp);
+     $temp.val(txt).select();
+     document.execCommand("copy");
+     $temp.remove();
+   }
 }
