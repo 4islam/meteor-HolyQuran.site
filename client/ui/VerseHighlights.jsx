@@ -14,7 +14,7 @@ export default class VerseHighlights extends Component {
             }
             <div className={'highlights noselect ' + this.props.Type + ' base container-fluid Verse'}
               dangerouslySetInnerHTML={{__html: this.props.base}}/>
-            <div className={'highlights noselect ' + this.props.Type + ' visible container-fluid Verse'}
+            <div className={'highlights ' + this.props.Type + ' visible container-fluid Verse'}
               dangerouslySetInnerHTML={{__html: this.props.base}}/>
         </div>
     );
