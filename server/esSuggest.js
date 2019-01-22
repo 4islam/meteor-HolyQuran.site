@@ -11,7 +11,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  suggest:function (query, sID, options) {
+  suggest:function (query, options) {
   // var future = new Future();
   //var sessionId = this.connection.id;
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,250);      //max 500 character limit
@@ -19,7 +19,7 @@ Meteor.methods({
   query = query.split(' ')                      //keeps on suggesting previous
   query = query[query.length-1]                 //terms otherwise
 
-  var sessionId = (sID)?sID.replace(/\W/g, ''):0; //Only takes alphanumerics
+  //var sessionId = (sID)?sID.replace(/\W/g, ''):0; //Only takes alphanumerics
 
   var date = new Date();
   //console.log(sessionId, this.connection.id);

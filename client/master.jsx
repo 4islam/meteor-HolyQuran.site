@@ -174,6 +174,7 @@ export default class Master extends Component {
     } else {
       Meteor.call("getSessionId", function(err, id) {
         localStorage.setItem('clientId',id);
+        window.sessionId = localStorage.getItem('clientId');
       });
     }
 
@@ -334,7 +335,7 @@ export default class Master extends Component {
 
 
   render() {
-    Meteor.subscribe('Pages',this.state.verse, window.sessionId);
+    Meteor.subscribe('Pages',this.state.verse);
 
     return (
       <div dir="rtl">
@@ -538,6 +539,7 @@ export default class Master extends Component {
     $('#datalistUl').css({display:'none'});
 
     $("body").css("cursor", "progress");
+    //console.log(window.sessionId);
     Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
       window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
         query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
@@ -631,7 +633,7 @@ if (query != ''){ //&& query != window.suggest_query) {
     //setTimeout(suggest_e, 0, q);
     $(window.inputId).css('color', 'black');
   }
-    Meteor.call('suggest', query, window.sessionId, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
+    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
       //console.log(result.took)
       //console.log(result)
       Object.keys(result.aggregations).map(function (z){
