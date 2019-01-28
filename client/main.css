@@ -334,6 +334,10 @@ a {
   border-left: none;
 }
 
+.Help li {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 
 .Suggest div, li {
   float: right;
@@ -428,10 +432,6 @@ input {
   /* font-family: "Noor_e_QuranV1.11"; */
   font-family: "noorehuda";
   word-spacing: 3px;
-}
-
-.Help {
-
 }
 
 .Credits a {
