@@ -696,7 +696,7 @@ if (query != ''){ //&& query != window.suggest_query) {
           $('#datalistUl').css('background-color','#eee')
         }
         complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-          $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\')\">" + i.key
+          $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
                   //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
                   //+ " "+ i.score
                   + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
@@ -722,11 +722,11 @@ if (query != ''){ //&& query != window.suggest_query) {
 }
 
 
-window.search_q = function (query) {
+window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
+  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()  
 
   //this.searchButton()
   $('button.Search').trigger("click")
