@@ -20,6 +20,7 @@ export default class Verse extends Component {
 componentDidMount() {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
+      new ClipboardJS('#copyVerse');
     })
   }
 
@@ -69,8 +70,9 @@ componentDidMount() {
                           data-placement="bottom"
                           title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
                         </button>
-                        <button type="button"
-                          onClick={(e) => this.CopyArabicText(this.props.Arabic_noor, event, this.props.ayah)}
+                        <button id="copyVerse" type="button"
+                          //onClick={(e) => this.CopyArabicText(this.props.Arabic_noor, event, this.props.ayah)}
+                          data-clipboard-text={this.props.Arabic_noor + ' [' + this.props.ayah + ']'}
                           className="btn btn-default btn-xs"
                           data-toggle="tooltip"
                           data-placement="bottom"
