@@ -27,7 +27,8 @@ componentDidMount() {
   //  console.log(this.props.options, this.props.options.map(x=>x.id==="English"?x.state:false));
     return (
         <div className="Verse base">
-          <a onClick={this.handleChange}
+          <a
+          //onClick={this.handleChange}
            className="list-group-item Verse">
              <VerseHighlights
                 base={this.props.Arabic_noor}

@@ -221,7 +221,7 @@ a.list-group-item {
 a.list-group-item.Verse {
   font-weight: bold;
   font-size: 1.1em;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .Surah {
