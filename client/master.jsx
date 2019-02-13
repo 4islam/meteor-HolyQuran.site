@@ -403,7 +403,7 @@ export default class Master extends Component {
                           page={this.state.page} limit={this.state.limit}/>
 
 
-              <div id="collapsible" className="collapse" aria-expanded="false">
+              <div id="collapsible">
                 <div>
                   {
                     this.state.option_types.map(x=>
@@ -450,7 +450,7 @@ export default class Master extends Component {
                   }
                 </div>
               </div>
-              <span className="btn btn-xs glyphicon glyphicon-option-horizontal" aria-hidden="true" data-toggle="collapse" data-target="#collapsible"></span>
+
             </div>
         </div>
         <div className="container-fluid">
@@ -726,7 +726,7 @@ window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()  
+  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
 
   //this.searchButton()
   $('button.Search').trigger("click")
