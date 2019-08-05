@@ -214,7 +214,7 @@ export default class Master extends Component {
     //$(window.inputId).css({width: '100%', opacity:1})
     var q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ')
     window.options=this.state.option_types;
-    setTimeout(suggest_e, 150, q.trim());
+    setTimeout(suggest_e, 150, q.trimLeft());
   }
 
   input_e(e) {
@@ -248,8 +248,8 @@ export default class Master extends Component {
     //console.log(e.type, e.which)
     if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
       if (e.type=="change") {   //not on keyup, but on change to make it faster
-
-        setTimeout(suggest_e, 500, $(window.inputId)[0].value.trim());    //150ms
+        setTimeout(suggest_e, 500, $(window.inputId)[0].value.trimLeft());    //150ms
+      //}
         //setTimeout(suggest_e, 150, q.trim());    //150ms
       } else if (e.type=="keyup" && e.which && [38,40].indexOf(e.which)!=-1 ) {
         if ($('#datalistUl > li').length) {
@@ -280,7 +280,7 @@ export default class Master extends Component {
           q=q.split(' ').slice(0,-1*window.termcount)
               .join(' ')
               .trim() + ' ' + suggested_term
-          $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
+          $(window.inputId)[0].value=q.replace(/^ +/,'').trimLeft()
 
           window.termcount = suggested_term.split(' ').length   //for next switch
 
@@ -622,7 +622,7 @@ window.suggestDiv_close_delayed = function() {
 window.suggest_e = function(query) {
   var complete = []
 
-if (query != ''){ //&& query != window.suggest_query) {
+  if (query != '' && query[query.length-1] != " "){ //&& query != window.suggest_query) {
   //console.log(query, $(window.inputId)[0].value)
 
   q=$(window.inputId)[0].value.replace(/ +/, ' ').replace(/\t+/,' ').trim()
@@ -728,7 +728,7 @@ window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()
+  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()+' '
 
   //this.searchButton()
   $('button.Search').trigger("click")
