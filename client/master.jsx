@@ -707,6 +707,8 @@ if (query != ''){ //&& query != window.suggest_query) {
           onClick=\"$('#datalistUl').css({display:'none'}); $(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
           <span aria-hidden=\"true\">&times;</span> \
           </button>")
+          $(window.inputId).attr('readonly', false);
+          $(window.inputId).attr('placeholder', complete[complete.length-1].key);
         }
         $('#datalistUl').css({display:'block'})
         window.highlight = "null"
