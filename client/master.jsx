@@ -292,8 +292,8 @@ export default class Master extends Component {
   }
 
   detectKeyboard(e){
-    //console.log(e.key);
-    if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape'].indexOf(e.key)==-1) {
+    console.log(e.key);
+    if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
       let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
       let a = e.key.match(re);
       if (a == null){
