@@ -339,7 +339,7 @@ a {
 }
 
 
-.Suggest div, li {
+.Suggest div, .Suggest li {
   float: right;
   font-family: "noorehuda";
 }
