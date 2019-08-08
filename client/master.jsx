@@ -292,7 +292,7 @@ export default class Master extends Component {
   }
 
   detectKeyboard(e){
-    console.log(e.key);
+    //console.log(e.key);
     if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
       let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
       let a = e.key.match(re);
@@ -732,4 +732,17 @@ window.search_q = function (query, type) {
 
   //this.searchButton()
   $('button.Search').trigger("click")
+
+  //console.log(type);
+
+  let re= new RegExp(/Arabic|Urdu|Sura|rare/gi) //// TODO: rare term needs to specify language
+  type.split(",").map((i)=>{
+    if(i.match(re)!=null) {
+      $(window.inputId)[0].dir = "rtl"
+      $('#datalistUl').dir = "rtl"
+    } else {
+      $(window.inputId)[0].dir = "ltr"
+      $('#datalistUl').dir = "ltr"
+    }
+  })
 }
