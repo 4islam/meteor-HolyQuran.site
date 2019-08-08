@@ -219,6 +219,8 @@ export default class Master extends Component {
 
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
+    //console.log( e.type, e.key)
+
     var q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
 
     if (window.query != e.target.value || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") { //after introducing onKeyUp
@@ -331,6 +333,13 @@ export default class Master extends Component {
     $(window.inputId)[0].dir = "rtl"==dir?"ltr":"rtl"
     $('#datalistUl').dir = "rtl"==dir?"ltr":"rtl"
     $(window.inputId).focus()
+
+    //$('#datalistUl').css({display:'block'})
+    if (dir=="rtl") {
+      $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
+    } else {
+      $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
+    }
   }
 
 
@@ -613,7 +622,7 @@ export default class Master extends Component {
 }
 
 window.suggestDiv_close_delayed = function() {
-  if ($('#keyboardInputMaster').length == 0) {
+  if ($('#keyboardInputMaster').length == 0 && $( document.activeElement )[0].id != "QueryRTL" ) {
     $('#datalistUl').css({display:'none'})
   }
   //$(window.inputId).attr('readonly', false);
@@ -708,7 +717,7 @@ window.suggest_e = function(query) {
           <span aria-hidden=\"true\">&times;</span> \
           </button>")
           $(window.inputId).attr('readonly', false);
-          $(window.inputId).attr('placeholder', complete[complete.length-1].key);
+          //$(window.inputId).attr('placeholder', complete[complete.length-1].key); // TODO: Make use of right/left arrow keys to crystalize the values there.
         }
         $('#datalistUl').css({display:'block'})
         window.highlight = "null"
@@ -734,15 +743,16 @@ window.search_q = function (query, type) {
   $('button.Search').trigger("click")
 
   //console.log(type);
-
   let re= new RegExp(/Arabic|Urdu|Sura|rare/gi) //// TODO: rare term needs to specify language
   type.split(",").map((i)=>{
     if(i.match(re)!=null) {
       $(window.inputId)[0].dir = "rtl"
       $('#datalistUl').dir = "rtl"
+      $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
     } else {
       $(window.inputId)[0].dir = "ltr"
       $('#datalistUl').dir = "ltr"
+      $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
     }
   })
 }
