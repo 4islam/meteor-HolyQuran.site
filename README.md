@@ -17,18 +17,17 @@ Atom
 # Summary
 A summary of the features of the product must mention the following
 
-*Holy Qu'ran Advance Search Bundle
-*Project Version: 2.1
-*Project Description:
-*Project Dependencies:
+**Holy Qu'ran Advance Search Bundle**
+* Project Version: 2.1
+* Project Description:
+* Project Dependencies:
  Requires following projects in HQVC group:
-**Artifacts
+ * Artifacts
 
  Uses the following as well, but can be run in test mode without the following:
-**iFrame
-
+ * iFrame
 
 # References:
 
 Deployed Link:
-*HolyQuran.site
+* HolyQuran.site
