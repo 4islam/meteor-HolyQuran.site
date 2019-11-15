@@ -1,16 +1,16 @@
 {
-  "name": "HQVC_v1",
-  "version": "1.0.0",
-  "description": "Holy Qur'an Verse Centric - Version 1",
+  "name": "HolyQuranAdvance",
+  "version": "2.2.1",
+  "description": "Holy Qur'an Verse Centric Advance Search",
   "private": true,
   "scripts": {
     "start": "meteor run"
   },
-  "keywords": [],
+  "keywords": ["Holy Quran", "Quran", "koran", "search", "advance", "Arabic", "French", "German"],
   "author": "ls",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.7.2",
     "babel-runtime": "^6.26.0",
     "elasticsearch": "^12.1.3",
     "meteor-node-stubs": "^0.3.3",
