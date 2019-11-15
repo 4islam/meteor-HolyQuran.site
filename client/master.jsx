@@ -300,10 +300,11 @@ export default class Master extends Component {
       let a = e.key.match(re);
       if (a == null){
         $(window.inputId)[0].dir = "rtl"
-        $('#datalistUl').dir = "rtl"
+        $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
       } else {
         $(window.inputId)[0].dir = "ltr"
-        $('#datalistUl').dir = "ltr"
+        $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
+
       }
     }
   }
