@@ -288,6 +288,7 @@ table.reference:nth-child(even) td {
 }
 a.reference {
   padding: 3px;
+  overflow-y: hidden;
 }
 
 
