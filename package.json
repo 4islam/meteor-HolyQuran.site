@@ -6,7 +6,16 @@
   "scripts": {
     "start": "meteor run"
   },
-  "keywords": ["Holy Quran", "Quran", "koran", "search", "advance", "Arabic", "French", "German"],
+  "keywords": [
+    "Holy Quran",
+    "Quran",
+    "koran",
+    "search",
+    "advance",
+    "Arabic",
+    "French",
+    "German"
+  ],
   "author": "ls",
   "license": "ISC",
   "dependencies": {
