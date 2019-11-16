@@ -472,10 +472,6 @@ iframe {
   }
 }
 
-div.container-fluid {
-  min-height: 800px;
-}
-
 .Help {
   direction: ltr;
   width: 100%;
