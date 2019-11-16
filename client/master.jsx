@@ -463,7 +463,7 @@ export default class Master extends Component {
 
             </div>
         </div>
-        <div className="container-fluid">
+        <div className="container-fluid body">
           <div className="row content">
               <div className="row row-offcanvas row-offcanvas-right">
                 <div className="col-md-6 col-lg-4 visible-md visible-lg">
