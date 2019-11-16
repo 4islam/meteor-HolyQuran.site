@@ -643,62 +643,10 @@ window.suggest_e = function(query) {
     //setTimeout(suggest_e, 0, q);
     $(window.inputId).css('color', 'black');
   }
-    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, result) {
+    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
       //console.log(result.took)
       //console.log(result)
-      Object.keys(result.aggregations).map(function (z){
-        result.aggregations[z].buckets.map(function(k){
-          t=complete.map(r=>r.key).indexOf(k.key)
-
-          if (t==-1) {
-            complete.push({key:k.key,count:k.doc_count,score:k.score,type:[z]})
-          } else {
-            if (complete[t].score < k.score) {
-              complete[t]={key:k.key,count:k.doc_count,score:k.score}
-            }
-            if (complete[t].type) {
-              complete[t].type.push(z)
-            } else {
-              complete[t].type=[z]
-            }
-          }
-        })
-      })
-      // if ('options' in document.createElement('datalist')) {                            //HTML5 Supported Browsers
-      //   $('#datalist').empty();
-      //   complete.sort(function (a,b){ return b.score - a.score}).map(function(i){
-      //     $('#datalist').append("<option value='" + query + '-->' + i.key + "'>");
-      //   })
-      // } else
-      {
-        //if (complete.length == 0) {
-          // Object.keys(result.hits.hits[0].highlight).map(function(p){
-          //   console.log(result.hits.hits[0].highlight[p][0]);
-          // })
-
-          var hits = result.hits.hits
-          Object.keys(hits).map(function (v,l) {        //controlled by Hit Size
-            if (l == 0) {
-              Object.keys(hits[0].highlight).map(function (k,m) {
-                if (m == 0) {                          // to get only first count
-                  var text = hits[v].highlight[k][0].split(' ');
-                  text.map(function (t) {
-                    if (t.search(re_pre) != -1) {
-                      token = t.replace(re_pre,'').replace(re_post,'')
-                                .replace(re_clean,'') //To clean commas, semicolons etc.
-                                .trim() //to remove spaces
-                                .toLowerCase() //to match without case
-                      t=complete.map(r=>r.key).indexOf(token)
-                      if (t==-1) {
-                        complete.push({key:token,count:"",score:"",type:["rare"]})
-                      }
-                    }
-                  })
-                }
-              })
-            }
-          })
-        //}
+      { 
         if (complete.length >0 || query.length < 1) {
           $('#datalistUl').empty()                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
