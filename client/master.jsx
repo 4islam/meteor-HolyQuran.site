@@ -525,12 +525,10 @@ export default class Master extends Component {
                  <div className="Footer" id="nav-footer">
                    <ul dir="ltr">
                      <li id="first"><a href="//www.alislam.org/contactus/">Contact</a></li>
-                     <li><a href="//www.alislam.org/sitemap/">Sitemap</a></li>
                      <li><a href="//www.alislam.org/affiliated-websites.php">Affiliated Websites</a></li>
                      <li><a href="//www.alislam.org/languages.html">Languages</a></li>
                      <li><a href="//www.alislam.org/twitter">Twitter</a></li>
                      <li><a href="//www.alislam.org/facebook">Facebook</a></li>
-                     <li><a href="//www.alislam.org/google-plus">Google+</a></li>
                      <br/>
                      <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>
                      <Credits/>
