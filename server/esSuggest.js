@@ -249,10 +249,52 @@ Meteor.methods({
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
             //matches = res.suggest;
-            matches=obj;
-            // console.log(matches)
-            callback(err, {response: matches})
+            result=obj;
 
+            var complete = []
+            Object.keys(result.aggregations).map(function (z){
+              result.aggregations[z].buckets.map(function(k){
+                t=complete.map(r=>r.key).indexOf(k.key)
+        
+                if (t==-1) {
+                  complete.push({key:k.key,count:k.doc_count,score:k.score,type:[z]})
+                } else {
+                  if (complete[t].score < k.score) {
+                    complete[t]={key:k.key,count:k.doc_count,score:k.score}
+                  }
+                  if (complete[t].type) {
+                    complete[t].type.push(z)
+                  } else {
+                    complete[t].type=[z]
+                  }
+                }
+              })
+            })
+        
+            var hits = result.hits.hits
+            Object.keys(hits).map(function (v,l) {        //controlled by Hit Size
+              if (l == 0) {
+                Object.keys(hits[0].highlight).map(function (k,m) {
+                  if (m == 0) {                          // to get only first count
+                    var text = hits[v].highlight[k][0].split(' ');
+                    text.map(function (t) {
+                      if (t.search(re_pre) != -1) {
+                        token = t.replace(re_pre,'').replace(re_post,'')
+                                  .replace(re_clean,'') //To clean commas, semicolons etc.
+                                  .trim() //to remove spaces
+                                  .toLowerCase() //to match without case
+                        t=complete.map(r=>r.key).indexOf(token)
+                        if (t==-1) {
+                          complete.push({key:token,count:"",score:"",type:["rare"]})
+                        }
+                      }
+                    })
+                  }
+                })
+              }
+            })
+            //console.log(complete)
+            callback(err, {response: complete})
       }))
 
 
