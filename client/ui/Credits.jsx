@@ -33,6 +33,7 @@ export default class Credits extends Component {
 
                       <ul>
                         <b>2.2 </b>
+                        <li>Suggestion list box updated to allow for removal of Arabic suggestions when not selected</li>
                         <li>Majidi font disclaimer</li>
                       </ul>
 

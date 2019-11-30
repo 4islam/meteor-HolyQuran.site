@@ -1,3 +1,6 @@
+## 2.2:
+  * Suggestion allows you to remove Arabic suggestions.
+  * If Arabic is not selected, 10 suggestions in total appear for all selected languages, otherwise, one per language is displayed
 
 ## 2.1:
   * Selecting a suggestion box now adds a space at the end removing the suggestion list
@@ -7,7 +10,7 @@
 ## 2.0:
   * Arabic Noor script added
   * Auto switch to direction of the input box based on keyboard input feature added
-  * Root layer now displays roots with seperated alphabets
+  * Root layer now displays roots with separated alphabets
 
 ## 1.19:
   * App cache support added
