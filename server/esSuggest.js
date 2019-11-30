@@ -39,20 +39,20 @@ Meteor.methods({
     var matches;
 
     var fields = [
-        "Arabic_noor.ar_ngram_normalized",
-        "Arabic_noor.ar_ngram_original",
-        "Arabic_noor.ar_ngram_stems_normalized",
-        "Arabic_noor.ar_ngram_root",
-        "Arabic_noor.ar_ngram_root_normalized",
+        // "Arabic_noor.ar_ngram_normalized",
+        // "Arabic_noor.ar_ngram_original",
+        // "Arabic_noor.ar_ngram_stems_normalized",
+        // "Arabic_noor.ar_ngram_root",
+        // "Arabic_noor.ar_ngram_root_normalized",
 
 
         // "Arabic_noor.ar_normalized_ngram_phonetic",
         // "Arabic_noor.ar_ngram_stems_normalized_phonetic",
         // "Arabic_noor.ar_ngram_root_normalized_phonetic"
 
-        "Arabic_noor.ar_query_suggest_ngram_normalized_phonetic",
-        "Arabic_noor.ar_query_suggest_ngram_stems_normalized_phonetic",
-        "Arabic_noor.ar_query_suggest_ngram_root_normalized_phonetic"
+        // "Arabic_noor.ar_query_suggest_ngram_normalized_phonetic",
+        // "Arabic_noor.ar_query_suggest_ngram_stems_normalized_phonetic",
+        // "Arabic_noor.ar_query_suggest_ngram_root_normalized_phonetic"
 
         //"Surah.ar_ngram_stems_normalized_phonetic",
         //"Surah.ar_normalized_ngram_phonetic"
@@ -86,15 +86,27 @@ Meteor.methods({
         }
       })
     }
+    if (options.includes("Arabic_noor") || fields.length == 0) {
+     fields.push("Arabic_noor.ar_ngram_normalized")
+     fields.push("Arabic_noor.ar_ngram_original")
+     fields.push("Arabic_noor.ar_ngram_stems_normalized")
+     fields.push("Arabic_noor.ar_ngram_root")
+     fields.push("Arabic_noor.ar_ngram_root_normalized")
+
+     fields.push("Arabic_noor.ar_query_suggest_ngram_normalized_phonetic")
+     fields.push("Arabic_noor.ar_query_suggest_ngram_stems_normalized_phonetic")
+     fields.push("Arabic_noor.ar_query_suggest_ngram_root_normalized_phonetic")
+
+   }
 
     //console.log(fields)
 
     var aggs = {
-        s_Arabic_Trigram: {
-             significant_terms: {
-                 "field": "Arabic_noor.trigram",
-                 "size": 3
-             }
+        // s_Arabic_Trigram: {
+        //      significant_terms: {
+        //          "field": "Arabic_noor.trigram",
+        //          "size": 3
+        //      }
               //, aggs:{
               //   "top_Arabic": {
               //     top_hits:{
@@ -120,39 +132,39 @@ Meteor.methods({
               //     }
               //   }
               // }
-        },
-
-       s_Arabic_Words: {
-            significant_terms: {
-                "field": "Arabic_noor",
-               "size": 1
-            }
-        },
-        s_Arabic_Stems: {
-             significant_terms: {
-                 "field": "Arabic_noor.ar_stems",
-               "size": 1
-             }
-        },
-
-        s_Arabic_root: {
-              significant_terms: {
-                  "field": "Arabic_noor.ar_root_normalized",
-               "size": 1
-              }
-         },
-         s_Arabic_normalized: {
-               significant_terms: {
-                   "field": "Arabic_noor.ar_normalized",
-               "size": 1
-               }
-          },
-          s_Surah: {
-                significant_terms: {
-                    "field": "Surah",
-                "size": 1
-                }
-           }
+       //  },
+       //
+       // s_Arabic_Words: {
+       //      significant_terms: {
+       //          "field": "Arabic_noor",
+       //         "size": 1
+       //      }
+       //  },
+       //  s_Arabic_Stems: {
+       //       significant_terms: {
+       //           "field": "Arabic_noor.ar_stems",
+       //         "size": 1
+       //       }
+       //  },
+       //
+       //  s_Arabic_root: {
+       //        significant_terms: {
+       //            "field": "Arabic_noor.ar_root_normalized",
+       //         "size": 1
+       //        }
+       //   },
+       //   s_Arabic_normalized: {
+       //         significant_terms: {
+       //             "field": "Arabic_noor.ar_normalized",
+       //         "size": 1
+       //         }
+       //    },
+       //    s_Surah: {
+       //          significant_terms: {
+       //              "field": "Surah",
+       //          "size": 1
+       //          }
+       //     }
 
       }
 
@@ -203,11 +215,48 @@ Meteor.methods({
                        "size": 1
                   }
             }
+          } else if (o=="Surah") {
+            aggs["s_Surah"] = {
+                  significant_terms: {
+                      "field": "Surah",
+                      "size": 1
+                  }
+             }
           }
         })
       }
-
-
+      if (options.includes("Arabic_noor") || Object.keys(aggs).length == 0) {
+       aggs["s_Arabic_Trigram"] = {
+            significant_terms: {
+                "field": "Arabic_noor.trigram",
+                "size": 3
+            }
+       }
+       aggs["s_Arabic_Words"] = {
+            significant_terms: {
+                "field": "Arabic_noor",
+               "size": 1
+            }
+        }
+        aggs["s_Arabic_Stems"] = {
+             significant_terms: {
+                 "field": "Arabic_noor.ar_stems",
+               "size": 1
+             }
+        }
+        aggs["s_Arabic_root"] = {
+              significant_terms: {
+                  "field": "Arabic_noor.ar_root_normalized",
+               "size": 1
+              }
+         }
+         aggs["s_Arabic_normalized"] = {
+               significant_terms: {
+                   "field": "Arabic_noor.ar_normalized",
+               "size": 1
+               }
+         }
+       }
 
     var requestSync = Meteor.wrapAsync(function(query,callback) {
 
@@ -255,7 +304,7 @@ Meteor.methods({
             Object.keys(result.aggregations).map(function (z){
               result.aggregations[z].buckets.map(function(k){
                 t=complete.map(r=>r.key).indexOf(k.key)
-        
+
                 if (t==-1) {
                   complete.push({key:k.key,count:k.doc_count,score:k.score,type:[z]})
                 } else {
@@ -270,7 +319,7 @@ Meteor.methods({
                 }
               })
             })
-        
+
             var hits = result.hits.hits
             Object.keys(hits).map(function (v,l) {        //controlled by Hit Size
               if (l == 0) {
