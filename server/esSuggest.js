@@ -1,5 +1,3 @@
-// var Future = Npm.require('fibers/future');
-
 var es = require('elasticsearch');
 var esClient = new es.Client({
   host: 'localhost:9200',
@@ -12,7 +10,6 @@ Meteor.startup(() => {
 
 Meteor.methods({
   suggest:function (query, options) {
-  // var future = new Future();
   //var sessionId = this.connection.id;
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,250);      //max 500 character limit
 
@@ -25,38 +22,14 @@ Meteor.methods({
   //console.log(sessionId, this.connection.id);
 
   //console.log(JSON.stringify(options))
-  //options_str=JSON.stringify(options);
 
   if (query != "") {
       console.log("Suggest Query for: " +query);
 
-      //this.unblock();
-        // This will throw an exception and return it as the error object
-        // in your Meteor.call if an error occurs, otherwise it will
-        // return an empty error object and the result object will be
-        // the return value from Meteor.http.call
 
     var matches;
 
     var fields = [
-        // "Arabic_noor.ar_ngram_normalized",
-        // "Arabic_noor.ar_ngram_original",
-        // "Arabic_noor.ar_ngram_stems_normalized",
-        // "Arabic_noor.ar_ngram_root",
-        // "Arabic_noor.ar_ngram_root_normalized",
-
-
-        // "Arabic_noor.ar_normalized_ngram_phonetic",
-        // "Arabic_noor.ar_ngram_stems_normalized_phonetic",
-        // "Arabic_noor.ar_ngram_root_normalized_phonetic"
-
-        // "Arabic_noor.ar_query_suggest_ngram_normalized_phonetic",
-        // "Arabic_noor.ar_query_suggest_ngram_stems_normalized_phonetic",
-        // "Arabic_noor.ar_query_suggest_ngram_root_normalized_phonetic"
-
-        //"Surah.ar_ngram_stems_normalized_phonetic",
-        //"Surah.ar_normalized_ngram_phonetic"
-
       ]
 
     if (Object.prototype.toString.call(options) === '[object Array]') {
@@ -102,70 +75,6 @@ Meteor.methods({
     //console.log(fields)
 
     var aggs = {
-        // s_Arabic_Trigram: {
-        //      significant_terms: {
-        //          "field": "Arabic_noor.trigram",
-        //          "size": 3
-        //      }
-              //, aggs:{
-              //   "top_Arabic": {
-              //     top_hits:{
-              //         "highlight": {
-              //             "require_field_match": false,
-              //             "fields": {
-              //               "_all" : {//"force_source" : true
-              //                 "matched_fields": ["Arabic_noor.ar_ngram_normalized",
-              //                 "Arabic_noor.ar_ngram_original",
-              //                 "Arabic_noor.ar_ngram_stems_normalized",
-              //                 "Arabic_noor.ar_ngram_root",
-              //                 "Arabic_noor.ar_ngram_root_normalized"],
-              //                 "type" : "fvh"
-              //               }
-              //             }
-              //         },
-              //         "_source": {
-              //             "includes": [
-              //                 "Arabic_noor"
-              //             ]
-              //         },
-              //         "size" : 1
-              //     }
-              //   }
-              // }
-       //  },
-       //
-       // s_Arabic_Words: {
-       //      significant_terms: {
-       //          "field": "Arabic_noor",
-       //         "size": 1
-       //      }
-       //  },
-       //  s_Arabic_Stems: {
-       //       significant_terms: {
-       //           "field": "Arabic_noor.ar_stems",
-       //         "size": 1
-       //       }
-       //  },
-       //
-       //  s_Arabic_root: {
-       //        significant_terms: {
-       //            "field": "Arabic_noor.ar_root_normalized",
-       //         "size": 1
-       //        }
-       //   },
-       //   s_Arabic_normalized: {
-       //         significant_terms: {
-       //             "field": "Arabic_noor.ar_normalized",
-       //         "size": 1
-       //         }
-       //    },
-       //    s_Surah: {
-       //          significant_terms: {
-       //              "field": "Surah",
-       //          "size": 1
-       //          }
-       //     }
-
       }
 
       //console.log((Object.prototype.toString.call(aggs)))
