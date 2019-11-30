@@ -347,7 +347,7 @@ Meteor.methods({
                 })
               }
             })
-            //console.log(complete)
+            console.log(complete)
             callback(err, {response: complete})
       }))
 
