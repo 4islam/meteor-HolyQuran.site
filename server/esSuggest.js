@@ -169,6 +169,11 @@ Meteor.methods({
       }
 
       //console.log((Object.prototype.toString.call(aggs)))
+      let size = 10
+      if (options.includes("Arabic_noor")) {
+        size = 3
+      }
+      size = Math.round(size / options.length);
       if (Object.prototype.toString.call(options) === '[object Array]') {
         options.filter(function(o){
           return names_array.indexOf(o) !== -1                 //String matchi sanitization
@@ -177,49 +182,49 @@ Meteor.methods({
             aggs["s_Urdu"] = {
                         significant_terms: {
                             "field": "Urdu",
-                           "size": 1
+                           "size": size
                         }
                   }
           } else if (o=="English") {
             aggs["s_English"] = {
                  significant_terms: {
                      "field": "English",
-                   "size": 1
+                   "size": size
                   }
             }
           } else if (o=="UrduTS") {
             aggs["s_UrduTS"] = {
                  significant_terms: {
                      "field": "UrduTS",
-                   "size": 1
+                   "size": size
                   }
             }
           } else if (o=="German") {
             aggs["s_German"] = {
                   significant_terms: {
                       "field": "German",
-                       "size": 1
+                       "size": size
                   }
             }
           } else if (o=="Spanish") {
             aggs["s_Spanish"] = {
                   significant_terms: {
                       "field": "Spanish",
-                       "size": 1
+                       "size": size
                   }
             }
           } else if (o=="French") {
             aggs["s_French"] = {
                   significant_terms: {
                       "field": "French",
-                       "size": 1
+                       "size": size
                   }
             }
           } else if (o=="Surah") {
             aggs["s_Surah"] = {
                   significant_terms: {
                       "field": "Surah",
-                      "size": 1
+                      "size": size
                   }
              }
           }
@@ -342,7 +347,7 @@ Meteor.methods({
                 })
               }
             })
-            //console.log(complete)
+            console.log(complete)
             callback(err, {response: complete})
       }))
 
