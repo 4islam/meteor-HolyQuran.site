@@ -555,7 +555,10 @@ export default class Master extends Component {
 
     //console.log(window.sessionId);
     if (window.query != query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')) {
+<<<<<<< HEAD
       $("body").css("cursor", "progress");
+=======
+>>>>>>> 62029b0a9898b05decb9b93f819955fa9f8da741
       Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
         window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
           query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
