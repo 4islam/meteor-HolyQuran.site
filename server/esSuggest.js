@@ -4,6 +4,10 @@ var esClient = new es.Client({
   log: 'warning'
 });
 
+import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
+var requestLimit = 1;
+var requestTimeout = 2000;
+
 Meteor.startup(() => {
   //ESAnalyzerCol.remove({});// Removes collection per session
 });
@@ -266,3 +270,8 @@ Meteor.methods({
     return result.response;
   }
 }})
+
+DDPRateLimiter.addRule({
+    type: "method",
+    name: "suggest",
+}, requestLimit, requestTimeout);

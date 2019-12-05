@@ -28,3 +28,4 @@ twbs:bootstrap
 underscore@1.0.10
 appcache@1.2.2
 ground:db
+ddp-rate-limiter
