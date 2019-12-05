@@ -86,7 +86,14 @@ Meteor.methods({
       if (options.includes("Arabic_noor")) {
         size = 3
       }
-      size = Math.round(size / options.length);
+
+      reduce = Math.round(size / options.length); 
+      if (reduce > 0) {
+        size = reduce
+      } else {
+        size = 1
+      }      
+
       if (Object.prototype.toString.call(options) === '[object Array]') {
         options.filter(function(o){
           return names_array.indexOf(o) !== -1                 //String matchi sanitization
@@ -175,6 +182,7 @@ Meteor.methods({
                }
          }
        }
+       //console.log((Object.prototype.toString.call(aggs)))
 
     var requestSync = Meteor.wrapAsync(function(query,callback) {
 
