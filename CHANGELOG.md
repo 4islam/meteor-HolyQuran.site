@@ -1,3 +1,8 @@
+## 2.3:
+  * Rate limiting for queries added both for Suggest and Search
+  * Input timeout function adjusted to allow most recent query processing
+  * Suggest related bug removed 
+
 ## 2.2:
   * Suggestion allows you to remove Arabic suggestions.
   * If Arabic is not selected, 10 suggestions in total appear for all selected languages, otherwise, one per language is displayed
