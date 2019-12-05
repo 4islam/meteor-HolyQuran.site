@@ -6,6 +6,10 @@ var esClient = new es.Client({
   log: 'warning'
 });
 
+import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
+var requestLimit = 1;
+var requestTimeout = 4000;
+
 Meteor.startup(() => {
   if (Meteor.isServer) {
        ESCol._ensureIndex( {
@@ -545,3 +549,8 @@ getMarkedTokens = function (r) {
   })
   return ret.sort(function(a, b){return b.token.count - a.token.count});
 }
+
+DDPRateLimiter.addRule({
+    type: "method",
+    name: "search",
+}, requestLimit, requestTimeout);

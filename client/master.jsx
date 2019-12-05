@@ -121,6 +121,9 @@ export default class Master extends Component {
     let hash = this.props.hash.substring(1)
     window.hash = (hash!='')?this.props.hash:"1:1"
 
+    window.previousTO_suggest = 0  //Previous Timeout
+    window.previousTO_search = 0  //Previous Timeout
+
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
         //$('.row-offcanvas').removeClass('row-offcanvas-left').addClass('row-offcanvas-right');
@@ -229,7 +232,10 @@ export default class Master extends Component {
       if (q.substr(-1) == ' ' || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") {  //to detect if user has press space , add enter detection
 
         if (window.query != q) {
-          this.search_e(e);     //750ms
+          //this.search_e(e);     //750ms
+          var currentTO_search = setTimeout(this.search, 150, e.target.value, this.state.option_types);
+          clearTimeout(previousTO_search); previousTO_search = currentTO_search
+
           //$(window.inputId)[0].value = query + ' ';
         }
 
@@ -250,7 +256,8 @@ export default class Master extends Component {
     //console.log(e.type, e.which)
     if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
       if (e.type=="change") {   //not on keyup, but on change to make it faster
-        setTimeout(suggest_e, 500, $(window.inputId)[0].value.trimLeft());    //150ms
+        var currentTO_suggest = setTimeout(suggest_e, 1000, $(window.inputId)[0].value.trimLeft());    //150ms
+        clearTimeout(previousTO_suggest); previousTO_suggest = currentTO_suggest
       //}
         //setTimeout(suggest_e, 150, q.trim());    //150ms
       } else if (e.type=="keyup" && e.which && [38,40].indexOf(e.which)!=-1 ) {
@@ -309,9 +316,9 @@ export default class Master extends Component {
     }
   }
 
-  search_e(e) {
-    this.search(e.target.value, this.state.option_types)
-  }
+  // search_e(target, options) {
+  //   this.search(target, options)
+  // }
 
   // search_q(query) {
   //   //$(window.inputId)[0].value=query
@@ -546,20 +553,22 @@ export default class Master extends Component {
     //console.log(query, "progress");
     $('#datalistUl').css({display:'none'});
 
-    $("body").css("cursor", "progress");
     //console.log(window.sessionId);
-    Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
-      window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
-        query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
-        +"#" + window.hash
-        );
+    if (window.query != query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')) {
+      $("body").css("cursor", "progress");
+      Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
+        window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
+          query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+          +"#" + window.hash
+          );
 
-      //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
-                                              //  that you just typed disappears, moved this before next line
-      window.query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
-      this.setState({page: 1});
-      $("body").css("cursor", "default");
-    }.bind(this));
+        //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
+                                                //  that you just typed disappears, moved this before next line
+        window.query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
+        this.setState({page: 1});
+        $("body").css("cursor", "default");
+      }.bind(this));
+    }
   }
   // handleChange(e) {
   //   var options = this.state.options;
@@ -644,21 +653,22 @@ window.suggest_e = function(query) {
     Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
       //console.log(result.took)
       //console.log(result)
-      { 
-        if (complete.length >0 || query.length < 1) {
+      {
+        //console.log(complete, query);   //No idea with complete becomes undefined all of a sudden.
+        if (complete && complete.length >0 || query.length < 1) {
           $('#datalistUl').empty()                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
         } else {
           $('#datalistUl').css('background-color','#eee')
         }
-        complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-          $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
-                  //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
-                  //+ " "+ i.score
-                  + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
-                +"</a></li>");
-        })
-        if (complete.length >0) {
+        if (complete && complete.length >0) {
+          complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
+            $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+                    //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
+                    //+ " "+ i.score
+                    + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
+                  +"</a></li>");
+          })
           $('#datalistUl').append("<button type=\"button\" class=\"close\" style=\"float:left\" \
           onClick=\"$('#datalistUl').css({display:'none'}); $(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
           <span aria-hidden=\"true\">&times;</span> \
