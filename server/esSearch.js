@@ -31,18 +31,21 @@ Meteor.methods({
   options_str=JSON.stringify(options);
 
   if (query != "") {
+
+    console.log("\nSearch Query request for: " +query);
     if (ESCol.findOne({$and:[{query:query}, {options:options_str}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
+
       ESCol.update({$and:[{query:query}, {options:options_str}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
+      console.log("Search Query updated for : " +query);
 
     } else if (ESCol.findOne({$and:[{query:query}, {options:options_str}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
 
       ESCol.update({$and:[{query:query},{options:options_str}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
-      console.log("\nOrder shuffled for:"+query);
+      console.log("Search Query shuffled for : " +query);
 
-    } else
+    } else {
 
-    {
-      console.log("\nES Query for: " +query);
+      console.log("Search Query ES Start for: " +query);
 
       matchArray = [
         {match: {"Arabic_noor": {query: query,"boost": 10}}},
@@ -489,6 +492,7 @@ Meteor.methods({
 
             ESCol.insert({query:query, options:options_str, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
             //console.log(matches.hits.hits.length)
+            console.log("Search Query ES retrieved for: " +query);
 
             text_array = highlights.map(x=>x.token.id)
             if (text_array.length > 0) {
