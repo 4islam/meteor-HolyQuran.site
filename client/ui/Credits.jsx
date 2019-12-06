@@ -32,11 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
-                        <b>2.3</b>
-                        <li> Rate limiting for queries added both for Suggest and Search </li>
+                        <b>2.3 </b>
+                        <li>Rate limiting for queries added both for Suggest and Search </li>
                         <li>Input timeout function adjusted to allow most recent query processing </li>
                       </ul>
-                      
+
                       <ul>
                         <b>2.2 </b>
                         <li>Suggestion list box updated to allow for removal of Arabic suggestions when not selected</li>
