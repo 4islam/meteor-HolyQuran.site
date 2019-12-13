@@ -554,17 +554,18 @@ export default class Master extends Component {
     $('#datalistUl').css({display:'none'});
 
     //console.log(window.sessionId);
-    if (window.query != query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')) {
+    let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+    if (window.query != tquery) {
       $("body").css("cursor", "progress");
       Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
-        window.history.pushState("", "Holy Qur'an Advance Search - " + query.trim().replace(/ +/g, ' ').replace(/\t+/g,' '), "/" +
-          query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+        window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
+          tquery
           +"#" + window.hash
           );
 
         //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                 //  that you just typed disappears, moved this before next line
-        window.query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ');
+        window.query = tquery;
         this.setState({page: 1});
         $("body").css("cursor", "default");
       }.bind(this));
