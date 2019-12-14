@@ -29,7 +29,7 @@ Meteor.methods({
     var options = {
       host: 'www.alislam.org',
       port: 443,
-      path: '/quran/search2/showVerseEmbeded.php?ch='+c+'&vn='+v,
+      path: '/quran/read/showVerseEmbeded.php?ch='+c+'&vn='+v,
       method: 'POST'
     };
 
@@ -42,7 +42,10 @@ Meteor.methods({
 
         if (Meteor.isProduction) {          //For production
         /////****************************************
-          Pages.insert({verse:c+':'+v, page:chunk});
+          if (Pages.findOne({verse:c+':'+v})) {
+          } else {
+            Pages.insert({verse:c+':'+v, page:chunk});
+          }
         /////****************************************
         }
 
