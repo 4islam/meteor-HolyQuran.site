@@ -213,8 +213,8 @@ Meteor.methods({
       esClient.search({
         index: "hq",
         body: {
-          size: 100,     //TODO: pagination
-          //min_score: 1,
+          size: 1000,     //TODO: pagination
+          min_score: 1,
           query: {
             bool:{
               should:matchArray

@@ -8,7 +8,7 @@ export default class Paging extends Component {
  render() {
    var pages_total = this.props.total/this.props.limit;
    var pages=[]; var dots=false;
-   for (var i = 0; i < pages_total && i < 10; i++) {  //  && i < 100 to be removed once ES limits are updated
+   for (var i = 0; i < pages_total && i < 100; i++) {  //  && i < 100 to be removed once ES limits are updated
      if (i < 7) {
       pages.push({page:i+1})
       dots=false
@@ -23,6 +23,10 @@ export default class Paging extends Component {
         pages.push({page:'..'})
         dots=true
       }
+      if (i+1 == this.props.page) {
+        pages.push({page:i+1})
+        dots=false
+      }
     }
    }
    //console.log(pages_total,pages)
@@ -32,7 +36,7 @@ export default class Paging extends Component {
          {
            pages.map((p,i) => (
              <li className={p.page==(this.props.page)?'active':''} key={p.page+i}>
-               {isNaN(p.page)?p.page:
+               {isNaN(p.page)?<span>{p.page}</span>:
                  <a onClick={()=>this.setPage(p.page,this.props.limit)}>{p.page}</a>
                }
              </li>))
@@ -46,7 +50,7 @@ export default class Paging extends Component {
   window.scroll(0,0)  //scroll to top
  }
  nextPage() {
-  if (this.props.page < this.props.total / this.props.limit && this.props.page < 10) { //  && this.props.page < 100 to be removed once ES limits are updated
+  if (this.props.page < this.props.total / this.props.limit && this.props.page < 100) { //  && this.props.page < 100 to be removed once ES limits are updated
    this.setPage(this.props.page+1,this.props.limit)
   }
  }
