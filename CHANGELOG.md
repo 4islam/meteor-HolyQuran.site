@@ -1,7 +1,12 @@
+## 2.4:
+  * Pagination limit increased from 10 pages to 100
+  * Some related bugs fixed
+  * All components updated
+
 ## 2.3:
   * Rate limiting for queries added both for Suggest and Search
   * Input timeout function adjusted to allow most recent query processing
-  * Suggest related bug removed 
+  * Suggest related bug removed
 
 ## 2.2:
   * Suggestion allows you to remove Arabic suggestions.

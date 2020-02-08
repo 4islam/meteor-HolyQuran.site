@@ -32,6 +32,12 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>2.4 </b>
+                        <li>Pagination limit increased from 10 pages to 100</li>
+                        <li>Some related bugs fixed</li>
+                      </ul>
+
+                      <ul>
                         <b>2.3 </b>
                         <li>Rate limiting for queries added both for Suggest and Search </li>
                         <li>Input timeout function adjusted to allow most recent query processing </li>
