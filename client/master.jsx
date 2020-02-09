@@ -540,7 +540,7 @@ export default class Master extends Component {
                      <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>
                      <Credits/>
                      <li><a href="//www.alislam.org/library/legal/#privacy">Privacy Policy</a></li>
-                     <li>&copy; 2019 Ahmadiyya Muslim Community. All rights reserved.</li>
+                     <li>&copy; 2020 Ahmadiyya Muslim Community. All rights reserved.</li>
                    </ul>
             </div>
         </div>
