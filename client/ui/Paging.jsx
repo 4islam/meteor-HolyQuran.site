@@ -47,10 +47,10 @@ export default class Paging extends Component {
  }
  setPage(page,limit) {
   this.props.setPage(page,limit)
-  window.scroll(0,0)  //scroll to top
+  //window.scroll(0,0)  //scroll to top
  }
  nextPage() {
-  if (this.props.page < this.props.total / this.props.limit && this.props.page < 100) { //  && this.props.page < 100 to be removed once ES limits are updated
+  if (this.props.page < this.props.total / this.props.limit) { //  && this.props.page < 100 to be removed once ES limits are updated
    this.setPage(this.props.page+1,this.props.limit)
   }
  }
