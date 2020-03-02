@@ -37,7 +37,7 @@ export default class Paging extends Component {
            pages.map((p,i) => (
              <li className={p.page==(this.props.page)?'active':''} key={p.page+i}>
                {isNaN(p.page)?<span>{p.page}</span>:
-                 <a onClick={()=>this.setPage(p.page,this.props.limit)}>{p.page}</a>
+                 <a onClick={p.page!=(this.props.page)?()=>this.setPage(p.page,this.props.limit):''}>{p.page}</a>
                }
              </li>))
          }

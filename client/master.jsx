@@ -16,7 +16,7 @@ export default class Master extends Component {
     super();
     this.state = {
       page: 1,
-      limit: 10,
+      limit: limit,
       options: [
                 {id:"root",state:true, name:'مادّہ'},
                 {id:"stems",state:true,name:'وزن'},
@@ -555,12 +555,12 @@ export default class Master extends Component {
     // var stackTrace = (new Error()).stack; // Only tested in latest FF and Chrome
     // var callerName = stackTrace.replace(/^Error\s+/, ''); // Sanitize Chrome
     // callerName = callerName.split("\n")[1]; // 1st item is this, 2nd item is caller
-    // callerName = callerName.replace(/^\s+at Object./, ''); // Sanitize Chrome
+    // // callerName = callerName.replace(/^\s+at Object./, ''); // Sanitize Chrome
     // callerName = callerName.replace(/ \(.+\)$/, ''); // Sanitize Chrome
     // callerName = callerName.replace(/\@.+/, ''); // Sanitize Firefox
     // console.log("Search caller: ", callerName);
 
-    //console.log(query, "progress");
+    // console.log(query, "progress");
     $('#datalistUl').css({display:'none'});
 
     //console.log(window.sessionId);
@@ -634,7 +634,7 @@ export default class Master extends Component {
     // console.log("setPage: ", page,limit)
     this.setState({page: page, limit:limit}, ()=>{
       // console.log("setPage state:",this.state.page, this.state.limit);
-      this.search(this.props.query, this.state.option_types)
+      this.search(window.query, this.state.option_types)
     })
 
   }

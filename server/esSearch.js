@@ -22,6 +22,8 @@ Meteor.startup(() => {
 
 Meteor.methods({
   search:function (query, sID, options, page, limit) {
+  limit=parseInt(limit)
+  page=parseInt(page)
   // var future = new Future();
   var sessionId = this.connection.id;
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
