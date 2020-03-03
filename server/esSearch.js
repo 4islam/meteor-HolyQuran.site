@@ -31,7 +31,7 @@ Meteor.methods({
   //var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
 
   var date = new Date();
-  //console.log(sessionId, this.connection.id);
+  console.log(sessionId, this.connection.id, page, limit);
 
   //console.log(JSON.stringify(options))
   options_str=JSON.stringify(options);
@@ -216,7 +216,7 @@ Meteor.methods({
         index: "hq",
         body: {
           size: limit,     //TODO: pagination
-          from: page,
+          from: (page-1)*limit,
           min_score: 1,
           query: {
             bool:{

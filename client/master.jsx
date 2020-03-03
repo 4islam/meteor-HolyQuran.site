@@ -160,7 +160,7 @@ export default class Master extends Component {
 
       this.setState({verse: chapter + ":" + verse
                       , page:1
-                      , limit:10})
+                      , limit:limit})
 
       window.hash = chapter + ":" + verse
     } else {
