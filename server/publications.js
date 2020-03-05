@@ -23,7 +23,7 @@ Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) 
         'session.date':-1
       },
       fields:{
-        'results.hits.hits':{ $slice: [(page-1)*limit,limit] }
+        //'results.hits.hits':{ $slice: [(page-1)*limit,limit] }
       },
      limit: 20        //Past 10 queries
     })

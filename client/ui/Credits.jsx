@@ -32,6 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>2.5 </b>
+                        <li>Pagination limit removed, all paging is now handled on the server-side</li>
+                      </ul>
+
+                      <ul>
                         <b>2.4 </b>
                         <li>Pagination limit increased from 10 pages to 100</li>
                         <li>Some related bugs fixed</li>

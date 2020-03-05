@@ -16,7 +16,7 @@ export default class Master extends Component {
     super();
     this.state = {
       page: 1,
-      limit: 10,
+      limit: limit,
       options: [
                 {id:"root",state:true, name:'مادّہ'},
                 {id:"stems",state:true,name:'وزن'},
@@ -158,7 +158,9 @@ export default class Master extends Component {
       if (chapter > 114) {chapter = 114}
       if (verse > verse_max[chapter-1]) {verse = verse_max[chapter-1]}
 
-      this.setState({verse: chapter + ":" + verse})
+      this.setState({verse: chapter + ":" + verse
+                      , page:1
+                      , limit:limit})
 
       window.hash = chapter + ":" + verse
     } else {
@@ -550,26 +552,35 @@ export default class Master extends Component {
   }
 
   search(query, options) {
-    //console.log(query, "progress");
+    // var stackTrace = (new Error()).stack; // Only tested in latest FF and Chrome
+    // var callerName = stackTrace.replace(/^Error\s+/, ''); // Sanitize Chrome
+    // callerName = callerName.split("\n")[1]; // 1st item is this, 2nd item is caller
+    // // callerName = callerName.replace(/^\s+at Object./, ''); // Sanitize Chrome
+    // callerName = callerName.replace(/ \(.+\)$/, ''); // Sanitize Chrome
+    // callerName = callerName.replace(/\@.+/, ''); // Sanitize Firefox
+    // console.log("Search caller: ", callerName);
+
+    // console.log(query, "progress");
     $('#datalistUl').css({display:'none'});
 
     //console.log(window.sessionId);
     let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
-    if (window.query != tquery) {
       $("body").css("cursor", "progress");
-      Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, function(error, result) {
-        window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
-          tquery
-          +"#" + window.hash
-          );
-
+      Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
+        if (window.query != tquery) {
+          window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
+            tquery
+            +"#" + window.hash
+            );
+            window.query = tquery;
+            this.setState({page: 1});
+          }
         //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                 //  that you just typed disappears, moved this before next line
-        window.query = tquery;
-        this.setState({page: 1});
+        window.scroll(0,0)  //scroll to top
         $("body").css("cursor", "default");
       }.bind(this));
-    }
+    // }
   }
   // handleChange(e) {
   //   var options = this.state.options;
@@ -620,7 +631,12 @@ export default class Master extends Component {
     window.location.hash=verse
   }
   setPage(page,limit) {
-    this.setState({page: page, limit:limit});
+    // console.log("setPage: ", page,limit)
+    this.setState({page: page, limit:limit}, ()=>{
+      // console.log("setPage state:",this.state.page, this.state.limit);
+      this.search(window.query, this.state.option_types)
+    })
+
   }
 
   openMenu(event) { //data-toggle="dropdown" This is removed as input boxes don't render properly with bootstap toggle. The custom function is written to accomodate instead - NI
