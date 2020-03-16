@@ -1,5 +1,9 @@
+## 2.6:
+  * Connection state check added
+  * Css updated to change input text colour
+
 ## 2.5:
-  * Pagination limit removed, all paging is now handled on the server-side
+    * Pagination limit removed, all paging is now handled on the server-side
 
 ## 2.4:
   * Pagination limit increased from 10 pages to 100

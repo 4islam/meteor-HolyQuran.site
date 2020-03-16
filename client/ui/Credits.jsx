@@ -32,6 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>2.6 </b>
+                        <li>Connection state check added</li>
+                      </ul>
+
+                      <ul>
                         <b>2.5 </b>
                         <li>Pagination limit removed, all paging is now handled on the server-side</li>
                       </ul>
