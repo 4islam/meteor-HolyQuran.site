@@ -33,6 +33,7 @@ export default class Credits extends Component {
 
                       <ul>
                         <b>2.6 </b>
+                        <li>Loading/busy icon added</li>
                         <li>Suggestion menu autorun stopped on page load</li>
                         <li>Connection state check added</li>
                       </ul>
