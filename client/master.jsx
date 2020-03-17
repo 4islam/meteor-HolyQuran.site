@@ -207,7 +207,7 @@ export default class Master extends Component {
   componentDidUpdate() {
     // $("body").css("cursor", "default");$('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
     $('.glyphicon-cog').css("color","#1a52a6")
-    $('.Query').removeClass("hidden")
+    // $('.Query').removeClass("hidden")
     // console.log(Date(), "componentDidUpdate")
   }
 
@@ -379,7 +379,7 @@ export default class Master extends Component {
               <div className="input-group" dir="ltr">
                 <div className="input-group-btn">
                   <button className="btn btn-default Search" type="submit" onClick={this.searchButton.bind(this)}>
-                    <img height="17px" className="Query hidden" src="./images/search-icon-png-23-small.png"/>
+                    <img height="17px" className="Query" src="./images/search-icon-png-23-small.png"/>
                     <span className="glyphicon glyphicon-cog gly-spin"></span>
                   </button>
                 </div>
@@ -572,7 +572,8 @@ export default class Master extends Component {
 
     //console.log(window.sessionId);
     let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
-      $("body").css("cursor", "progress");$('.glyphicon-cog').css("color","#333");$('.glyphicon-cog').show();$('.Query').hide();//$('.glyphicon-cog').addClass('gly-spin')
+      $("body").css("cursor", "progress");$('.glyphicon-cog').css("color","#333")
+      $('.glyphicon-cog').show();$('.Query').hide();//$('.glyphicon-cog').addClass('gly-spin')
       // console.log(Date(), "Call started");
       Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
         if (window.query != tquery) {
@@ -587,7 +588,8 @@ export default class Master extends Component {
                                                 //  that you just typed disappears, moved this before next line
         window.scroll(0,0)  //scroll to top
         // $("body").css("cursor", "default");$('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
-        $("body").css("cursor", "default");$('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
+        $("body").css("cursor", "default")
+        $('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
         // console.log(Date(), "Call complete");
       }.bind(this));
     // }
