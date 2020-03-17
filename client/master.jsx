@@ -733,8 +733,11 @@ window.search_q = function (query, type) {
 
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
-        $(window.inputId)[0].disabled=false; $(window.inputId).focus()
-        $('div.input.row').css('background-color','#fdbd6d')
+        $(window.inputId)[0].disabled=false; $(window.inputId).focus();$('div.input.row').css('background-color','#fdbd6d')
 
+    } else {
+      if ($(window.inputId) && $(window.inputId)[0]) {
+        $(window.inputId)[0].disabled=true; $('div.input.row').css('background-color','#fff')
+      }
     }
 });
