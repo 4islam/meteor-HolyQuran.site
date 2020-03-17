@@ -389,7 +389,7 @@ export default class Master extends Component {
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/> */}
 
-                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query} type="text" className="form-control" placeholder="Type here to search..."
+                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className="form-control" placeholder="Type here to search..."
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
