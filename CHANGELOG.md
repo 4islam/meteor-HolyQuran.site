@@ -1,4 +1,5 @@
 ## 2.6:
+  * Suggestion menu autorun stopped on page load
   * Connection state check added
   * Css updated to change input text colour
 
