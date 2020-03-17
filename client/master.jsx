@@ -733,7 +733,10 @@ window.search_q = function (query, type) {
 
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
-        $(window.inputId)[0].disabled=false; $(window.inputId).focus();$('div.input.row').css('background-color','#fdbd6d')
+        $('button.Search').trigger("click")
+        $(window.inputId)[0].disabled=false
+        $(window.inputId).focus()
+        $('div.input.row').css('background-color','#fdbd6d')
 
     } else {
       if ($(window.inputId) && $(window.inputId)[0]) {
