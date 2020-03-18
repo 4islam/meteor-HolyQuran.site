@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+meteor update
+npm update
+meteor update --all-packages
+
 if [ -n "$1" ]; then
-  meteor update
-  npm update
-  meteor update --all-packages
   #meteor build ../HQVC_ServerConfig/app/HQVC_Advance/$1 --architecture os.linux.x86_64 --server https://holyquran.site --directory
   meteor build ../HQVC_ServerConfig/home/centos/upload/$1 --architecture os.linux.x86_64 --server https://holyquran.site
   scp -P2222 ../HQVC_ServerConfig/home/centos/upload/$1 centos@158.69.72.248:/home/centos/upload
