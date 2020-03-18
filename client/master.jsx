@@ -575,6 +575,7 @@ export default class Master extends Component {
     let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
       ui_busy("#333")
       // console.log(Date(), "Call started");
+      // console.log(Date(), window.sessionId);
       Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
         if (window.query != tquery) {
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
@@ -754,11 +755,13 @@ window.ui_ready = function (){
 
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
+      if ($(window.inputId) && $(window.inputId)[0]) {
         $('button.Search').trigger("click")
         $(window.inputId)[0].disabled=false
         $(window.inputId).focus()
         $('div.input.row').css('background-color','#fdbd6d')
         ui_ready()
+      }
 
     } else {
       if ($(window.inputId) && $(window.inputId)[0]) {
