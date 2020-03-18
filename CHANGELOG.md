@@ -1,3 +1,6 @@
+## 2.7:
+  * Session retention feature restored
+
 ## 2.6:
   * Loading/busy icon added
   * Suggestion menu autorun stopped on page load
