@@ -34,7 +34,7 @@ Meteor.methods({
   //var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
 
   var date = new Date();
-  console.log(date, sID, sessionId, this.connection.id, page, limit);
+  console.log(sessionId, this.connection.id, page, limit);
 
   //console.log(JSON.stringify(options))
   options_str=JSON.stringify(options);
