@@ -43,6 +43,7 @@ Meteor.methods({
   var sessionId = this.connection.id
   if (sID != '') {
     sessionId = sID
+    console.log(sessionId,"is:",this.connection.id);
   }
 
   var date = new Date();
@@ -51,11 +52,12 @@ Meteor.methods({
   if (verse != "") {
     if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
       ESAnalyzerCol.update({id:verse},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
+      console.log(sessionId,"Analysis updated for:",verse)
 
     } else if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
 
       ESAnalyzerCol.update({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
-      console.log("Order Shuffled (Text)");
+      console.log(sessionId,"Analysis shuffled for:",verse)
 
     } else
     {
@@ -66,6 +68,8 @@ Meteor.methods({
 }})
 
 getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchesprev,textOriginal,batchId) {      //i for Analyzers loop
+  console.log(sessionId,"Running analysis for:",id,"batch:",i)
+
   var analyzer = analyzers[0];
 
   var batchsize = 10
