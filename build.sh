@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-npm install -g npm
+sudo npm install -g npm
 meteor update
 npm update
 meteor update --all-packages
