@@ -204,11 +204,12 @@ export default class Master extends Component {
 
   }
 
+  shouldComponentUpdate() {
+    ui_busy("#065c1c");return true
+  }
+
   componentDidUpdate() {
-    // $("body").css("cursor", "default");$('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
-    $('.glyphicon-cog').css("color","#1a52a6")
-    // $('.Query').removeClass("hidden")
-    // console.log(Date(), "componentDidUpdate")
+    setTimeout(ui_ready, 100);
   }
 
 
@@ -572,8 +573,7 @@ export default class Master extends Component {
 
     //console.log(window.sessionId);
     let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
-      $("body").css("cursor", "progress");$('.glyphicon-cog').css("color","#333")
-      $('.glyphicon-cog').show();$('.Query').hide();//$('.glyphicon-cog').addClass('gly-spin')
+      ui_busy("#333")
       // console.log(Date(), "Call started");
       Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
         if (window.query != tquery) {
@@ -587,9 +587,7 @@ export default class Master extends Component {
         //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                 //  that you just typed disappears, moved this before next line
         window.scroll(0,0)  //scroll to top
-        // $("body").css("cursor", "default");$('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
-        $("body").css("cursor", "default")
-        $('.glyphicon-cog').hide();$('.Query').show()//$('.glyphicon-cog').removeClass('gly-spin')
+        setTimeout(ui_ready, 50);
         // console.log(Date(), "Call complete");
       }.bind(this));
     // }
@@ -743,18 +741,29 @@ window.search_q = function (query, type) {
   })
 }
 
+window.ui_busy = function (colour){
+  $("body").css("cursor", "progress")
+  $('.glyphicon-cog').css("color",colour)
+  $('.glyphicon-cog').show();$('.Query').hide()
+}
+
+window.ui_ready = function (){
+  $("body").css("cursor", "default")
+  $('.glyphicon-cog').hide();$('.Query').show()
+}
+
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
         $('button.Search').trigger("click")
         $(window.inputId)[0].disabled=false
         $(window.inputId).focus()
         $('div.input.row').css('background-color','#fdbd6d')
-        $('.glyphicon-cog').css("color","#333");$('.glyphicon-cog').hide();$('.Query').show()
+        ui_ready()
 
     } else {
       if ($(window.inputId) && $(window.inputId)[0]) {
         $(window.inputId)[0].disabled=true; $('div.input.row').css('background-color','#fff')
-        $("body").css("cursor", "progress");$('.glyphicon-cog').css("color","#33000");$('.glyphicon-cog').show();$('.Query').hide();
+        ui_busy("#C00")
       }
     }
 });
