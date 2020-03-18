@@ -25,7 +25,7 @@ Meteor.methods({
   limit=parseInt(limit)
   page=parseInt(page)
   // var future = new Future();
-  var sessionId = this.connection.id;
+  var sessionId = this.connection.id
   if (sID != '') {
     sessionId = sID
   }
