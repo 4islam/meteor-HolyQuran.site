@@ -32,6 +32,12 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>2.7 </b>
+                        <li>Session retention feature restored</li>
+                      </ul>
+
+
+                      <ul>
                         <b>2.6 </b>
                         <li>Loading/busy icon added</li>
                         <li>Suggestion menu autorun stopped on page load</li>

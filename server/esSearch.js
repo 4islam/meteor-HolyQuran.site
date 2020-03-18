@@ -26,12 +26,15 @@ Meteor.methods({
   page=parseInt(page)
   // var future = new Future();
   var sessionId = this.connection.id;
+  if (sID != '') {
+    sessionId = sID
+  }
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
   //var sessionId = (sID)?sID.replace(/\W/g, ''):''; //Only takes alphanumerics
   //var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
 
   var date = new Date();
-  console.log(sessionId, this.connection.id, page, limit);
+  console.log(date, sID, sessionId, this.connection.id, page, limit);
 
   //console.log(JSON.stringify(options))
   options_str=JSON.stringify(options);

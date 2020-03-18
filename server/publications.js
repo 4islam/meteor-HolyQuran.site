@@ -13,8 +13,7 @@ Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) 
     {
       'session.id': {
         $in: [
-              this.connection.id
-              // ,(sessionId)?sessionId.replace(/\W/g, ''):''
+              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
              ]
         }
     },
@@ -36,8 +35,7 @@ Meteor.publish('Analysis', function(notRequired, sessionId) {
     {
       'session.id': {
         $in: [
-              this.connection.id
-              // ,(sessionId)?sessionId.replace(/\W/g, ''):''
+              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
              ]
         }
     },
@@ -54,8 +52,7 @@ Meteor.publish('AnalysisHighlights', function(notRequired, sessionId) {
     {
       'session.id': {
         $in: [
-          this.connection.id
-          // ,(sessionId)?sessionId.replace(/\W/g, ''):''
+          (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
              ]
         }
     },
