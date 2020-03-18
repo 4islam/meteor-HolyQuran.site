@@ -697,7 +697,7 @@ window.suggest_e = function(query) {
                   +"</a></li>");
           })
           $('#datalistUl').append("<button type=\"button\" class=\"close\" style=\"float:left\" \
-          onClick=\"$('#datalistUl').css({display:'none'}); $(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
+          onClick=\"$('#datalistUl').css({display:'none'});$(window.inputId)[0].value=$(window.inputId)[0].value.trim()+' ';$(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
           <span aria-hidden=\"true\">&times;</span> \
           </button>")
           $(window.inputId).attr('readonly', false);
