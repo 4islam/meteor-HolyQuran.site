@@ -28,7 +28,7 @@ Meteor.methods({
   //console.log(JSON.stringify(options))
 
   if (query != "") {
-      console.log("Suggest Query for: " +query);
+      console.log(this.connection.id,"Suggest Query for:",query);
 
 
     var matches;
@@ -87,12 +87,12 @@ Meteor.methods({
         size = 3
       }
 
-      reduce = Math.round(size / options.length); 
+      reduce = Math.round(size / options.length);
       if (reduce > 0) {
         size = reduce
       } else {
         size = 1
-      }      
+      }
 
       if (Object.prototype.toString.call(options) === '[object Array]') {
         options.filter(function(o){
