@@ -746,11 +746,13 @@ window.ui_busy = function (colour){
   $("body").css("cursor", "progress")
   $('.glyphicon-cog').css("color",colour)
   $('.glyphicon-cog').show();$('.Query').hide()
+  $('.glyphicon-option-horizontal').css("color",colour)
 }
 
 window.ui_ready = function (){
   $("body").css("cursor", "default")
   $('.glyphicon-cog').hide();$('.Query').show()
+  $('.glyphicon-option-horizontal').css("color",'')
 }
 
 Tracker.autorun(function () {
