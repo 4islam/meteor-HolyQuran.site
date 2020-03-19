@@ -58,30 +58,32 @@ Meteor.methods({
       console.log(sessionId,"Search Query ES Start for:",query);
 
       matchArray = [
-        {match: {"Arabic_noor": {query: query,"boost": 10}}},
-        {match: {"Arabic_noor.ar_stems": {query: query,"boost": 6}}},
-        {match: {"Arabic_noor.ar_root": {query: query,"boost": 4}}}, //p
+        {match: {[ArabicSrc]: {query: query,"boost": 10}}},
+        // {match: {"Arabic": {query: query,"boost": 10}}},
 
-        {match: {"Arabic_noor.ar_normalized": {query: query,"boost": 9}}},
-        {match: {"Arabic_noor.ar_normalized_phonetic": {query: query,"boost": 5}}},
+        {match: {[ArabicSrc+".ar_stems"]: {query: query,"boost": 6}}},
+        {match: {[ArabicSrc+".ar_root"]: {query: query,"boost": 4}}}, //p
 
-        {match: {"Arabic_noor.ar_stems_normalized": {query: query,"boost": 8}}},
-        {match: {"Arabic_noor.ar_stems_normalized_phonetic": {query: query,"boost": 4}}},
-        {match: {"Arabic_noor.ar_root_normalized": {query: query,"boost": 7}}},
-        {match: {"Arabic_noor.ar_root_normalized_phonetic": {query: query,"boost": 3}}},
+        {match: {[ArabicSrc+".ar_normalized"]: {query: query,"boost": 9}}},
+        {match: {[ArabicSrc+".ar_normalized_phonetic"]: {query: query,"boost": 5}}},
 
-        {match: {"Arabic_noor.ar_ngram_original": {query: query,"boost": 5}}},
+        {match: {[ArabicSrc+".ar_stems_normalized"]: {query: query,"boost": 8}}},
+        {match: {[ArabicSrc+".ar_stems_normalized_phonetic"]: {query: query,"boost": 4}}},
+        {match: {[ArabicSrc+".ar_root_normalized"]: {query: query,"boost": 7}}},
+        {match: {[ArabicSrc+".ar_root_normalized_phonetic"]: {query: query,"boost": 3}}},
 
-        {match: {"Arabic_noor.ar_ngram_normalized": {query: query,"boost": 4}}},
-        {match: {"Arabic_noor.ar_normalized_ngram_phonetic": {query: query,"boost": 2}}},
+        {match: {[ArabicSrc+".ar_ngram_original"]: {query: query,"boost": 5}}},
 
-        {match: {"Arabic_noor.ar_ngram_stems": {query: query,"boost": 4}}},
-        {match: {"Arabic_noor.ar_ngram_root": {query: query,"boost": 3}}},
-        {match: {"Arabic_noor.ar_ngram_root_normalized": {query: query,"boost": 2}}},
-        {match: {"Arabic_noor.ar_ngram_root_normalized_phonetic": {query: query,"boost": 1}}},
+        {match: {[ArabicSrc+".ar_ngram_normalized"]: {query: query,"boost": 4}}},
+        {match: {[ArabicSrc+".ar_normalized_ngram_phonetic"]: {query: query,"boost": 2}}},
 
-        {match: {"Arabic_noor.ar_ngram_stems_normalized": {query: query,"boost": 4}}},
-        {match: {"Arabic_noor.ar_ngram_stems_normalized_phonetic": {query: query,"boost": 2}}},
+        {match: {[ArabicSrc+".ar_ngram_stems"]: {query: query,"boost": 4}}},
+        {match: {[ArabicSrc+".ar_ngram_root"]: {query: query,"boost": 3}}},
+        {match: {[ArabicSrc+".ar_ngram_root_normalized"]: {query: query,"boost": 2}}},
+        {match: {[ArabicSrc+".ar_ngram_root_normalized_phonetic"]: {query: query,"boost": 1}}},
+
+        {match: {[ArabicSrc+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
+        {match: {[ArabicSrc+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
         {match: {"Surah": {query: query,"boost": 3}}},
 
@@ -135,7 +137,7 @@ Meteor.methods({
         {match: {"French.fr_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}}
 
-        //{match: {"Arabic_noor.trigram": {query: query,"boost": 8}}}
+        //{match: {[ArabicSrc+".trigram"]: {query: query,"boost": 8}}}
       ];
 
       removeCandidates=[];
@@ -211,9 +213,9 @@ Meteor.methods({
     //  console.log('\n'+matchArray.length);
 
       //console.log(removeCandidates);
-      // matchArray.find(function (x,i){
-      //   console.log(Object.keys(x.match)[0])
-      // })
+      matchArray.find(function (x,i){
+        console.log(Object.keys(x.match)[0])
+      })
 
 
       esClient.search({
@@ -229,18 +231,18 @@ Meteor.methods({
             /*multi_match : {
                   query : query+" ",
                   fields: [
-                    "Arabic_noor.ar_original",
-                    "Arabic_noor.ar_normalized",
-                    "Arabic_noor.ar_stems",
-                    "Arabic_noor.ar_stems_normalized",
-                    //"Arabic_noor.ar_ngram_original",
-                    //"Arabic_noor.ar_ngram_normalized",
-                    // "Arabic_noor.ar_ngram_stems",
-                    // "Arabic_noor.ar_ngram_stems_normalized",
-                     "Arabic_noor.ar_ngram_roots",
+                    [ArabicSrc+".ar_original"],
+                    [ArabicSrc+".ar_normalized"],
+                    [ArabicSrc+".ar_stems"],
+                    [ArabicSrc+".ar_stems_normalized"],
+                    //[ArabicSrc+".ar_ngram_original"],
+                    //[ArabicSrc+".ar_ngram_normalized"],
+                    // [ArabicSrc+".ar_ngram_stems"],
+                    // [ArabicSrc+".ar_ngram_stems_normalized"],
+                     [ArabicSrc+".ar_ngram_roots"],
                     //"ayah",
                     //"surah"
-                    "Arabic_noor.ar_roots"
+                    [ArabicSrc+".ar_roots"]
                   ]
               } */
           },
@@ -265,15 +267,15 @@ Meteor.methods({
 
                  //"content" : {"term_vector" : "with_positions_offsets","force_source" : true},
                  /*"_all" : {},
-                 "Arabic_noor": {},
-                 "Arabic_noor.ar_stems": {},
-                 "Arabic_noor.ar_root": {},
+                 [ArabicSrc]: {},
+                 [ArabicSrc+".ar_stems"]: {},
+                 [ArabicSrc+".ar_root"]: {},
                  "Surah.ar_original_normalized": {},
                  "Surah.ar_normalized_phonetic": {},
-                 "Arabic_noor.ar_original_normalized": {},
-                 "Arabic_noor.ar_normalized_phonetic": {},
-                 "Arabic_noor.ar_stems_normalized": {},
-                 "Arabic_noor.ar_root_normalized": {},
+                 [ArabicSrc+".ar_original_normalized"]: {},
+                 [ArabicSrc+".ar_normalized_phonetic"]: {},
+                 [ArabicSrc+".ar_stems_normalized"]: {},
+                 [ArabicSrc+".ar_root_normalized"]: {},
                  "ayah": {},
                  "Surah": {}*/
              }
@@ -282,7 +284,7 @@ Meteor.methods({
               // "ar_normalized": {
               //   "text" : query,
               //   "term": {
-              //     "field": "Arabic_noor.ar_normalized",
+              //     "field": [ArabicSrc+".ar_normalized"],
               //     "suggest_mode": "always",
               //     // "min_word_length": 1,
               //     "prefix_length": 0,
@@ -301,12 +303,12 @@ Meteor.methods({
               "Phrase": {
                 "text" : query,
                 "phrase": {
-                    "field": "Arabic_noor.trigram",
+                    "field": ArabicSrc+".trigram",
                     "size": 3,
                     // "gram_size": 3,
                     "confidence":1,
                     "direct_generator": [ {
-                      "field": "Arabic_noor.trigram",
+                      "field": ArabicSrc+".trigram",
                       "prefix_length": 0,
                       "suggest_mode": "always"
                     } ],
@@ -320,25 +322,25 @@ Meteor.methods({
                 }
           },
           aggs: {
-            // "Arabic_noor.ar_normalized": {
+            // [ArabicSrc+".ar_normalized"]: {
             //       terms: {
-            //           field: "Arabic_noor.ar_normalized"
+            //           field: [ArabicSrc+".ar_normalized"]
             //       }
             //  },
-            //  "Arabic_noor.ar_ngram_original": {
+            //  [ArabicSrc+".ar_ngram_original"]: {
             //        terms: {
-            //            field: "Arabic_noor.ar_ngram_original"
+            //            field: [ArabicSrc+".ar_ngram_original"]
             //        }
             //   },
-            // "Arabic_noor.ar_ngram_normalized": {
+            // [ArabicSrc+".ar_ngram_normalized"]: {
             //      terms: {
-            //          field: "Arabic_noor.ar_ngram_normalized"
+            //          field: [ArabicSrc+".ar_ngram_normalized"]
             //      }
             // },
 
             s_Arabic_Trigram: {
                  significant_terms: {
-                     field: "Arabic_noor.trigram"
+                     field: ArabicSrc+".trigram"
                  }//,
                   // aggs:{
                   //   "top_Arabic": {
@@ -350,7 +352,7 @@ Meteor.methods({
                   //         },
                   //         // "_source": {
                   //         //     "includes": [
-                  //         //         "Arabic_noor"
+                  //         //         [ArabicSrc]
                   //         //     ]
                   //         // },
                   //         "size" : 1
@@ -359,14 +361,14 @@ Meteor.methods({
                   //
                   // }
             },
-            // "Arabic_noor.ar_ngram_stems": {
+            // [ArabicSrc+".ar_ngram_stems"]: {
             //      terms: {
-            //          field: "Arabic_noor.ar_ngram_stems"
+            //          field: [ArabicSrc+".ar_ngram_stems"]
             //      }
             // },
-            // "Arabic_noor.ar_ngram_stems_normalized": {
+            // [ArabicSrc+".ar_ngram_stems_normalized"]: {
             //       terms: {
-            //           field: "Arabic_noor.ar_ngram_stems_normalized"
+            //           field: [ArabicSrc+".ar_ngram_stems_normalized"]
             //       }
             // },
 
@@ -377,12 +379,12 @@ Meteor.methods({
             //  },
              s_Arabic_Words: {
                   significant_terms: {
-                      field: "Arabic_noor"
+                      field: ArabicSrc
                   }
               },
               s_Arabic_Stems: {
                    significant_terms: {
-                       field: "Arabic_noor.ar_stems"
+                       field: ArabicSrc+".ar_stems"
                    }
               },
                   //  aggs:{
@@ -390,12 +392,12 @@ Meteor.methods({
                   //      top_hits:{
                   //         //  "highlight": {
                   //         //      "fields": {
-                  //         //        "Arabic_noor" : {},
+                  //         //        [ArabicSrc] : {},
                   //         //      }
                   //         //  },
                   //          "_source": {
                   //              "includes": [
-                  //                  "Arabic_noor"
+                  //                  [ArabicSrc]
                   //              ]
                   //          },
                   //          "size" : 1
@@ -406,14 +408,14 @@ Meteor.methods({
                //},
               "s_Arabic_root": {
                     significant_terms: {
-                        field: "Arabic_noor.ar_root_normalized"
+                        field: ArabicSrc+".ar_root_normalized"
                     }//,
                     // aggs:{
                     //   "top_Arabic": {
                     //     top_hits:{
                     //         "_source": {
                     //             "includes": [
-                    //                 "Arabic_noor"
+                    //                 [ArabicSrc]
                     //             ]
                     //         },
                     //         "size" : 1
@@ -424,14 +426,14 @@ Meteor.methods({
                },
                "s_Arabic_normalized": {
                      significant_terms: {
-                         field: "Arabic_noor.ar_normalized"
+                         field: ArabicSrc+".ar_normalized"
                      }//,
                     //  aggs:{
                     //    "top_Arabic": {
                     //      top_hits:{
                     //          "_source": {
                     //              "includes": [
-                    //                  "Arabic_noor"
+                    //                  [ArabicSrc]
                     //              ]
                     //          },
                     //          "size" : 1
@@ -452,7 +454,7 @@ Meteor.methods({
               //  },
               //  "Arabic_Stems": {
               //       terms: {
-              //           field: "Arabic_noor.ar_stems"
+              //           field: [ArabicSrc+".ar_stems"]
               //       }
               //  },
                 "s_Urdu": {

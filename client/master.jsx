@@ -17,14 +17,6 @@ export default class Master extends Component {
     this.state = {
       page: 1,
       limit: limit,
-      options: [
-                {id:"root",state:true, name:'مادّہ'},
-                {id:"stems",state:true,name:'وزن'},
-                {id:"phonetic",state:true,name:'صوتی'},
-                {id:"ngram",state:true,name:'جزئي'},
-                {id:"normalized",state:true,name:'سوى'},
-                {id:"surah",state:true,name:'سورة'}
-              ],
       option_types:[
         // {id:"Arabic",state:true,name:'عَرَبي',options: [
         //           {id:"root",state:true, name:'مادّہ'},
@@ -52,7 +44,7 @@ export default class Master extends Component {
         //           {id:"ngram",state:true,name:'teilweise'},
         //           {id:"normalized",state:true,name:'normalisierte'}
         //         ]}
-        {id:"Arabic_noor",state:true,name:'Arabic',options: [
+        {id:ArabicSrc,state:true,name:'Arabic',options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -60,7 +52,6 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"Surah",state:true,name:'Chapter Names',options: [
-                  //{id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}

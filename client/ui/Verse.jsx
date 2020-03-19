@@ -32,7 +32,7 @@ componentDidMount() {
           //onClick={this.handleChange}
            className="list-group-item Verse">
              <VerseHighlights
-                base={this.props.Arabic_noor}
+                base={this.props[ArabicSrc]}
                 Type="Arabic"
                 highlights={this.props.highlights}/>
           </a>

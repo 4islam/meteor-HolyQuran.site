@@ -63,16 +63,16 @@ Meteor.methods({
         }
       })
     }
-    if (options.includes("Arabic_noor") || fields.length == 0) {
-     fields.push("Arabic_noor.ar_ngram_normalized")
-     fields.push("Arabic_noor.ar_ngram_original")
-     fields.push("Arabic_noor.ar_ngram_stems_normalized")
-     fields.push("Arabic_noor.ar_ngram_root")
-     fields.push("Arabic_noor.ar_ngram_root_normalized")
+    if (options.includes(ArabicSrc) || fields.length == 0) {
+     fields.push(ArabicSrc+".ar_ngram_normalized")
+     fields.push(ArabicSrc+".ar_ngram_original")
+     fields.push(ArabicSrc+".ar_ngram_stems_normalized")
+     fields.push(ArabicSrc+".ar_ngram_root")
+     fields.push(ArabicSrc+".ar_ngram_root_normalized")
 
-     fields.push("Arabic_noor.ar_query_suggest_ngram_normalized_phonetic")
-     fields.push("Arabic_noor.ar_query_suggest_ngram_stems_normalized_phonetic")
-     fields.push("Arabic_noor.ar_query_suggest_ngram_root_normalized_phonetic")
+     fields.push(ArabicSrc+".ar_query_suggest_ngram_normalized_phonetic")
+     fields.push(ArabicSrc+".ar_query_suggest_ngram_stems_normalized_phonetic")
+     fields.push(ArabicSrc+".ar_query_suggest_ngram_root_normalized_phonetic")
 
    }
 
@@ -83,7 +83,7 @@ Meteor.methods({
 
       //console.log((Object.prototype.toString.call(aggs)))
       let size = 10
-      if (options.includes("Arabic_noor")) {
+      if (options.includes(ArabicSrc)) {
         size = 3
       }
 
@@ -150,34 +150,34 @@ Meteor.methods({
           }
         })
       }
-      if (options.includes("Arabic_noor") || Object.keys(aggs).length == 0) {
+      if (options.includes(ArabicSrc) || Object.keys(aggs).length == 0) {
        aggs["s_Arabic_Trigram"] = {
             significant_terms: {
-                "field": "Arabic_noor.trigram",
+                "field": ArabicSrc+".trigram",
                 "size": 3
             }
        }
        aggs["s_Arabic_Words"] = {
             significant_terms: {
-                "field": "Arabic_noor",
+                "field": ArabicSrc,
                "size": 1
             }
         }
         aggs["s_Arabic_Stems"] = {
              significant_terms: {
-                 "field": "Arabic_noor.ar_stems",
+                 "field": ArabicSrc+".ar_stems",
                "size": 1
              }
         }
         aggs["s_Arabic_root"] = {
               significant_terms: {
-                  "field": "Arabic_noor.ar_root_normalized",
+                  "field": ArabicSrc+".ar_root_normalized",
                "size": 1
               }
          }
          aggs["s_Arabic_normalized"] = {
                significant_terms: {
-                   "field": "Arabic_noor.ar_normalized",
+                   "field": ArabicSrc+".ar_normalized",
                "size": 1
                }
          }
