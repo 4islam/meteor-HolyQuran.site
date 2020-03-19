@@ -200,7 +200,7 @@ export default class Master extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(ui_ready, 100);
+    setTimeout(ui_ready, 666);
   }
 
 
@@ -579,7 +579,7 @@ export default class Master extends Component {
         //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                 //  that you just typed disappears, moved this before next line
         window.scroll(0,0)  //scroll to top
-        setTimeout(ui_ready, 50);
+        setTimeout(ui_ready, 333);
         // console.log(Date(), "Call complete");
       }.bind(this));
     // }
