@@ -360,7 +360,7 @@ export default class Master extends Component {
         <div className="navbar navbar-inverse navbar-fixed-top">
 
           <div className="row content">
-            <a href="//alislam.org">
+            <a href="/#1:1">
               <div className="col-sm-12 logo"><h3>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3></div>
             </a>
           </div>
