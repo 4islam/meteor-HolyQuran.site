@@ -224,7 +224,7 @@ export default class Master extends Component {
     //console.log(window.query, e.target.value, e.type)
     //console.log( e.type, e.key)
 
-    var q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
+    let q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
 
     if (window.query != e.target.value || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") { //after introducing onKeyUp
 
@@ -256,10 +256,16 @@ export default class Master extends Component {
     //console.log(e.type, e.which)
     if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
       if (e.type=="change") {   //not on keyup, but on change to make it faster
-        var currentTO_suggest = setTimeout(suggest_e, 1000, $(window.inputId)[0].value.trimLeft());    //150ms
+        let currentTO_suggest = setTimeout(suggest_e, 1000, $(window.inputId)[0].value.trimLeft());    //150ms
         clearTimeout(previousTO_suggest); previousTO_suggest = currentTO_suggest
       //}
         //setTimeout(suggest_e, 150, q.trim());    //150ms
+      } else if (e.type=="keyup" && ['Enter'].indexOf(e.key)!==-1) { // No need to suggest when Enter is pressed by the user
+        clearTimeout(previousTO_suggest);
+        q=$(window.inputId)[0].value
+        if (q[q.length-1] != " ") {
+            $(window.inputId)[0].value = q+" "             //To be consistent when no suggestion is show, space is added
+        }
       } else if (e.type=="keyup" && e.which && [38,40].indexOf(e.which)!=-1 ) {
         if ($('#datalistUl > li').length) {
           $('#datalistUl').css({display:'block'});
