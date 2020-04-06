@@ -548,6 +548,19 @@ div.resultCount {
   float: right;
 }
 
+.glyphicon-circle-arrow-right {
+  float: right;
+  padding: 2px;
+  transition: transform 1s;
+}
+
+.glyphicon-circle-arrow-right.active {
+  transform: rotate(180deg);
+}
+
+button.Summary {
+  z-index: 1;
+}
 
 /* epub styles */
 

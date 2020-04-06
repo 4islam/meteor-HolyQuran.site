@@ -123,6 +123,7 @@ export default class Master extends Component {
         $('.Summary').removeClass('hidden-xs');
         $('.Summary').addClass('sidebar-offcanvas');
         $('.row-offcanvas').toggleClass('active');
+        $('.glyphicon-circle-arrow-right').toggleClass('active');
 
         // $(window.inputId).focus();
       });
@@ -489,8 +490,8 @@ export default class Master extends Component {
                 <div className="col-md-6 col-lg-5">
                   <p className="pull-right hidden-lg">
                     <button type="button" className="btn btn-primary btn-xs Summary" data-toggle="offcanvas-right">
-                      <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
                       Search Summaries
+                      <span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
                     </button>
                   </p>
                   <br className="pull-right hidden-lg"/>
