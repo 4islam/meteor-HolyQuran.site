@@ -72,12 +72,12 @@ componentDidMount() {
                         </button>
                         <button id="copyVerse" type="button"
                           //onClick={(e) => this.CopyArabicText(this.props.Arabic_noor, event, this.props.ayah)}
-                          data-clipboard-text={this.props.Arabic_noor + ' [' + this.props.ayah + ']'}
+                          data-clipboard-text={this.props.Arabic_noor.replace(/\u06E3/,' \u06E3') + ' [' + this.props.ayah + ']'}
                           className="btn btn-default btn-xs"
                           data-toggle="tooltip"
                           data-placement="bottom"
                           title="Copy Arabic Text">
-                          <span className="glyphicon glyphicon-copy small"></span>
+                          <span className="glyphicon glyphicon-duplicate small"></span>
                         </button>
                         <button type="button"
                           onClick={this.showDetails}

@@ -21,7 +21,7 @@ export default class Tokens extends Component {
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 onClick={(e) => this.CopyTokens(x,this.props.verse, event, i)}
-                                title="Copy this text"> {x.name} <span className="glyphicon glyphicon-copy small"> </span>
+                                title="Copy this text"> {x.name} <span className="glyphicon glyphicon-duplicate small"> </span>
                               </button></th>
                               {
                                 this.props.data.results[0].tokens.tokens.map((j,k)=>
