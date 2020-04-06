@@ -124,6 +124,7 @@ export default class Master extends Component {
         $('.Summary').addClass('sidebar-offcanvas');
         $('.row-offcanvas').toggleClass('active');
         $('.glyphicon-circle-arrow-right').toggleClass('active');
+        window.scroll(0,0);
 
         // $(window.inputId).focus();
       });

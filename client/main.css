@@ -138,16 +138,17 @@ div.highlights.Surah {
   opacity: .20;
 }
 
-div.highlights.ayah {
+div > div.highlights.ayah {
   opacity: 1;
 }
 
-
-div.highlights.visible {
+div > div.highlights.visible {
   opacity: 1;
   color: black;
+  transition-property: opacity;
+  transition-duration: 3s;
 }
-div.highlights.base {
+div > div.highlights.base {
   opacity: .03;
   position: relative;
 }
@@ -193,7 +194,7 @@ div.highlights mark {
 #QueryRTL {
   width: 100%;
   border-left-width: 0;
-
+  font-family: "noorehuda";
   opacity: .8;
   z-index: 10;
 }
@@ -561,6 +562,7 @@ div.resultCount {
 button.Summary {
   z-index: 1;
 }
+
 
 /* epub styles */
 
