@@ -1,5 +1,6 @@
 ## 2.7:
   * Session retention feature restored
+  * Suggestion menu stopped from when user searched by pressing Enter 
 
 ## 2.6:
   * Loading/busy icon added

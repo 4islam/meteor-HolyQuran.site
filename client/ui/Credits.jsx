@@ -34,6 +34,7 @@ export default class Credits extends Component {
                       <ul>
                         <b>2.7 </b>
                         <li>Session retention feature restored</li>
+                        <li>Suggestion menu stopped from when user searched by pressing Enter</li>
                       </ul>
 
 
