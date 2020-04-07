@@ -138,17 +138,16 @@ div.highlights.Surah {
   opacity: .20;
 }
 
-div > div.highlights.ayah {
+div.highlights.ayah {
   opacity: 1;
 }
 
-div > div.highlights.visible {
+
+div.highlights.visible {
   opacity: 1;
   color: black;
-  transition-property: opacity;
-  transition-duration: 3s;
 }
-div > div.highlights.base {
+div.highlights.base {
   opacity: .03;
   position: relative;
 }

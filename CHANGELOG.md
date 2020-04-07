@@ -1,6 +1,8 @@
 ## 2.7:
   * Session retention feature restored
-  * Suggestion menu stopped from when user searched by pressing Enter 
+  * Suggestion menu stopped from when user searched by pressing Enter
+  * Small Nun fixed
+  * Minor UI enhancements including icons
 
 ## 2.6:
   * Loading/busy icon added
