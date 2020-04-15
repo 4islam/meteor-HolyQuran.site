@@ -14,7 +14,7 @@ export default class Tokens extends Component {
    return (<table className="Token base table-bordered">
             <tbody>
               {this.props.data.results?
-                    this.props.data.results.slice(0,3).map((x,i)=>      //Limiting to first 3 entries
+                    this.props.data.results.slice(0,10).map((x,i)=>      //Limiting to first 3 entries
                           <tr key={i+'.'+x.analyzer} className={'tokens_'+x.analyzer}>
                               <th><button type="button"
                                 className="btn btn-default btn-xs"
