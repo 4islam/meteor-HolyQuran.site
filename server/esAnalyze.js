@@ -51,11 +51,11 @@ Meteor.methods({
   //console.log(sessionId, this.connection.id);
 
   if (verse != "") {
-    if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
+    if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
       ESAnalyzerCol.update({id:verse},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
       console.log(sessionId,"Analysis updated for:",verse)
 
-    } else if (ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
+    } else if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
 
       ESAnalyzerCol.update({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log(sessionId,"Analysis shuffled for:",verse)
