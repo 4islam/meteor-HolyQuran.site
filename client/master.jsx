@@ -18,32 +18,6 @@ export default class Master extends Component {
       page: 1,
       limit: limit,
       option_types:[
-        // {id:"Arabic",state:true,name:'عَرَبي',options: [
-        //           {id:"root",state:true, name:'مادّہ'},
-        //           {id:"stems",state:true,name:'وزن'},
-        //           {id:"phonetic",state:true,name:'صوتی'},
-        //           {id:"ngram",state:true,name:'جزئي'},
-        //           {id:"normalized",state:true,name:'سوى'}
-        //         ]},
-        // {id:"surah",state:true,name:'سورة',options: [
-        //           {id:"stems",state:true,name:'وزن'},
-        //           {id:"phonetic",state:true,name:'صوتی'},
-        //           {id:"ngram",state:true,name:'جزئي'},
-        //           {id:"normalized",state:true,name:'سوى'}
-        //         ]},
-        // {id:"Urdu",state:false,name:'اردو',options: [
-        //           {id:"phonetic",state:false,name:'صوتی'},
-        //           {id:"ngram",state:true,name:'جزوی'},
-        //           {id:"normalized",state:true,name:'ہموار'}
-        //         ]},
-        // {id:"English",state:true,name:'English',options: [
-        //           {id:"ngram",state:true,name:'partial'},
-        //           {id:"normalized",state:true,name:'normalized'}
-        //         ]},
-        // {id:"German",state:false,name:'German',options: [
-        //           {id:"ngram",state:true,name:'teilweise'},
-        //           {id:"normalized",state:true,name:'normalisierte'}
-        //         ]}
         {id:ArabicSrc,state:true,name:'Arabic',options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
@@ -474,6 +448,21 @@ export default class Master extends Component {
                               </ul>
                         </div>)
                   }
+                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
+                    <label className={(this.state.option_types[0].id=="Arabic_noor")?"btn btn-default btn-xs Arabic_noor active":"btn btn-default btn-xs Arabic_noor"}
+                        onClick={e => this.switchIbarat("Arabic_noor")}>
+                      <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
+                        defaultChecked={(this.state.option_types[0].id=="Arabic_noor")?true:false} /> نور ماجدی
+                    </label>
+                    <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
+                        onClick={e => this.switchIbarat("Arabic")}>
+                      <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
+                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/> عثمانی
+                    </label>
+                    <label className="btn-xs">
+                       عربی عبارت:
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -617,8 +606,16 @@ export default class Master extends Component {
   }
 
   handleChangeOptions(x,y) {
-    var option_types = this.state.option_types;
+    let option_types = this.state.option_types;
     option_types.find(o=>o.id===y).options.find(p=>p.id===x).state = !option_types.find(o=>o.id===y).options.find(p=>p.id===x).state;
+    this.setState(option_types);
+    this.search(window.query, option_types);
+  }
+
+  switchIbarat(ibarat){
+    let option_types = this.state.option_types;
+    window.ArabicSrc = ibarat
+    option_types[0].id = ibarat
     this.setState(option_types);
     this.search(window.query, option_types);
   }
