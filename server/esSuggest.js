@@ -13,7 +13,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  suggest:function (query, options, ArStr) {
+  suggest:function (query, options) {
   //var sessionId = this.connection.id;
   query = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,250);      //max 500 character limit
 
@@ -63,6 +63,8 @@ Meteor.methods({
         }
       })
     }
+    ArStr = options[0]
+    console.log(ArStr);
     if (options.includes(ArStr) || fields.length == 0) {
      fields.push(ArStr+".ar_ngram_normalized")
      fields.push(ArStr+".ar_ngram_original")

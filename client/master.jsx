@@ -390,7 +390,7 @@ export default class Master extends Component {
                       <option value="الله الرحمان الرحيم"/>
                     </datalist>*/}
                   </div>
-                  <ul id="datalistUl" className="datalistUl dropdown-menu dropdown-menu-right" aria-labelledby="Query">
+                  <ul id="datalistUl" className={"datalistUl dropdown-menu dropdown-menu-right "+this.state.option_types[0].id} aria-labelledby="Query">
                     {
                       // this.state.suggestionlist.map(i=>
                       //   <li className='btn-block btn btn-xs' key={i.key}><a href="#" onClick={() => this.search_q(i.key)}>{i.key}</a></li>
@@ -683,7 +683,7 @@ window.suggest_e = function(query) {
     //setTimeout(suggest_e, 0, q);
     $(window.inputId).css('color', 'black');
   }
-    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id),ArabicSrc, function(error, complete) {
+    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
       //console.log(result.took)
       //console.log(result)
       {
