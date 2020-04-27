@@ -104,7 +104,7 @@ export default class TokenHighlights extends Component {
    return <div className="Token Highlights base table table-bordered">
             {
               dataTable?
-                <table className="Arabic"><tbody>
+                <table className={this.props.options[0].id}><tbody>
                 {
                 dataTable.map((x,i)=>(
                   <tr key={i}>

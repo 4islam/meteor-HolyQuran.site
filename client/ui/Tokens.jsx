@@ -11,7 +11,7 @@ export default class Tokens extends Component {
 
  render() {
    //console.log(this.props.verse)
-   return (<table className="Token base table-bordered">
+   return (<table className={"Token base table-bordered "+this.props.Type}>
             <tbody>
               {this.props.data.results?
                     this.props.data.results.slice(0,10).map((x,i)=>      //Limiting to first 3 entries

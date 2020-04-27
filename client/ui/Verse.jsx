@@ -33,12 +33,12 @@ componentDidMount() {
            className="list-group-item Verse">
              <VerseHighlights
                 base={this.props[ArabicSrc]}
-                Type="Arabic"
+                Type={ArabicSrc}
                 highlights={this.props.highlights}/>
           </a>
               <div className="" style={{display:this.state.display}}>
               { this.state.display!='none'?
-                  <Analyze key={this.props.ayah} verse={this.props.ayah}/>
+                  <Analyze key={this.props.ayah} verse={this.props.ayah} Type={ArabicSrc}/>
                 :'Processing...'
               }
               </div>

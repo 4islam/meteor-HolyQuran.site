@@ -30,7 +30,7 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:'Urdu',options: [
+        {id:"Urdu",state:false,name:'اردو',options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -51,7 +51,7 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'Tafseer-e-Sagheer UR',options: [
+        {id:"UrduTS",state:false,name:'تفسیرِ صغیر اردو',options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -176,7 +176,10 @@ export default class Master extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(ui_ready, 666);
+    setTimeout(ui_ready, 666)
+    // setTimeout(updateIbaratFont, 0)
+    // setTimeout(updateIbaratFont, 500)
+    // setTimeout(updateIbaratFont, 1000)
   }
 
 
@@ -370,7 +373,7 @@ export default class Master extends Component {
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/> */}
 
-                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className="form-control" placeholder="Type here to search..."
+                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className={this.state.option_types[0].id + " form-control"} placeholder="Type here to search..."
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
@@ -407,7 +410,7 @@ export default class Master extends Component {
                 <div>
                   {
                     this.state.option_types.map(x=>
-                        <div className="btn-group" role="group" key={x.name}>
+                        <div className={x.id+" btn-group"} role="group" key={x.name}>
                             <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
                               id="dLabel" type="button" onClick={this.openMenu}
                               name={x.name}
@@ -448,7 +451,7 @@ export default class Master extends Component {
                               </ul>
                         </div>)
                   }
-                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
+                  <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
                     <label className={(this.state.option_types[0].id=="Arabic_noor")?"btn btn-default btn-xs Arabic_noor active":"btn btn-default btn-xs Arabic_noor"}
                         onClick={e => this.switchIbarat("Arabic_noor")}>
                       <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
@@ -457,7 +460,7 @@ export default class Master extends Component {
                     <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
                         onClick={e => this.switchIbarat("Arabic")}>
                       <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
-                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/> عثمانی
+                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/>عثمانى
                     </label>
                     <label className="btn-xs">
                        عربی عبارت:
@@ -613,11 +616,13 @@ export default class Master extends Component {
   }
 
   switchIbarat(ibarat){
-    let option_types = this.state.option_types;
+    let option_types = this.state.option_types
     window.ArabicSrc = ibarat
     option_types[0].id = ibarat
-    this.setState(option_types);
-    this.search(window.query, option_types);
+    this.setState(option_types)
+    update_aggregates(ibarat)
+    update_aggregates(ibarat)
+    this.search(window.query, option_types)
   }
 
   options_panel(event) {
@@ -750,6 +755,13 @@ window.ui_ready = function (){
   $('.glyphicon-cog').hide();$('.Query').show()
   $('.glyphicon-option-horizontal').css("color",'')
 }
+
+window.updateIbaratFont = function(){
+    let ibaratFont = (window.ArabicSrc=="Arabic")?'UthmanicHafs1':'noorehuda'
+    ArabicCss.map(function(c){
+      $(c).css("font-family",ibaratFont)
+    })
+  }
 
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
