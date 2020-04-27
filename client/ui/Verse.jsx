@@ -32,13 +32,13 @@ componentDidMount() {
           //onClick={this.handleChange}
            className="list-group-item Verse">
              <VerseHighlights
-                base={this.props[ArabicSrc]}
-                Type={ArabicSrc}
+                base={this.props[this.props.options[0].id]}
+                Type={this.props.options[0].id}
                 highlights={this.props.highlights}/>
           </a>
               <div className="" style={{display:this.state.display}}>
               { this.state.display!='none'?
-                  <Analyze key={this.props.ayah} verse={this.props.ayah} Type={ArabicSrc}/>
+                  <Analyze key={this.props.ayah} verse={this.props.ayah} Type={this.props.options[0].id}/>
                 :'Processing...'
               }
               </div>
@@ -169,7 +169,7 @@ componentDidMount() {
     if (this.state.display == 'none') {
         //console.log("Calling for: " , this.props.ayah);
         this.setState({display: ''});
-        Meteor.call('analyze',this.props.ayah,window.sessionId, function(error, result) {
+        Meteor.call('analyze',this.props.ayah,window.sessionId,this.props.options[0].id,this.props.analyzers,function(error, result) {
           //this.setState({display: ''});
         }.bind(this));
     } else {

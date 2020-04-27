@@ -18,23 +18,19 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  analyze:function (verse, sID) {
-  // var analyzers = [
-  //                   {id:'standard', name:"اصل"},
-  //                   {id:'ar_stems', name:"وزن"},
-  //                   {id:'ar_root', name:"مادّہ"}
-  //                 ];
-  // var future = new Future();
-  //var sessionId = this.connection.id;
+  analyze:function (verse, sID, ArStr, analyzersStr) {
 
   var text="";
+  if (names_array.indexOf(ArStr) == -1) {
+    ArStr = "Arabic" // Default value
+  }
 
   verse = verse.split(':')[0]*1+':'+verse.split(':')[1]*1;
 
   ESCol.findOne({'results.hits.hits':{$elemMatch:{'_source.ayah':verse}}}).results.hits.hits.map(function(x) {
     if (x._source.ayah==verse) {
       // text = x._source.Arabic;
-      text = x._source[ArabicSrc];
+      text = x._source[ArStr];
     }
   });
 
@@ -51,27 +47,27 @@ Meteor.methods({
   //console.log(sessionId, this.connection.id);
 
   if (verse != "") {
-    if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
-      ESAnalyzerCol.update({id:verse},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
+    if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse},{options:ArStr},{'session.id':{$nin:[sessionId]}}]})) {  // If verse is present already
+      ESAnalyzerCol.update({id:verse},{options:ArStr},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
       console.log(sessionId,"Analysis updated for:",verse)
 
-    } else if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
+    } else if (cacheResults && ESAnalyzerCol.findOne({$and:[{id:verse},{options:ArStr},{'session.id':{$in:[sessionId]}}]})) { //If verse exists for the current user, it must be shiffled to bring to top
 
-      ESAnalyzerCol.update({$and:[{id:verse}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
+      ESAnalyzerCol.update({$and:[{id:verse},{options:ArStr},{'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log(sessionId,"Analysis shuffled for:",verse)
 
     } else
     {
       //console.log("ES Text for: " +verse);
-      getAnalysis(analyzers,text.split(' '),verse,sessionId,date,0,ESAnalyzerCol);
+      getAnalysis(analyzersStr,text.split(' '),verse,sessionId,date,0,ESAnalyzerCol,ArStr);
     }
  }
 }})
 
-getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchesprev,textOriginal,batchId) {      //i for Analyzers loop
-  console.log(sessionId,"Running analysis for:",id,"batch:",i)
+getAnalysis = function (analyzersStr,text,id,sessionId,date,i,Collection,ArStr,matchesprev,textOriginal,batchId) {      //i for analyzersStr loop
+  console.log(sessionId,"Running analysis for:",id,"batch:",i,ArStr,analyzersStr)
 
-  var analyzer = analyzers[0];
+  var analyzer = analyzersStr[0];
 
   var batchsize = 10
   //console.log('Length: ', text.length)
@@ -112,19 +108,19 @@ getAnalysis = function (analyzers,text,id,sessionId,date,i,Collection,matchespre
 
         if (text.length > batchsize ) {
             //console.log(analyzer.id, i, "sliced");
-            getAnalysis(analyzers,text.slice(batchsize),id,sessionId,date,i,Collection,matches.tokens,textOriginal?textOriginal:text,batchId?batchId+1:1)  //matches.tokens.concat(matchesprev)
+            getAnalysis(analyzersStr,text.slice(batchsize),id,sessionId,date,i,Collection,ArStr,matches.tokens,textOriginal?textOriginal:text,batchId?batchId+1:1)  //matches.tokens.concat(matchesprev)
         } else {
           if (textOriginal) {
             text = textOriginal
           }
 
           if (i==0) {    //first entry
-            Collection.insert({id:id, session: [{id:sessionId,date:date}],analysis:{text:text, results:[{analyzer:analyzer.id,name:analyzer.name,tokens:matches}]}});
+            Collection.insert({id:id,options:ArStr, session: [{id:sessionId,date:date}],analysis:{text:text, results:[{analyzer:analyzer.id,name:analyzer.name,tokens:matches}]}});
           } else {
-            Collection.update({$and:[{id:id},{'session.id':{$in:[sessionId]}}]},{$push:{'analysis.results':{analyzer:analyzer.id,name:analyzer.name,tokens:matches}}},{upsert:true});
+            Collection.update({$and:[{id:id},{options:ArStr},{'session.id':{$in:[sessionId]}}]},{$push:{'analysis.results':{analyzer:analyzer.id,name:analyzer.name,tokens:matches}}},{upsert:true});
           }
-          if (analyzers.length > 1) {
-            getAnalysis(analyzers.slice(1),text,id,sessionId,date,i+1,Collection)
+          if (analyzersStr.length > 1) {
+            getAnalysis(analyzersStr.slice(1),text,id,sessionId,date,i+1,Collection,ArStr)
           }
         }
 

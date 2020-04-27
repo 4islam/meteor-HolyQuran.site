@@ -57,6 +57,7 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]}
       ],
+      analyzers: analyzers,
       options_panel: 'none',
       queries_panel: '',
       aggregates_panel: 'none',
@@ -493,6 +494,7 @@ export default class Master extends Component {
                        query={this.props.query}
                        setVerse={this.setVerse.bind(this)}
                        options={this.state.option_types}
+                       analyzers={this.state.analyzers}
                        page={this.state.page} limit={this.state.limit}
                        setPage={this.setPage.bind(this)}/>
                   </div>
@@ -619,9 +621,11 @@ export default class Master extends Component {
     let option_types = this.state.option_types
     window.ArabicSrc = ibarat
     option_types[0].id = ibarat
+    ArabicSrc = ibarat
+    update_aggregates(ibarat)
     this.setState(option_types)
-    update_aggregates(ibarat)
-    update_aggregates(ibarat)
+    update_analyzers(ibarat)
+    this.setState({analyzers:analyzers})
     this.search(window.query, option_types)
   }
 
@@ -679,7 +683,7 @@ window.suggest_e = function(query) {
     //setTimeout(suggest_e, 0, q);
     $(window.inputId).css('color', 'black');
   }
-    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
+    Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id),ArabicSrc, function(error, complete) {
       //console.log(result.took)
       //console.log(result)
       {
