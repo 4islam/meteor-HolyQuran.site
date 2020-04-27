@@ -25,6 +25,10 @@ div.switchIbarat label {
   font-size: 1em;
 }
 
+div.Suggest.Phrase {
+  font-size: 1em;
+}
+
  /*.well.pre-scrollable div {
   overflow: auto;
  }*/
@@ -86,7 +90,7 @@ ul.Queries li {
 }
 
 span.Arabic, .Arabic div {
-  background-color: #ebe7d2;
+  /* background-color: #ebe7d2; */
 }
 
 span.ngram, .ngram div {

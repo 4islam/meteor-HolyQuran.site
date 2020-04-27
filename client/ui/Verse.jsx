@@ -167,7 +167,7 @@ componentDidMount() {
 
   handleChange(e) {
     if (this.state.display == 'none') {
-        //console.log("Calling for: " , this.props.ayah);
+        console.log("Calling for: " , this.props.ayah,this.props.analyzers);
         this.setState({display: ''});
         Meteor.call('analyze',this.props.ayah,window.sessionId,this.props.options[0].id,this.props.analyzers,function(error, result) {
           //this.setState({display: ''});
