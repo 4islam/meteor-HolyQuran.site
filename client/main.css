@@ -22,7 +22,16 @@
 }
 
 div.switchIbarat label {
-  font-size: 1em;
+  font-size: 1.2em;
+}
+
+.ibarat {
+  font-weight: 100;
+  font-size: .8em;
+}
+
+div.switchIbarat.Arabic {
+  font-weight: bolder;
 }
 
 div.Suggest.Phrase {

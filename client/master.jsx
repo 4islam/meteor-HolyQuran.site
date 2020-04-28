@@ -447,7 +447,7 @@ export default class Master extends Component {
                       <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
                         defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/>عثمانى
                     </label>
-                    <label className="btn-xs">
+                    <label className="Arabic ibarat btn-xs">
                        عربی عبارت:
                     </label>
                   </div>
