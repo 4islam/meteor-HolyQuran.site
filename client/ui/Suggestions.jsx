@@ -10,7 +10,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 // App component - represents the whole app
 class Suggestions extends Component {
  render() {
-   return <div className="Suggest base">
+   return <div className={"Suggest base "+this.props.options[0].id}>
        {
          this.props.suggestions? Object.keys(this.props.suggestions.results.suggest).map(x=>
             <div key={"div " + x} className={"Suggest " + x}>

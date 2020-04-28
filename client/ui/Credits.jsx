@@ -32,6 +32,15 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>2.8 </b>
+                        <li>Option to switch script to Uthmani added</li>
+                        <li>Fonts updated for other languages</li>
+                        <li>UI changes to make increase font sizes</li>
+                        <li>Suggest menu updated to retain direction based on existing search</li>
+                        <li>Minor UI issues fixed</li>
+                      </ul>
+
+                      <ul>
                         <b>2.7 </b>
                         <li>Session retention feature restored</li>
                         <li>Suggestion menu stopped from when user searched by pressing Enter</li>

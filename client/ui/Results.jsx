@@ -26,7 +26,9 @@ class Results extends Component {
                       score={r.results.hits.hits[v]._score}
                            {...r.results.hits.hits[v]._source}
                       setVerse={this.setVerse.bind(this)}
-                      options={this.props.options}/>
+                      options={this.props.options}
+                      analyzers={this.props.analyzers}/>
+
                ))}
                <Paging total={r.results.hits.total}
                   setPage={this.setPage.bind(this)}

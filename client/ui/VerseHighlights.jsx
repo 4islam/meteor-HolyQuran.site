@@ -3,7 +3,7 @@ import React, { Component, state } from 'react';
 export default class VerseHighlights extends Component {
   render() {
     return (
-        <div className="reference">
+        <div className={this.props.Type+" reference"}>
             {Object.keys(this.props.highlights).map(function(k) {
                 var re = new RegExp(this.props.Type + '(_.*)?$', 'g')              //Must end with either '_' or end of line
                 return (k.search(re)!=-1?

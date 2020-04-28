@@ -32,73 +32,58 @@ componentDidMount() {
           //onClick={this.handleChange}
            className="list-group-item Verse">
              <VerseHighlights
-                base={this.props[ArabicSrc]}
-                Type="Arabic"
+                base={this.props[this.props.options[0].id]}
+                Type={this.props.options[0].id}
                 highlights={this.props.highlights}/>
           </a>
               <div className="" style={{display:this.state.display}}>
               { this.state.display!='none'?
-                  <Analyze key={this.props.ayah} verse={this.props.ayah}/>
+                  <Analyze key={this.props.ayah} verse={this.props.ayah} Type={this.props.options[0].id}/>
                 :'Processing...'
               }
               </div>
 
           <a className="list-group-item reference">
-            <table className="reference">
-              <tbody>
-                <tr>
-                    <td>
-                      <VerseHighlights
-                         base={this.props.Surah}
-                         Type="Surah"
-                         highlights={this.props.highlights}/>
-                   </td>
-                    <td>
-                      <VerseHighlights
-                         base={this.props.ayah}
-                         Type="ayah"
-                         highlights={this.props.highlights}/>
-                    </td>
-                    <td>
-                      <div className="highlights base hidden-xs">[{this.props.score}]</div>
-                      <div className="highlights invisible hidden-xs">[{this.props.score}]</div>
-                      <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons"}>
-                        <button type="button"
-                          onClick={this.handleChange}
-                          className="btn btn-default btn-xs"
-                          data-toggle="tooltip"
-                          data-placement="bottom"
-                          title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
-                        </button>
-                        <button id="copyVerse" type="button"
-                          //onClick={(e) => this.CopyArabicText(this.props.Arabic_noor, event, this.props.ayah)}
-                          data-clipboard-text={this.props.Arabic_noor.replace(/(\u06E3|\u06E8)/,' $1') + ' [' + this.props.ayah + ']'}
-                          className="btn btn-default btn-xs"
-                          data-toggle="tooltip"
-                          data-placement="bottom"
-                          title="Copy Arabic Text">
-                          <span className="glyphicon glyphicon-duplicate small"></span>
-                        </button>
-                        <button type="button"
-                          onClick={this.showDetails}
-                          className="btn btn-default btn-xs visible-lg visible-md"
-                          data-toggle="tooltip"
-                          data-placement="left"
-                          title="Pin Verse">
-                        &gt;&gt;
-                        </button>
-                        <button type="button"
-                          onClick={this.showDetails}
-                          className="btn btn-default btn-xs DetailsModalButton hidden-lg hidden-md"
-                           data-toggle="modal" data-target="#myModal">
-                          Open Details
-                        </button>
-                      </div>
-
-                    </td>
-                </tr>
-              </tbody>
-            </table>
+              <VerseHighlights
+                 base={this.props.Surah}
+                 Type="Surah"
+                 highlights={this.props.highlights}/>
+              <VerseHighlights
+                 base={this.props.ayah}
+                 Type="ayah"
+                 highlights={this.props.highlights}/>
+              <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons"}>
+                <button type="button"
+                  onClick={this.handleChange}
+                  className="btn btn-default btn-xs"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
+                </button>
+                <button id="copyVerse" type="button"
+                  //onClick={(e) => this.CopyArabicText(this.props.ArabicNoor, event, this.props.ayah)}
+                  data-clipboard-text={this.props.ArabicNoor.replace(/(\u06E3|\u06E8)/,' $1') + ' [' + this.props.ayah + ']'}
+                  className="btn btn-default btn-xs"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Copy Arabic Text">
+                  <span className="glyphicon glyphicon-duplicate small"></span>
+                </button>
+                <button type="button"
+                  onClick={this.showDetails}
+                  className="btn btn-default btn-xs visible-lg visible-md"
+                  data-toggle="tooltip"
+                  data-placement="left"
+                  title="Pin Verse">
+                &gt;&gt;
+                </button>
+                <button type="button"
+                  onClick={this.showDetails}
+                  className="btn btn-default btn-xs DetailsModalButton hidden-lg hidden-md"
+                   data-toggle="modal" data-target="#myModal">
+                  Open Details
+                </button>
+              </div>
           </a>
           <div className="showAnalyzer" style={{display:this.state.showAnalyzer}}>
             {Object.keys(this.props.highlights).map(function(k) {
@@ -167,9 +152,9 @@ componentDidMount() {
 
   handleChange(e) {
     if (this.state.display == 'none') {
-        //console.log("Calling for: " , this.props.ayah);
+        // console.log("Calling for: " , this.props.ayah,this.props.analyzers);
         this.setState({display: ''});
-        Meteor.call('analyze',this.props.ayah,window.sessionId, function(error, result) {
+        Meteor.call('analyze',this.props.ayah,window.sessionId,this.props.options[0].id,this.props.analyzers,function(error, result) {
           //this.setState({display: ''});
         }.bind(this));
     } else {

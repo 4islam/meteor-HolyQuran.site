@@ -10,7 +10,7 @@ class Analyze extends Component {
    return <div className="Analyze base well table-responsive">
             {this.props.analyze?
               this.props.analyze.analysis?
-                 <Tokens data={this.props.analyze.analysis} verse={this.props.verse}/>
+                 <Tokens data={this.props.analyze.analysis} verse={this.props.verse} Type={this.props.Type}/>
                  :null:<span className="glyphicon glyphicon-option-horizontal gly-spin"></span>
             }
        </div>

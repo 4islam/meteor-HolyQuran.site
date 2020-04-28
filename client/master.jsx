@@ -30,7 +30,7 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:'Urdu',options: [
+        {id:"Urdu",state:false,name:'اردو',options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -51,12 +51,13 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'Tafseer-e-Sagheer UR',options: [
+        {id:"UrduTS",state:false,name:'تفسیرِ صغیر اردو',options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]}
       ],
+      analyzers: analyzers,
       options_panel: 'none',
       queries_panel: '',
       aggregates_panel: 'none',
@@ -176,7 +177,10 @@ export default class Master extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(ui_ready, 666);
+    setTimeout(ui_ready, 666)
+    // setTimeout(updateIbaratFont, 0)
+    // setTimeout(updateIbaratFont, 500)
+    // setTimeout(updateIbaratFont, 1000)
   }
 
 
@@ -282,22 +286,6 @@ export default class Master extends Component {
     }
   }
 
-  detectKeyboard(e){
-    //console.log(e.key);
-    if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
-      let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
-      let a = e.key.match(re);
-      if (a == null){
-        $(window.inputId)[0].dir = "rtl"
-        $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
-      } else {
-        $(window.inputId)[0].dir = "ltr"
-        $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
-
-      }
-    }
-  }
-
   // search_e(target, options) {
   //   this.search(target, options)
   // }
@@ -370,11 +358,11 @@ export default class Master extends Component {
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/> */}
 
-                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className="form-control" placeholder="Type here to search..."
+                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className={this.state.option_types[0].id + " form-control"} placeholder="Type here to search..."
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
-                            onKeyDown={this.detectKeyboard.bind(this)}
+                            onKeyDown={window.detectKeyboard.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
                             onBlur={this.suggestDiv_close.bind(this)}
                              list="datalist"
@@ -386,7 +374,7 @@ export default class Master extends Component {
                       <option value="الله الرحمان الرحيم"/>
                     </datalist>*/}
                   </div>
-                  <ul id="datalistUl" className="datalistUl dropdown-menu dropdown-menu-right" aria-labelledby="Query">
+                  <ul id="datalistUl" className={"datalistUl dropdown-menu dropdown-menu-right "+this.state.option_types[0].id} aria-labelledby="Query">
                     {
                       // this.state.suggestionlist.map(i=>
                       //   <li className='btn-block btn btn-xs' key={i.key}><a href="#" onClick={() => this.search_q(i.key)}>{i.key}</a></li>
@@ -407,7 +395,7 @@ export default class Master extends Component {
                 <div>
                   {
                     this.state.option_types.map(x=>
-                        <div className="btn-group" role="group" key={x.name}>
+                        <div className={x.id+" btn-group"} role="group" key={x.name}>
                             <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
                               id="dLabel" type="button" onClick={this.openMenu}
                               name={x.name}
@@ -448,16 +436,16 @@ export default class Master extends Component {
                               </ul>
                         </div>)
                   }
-                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
-                    <label className={(this.state.option_types[0].id=="Arabic_noor")?"btn btn-default btn-xs Arabic_noor active":"btn btn-default btn-xs Arabic_noor"}
-                        onClick={e => this.switchIbarat("Arabic_noor")}>
+                  <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
+                    <label className={(this.state.option_types[0].id=="ArabicNoor")?"btn btn-default btn-xs ArabicNoor active":"btn btn-default btn-xs ArabicNoor"}
+                        onClick={e => this.switchIbarat("ArabicNoor")}>
                       <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
-                        defaultChecked={(this.state.option_types[0].id=="Arabic_noor")?true:false} /> نور ماجدی
+                        defaultChecked={(this.state.option_types[0].id=="ArabicNoor")?true:false} /> نور ماجدی
                     </label>
                     <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
                         onClick={e => this.switchIbarat("Arabic")}>
                       <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
-                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/> عثمانی
+                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/>عثمانى
                     </label>
                     <label className="btn-xs">
                        عربی عبارت:
@@ -490,6 +478,7 @@ export default class Master extends Component {
                        query={this.props.query}
                        setVerse={this.setVerse.bind(this)}
                        options={this.state.option_types}
+                       analyzers={this.state.analyzers}
                        page={this.state.page} limit={this.state.limit}
                        setPage={this.setPage.bind(this)}/>
                   </div>
@@ -558,13 +547,16 @@ export default class Master extends Component {
 
     // console.log(query, "progress");
     $('#datalistUl').css({display:'none'});
-
+    let trimq = query.trim()
+    if(trimq != ""){
+      detectKeyboard({key:trimq[trimq.length-1]})
+    }
     //console.log(window.sessionId);
-    let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+    let tquery = trimq.replace(/ +/g, ' ').replace(/\t+/g,' ')
       ui_busy("#333")
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
-      Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
+      Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
         if (window.query != tquery) {
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
             tquery
@@ -613,11 +605,15 @@ export default class Master extends Component {
   }
 
   switchIbarat(ibarat){
-    let option_types = this.state.option_types;
+    let option_types = this.state.option_types
     window.ArabicSrc = ibarat
     option_types[0].id = ibarat
-    this.setState(option_types);
-    this.search(window.query, option_types);
+    ArabicSrc = ibarat
+    update_aggregates(ibarat)
+    this.setState(option_types)
+    update_analyzers(ibarat)
+    this.setState({analyzers:analyzers})
+    this.search(window.query, option_types)
   }
 
   options_panel(event) {
@@ -687,7 +683,7 @@ window.suggest_e = function(query) {
         }
         if (complete && complete.length >0) {
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
                     //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
                     //+ " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
@@ -713,6 +709,21 @@ window.suggest_e = function(query) {
   }
 }
 
+window.detectKeyboard = function(e){
+  //console.log(e.key);
+  if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
+    let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
+    let a = e.key.match(re);
+    if (a == null){
+      $(window.inputId)[0].dir = "rtl"
+      $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
+    } else {
+      $(window.inputId)[0].dir = "ltr"
+      $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
+
+    }
+  }
+}
 
 window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
@@ -750,6 +761,13 @@ window.ui_ready = function (){
   $('.glyphicon-cog').hide();$('.Query').show()
   $('.glyphicon-option-horizontal').css("color",'')
 }
+
+window.updateIbaratFont = function(){
+    let ibaratFont = (window.ArabicSrc=="Arabic")?'UthmanicHafs1':'noorehuda'
+    ArabicCss.map(function(c){
+      $(c).css("font-family",ibaratFont)
+    })
+  }
 
 Tracker.autorun(function () {
     if (Meteor.status().status === "connected") {
