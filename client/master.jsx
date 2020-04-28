@@ -453,10 +453,10 @@ export default class Master extends Component {
                         </div>)
                   }
                   <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
-                    <label className={(this.state.option_types[0].id=="Arabic_noor")?"btn btn-default btn-xs Arabic_noor active":"btn btn-default btn-xs Arabic_noor"}
-                        onClick={e => this.switchIbarat("Arabic_noor")}>
+                    <label className={(this.state.option_types[0].id=="ArabicNoor")?"btn btn-default btn-xs ArabicNoor active":"btn btn-default btn-xs ArabicNoor"}
+                        onClick={e => this.switchIbarat("ArabicNoor")}>
                       <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
-                        defaultChecked={(this.state.option_types[0].id=="Arabic_noor")?true:false} /> نور ماجدی
+                        defaultChecked={(this.state.option_types[0].id=="ArabicNoor")?true:false} /> نور ماجدی
                     </label>
                     <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
                         onClick={e => this.switchIbarat("Arabic")}>
