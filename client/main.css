@@ -17,7 +17,7 @@
 
 .Arabic {
   font-family: Scheherazade, Scheheraza;
-  font-size: 1.6em;
+  font-size: 1.5em;
   font-weight:bold;
 }
 
@@ -132,17 +132,23 @@ h1.bismillah {
 }
 
 div.highlights {
-  float: right;
+  float: left;
   position: absolute;
   padding-right: 0px;
   padding-left: 0px;
   opacity: .3;
 }
 
-div.highlights.Arabic {
+div.highlights.Urdu, div.highlights.UrduTS, div.highlights.Surah, div.highlights.ayah {
+  float: right;
+}
+
+div.highlights.Arabic, div.highlights.ArabicNoor  {
   opacity: .5;
   color: transparent;
+  float: right;
 }
+
 
 div.highlights.Surah {
   opacity: .20;
@@ -206,7 +212,7 @@ div.highlights mark {
   opacity: .8;
   z-index: 10;
   font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-  font-size: 1.403em;
+  font-size: 1.2em;
 }
 
 div.input.row {
@@ -220,6 +226,7 @@ div.Details {
 
 div.DetailsButtons {
   display: inline-flex;
+  float: left;
 }
 
 
@@ -310,7 +317,6 @@ a.reference {
 }
 
 .ayah.reference {
-  padding: 4px;
   padding-right: 40%;
 }
 
