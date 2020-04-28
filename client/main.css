@@ -8,11 +8,11 @@
 }
 
 
-.Arabic_noor, .noor, .ArabicNoor {
+.ArabicNoor, .noor {
   font-family: "noorehuda";
   font-size: 1.403em;
   font-weight: normal;
-  word-spacing: 0.3em;
+  /* word-spacing: 0.3em; */
 }
 
 .Arabic {
@@ -205,6 +205,8 @@ div.highlights mark {
   border-left-width: 0;
   opacity: .8;
   z-index: 10;
+  font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  font-size: 1.403em;
 }
 
 div.input.row {
@@ -287,14 +289,14 @@ table, th, td {
 table.reference {
    padding: 0px;
    width: 100%;
-
+   background-color: inherit;
 }
 
 table.reference td {
   width:30%;
   height: 22px;
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
 }
 table.reference:nth-child(even) td {
   width:10%;
@@ -307,14 +309,20 @@ a.reference {
   overflow-y: hidden;
 }
 
+.ayah.reference {
+  padding: 4px;
+  padding-right: 40%;
+}
+
 
 div.modal-header {
   text-align: center;
 }
 
 td:nth-child(even){
-  background-color: #eee;
+  border: 1px solid #eee;
   text-align: center;
+  border-width: thin;
 }
 
 
