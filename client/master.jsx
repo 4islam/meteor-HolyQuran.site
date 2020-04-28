@@ -286,22 +286,6 @@ export default class Master extends Component {
     }
   }
 
-  detectKeyboard(e){
-    //console.log(e.key);
-    if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
-      let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
-      let a = e.key.match(re);
-      if (a == null){
-        $(window.inputId)[0].dir = "rtl"
-        $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
-      } else {
-        $(window.inputId)[0].dir = "ltr"
-        $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
-
-      }
-    }
-  }
-
   // search_e(target, options) {
   //   this.search(target, options)
   // }
@@ -378,7 +362,7 @@ export default class Master extends Component {
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
-                            onKeyDown={this.detectKeyboard.bind(this)}
+                            onKeyDown={window.detectKeyboard.bind(this)}
                             onFocus={this.input_e_focusRTL.bind(this)}
                             onBlur={this.suggestDiv_close.bind(this)}
                              list="datalist"
@@ -563,13 +547,16 @@ export default class Master extends Component {
 
     // console.log(query, "progress");
     $('#datalistUl').css({display:'none'});
-
+    let trimq = query.trim()
+    if(trimq != ""){
+      detectKeyboard({key:trimq[trimq.length-1]})
+    }
     //console.log(window.sessionId);
-    let tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ')
+    let tquery = trimq.replace(/ +/g, ' ').replace(/\t+/g,' ')
       ui_busy("#333")
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
-      Meteor.call('search', query.trim().replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
+      Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
         if (window.query != tquery) {
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
             tquery
@@ -696,7 +683,7 @@ window.suggest_e = function(query) {
         }
         if (complete && complete.length >0) {
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-xs'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
                     //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
                     //+ " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
@@ -722,6 +709,21 @@ window.suggest_e = function(query) {
   }
 }
 
+window.detectKeyboard = function(e){
+  //console.log(e.key);
+  if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
+    let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
+    let a = e.key.match(re);
+    if (a == null){
+      $(window.inputId)[0].dir = "rtl"
+      $('#datalistUl').removeClass('dropdown-menu-left').addClass('dropdown-menu-right')
+    } else {
+      $(window.inputId)[0].dir = "ltr"
+      $('#datalistUl').removeClass('dropdown-menu-right').addClass('dropdown-menu-left')
+
+    }
+  }
+}
 
 window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
