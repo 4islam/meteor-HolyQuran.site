@@ -642,8 +642,8 @@ button.Summary {
 
 @font-face {
   font-family: 'Scheheraza';
-  src: url('http://tanzil.net/res/font/eot/Scheherazade.eot');
-  src: local('Scheherazade'), url('http://tanzil.net/res/font/org/Scheherazade.ttf') format('truetype');
+  src: url('/fonts/Scheherazade.eot');
+  src: local('Scheherazade'), url('/fonts/Scheherazade.ttf') format('truetype');
 }
 
 .glyphicon-cog {
