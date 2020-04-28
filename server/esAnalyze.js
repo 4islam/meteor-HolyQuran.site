@@ -65,7 +65,7 @@ Meteor.methods({
 }})
 
 getAnalysis = function (analyzersStr,text,id,sessionId,date,i,Collection,ArStr,matchesprev,textOriginal,batchId) {      //i for analyzersStr loop
-  console.log(sessionId,"Running analysis for:",id,"batch:",i,ArStr)
+  // console.log(sessionId,"Running analysis for:",id,"batch:",i,ArStr)
 
   var analyzer = analyzersStr[0];
 
