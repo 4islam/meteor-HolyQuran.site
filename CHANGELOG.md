@@ -1,3 +1,10 @@
+## 2.8:
+  * Option to switch script to Uthmani added
+  * Fonts updated for other languages
+  * UI changes to make increase font sizes
+  * Suggest menu updated to retain direction based on existing search
+  * Minor UI issues fixed
+
 ## 2.7:
   * Session retention feature restored
   * Suggestion menu stopped from when user searched by pressing Enter
