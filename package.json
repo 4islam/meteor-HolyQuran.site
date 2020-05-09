@@ -19,7 +19,7 @@
   "author": "ls",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.9.2",
+    "@babel/runtime": "^7.9.6",
     "babel-runtime": "^6.26.0",
     "elasticsearch": "^12.1.3",
     "meteor-node-stubs": "^0.3.3",
