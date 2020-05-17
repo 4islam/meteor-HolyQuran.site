@@ -187,8 +187,8 @@ Meteor.methods({
        //console.log((Object.prototype.toString.call(aggs)))
 
     var requestSync = Meteor.wrapAsync(function(query,callback) {
-
-      esClient.search({
+      let suggest_query =
+      {
         index: "hq",
         body: {
             size: 3,
@@ -222,7 +222,9 @@ Meteor.methods({
                 }
               }
         }
-      }, Meteor.bindEnvironment(function (err, res) {
+      }
+      // console.log(JSON.stringify(suggest_query));
+      esClient.search(suggest_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
             //matches = res.suggest;

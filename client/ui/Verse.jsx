@@ -86,13 +86,13 @@ componentDidMount() {
               </div>
           </a>
           <div className="showAnalyzer" style={{display:this.state.showAnalyzer}}>
-            {Object.keys(this.props.highlights).map(function(k) {
+            {(this.props.highlights)?Object.keys(this.props.highlights).map(function(k) {
                 return (
                   <span key={k + "." + this.props._id} className={"highlights " + k.replace(/\.|_/g,' ')}>
                     {k}: <span dangerouslySetInnerHTML={{__html: this.props.highlights[k]}}></span> <br/>
                   </span>);
               }.bind(this))
-            }
+            :''}
           </div>
           {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
