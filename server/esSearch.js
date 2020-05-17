@@ -30,7 +30,7 @@ Meteor.methods({
   if (isNaN(page)) {
     page=1
   }
-  // console.log("Received: ", page,limit);
+  // console.log("Received: ", page,limit); 
   // var future = new Future();
   var sessionId = this.connection.id
   if (sID != '') {
