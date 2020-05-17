@@ -22,7 +22,7 @@ export default class Credits extends Component {
                 <div className="modal-content">
                   <div className="modal-header">
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 className="modal-title">Credits</h4>
+                    <h4 className="modal-title">Credits / Changelog</h4>
                   </div>
                   <div className="modal-body">
                       <p>Arabic search made possible with data provided by: <a target="_blank" href="http://corpus.quran.com">http://corpus.quran.com</a>.</p>
@@ -34,7 +34,7 @@ export default class Credits extends Component {
                       <ul>
                         <b>2.9 </b>
                         <li>Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:&gt;100 s:&lt;=114' lists all surahs greater than Surah 100 and less than equal to Surah 114 </li>
-                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled and not by match scores</li>
+                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled instead search matching scores</li>
                       </ul>
 
                       <ul>
@@ -117,7 +117,7 @@ export default class Credits extends Component {
 
 
                       <ul><b>1.0 </b>
-                        <li>Production launch on May 26th, 2017</li>
+                        <li>Production launch on May 26th, 2017 by the approval <a href="https://www.alislam.org/profile/hazrat-mirza-masroor-ahmad/" target="_blank">Hazrat Khalifatul Masih V</a></li>
                       </ul>
                   </div>
                   <div className="modal-footer">
