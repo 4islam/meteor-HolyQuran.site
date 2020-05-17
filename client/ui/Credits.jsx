@@ -34,7 +34,7 @@ export default class Credits extends Component {
                       <ul>
                         <b>2.9 </b>
                         <li>Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:&gt;100 s:&lt;=114' lists all surahs greater than Surah 100 and less than equal to Surah 114 </li>
-                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled instead search matching scores</li>
+                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled instead of search matching scores</li>
                       </ul>
 
                       <ul>
