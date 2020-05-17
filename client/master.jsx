@@ -16,7 +16,7 @@ export default class Master extends Component {
     super();
     this.state = {
       page: 1,
-      limit: limit,
+      limit: globallimit,
       option_types:[
         {id:ArabicSrc,state:true,name:'Arabic',options: [
                   {id:"root",state:true, name:'Roots'},
@@ -82,6 +82,8 @@ export default class Master extends Component {
     window.highlight = "null"
     window.termcount = 1
     window.query = ""
+    window.page = ""
+    window.limit = ""
 
     //console.log(this.props)
     let hash = this.props.hash.substring(1)
@@ -524,7 +526,7 @@ export default class Master extends Component {
                      <li><a href="//www.alislam.org/twitter">Twitter</a></li>
                      <li><a href="//www.alislam.org/facebook">Facebook</a></li>
                      <br/>
-                     <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>                     
+                     <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>
                      <li><a href="//www.alislam.org/library/legal/#privacy">Privacy Policy</a></li>
                      <li>&copy; 2020 Ahmadiyya Muslim Community. All rights reserved.</li>
                    </ul>
@@ -555,7 +557,7 @@ export default class Master extends Component {
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
 
-      if (window.query != tquery) {
+      if (window.query != tquery || window.page != this.state.page || window.limit != this.state.limit) {
         ui_busy("#333")
         // console.log("calling search for: '"+tquery+"'");
         Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
@@ -565,6 +567,8 @@ export default class Master extends Component {
             +"#" + window.hash
             );
             window.query = tquery;
+            window.page = this.state.page
+            window.limit = this.state.limit
             this.setState({page: 1});
 
           //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space

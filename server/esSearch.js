@@ -24,6 +24,13 @@ Meteor.methods({
   search:function (query, sID, options, page, limit) {
   limit=parseInt(limit)
   page=parseInt(page)
+  if (isNaN(limit)){
+    limit=globallimit
+  }
+  if (isNaN(page)) {
+    page=1
+  }
+  console.log("Received: ", page,limit);
   // var future = new Future();
   var sessionId = this.connection.id
   if (sID != '') {
@@ -519,7 +526,8 @@ Meteor.methods({
           search_query.body.suggest={}
         }
       }
-      console.log(JSON.stringify(search_query.body.query));
+      // console.log(JSON.stringify(search_query.body.from));
+      // console.log(JSON.stringify(search_query.body.size));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
@@ -553,6 +561,7 @@ Meteor.methods({
 // var re_post = new RegExp(post_tag, 'g');     //
 
 getMarkedTokens = function (r) {
+  // console.log(r);
   var hits = r.hits.hits; var terms = [];var ret = [];
   Object.keys(hits).map(function (v,l) {
     //console.log(hits[v].highlight, hits[v]._score)
