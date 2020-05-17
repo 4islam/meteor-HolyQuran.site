@@ -35,8 +35,8 @@ Meteor.methods({
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[^:]+:[><=]?.+$/i)!= '-1') {q1.push(q)}
-      else {q2.push(q) }
+      if (q.search(/^[a-zA-Z_]+:[><=]?.+$/i)!= '-1') {q1.push(q)}
+      else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
     })[ql]
   queryFilters = queryTypes[0]
@@ -51,7 +51,9 @@ Meteor.methods({
   //console.log(JSON.stringify(options))
   options_str=JSON.stringify(options);
 
-  if (query != "") {
+  // tquery = tquery.replace(':','\\:')
+  // tquery = '"'+tquery.replace('"','\'')+'"';
+  if (tquery != "") {
 
     console.log(sessionId,"Search Query request for:",tquery);
     if (cacheResults && ESCol.findOne({$and:[{query:tquery},{options:options_str},{page:page},{limit,limit}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
@@ -517,7 +519,7 @@ Meteor.methods({
           search_query.body.suggest={}
         }
       }
-      // console.log(JSON.stringify(search_query.body));
+      console.log(JSON.stringify(search_query.body.query));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
