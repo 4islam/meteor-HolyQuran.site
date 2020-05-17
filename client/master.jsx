@@ -524,8 +524,7 @@ export default class Master extends Component {
                      <li><a href="//www.alislam.org/twitter">Twitter</a></li>
                      <li><a href="//www.alislam.org/facebook">Facebook</a></li>
                      <br/>
-                     <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>
-                     <Credits/>
+                     <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>                     
                      <li><a href="//www.alislam.org/library/legal/#privacy">Privacy Policy</a></li>
                      <li>&copy; 2020 Ahmadiyya Muslim Community. All rights reserved.</li>
                    </ul>
@@ -553,24 +552,28 @@ export default class Master extends Component {
     }
     //console.log(window.sessionId);
     let tquery = trimq.replace(/ +/g, ' ').replace(/\t+/g,' ')
-      ui_busy("#333")
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
-      Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
-        if (window.query != tquery) {
+
+      if (window.query != tquery) {
+        ui_busy("#333")
+        // console.log("calling search for: '"+tquery+"'");
+        Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
+
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
             tquery
             +"#" + window.hash
             );
             window.query = tquery;
             this.setState({page: 1});
-          }
-        //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
-                                                //  that you just typed disappears, moved this before next line
-        window.scroll(0,0)  //scroll to top
-        setTimeout(ui_ready, 333);
-        // console.log(Date(), "Call complete");
-      }.bind(this));
+
+          //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
+                                                  //  that you just typed disappears, moved this before next line
+          window.scroll(0,0)  //scroll to top
+          setTimeout(ui_ready, 333);
+          // console.log(Date(), "Call complete");
+        }.bind(this));
+      }
     // }
   }
   // handleChange(e) {

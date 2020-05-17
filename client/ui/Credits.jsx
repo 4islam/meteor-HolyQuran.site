@@ -13,8 +13,8 @@ export default class Credits extends Component {
  render() {
    //this.props? console.log(this.props):'';
    return (
-       <li className="Credits" role="tabpanel" id="Credits">
-           <a data-toggle="modal" data-target="#creditsModal">Credits
+       <div className="Credits" role="tabpanel" id="Credits">
+           <a data-toggle="modal" data-target="#creditsModal">Credits / Changelog
             </a>
 
             <div className="modal fade" id="creditsModal" role="dialog" aria-labelledby="Credits">
@@ -26,10 +26,16 @@ export default class Credits extends Component {
                   </div>
                   <div className="modal-body">
                       <p>Arabic search made possible with data provided by: <a target="_blank" href="http://corpus.quran.com">http://corpus.quran.com</a>.</p>
-                      <p>Arabic text in Majidi script is a work in progress.</p>
+                      <p>Arabic Noori Majidi text script is a work in progress.</p>
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+
+                      <ul>
+                        <b>2.9 </b>
+                        <li>Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:&gt;100 s:&lt;=114' lists all surahs greater than Surah 100 and less than equal to Surah 114 </li>
+                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled and not by match scores</li>
+                      </ul>
 
                       <ul>
                         <b>2.8 </b>
@@ -120,7 +126,7 @@ export default class Credits extends Component {
                 </div>
               </div>
             </div>
-       </li>
+       </div>
      )
  }
 }

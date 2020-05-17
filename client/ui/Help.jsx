@@ -1,6 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
+import Credits from './Credits.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
@@ -32,7 +33,16 @@ export default class Help extends Component {
                  <li><em>Stems</em><br/><a target="_self" href="جَنَّۃ">جَنَّۃ</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/واتقوا الله">واتقوا الله</a></li>
                  <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
+                 <li><em>Filter queries:</em><br/>
+                 <ul>
+                   <li><a target="_self" href="/s:>100 s:<=114">Sura 101 to 114</a></li>
+                   <li><a target="_self" href="/Juz:30">Part 30</a></li>
+                   <li><a target="_self" href="/a:4">Ayah 4 across all chapters</a></li>
+                 </ul>
+                 </li>
              </ul>
+             <br/>
+             <i><Credits/></i>
             </div>
 
             <div className="modal fade" id="helpModal" role="dialog" aria-labelledby="Help">
