@@ -7,6 +7,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 export default class Paging extends Component {
  render() {
    var pages_total = this.props.total/this.props.limit;
+   // console.log(pages_total,this.props.total/this.props.limit);
    var pages=[]; var dots=false;
    for (var i = 0; i < pages_total && i < 100; i++) {  //  && i < 100 to be removed once ES limits are updated
      if (i < 7) {
@@ -37,7 +38,7 @@ export default class Paging extends Component {
            pages.map((p,i) => (
              <li className={p.page==(this.props.page)?'active':''} key={p.page+i}>
                {isNaN(p.page)?<span>{p.page}</span>:
-                 <a onClick={p.page!=(this.props.page)?()=>this.setPage(p.page,this.props.limit):''}>{p.page}</a>
+                 <a onClick={p.page!=(this.props.page)?()=>this.updatePage(p.page,this.props.limit):''}>{p.page}</a>
                }
              </li>))
          }
@@ -45,18 +46,19 @@ export default class Paging extends Component {
        </ul>
      )
  }
- setPage(page,limit) {
-  this.props.setPage(page,limit)
+ updatePage(page,limit) {
+   // console.log(window.query,this.props.options,page,limit)
+  this.props.search(window.query,this.props.options,page,limit)
   //window.scroll(0,0)  //scroll to top
  }
  nextPage() {
   if (this.props.page < this.props.total / this.props.limit) { //  && this.props.page < 100 to be removed once ES limits are updated
-   this.setPage(this.props.page+1,this.props.limit)
+   this.updatePage(this.props.page+1,this.props.limit)
   }
  }
  prevPage() {
   if (this.props.page-1 > 1) {
-   this.setPage(this.props.page-1,this.props.limit)
+   this.updatePage(this.props.page-1,this.props.limit)
   }
  }
 }
