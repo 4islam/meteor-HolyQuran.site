@@ -22,10 +22,7 @@ meteor-platform@1.2.6
 session@1.2.0
 dynamic-import@0.5.2
 ecmascript@0.14.3
-twbs:bootstrap
 underscore@1.0.10
-appcache@1.2.7
 ground:db
 ddp-rate-limiter@1.0.7
-react-meteor-data
-jquery
+twbs:bootstrap
