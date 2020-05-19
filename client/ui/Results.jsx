@@ -27,6 +27,7 @@ class Results extends Component {
                            {...r.results.hits.hits[v]._source}
                       setVerse={this.setVerse.bind(this)}
                       options={this.props.options}
+                      search={this.props.search.bind(this)}
                       analyzers={this.props.analyzers}/>
 
                ))}
