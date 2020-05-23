@@ -54,9 +54,9 @@ componentDidMount() {
                  options={this.props.options}
                  highlights={this.props.highlights}/>
              <div className="filters">
-              <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
-              <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
               <span>Manzil <b onClick={this.addFilter.bind(this, this.props.Manzil, "Manzil")}>{this.props.Manzil}</b> </span>
+              <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
+              <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
               <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
               <span>Surah <b onClick={this.addFilter.bind(this, this.props.s, "s")}>{this.props.s}</b></span>
              </div>
