@@ -30,7 +30,7 @@ Meteor.methods({
   if (isNaN(page)) {
     page=1
   }
-  // console.log("Received: ", page,limit); 
+  // console.log("Received: ", page,limit);
   // var future = new Future();
   var sessionId = this.connection.id
   if (sID != '') {
@@ -517,17 +517,24 @@ Meteor.methods({
         //analyzer:"my_arabic"
       }
 
+      let shouldDSL = search_query.body.query.bool.should
       if (queryFilters.length > 0) {
-        search_query.body.query.bool.filter=genFilterDSL(queryFilters)
+        search_query.body.query.bool=genFilterDSL(queryFilters)
+        // console.log(JSON.stringify(search_query.body.query.bool.should));
         if (query == "*") {
-          search_query.body.query.bool.should={"match_all": {}}
+          if (!search_query.body.query.bool.should) {  //genFilterDSL assignes this empty array
+            search_query.body.query.bool.should={"match_all": {}}
+          }
           search_query.body["sort"]=[{"s":"asc"},{"a":"asc"}]
           search_query.body.highlight={}
           search_query.body.suggest={}
+        } else {
+          search_query.body.query.bool["should"] = shouldDSL
         }
       }
       // console.log(JSON.stringify(search_query.body.from));
       // console.log(JSON.stringify(search_query.body.size));
+      // console.log(JSON.stringify(search_query.body));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
@@ -535,15 +542,14 @@ Meteor.methods({
             matches = obj;
 
             highlights = []
-            if (query != "*") {
+            if (Object.keys(search_query.body.highlight).length !== 0) {
               highlights = getMarkedTokens(matches);
             }
-
             ESCol.insert({query:tquery, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
             // console.log(matches.hits.hits.length)
             console.log(sessionId,"Search Query ES retrieved for:",tquery);
 
-            if (query != "*") {
+            if (highlights.length>0) {
               text_array = highlights.map(x=>x.token.id)
               if (text_array.length > 0) {
                 update_analyzers(options[0].id)
