@@ -354,6 +354,7 @@ div.filters{
 .filters span {
   font: status-bar;
   font-family: sans-serif;
+  font-size: xx-small;
 }
 .filters span:hover {
   /* font-size: larger; */
