@@ -84,6 +84,7 @@ export default class Master extends Component {
     window.query = ""
     window.page = ""
     window.limit = ""
+    window.options = {}
 
     //console.log(this.props)
     let hash = this.props.hash.substring(1)
@@ -563,7 +564,7 @@ export default class Master extends Component {
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
 
-      if (window.query != tquery || window.page != page || window.limit != limit) {
+      // if (window.query != tquery || window.page != page || window.limit != limit || window.options != options) {
         ui_busy("#333")
         // console.log("calling search for: '"+tquery+"'");
         if (window.query != tquery) {page=1}        //New query will start with page one
@@ -573,9 +574,10 @@ export default class Master extends Component {
             tquery
             +"#" + window.hash
             );
-            window.query = tquery;
+            window.query = tquery
             window.page = page
             window.limit = limit
+            window.options = options
             this.setState({page: page, limit:limit})
 
           //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
@@ -584,7 +586,7 @@ export default class Master extends Component {
           setTimeout(ui_ready, 333);
           // console.log(Date(), "Call complete");
         }.bind(this));
-      }
+      // }
     // }
   }
   // handleChange(e) {
