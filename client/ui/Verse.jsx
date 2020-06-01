@@ -44,22 +44,21 @@ componentDidMount() {
               </div>
 
           <a className="list-group-item reference">
+            <b style={{"cursor":"pointer"}}
+              onClick={this.addFilter.bind(this, this.props.s, "s")}>
               <VerseHighlights
                  base={this.props.Surah}
                  Type="Surah"
                  highlights={this.props.highlights}/>
+            </b>
+            <span style={{"cursor":"pointer"}}
+              onClick={this.addFilter.bind(this, this.props.ayah, "ayah", false)}>
               <VerseHighlights
                  base={this.props.ayah}
                  Type="ayah"
                  options={this.props.options}
                  highlights={this.props.highlights}/>
-             <div className="filters">
-              <span>Manzil <b onClick={this.addFilter.bind(this, this.props.Manzil, "Manzil")}>{this.props.Manzil}</b> </span>
-              <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
-              <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
-              <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
-              <span>Surah <b onClick={this.addFilter.bind(this, this.props.s, "s")}>{this.props.s}</b></span>
-             </div>
+            </span>
               <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons reference"}>
                 <button type="button"
                   onClick={this.showDetails}
@@ -91,6 +90,12 @@ componentDidMount() {
                   data-placement="bottom"
                   title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
                 </button>
+              </div>
+              <div className="filters">
+               <span>Manzil <b onClick={this.addFilter.bind(this, this.props.Manzil, "Manzil")}>{this.props.Manzil}</b> </span>
+               <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
+               <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
+               <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
               </div>
           </a>
           <div className="showAnalyzer" style={{display:this.state.showAnalyzer}}>
@@ -203,9 +208,15 @@ componentDidMount() {
      document.execCommand("copy");
      $temp.remove();
    }
-   addFilter(filterValue, filterType, e) {
+   addFilter(filterValue, filterType, search=true , e) {
      // console.log(filterValue, filterType, e);
-     this.props.search(window.query+' '+filterType+":"+filterValue, this.props.options);
-     $(window.inputId)[0].value = window.query+' '+filterType+":"+filterValue;
+     let filter = filterType+":"+filterValue
+     let query = window.query+' '+filter
+     if (search) {
+       $(window.inputId)[0].value = query
+       this.props.search(query, this.props.options)
+     } else {
+       $(window.inputId)[0].value += ' '+filter
+     }
    }
 }

@@ -329,23 +329,30 @@ a.reference {
 }
 
 a.reference div {
-  float: right;
+  /* float: right; */
   height: 25px;
 }
 
 a.reference div.DetailsButtons {
-  width: 30%;
+  min-width: 127px;
+  float:left;
 }
 a.reference div.filters {
   width: 40%;
   overflow-x: scroll;
   overflow-y: hidden;
+  text-align: center;
+  min-width: 175px;
+  float: left;
 }
 a.reference div.ayah {
-  width: 10%
+  width: 10%;
+  text-align: left;
+  min-width: 50px;
+  float:right;
 }
 a.reference div.Surah {
-  width: 20%
+  float:right;
 }
 
 div.filters{
