@@ -339,8 +339,7 @@ a.reference div.DetailsButtons {
 }
 a.reference div.filters {
   width: 40%;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  overflow: hidden;
   text-align: center;
   min-width: 175px;
   float: left;
