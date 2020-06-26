@@ -18,7 +18,7 @@ export default class Help extends Component {
            <p>The Qur'an search uses Arabic roots, stems, phonetics,
             transliterations and translations to find relevant verses. <a className="link"
                data-toggle="modal" data-target="#helpModal">
-              <b><i>Click here for more help.</i></b>
+              <b><i>Click here for additional help.</i></b>
             </a>
           </p>
 
