@@ -31,7 +31,7 @@ class Queries extends Component {
                 y.state? <span className={"query highlights " + y.id} key={'span_' + y.id}>
                     <mark>{y.name.substring(0,2)}</mark>
                   </span>:''
-               )} ({(x.results.hits.total)?x.results.hits.total:''})</a>
+               )} ({(x.results.hits)?(x.results.hits.total)?x.results.hits.total:'0':'0'})</a>
              </li>
          ) : '...'
        }</ul>
