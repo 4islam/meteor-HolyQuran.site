@@ -44,7 +44,7 @@ meteor-base@1.4.0
 meteor-platform@1.2.6
 meteorhacks:async@1.0.0
 meteorhacks:subs-manager@1.6.4
-minifier-css@1.5.0
+minifier-css@1.5.1
 minifier-js@2.6.0
 minimongo@1.6.0
 mobile-status-bar@1.1.0
