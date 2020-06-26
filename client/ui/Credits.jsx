@@ -30,6 +30,10 @@ export default class Credits extends Component {
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+                      <ul>
+                        <b>2.95 </b>
+                        <li>New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104' </li>
+                      </ul>
 
                       <ul>
                         <b>2.9 </b>

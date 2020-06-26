@@ -1,3 +1,6 @@
+## 2.95:
+  * New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104'
+
 ## 2.9:
   * Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:>100 s:<=114' lists all surahs greater than Surah 100 and less than equal to Surah 114
   * When filter query is used exclusively, sorting by Sura and Ayah is enabled and not by match scores

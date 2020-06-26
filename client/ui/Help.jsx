@@ -41,6 +41,7 @@ export default class Help extends Component {
                    <li><a target="_self" href="/a:4">Ayah 4 across all chapters</a></li>
                    <li><a target="_self" href="/Ruku:99">Show Ruku 99</a></li>
                    <li><a target="_self" href="/Sajda_id:>0">Show all verses with Sajdah</a></li>
+                   <li><a target="_self" href="/s:59%20a:22-24">Show verses 22 to 24 in Sura 59</a></li>
                  </ul>
                  </li>
              </ul>
