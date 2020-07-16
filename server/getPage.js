@@ -37,9 +37,14 @@ Meteor.methods({
       //console.log('STATUS: ' + res.statusCode);
       //console.log('HEADERS: ' + JSON.stringify(res.headers));
       res.setEncoding('utf8');
+
+      var oString = ""
       res.on('data', Meteor.bindEnvironment(function (chunk) {
         //console.log('BODY: ' + chunk);//console.log('inserting...' + chunk);
+        oString += chunk
+      }));
 
+      res.on('end', function () {
         if (Meteor.isProduction) {          //For production
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
@@ -48,8 +53,8 @@ Meteor.methods({
           }
         /////****************************************
         }
-
-      }));
+        
+      });
     }));
 
     req.on('error', function(e) {

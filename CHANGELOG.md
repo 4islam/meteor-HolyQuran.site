@@ -1,3 +1,6 @@
+## 2.99:
+  * Page clipping issue in verse iFrame fixed
+
 ## 2.95:
   * New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104'
 

@@ -31,6 +31,11 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
                       <ul>
+                        <b>2.99 </b>
+                        <li>Page clipping issue in verse iFrame fixed </li>
+                      </ul>
+
+                      <ul>
                         <b>2.95 </b>
                         <li>New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104' </li>
                       </ul>
