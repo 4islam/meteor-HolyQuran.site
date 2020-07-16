@@ -1,3 +1,6 @@
+## 3.0:
+  * Mongo content auto-expiry added to improve performance and reduce cache sizes
+
 ## 2.99:
   * Page clipping issue in verse iFrame fixed
 

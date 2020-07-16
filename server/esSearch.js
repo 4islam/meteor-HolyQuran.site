@@ -17,6 +17,10 @@ Meteor.startup(() => {
          "session.date" : 1,
          "query" : 1
       });
+      ESCol._ensureIndex(
+        {"session.date" : 1},
+        { expireAfterSeconds: 14*(24*3600) }  //14 days
+      );
   }
 });
 

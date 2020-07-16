@@ -8,8 +8,12 @@ var esClient = new es.Client({
 
 Meteor.startup(() => {
   //ESAnalyzerCol.remove({});// Removes collection per session
-  //Pages.insert({verse:2});
+  // Pages.insert({verse:2});
   //console.log(Pages.find().fetch().length)
+  Pages._ensureIndex(
+    {"creationDate" : 1},
+    { expireAfterSeconds: 1*(24*3600) }  //1 day
+  );
 });
 
 
@@ -49,7 +53,7 @@ Meteor.methods({
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
           } else {
-            Pages.insert({verse:c+':'+v, page:oString});
+            Pages.insert({verse:c+':'+v, page:oString, creationDate: new Date()});
           }
         /////****************************************
         }

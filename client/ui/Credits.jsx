@@ -31,6 +31,11 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
                       <ul>
+                        <b>3.0 </b>
+                        <li>Content cache related performance optimizations added </li>
+                      </ul>
+
+                      <ul>
                         <b>2.99 </b>
                         <li>Page clipping issue in verse iFrame fixed </li>
                       </ul>
