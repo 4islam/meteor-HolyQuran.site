@@ -44,7 +44,7 @@ Meteor.methods({
         oString += chunk
       }));
 
-      res.on('end', function () {
+      res.on('end', Meteor.bindEnvironment(function () {
         if (Meteor.isProduction) {          //For production
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
@@ -53,8 +53,8 @@ Meteor.methods({
           }
         /////****************************************
         }
-        
-      });
+
+      }));
     }));
 
     req.on('error', function(e) {
