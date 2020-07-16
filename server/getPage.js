@@ -49,7 +49,7 @@ Meteor.methods({
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
           } else {
-            Pages.insert({verse:c+':'+v, page:chunk});
+            Pages.insert({verse:c+':'+v, page:oString});
           }
         /////****************************************
         }
