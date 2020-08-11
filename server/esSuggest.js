@@ -86,14 +86,14 @@ Meteor.methods({
       //console.log((Object.prototype.toString.call(aggs)))
       let size = 10
       if (options.includes(ArStr)) {
-        size = 3
+        size = 4
       }
 
       reduce = Math.round(size / options.length);
       if (reduce > 0) {
         size = reduce
       } else {
-        size = 1
+        size = 2
       }
 
       if (Object.prototype.toString.call(options) === '[object Array]') {
