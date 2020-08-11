@@ -38,6 +38,17 @@ div.Suggest.Phrase {
   font-size: 1em;
 }
 
+span.suggestInfo {
+    font-size: x-small;
+    font-style: italic;
+    color: darkgrey;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+#datalistUl {
+  font-size: small;
+}
+
  /*.well.pre-scrollable div {
   overflow: auto;
  }*/

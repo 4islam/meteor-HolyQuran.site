@@ -1,5 +1,10 @@
+## 3.1:
+  * Suggest menu updated with better fonts
+  * Suggest menu categories added
+  * Suggest menu now display phrases in translations
+
 ## 3.0:
-  * Mongo content auto-expiry added to improve performance and reduce cache sizes
+    * Mongo content auto-expiry added to improve performance and reduce cache sizes
 
 ## 2.99:
   * Page clipping issue in verse iFrame fixed

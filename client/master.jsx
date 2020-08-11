@@ -689,19 +689,19 @@ window.suggest_e = function(query) {
     Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
       //console.log(result.took)
       //console.log(result)
-      {
-        //console.log(complete, query);   //No idea with complete becomes undefined all of a sudden.
-        if (complete && complete.length >0 || query.length < 1) {
+      if (complete) {             //No idea with complete becomes undefined all of a sudden.
+        // console.log(complete, query);
+        if (complete.length >0 || query.length < 1) {
           $('#datalistUl').empty()                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
         } else {
           $('#datalistUl').css('background-color','#eee')
         }
-        if (complete && complete.length >0) {
+        if (complete.length >0) {
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-lg'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
-                    //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
-                    //+ " "+ i.score
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/s_/g," ").replace(/_/g," ") + "'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
+                    // + " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                   +"</a></li>");
           })
@@ -717,6 +717,9 @@ window.suggest_e = function(query) {
         if ($('#keyboardInputMaster').length == 0) {
           $(window.inputId).attr('readonly', false);
         }
+      } else {
+        // console.log("Triggering query again for ", query);
+        setTimeout(suggest_e, 500, query);
       }
 
       //$('#datalistUl').css({display:'block'});

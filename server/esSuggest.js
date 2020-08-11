@@ -42,20 +42,28 @@ Meteor.methods({
       }).map(function(o) {
         if (o=="Urdu") {
           fields.push("Urdu.ur_normalized_ngram")
+          fields.push("Urdu.trigram")
         } else if (o=="UrduTS") {
           fields.push("UrduTS.ur_normalized_ngram")
+          fields.push("UrduTS.trigram")
         } else if (o=="English") {
           fields.push("English.en_normalized_ngram")
+          fields.push("English.trigram")
         } else if (o=="German") {
           fields.push("German.de_normalized_ngram")
+          fields.push("German.trigram")
         } else if (o=="Spanish") {
           fields.push("Spanish.es_normalized_ngram")
+          fields.push("Spanish.trigram")
         } else if (o=="French") {
           fields.push("French.fr_normalized_ngram")
+          fields.push("French.trigram")
         } else if (o=="Surah") {
           fields.push("Surah.ar_ngram_normalized")
           fields.push("Surah.ar_ngram_stems")
           fields.push("Surah.ar_ngram_stems_normalized")
+          fields.push("Surah.trigram")
+
 
           fields.push("ayah")                         // This add Surah name
           fields.push("ayah.ayah_normalized_ar")      // suggestion from
@@ -63,7 +71,10 @@ Meteor.methods({
         }
       })
     }
-    ArStr = options[0]
+    ArStr=""
+    names_array.slice(0,2).map((i)=>{           // Arabic or ArabicNoor
+      ArStr=(options.includes(i))?i:ArStr
+    })
     console.log(ArStr);
     if (options.includes(ArStr) || fields.length == 0) {
      fields.push(ArStr+".ar_ngram_normalized")
@@ -84,16 +95,16 @@ Meteor.methods({
       }
 
       //console.log((Object.prototype.toString.call(aggs)))
-      let size = 10
+      let size = 5
       if (options.includes(ArStr)) {
-        size = 4
+        size = 1
       }
 
       reduce = Math.round(size / options.length);
       if (reduce > 0) {
         size = reduce
       } else {
-        size = 2
+        size = 1
       }
 
       if (Object.prototype.toString.call(options) === '[object Array]') {
@@ -101,83 +112,129 @@ Meteor.methods({
           return names_array.indexOf(o) !== -1                 //String matchi sanitization
         }).map(function(o) {
           if (o=="Urdu") {
-            aggs["s_Urdu"] = {
+            aggs["s_Urdu_Translation_Words"] = {
                         significant_terms: {
                             "field": "Urdu",
                            "size": size
                         }
                   }
+            aggs["s_Urdu_Translation_Phrases"] = {
+                        significant_terms: {
+                            "field": "Urdu.trigram",
+                           "size": size
+                        }
+                  }
           } else if (o=="English") {
-            aggs["s_English"] = {
+            aggs["s_English_Translation_Words"] = {
                  significant_terms: {
                      "field": "English",
                    "size": size
                   }
             }
+            aggs["s_English_Translation_Phrases"] = {
+                 significant_terms: {
+                     "field": "English.trigram",
+                   "size": size
+                  }
+            }
+
           } else if (o=="UrduTS") {
-            aggs["s_UrduTS"] = {
+            aggs["s_Urdu_Tafseer_Words"] = {
                  significant_terms: {
                      "field": "UrduTS",
                    "size": size
                   }
             }
+            aggs["s_Urdu_Tafseer_Phrases"] = {
+                 significant_terms: {
+                     "field": "UrduTS.trigram",
+                   "size": size
+                  }
+            }
           } else if (o=="German") {
-            aggs["s_German"] = {
+            aggs["s_German_Translation_Words"] = {
                   significant_terms: {
                       "field": "German",
                        "size": size
                   }
             }
+            aggs["s_German_Translation_Phrases"] = {
+                  significant_terms: {
+                      "field": "German.trigram",
+                       "size": size
+                  }
+            }
+
           } else if (o=="Spanish") {
-            aggs["s_Spanish"] = {
+            aggs["s_Spanish_Translation_Words"] = {
                   significant_terms: {
                       "field": "Spanish",
                        "size": size
                   }
             }
+            aggs["s_Spanish_Translation_Phrases"] = {
+                  significant_terms: {
+                      "field": "Spanish.trigram",
+                       "size": size
+                  }
+            }
+
           } else if (o=="French") {
-            aggs["s_French"] = {
+            aggs["s_French_Translation_Words"] = {
                   significant_terms: {
                       "field": "French",
                        "size": size
                   }
             }
-          } else if (o=="Surah") {
-            aggs["s_Surah"] = {
+            aggs["s_French_Translation_Phrases"] = {
                   significant_terms: {
-                      "field": "Surah",
-                      "size": size
+                      "field": "French.trigram",
+                       "size": size
                   }
-             }
+            }
+          } else if (o=="Surah") {
+            // aggs["s_Surah"] = {
+            //       significant_terms: {
+            //           "field": "Surah",
+            //           "size": size
+            //       }
+            //  }
+             aggs["s_Surah_Names"] = {
+                   significant_terms: {
+                       "field": "Surah.trigram",
+                       "size": size
+                   }
+              }
+
           }
         })
       }
       if (options.includes(ArStr) || Object.keys(aggs).length == 0) {
-       aggs["s_Arabic_Trigram"] = {
+       aggs["s_"+ArStr+"_Phrases"] = {
             significant_terms: {
                 "field": ArStr+".trigram",
                 "size": 3
             }
        }
-       aggs["s_Arabic_Words"] = {
+       aggs["s_"+ArStr+"_Words"] = {
             significant_terms: {
                 "field": ArStr,
                "size": 1
             }
         }
-        aggs["s_Arabic_Stems"] = {
+        aggs["s_"+ArStr+"_Stems"] = {
              significant_terms: {
                  "field": ArStr+".ar_stems",
                "size": 1
              }
         }
-        aggs["s_Arabic_root"] = {
+        aggs["s_"+ArStr+"_roots"] = {
               significant_terms: {
                   "field": ArStr+".ar_root_normalized",
                "size": 1
               }
          }
-         aggs["s_Arabic_normalized"] = {
+         aggs["s_Normalized_"+ArStr+"_Words"] = {
                significant_terms: {
                    "field": ArStr+".ar_normalized",
                "size": 1
@@ -264,7 +321,7 @@ Meteor.methods({
                                   .toLowerCase() //to match without case
                         t=complete.map(r=>r.key).indexOf(token)
                         if (t==-1) {
-                          complete.push({key:token,count:"",score:"",type:["rare"]})
+                          complete.push({key:token,count:"",score:"",type:["Rare_Words"]})
                         }
                       }
                     })
