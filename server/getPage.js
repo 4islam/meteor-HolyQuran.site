@@ -8,8 +8,12 @@ var esClient = new es.Client({
 
 Meteor.startup(() => {
   //ESAnalyzerCol.remove({});// Removes collection per session
-  //Pages.insert({verse:2});
+  // Pages.insert({verse:2});
   //console.log(Pages.find().fetch().length)
+  Pages._ensureIndex(
+    {"creationDate" : 1},
+    { expireAfterSeconds: 1*(24*3600) }  //1 day
+  );
 });
 
 
@@ -37,14 +41,19 @@ Meteor.methods({
       //console.log('STATUS: ' + res.statusCode);
       //console.log('HEADERS: ' + JSON.stringify(res.headers));
       res.setEncoding('utf8');
+
+      var oString = ""
       res.on('data', Meteor.bindEnvironment(function (chunk) {
         //console.log('BODY: ' + chunk);//console.log('inserting...' + chunk);
+        oString += chunk
+      }));
 
+      res.on('end', Meteor.bindEnvironment(function () {
         if (Meteor.isProduction) {          //For production
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
           } else {
-            Pages.insert({verse:c+':'+v, page:chunk});
+            Pages.insert({verse:c+':'+v, page:oString, creationDate: new Date()});
           }
         /////****************************************
         }

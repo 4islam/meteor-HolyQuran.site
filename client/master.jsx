@@ -15,8 +15,6 @@ export default class Master extends Component {
   constructor() {
     super();
     this.state = {
-      page: 1,
-      limit: limit,
       option_types:[
         {id:ArabicSrc,state:true,name:'Arabic',options: [
                   {id:"root",state:true, name:'Roots'},
@@ -65,7 +63,9 @@ export default class Master extends Component {
                         {key:'Bismilla Allah'},
                         {key:'Allah'}
                     ],
-      verse:'1:1'
+      verse:'1:1',
+      page: 1,
+      limit: globalLimit
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -82,6 +82,9 @@ export default class Master extends Component {
     window.highlight = "null"
     window.termcount = 1
     window.query = ""
+    window.page = ""
+    window.limit = ""
+    window.options = {}
 
     //console.log(this.props)
     let hash = this.props.hash.substring(1)
@@ -126,9 +129,9 @@ export default class Master extends Component {
       if (chapter > 114) {chapter = 114}
       if (verse > verse_max[chapter-1]) {verse = verse_max[chapter-1]}
 
-      this.setState({verse: chapter + ":" + verse
-                      , page:1
-                      , limit:limit})
+      // this.setState({verse: chapter + ":" + verse
+      //                 , page:1
+      //                 , limit:limit})
 
       window.hash = chapter + ":" + verse
     } else {
@@ -480,7 +483,7 @@ export default class Master extends Component {
                        options={this.state.option_types}
                        analyzers={this.state.analyzers}
                        page={this.state.page} limit={this.state.limit}
-                       setPage={this.setPage.bind(this)}/>
+                       search={this.search.bind(this)} options={this.state.option_types}/>
                   </div>
                 </div>
                 <div className="col-lg-3 Summary sidebar-offcanvas">
@@ -525,7 +528,6 @@ export default class Master extends Component {
                      <li><a href="//www.alislam.org/facebook">Facebook</a></li>
                      <br/>
                      <li id="first"><a href="//www.alislam.org/library/legal/">Terms of Service</a></li>
-                     <Credits/>
                      <li><a href="//www.alislam.org/library/legal/#privacy">Privacy Policy</a></li>
                      <li>&copy; 2020 Ahmadiyya Muslim Community. All rights reserved.</li>
                    </ul>
@@ -536,7 +538,7 @@ export default class Master extends Component {
     )
   }
 
-  search(query, options) {
+  search(query, options, page, limit) {
     // var stackTrace = (new Error()).stack; // Only tested in latest FF and Chrome
     // var callerName = stackTrace.replace(/^Error\s+/, ''); // Sanitize Chrome
     // callerName = callerName.split("\n")[1]; // 1st item is this, 2nd item is caller
@@ -544,8 +546,14 @@ export default class Master extends Component {
     // callerName = callerName.replace(/ \(.+\)$/, ''); // Sanitize Chrome
     // callerName = callerName.replace(/\@.+/, ''); // Sanitize Firefox
     // console.log("Search caller: ", callerName);
+    if (!limit) {
+      limit = this.state.limit
+    }
+    if (!page) {
+      page = this.state.page
+    }
 
-    // console.log(query, "progress");
+    // console.log("function search(",query, options, page, limit,'"');
     $('#datalistUl').css({display:'none'});
     let trimq = query.trim()
     if(trimq != ""){
@@ -553,24 +561,32 @@ export default class Master extends Component {
     }
     //console.log(window.sessionId);
     let tquery = trimq.replace(/ +/g, ' ').replace(/\t+/g,' ')
-      ui_busy("#333")
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
-      Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, this.state.page, this.state.limit, function(error, result) {
-        if (window.query != tquery) {
+
+      // if (window.query != tquery || window.page != page || window.limit != limit || window.options != options) {
+        ui_busy("#333")
+        // console.log("calling search for: '"+tquery+"'");
+        if (window.query != tquery) {page=1}        //New query will start with page one
+        Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
+
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
             tquery
             +"#" + window.hash
             );
-            window.query = tquery;
-            this.setState({page: 1});
-          }
-        //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
-                                                //  that you just typed disappears, moved this before next line
-        window.scroll(0,0)  //scroll to top
-        setTimeout(ui_ready, 333);
-        // console.log(Date(), "Call complete");
-      }.bind(this));
+            window.query = tquery
+            window.page = page
+            window.limit = limit
+            window.options = options
+            this.setState({page: page, limit:limit})
+
+          //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
+                                                  //  that you just typed disappears, moved this before next line
+          window.scroll(0,0)  //scroll to top
+          setTimeout(ui_ready, 333);
+          // console.log(Date(), "Call complete");
+        }.bind(this));
+      // }
     // }
   }
   // handleChange(e) {
@@ -633,7 +649,7 @@ export default class Master extends Component {
     window.hash=verse
     window.location.hash=verse
   }
-  setPage(page,limit) {
+  setPage(page,limit) {         //Orphaned, to be removed when possible. Search triggers state changes
     // console.log("setPage: ", page,limit)
     this.setState({page: page, limit:limit}, ()=>{
       // console.log("setPage state:",this.state.page, this.state.limit);
@@ -673,19 +689,19 @@ window.suggest_e = function(query) {
     Meteor.call('suggest', query, window.options.filter(function(o){return o.state}).map(o=>o.id), function(error, complete) {
       //console.log(result.took)
       //console.log(result)
-      {
-        //console.log(complete, query);   //No idea with complete becomes undefined all of a sudden.
-        if (complete && complete.length >0 || query.length < 1) {
+      if (complete) {             //No idea with complete becomes undefined all of a sudden.
+        // console.log(complete, query);
+        if (complete.length >0 || query.length < 1) {
           $('#datalistUl').empty()                 // Commented to keep older results.
           $('#datalistUl').css('background-color','#fff')
         } else {
           $('#datalistUl').css('background-color','#eee')
         }
-        if (complete && complete.length >0) {
+        if (complete.length >0) {
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-lg'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
-                    //+ " ("+ i.type +")"                 // TODO: To be implemented with good graphics/icons
-                    //+ " "+ i.score
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/s_/g," ").replace(/_/g," ") + "'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
+                    // + " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                   +"</a></li>");
           })
@@ -701,6 +717,9 @@ window.suggest_e = function(query) {
         if ($('#keyboardInputMaster').length == 0) {
           $(window.inputId).attr('readonly', false);
         }
+      } else {
+        // console.log("Triggering query again for ", query);
+        setTimeout(suggest_e, 500, query);
       }
 
       //$('#datalistUl').css({display:'block'});

@@ -1,6 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
+import Credits from './Credits.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
@@ -17,7 +18,7 @@ export default class Help extends Component {
            <p>The Qur'an search uses Arabic roots, stems, phonetics,
             transliterations and translations to find relevant verses. <a className="link"
                data-toggle="modal" data-target="#helpModal">
-              <b><i>Click here for more help.</i></b>
+              <b><i>Click here for additional help.</i></b>
             </a>
           </p>
 
@@ -32,7 +33,21 @@ export default class Help extends Component {
                  <li><em>Stems</em><br/><a target="_self" href="جَنَّۃ">جَنَّۃ</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/واتقوا الله">واتقوا الله</a></li>
                  <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
+                 <li><em>Filter query examples:</em><br/>
+                 <ul>
+                   <li><a target="_self" href="/Allah s:50">Search for Allah in Sura 50</a></li>
+                   <li><a target="_self" href="/s:>100 s:<=114">Sura 101 to 114</a></li>
+                   <li><a target="_self" href="/Juz:30">Part 30</a></li>
+                   <li><a target="_self" href="/a:4">Ayah 4 across all chapters</a></li>
+                   <li><a target="_self" href="/Ruku:99">Show Ruku 99</a></li>
+                   <li><a target="_self" href="/Sajda_id:>0">Show all verses with Sajdah</a></li>
+                   <li><a target="_self" href="/s:59%20a:22-24">Show verses 22 to 24 in Sura 59</a></li>
+                   <li><a target="_self" href="/ayah:2:2%20ayah:3:2%20ayah:7:2%20ayah:10:2%20ayah:11:2%20ayah:12:2%20ayah:13:2%20ayah:14:2%20ayah:15:2%20ayah:19:2%20ayah:20:2%20ayah:26:2%20ayah:27:2%20ayah:28:2%20ayah:29:2%20ayah:30:2%20ayah:31:2%20ayah:32:2%20ayah:36:2%20ayah:38:2%20ayah:40:2%20ayah:41:2%20ayah:42:2%20ayah:43:2%20ayah:44:2%20ayah:45:2%20ayah:46:2%20ayah:50:2%20ayah:68:2">Collection of verses with Huroof-Muqataat (حروف مقطعات)</a></li>
+                 </ul>
+                 </li>
              </ul>
+             <br/>
+             <i><Credits/></i>
             </div>
 
             <div className="modal fade" id="helpModal" role="dialog" aria-labelledby="Help">

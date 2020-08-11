@@ -44,31 +44,22 @@ componentDidMount() {
               </div>
 
           <a className="list-group-item reference">
+            <b style={{"cursor":"pointer"}}
+              onClick={this.addFilter.bind(this, this.props.s, "s")}>
               <VerseHighlights
                  base={this.props.Surah}
                  Type="Surah"
                  highlights={this.props.highlights}/>
+            </b>
+            <span style={{"cursor":"pointer"}}
+              onClick={this.addFilter.bind(this, this.props.ayah, "ayah", false)}>
               <VerseHighlights
                  base={this.props.ayah}
                  Type="ayah"
+                 options={this.props.options}
                  highlights={this.props.highlights}/>
-              <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons"}>
-                <button type="button"
-                  onClick={this.handleChange}
-                  className="btn btn-default btn-xs"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
-                </button>
-                <button id="copyVerse" type="button"
-                  //onClick={(e) => this.CopyArabicText(this.props.ArabicNoor, event, this.props.ayah)}
-                  data-clipboard-text={this.props.ArabicNoor.replace(/(\u06E3|\u06E8)/,' $1') + ' [' + this.props.ayah + ']'}
-                  className="btn btn-default btn-xs"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="Copy Arabic Text">
-                  <span className="glyphicon glyphicon-duplicate small"></span>
-                </button>
+            </span>
+              <div className={this.props.ayah.replace(/:/, '_') + " DetailsButtons reference"}>
                 <button type="button"
                   onClick={this.showDetails}
                   className="btn btn-default btn-xs visible-lg visible-md"
@@ -83,16 +74,38 @@ componentDidMount() {
                    data-toggle="modal" data-target="#myModal">
                   Open Details
                 </button>
+                <button id="copyVerse" type="button"
+                  //onClick={(e) => this.CopyArabicText(this.props.ArabicNoor, event, this.props.ayah)}
+                  data-clipboard-text={this.props.ArabicNoor.replace(/(\u06E3|\u06E8)/,' $1') + ' [' + this.props.ayah + ']'}
+                  className="btn btn-default btn-xs"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Copy Arabic Text">
+                  <span className="glyphicon glyphicon-duplicate small"></span>
+                </button>
+                <button type="button"
+                  onClick={this.handleChange}
+                  className="btn btn-default btn-xs"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Verse breakdown"><span className="glyphicon glyphicon-option-horizontal small"></span>
+                </button>
+              </div>
+              <div className="filters">
+               <span>Manzil <b onClick={this.addFilter.bind(this, this.props.Manzil, "Manzil")}>{this.props.Manzil}</b> </span>
+               <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
+               <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
+               <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
               </div>
           </a>
           <div className="showAnalyzer" style={{display:this.state.showAnalyzer}}>
-            {Object.keys(this.props.highlights).map(function(k) {
+            {(this.props.highlights)?Object.keys(this.props.highlights).map(function(k) {
                 return (
                   <span key={k + "." + this.props._id} className={"highlights " + k.replace(/\.|_/g,' ')}>
                     {k}: <span dangerouslySetInnerHTML={{__html: this.props.highlights[k]}}></span> <br/>
                   </span>);
               }.bind(this))
-            }
+            :''}
           </div>
           {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
@@ -194,5 +207,16 @@ componentDidMount() {
      $temp.val(txt).select();
      document.execCommand("copy");
      $temp.remove();
+   }
+   addFilter(filterValue, filterType, search=true , e) {
+     // console.log(filterValue, filterType, e);
+     let filter = filterType+":"+filterValue
+     let query = window.query+' '+filter
+     if (search) {
+       $(window.inputId)[0].value = query
+       this.props.search(query, this.props.options)
+     } else {
+       $(window.inputId)[0].value += ' '+filter
+     }
    }
 }

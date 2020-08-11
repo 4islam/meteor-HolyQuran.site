@@ -9,11 +9,19 @@ var esClient = new es.Client({
 Meteor.startup(() => {
   //ESAnalyzerCol.remove({});// Removes collection per session
   if (Meteor.isServer) {
-       ESAnalyzerCol._ensureIndex( {
+      ESAnalyzerCol._ensureIndex( {
          "session.id" : 1,
          "session.date" : 1,
          "id" : 1
       });
+      ESAnalyzerCol._ensureIndex(
+        {"session.date" : 1},
+        { expireAfterSeconds: 14*(24*3600) }  //14 days
+      );
+      ESAnalyzerHighlightsCol._ensureIndex(
+        {"session.date" : 1},
+        { expireAfterSeconds: 14*(24*3600) }  //14 days
+      );
   }
 });
 

@@ -18,7 +18,7 @@
 .Arabic {
   font-family: Scheherazade, Scheheraza;
   font-size: 1.5em;
-  font-weight:bold;
+  font-weight: normal;
 }
 
 div.switchIbarat label {
@@ -36,6 +36,17 @@ div.switchIbarat.Arabic {
 
 div.Suggest.Phrase {
   font-size: 1em;
+}
+
+span.suggestInfo {
+    font-size: x-small;
+    font-style: italic;
+    color: darkgrey;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+#datalistUl {
+  font-size: small;
 }
 
  /*.well.pre-scrollable div {
@@ -234,10 +245,13 @@ div.Details {
 }
 
 div.DetailsButtons {
-  display: inline-flex;
-  float: left;
+  /* display: inline-flex;
+  float: left; */
 }
 
+.DetailsButtons button {
+  float: left;
+}
 
 a.list-group-item {
   /*height: 150px;*/
@@ -325,10 +339,46 @@ a.reference {
   overflow-y: hidden;
 }
 
-.ayah.reference {
-  padding-right: 40%;
+a.reference div {
+  /* float: right; */
+  height: 25px;
 }
 
+a.reference div.DetailsButtons {
+  min-width: 127px;
+  float:left;
+}
+a.reference div.filters {
+  width: 40%;
+  overflow: hidden;
+  text-align: center;
+  min-width: 175px;
+  float: left;
+}
+a.reference div.ayah {
+  width: 10%;
+  text-align: left;
+  min-width: 50px;
+  float:right;
+}
+a.reference div.Surah {
+  float:right;
+}
+
+div.filters{
+  padding: 2px;
+}
+.filters span {
+  font: status-bar;
+  font-family: sans-serif;
+  font-size: xx-small;
+}
+.filters span:hover {
+  /* font-size: larger; */
+}
+.filters span b {
+  cursor: pointer;
+}
 
 div.modal-header {
   text-align: center;
@@ -475,9 +525,17 @@ input {
   word-spacing: 3px;
 }
 
+div.Credits {
+  text-align: left;
+}
 .Credits a {
   color:inherit;
 }
+
+#creditsModal > div > div > div.modal-body {
+  text-align: left;
+}
+
 
 nav.navbar-bottom {
   width: 100%;
@@ -580,7 +638,6 @@ div.resultCount {
     padding: 0;
     margin: 0;
 }
-
 
 /* Bootstrap override */
 .pagination > li > a,

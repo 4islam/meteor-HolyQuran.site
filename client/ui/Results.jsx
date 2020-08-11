@@ -27,11 +27,14 @@ class Results extends Component {
                            {...r.results.hits.hits[v]._source}
                       setVerse={this.setVerse.bind(this)}
                       options={this.props.options}
+                      search={this.props.search.bind(this)}
                       analyzers={this.props.analyzers}/>
 
                ))}
                <Paging total={r.results.hits.total}
                   setPage={this.setPage.bind(this)}
+                  options={this.props.options}
+                  search={this.props.search.bind(this)}
                   page={this.props.page}
                   limit={this.props.limit} />
               </div>:<div className="NoResult"><h4>Sorry, no results found</h4><hr/><Help/></div>:"...":<Help/>
@@ -53,7 +56,7 @@ Results.propTypes = {
 }
 
 export default createContainer(props => {
-   //console.log(window.sessionId, props.query, window.query);
+   // console.log(window.sessionId, props, window.query);
    Meteor.subscribe('Results/all'
                      ,props.query
                      ,window.sessionId

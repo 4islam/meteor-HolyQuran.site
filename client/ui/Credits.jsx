@@ -13,8 +13,8 @@ export default class Credits extends Component {
  render() {
    //this.props? console.log(this.props):'';
    return (
-       <li className="Credits" role="tabpanel" id="Credits">
-           <a data-toggle="modal" data-target="#creditsModal">Credits
+       <div className="Credits" role="tabpanel" id="Credits">
+           <a data-toggle="modal" data-target="#creditsModal">Credits / Changelog
             </a>
 
             <div className="modal fade" id="creditsModal" role="dialog" aria-labelledby="Credits">
@@ -22,14 +22,43 @@ export default class Credits extends Component {
                 <div className="modal-content">
                   <div className="modal-header">
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 className="modal-title">Credits</h4>
+                    <h4 className="modal-title">Credits / Changelog</h4>
                   </div>
                   <div className="modal-body">
                       <p>Arabic search made possible with data provided by: <a target="_blank" href="http://corpus.quran.com">http://corpus.quran.com</a>.</p>
-                      <p>Arabic text in Majidi script is a work in progress.</p>
+                      <p>Arabic Noori Majidi text script is a work in progress.</p>
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+
+                      <ul>
+                        <b>3.1 </b>
+                        <li>Suggest menu now display phrases in translations</li>
+                        <li>Suggest menu categories added</li>
+                        <li>Suggest menu updated with better fonts</li>
+                      </ul>
+
+                      <ul>
+                        <b>3.0 </b>
+                        <li>Content cache related performance optimizations added </li>
+                      </ul>
+
+                      <ul>
+                        <b>2.99 </b>
+                        <li>Page clipping issue in verse iFrame fixed </li>
+                      </ul>
+
+                      <ul>
+                        <b>2.95 </b>
+                        <li>New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104' </li>
+                      </ul>
+
+                      <ul>
+                        <b>2.9 </b>
+                        <li>Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:&gt;100 s:&lt;=114' lists all surahs greater than Surah 100 and less than equal to Surah 114 </li>
+                        <li>When filter query is used exclusively, sorting by Sura and Ayah is enabled instead of search matching scores</li>
+                        <li>Filters options added to each verse</li>
+                      </ul>
 
                       <ul>
                         <b>2.8 </b>
@@ -111,7 +140,7 @@ export default class Credits extends Component {
 
 
                       <ul><b>1.0 </b>
-                        <li>Production launch on May 26th, 2017</li>
+                        <li>Production launch on May 26th, 2017 by the approval <a href="https://www.alislam.org/profile/hazrat-mirza-masroor-ahmad/" target="_blank">Hazrat Khalifatul Masih V</a></li>
                       </ul>
                   </div>
                   <div className="modal-footer">
@@ -120,7 +149,7 @@ export default class Credits extends Component {
                 </div>
               </div>
             </div>
-       </li>
+       </div>
      )
  }
 }

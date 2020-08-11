@@ -12,7 +12,7 @@ class Suggestions extends Component {
  render() {
    return <div className={"Suggest base "+this.props.options[0].id}>
        {
-         this.props.suggestions? Object.keys(this.props.suggestions.results.suggest).map(x=>
+         this.props.suggestions?this.props.suggestions.results.suggest? Object.keys(this.props.suggestions.results.suggest).map(x=>
             <div key={"div " + x} className={"Suggest " + x}>
               <ul key={x} className="nav nav-pills">
               {
@@ -22,7 +22,7 @@ class Suggestions extends Component {
               }
               </ul>
             </div>
-         ):''
+         ):'':''
        }
        </div>
  }

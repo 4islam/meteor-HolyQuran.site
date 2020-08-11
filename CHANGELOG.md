@@ -1,3 +1,22 @@
+## 3.1:
+  * Suggest menu updated with better fonts
+  * Suggest menu categories added
+  * Suggest menu now display phrases in translations
+
+## 3.0:
+    * Mongo content auto-expiry added to improve performance and reduce cache sizes
+
+## 2.99:
+  * Page clipping issue in verse iFrame fixed
+
+## 2.95:
+  * New query filter range option added, this includes filtering by any field. E.g. query 'a:100-104'
+
+## 2.9:
+  * Query filter options added, this includes filtering by any field. UI will be updated later. E.g. query 's:>100 s:<=114' lists all surahs greater than Surah 100 and less than equal to Surah 114
+  * When filter query is used exclusively, sorting by Sura and Ayah is enabled and not by match scores
+  * Filters options added to each verse
+
 ## 2.8:
   * Option to switch script to Uthmani added
   * Fonts updated for other languages
