@@ -36,6 +36,7 @@ export default class Credits extends Component {
                         <li>Suggest menu now display phrases in translations</li>
                         <li>Suggest menu categories added</li>
                         <li>Suggest menu updated with better fonts</li>
+                        <li>Suggest menu character highlighting added</li>
                       </ul>
 
                       <ul>

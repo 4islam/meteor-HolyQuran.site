@@ -2,6 +2,7 @@
   * Suggest menu updated with better fonts
   * Suggest menu categories added
   * Suggest menu now display phrases in translations
+  * Suggest menu character highlighting added
 
 ## 3.0:
     * Mongo content auto-expiry added to improve performance and reduce cache sizes
