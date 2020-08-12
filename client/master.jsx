@@ -272,7 +272,7 @@ export default class Master extends Component {
           $('#datalistUl > li').removeClass("active")
           $('#datalistUl > li').eq(window.highlight).addClass("active")
 
-          var suggested_term = $('#datalistUl > li.active a').contents().get(0).nodeValue
+          var suggested_term = $('#datalistUl > li.active a').attr('id')
 
           q=$(window.inputId)[0].value
           q=q.split(' ').slice(0,-1*window.termcount)
@@ -698,8 +698,9 @@ window.suggest_e = function(query) {
           $('#datalistUl').css('background-color','#eee')
         }
         if (complete.length >0) {
+          boldq = query.split(" ").slice(-1).toString();var req = new RegExp(boldq, 'gi')
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/s_/g," ").replace(/_/g," ") + "'><a href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type+"\')\">" + i.key
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
                     + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
                     // + " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
