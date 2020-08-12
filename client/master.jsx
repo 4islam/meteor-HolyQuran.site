@@ -421,7 +421,6 @@ export default class Master extends Component {
                                 x.options.map(y=>
                                   <li key={'span_' + y.id}>
                                     <span className={"highlights " + y.id}>
-                                      <mark>
                                         <small>
                                           {y.name + ' '}
                                         </small>
@@ -430,8 +429,7 @@ export default class Master extends Component {
                                           type="checkbox"
                                           checked={y.state}
                                           disabled={!x.state}
-                                          onChange={this.handleChangeOptions.bind(this,y.id,x.id)} />
-                                      </mark>
+                                          onChange={this.handleChangeOptions.bind(this,y.id,x.id)} />                                      
                                     </span>
                                   </li>
                                 )
