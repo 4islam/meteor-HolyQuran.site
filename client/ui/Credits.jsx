@@ -37,6 +37,7 @@ export default class Credits extends Component {
                         <li>Suggest menu categories added</li>
                         <li>Suggest menu updated with better fonts</li>
                         <li>Suggest menu character highlighting added</li>
+                        <li>Options menu minor bugs fixed</li>
                       </ul>
 
                       <ul>
