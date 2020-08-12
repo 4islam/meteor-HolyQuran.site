@@ -659,7 +659,11 @@ export default class Master extends Component {
   openMenu(event) { //data-toggle="dropdown" This is removed as input boxes don't render properly with bootstap toggle. The custom function is written to accomodate instead - NI
     event.stopPropagation(); //Target changes based on click focus on DOM, this line and next are to accomodate for that as $(this) doesn't work in JSX
     var $btn = $(event.target).is('button')?$(event.target):$(event.target).parent().parent();
-    $btn.parent().toggleClass('open');
+    let classExists = ($btn.parent().hasClass('open'))?true:false
+    $btn.parent().parent().children().removeClass('open')
+    if (!classExists) {
+      $btn.parent().addClass('open')
+    }
   }
 }
 
