@@ -107,7 +107,7 @@ componentDidMount() {
               }.bind(this))
             :''}
           </div>
-          {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
+          {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French","EnglishCorpus"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
