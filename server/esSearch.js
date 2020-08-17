@@ -320,10 +320,10 @@ Meteor.methods({
               //     "size": 10 //,
               //   }
               // },
-              "Surah": {                          //TODO: Add bigrams
+              "Surah": {
                 "text" : query,
                 "term": {
-                  "field": "Surah.ar_normalized",
+                  "field": "Surah.trigram",
                   "suggest_mode": "always",
                   "min_word_length": 6,
                   "prefix_length": 0
@@ -486,6 +486,16 @@ Meteor.methods({
               //           field: [options[0].id+".ar_stems"]
               //       }
               //  },
+              "s_Surah": {
+                    significant_terms: {
+                        field: "Surah.trigram"
+                    }
+              },
+              "Surah": {
+                     terms: {
+                         field: "Surah.trigram"
+                     }
+              },
               "s_Urdu": {
                     significant_terms: {
                         field: "Urdu"
@@ -555,12 +565,7 @@ Meteor.methods({
                        significant_terms: {
                            field: "EnglishCorpus.trigram"
                        }
-                },
-                "Surah": {
-                      terms: {
-                          field: "Surah"
-                      }
-                 }
+                }
           }
         }//,
         //analyzer:"my_arabic"
