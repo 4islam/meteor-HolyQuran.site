@@ -157,6 +157,14 @@ componentDidMount() {
                        highlights={this.props.highlights}/>
                 </a>:''
               }
+              {(this.props.options.map(x=>x.id==="EnglishCorpus"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishCorpus}
+                       Type="EnglishCorpus"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
             </div>:''
           }
         </div>

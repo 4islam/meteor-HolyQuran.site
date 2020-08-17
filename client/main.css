@@ -270,14 +270,19 @@ a.list-group-item.Verse {
     font-family: Scheheraza, Scheherazade;
     word-spacing: 2px;
 }
-.English, .German, .Spanish, .French, .Urdu, .UrduTS, div.btn.btn-default.surah {
+.English, .German, .Spanish, .French, .Urdu, .UrduTS, .EnglishCorpus {
   font-weight:lighter;
   font-size: 1em;
 }
-.English, .German, .Spanish, .French {
+.English, .German, .Spanish, .French, .EnglishCorpus {
   direction: ltr;
   text-align: left;
   font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+div.btn.btn-default.surah, {
+  font-weight:lighter;
+  font-size: 1em;
 }
 
  .Urdu, .UrduTS {

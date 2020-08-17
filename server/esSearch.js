@@ -159,9 +159,15 @@ Meteor.methods({
         {match: {"French": {query: query,"boost": 5}}},
         {match: {"French.fr_normalized": {query: query,"boost": 3}}},
         {match: {"French.fr_ngram_original": {query: query,"boost": 2.5}}},
-        {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}}
+        {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}},
 
         //{match: {[options[0].id+".trigram"]: {query: query,"boost": 8}}}
+
+        {match: {"EnglishCorpus": {query: query,"boost": 5}}},
+        {match: {"EnglishCorpus.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishCorpus.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishCorpus.en_normalized_ngram": {query: query,"boost": 2}}},
+
       ];
 
       removeCandidates=[];
@@ -495,6 +501,11 @@ Meteor.methods({
                            field: "English"
                        }
                 },
+                "s_English_phrases": {
+                       significant_terms: {
+                           field: "English.trigram"
+                       }
+                },
                 "s_German": {
                         significant_terms: {
                             field: "German"
@@ -510,7 +521,11 @@ Meteor.methods({
                             field: "French"
                       }
                 },
-
+                "s_EnglishCorpus": {
+                       significant_terms: {
+                           field: "EnglishCorpus"
+                       }
+                },
                 "Surah": {
                       terms: {
                           field: "Surah"

@@ -54,6 +54,11 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]}
+        ,{id:"EnglishCorpus",state:true,name:'Corpus (English)',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]}
+
       ],
       analyzers: analyzers,
       options_panel: 'none',
@@ -429,7 +434,7 @@ export default class Master extends Component {
                                           type="checkbox"
                                           checked={y.state}
                                           disabled={!x.state}
-                                          onChange={this.handleChangeOptions.bind(this,y.id,x.id)} />                                      
+                                          onChange={this.handleChangeOptions.bind(this,y.id,x.id)} />
                                     </span>
                                   </li>
                                 )
@@ -702,8 +707,8 @@ window.suggest_e = function(query) {
         if (complete.length >0) {
           boldq = query.split(" ").slice(-1).toString();var req = new RegExp(boldq, 'gi')
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
-                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
+            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/^s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
+                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/^s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
                     // + " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                   +"</a></li>");
