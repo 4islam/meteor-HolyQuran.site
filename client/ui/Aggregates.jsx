@@ -30,8 +30,8 @@ class Aggregates extends Component {
                       aggs.results.aggregations[x.id].buckets[0]?
                         aggs.results.aggregations[x.id].buckets.map(y=>
                         (y.key!="سورة")?
-                          <span key={x.id+y.key}>
-                            <a onClick={this.handleChange.bind(this, y.key)}>{y.key}</a> ({y.doc_count})
+                          <span className="cohorts" key={x.id+y.key}>
+                            <a onClick={this.handleChange.bind(this, y.key)}>{y.key}</a> <span className="cohortsCount">{y.doc_count}</span>
                           </span>:''
                         ):<br/>:''
                     }

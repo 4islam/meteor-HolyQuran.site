@@ -1,3 +1,7 @@
+## 3.2:
+  * English Corpus Translation added
+  * Translation Phrases added in the summary section
+
 ## 3.1:
   * Suggest menu updated with better fonts
   * Suggest menu categories added

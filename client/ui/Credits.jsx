@@ -32,6 +32,12 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>3.2 </b>
+                        <li>English Corpus Translation added</li>
+                        <li>Translation Phrases added in the summary section</li>
+                      </ul>
+
+                      <ul>
                         <b>3.1 </b>
                         <li>Suggest menu now display phrases in translations</li>
                         <li>Suggest menu categories added</li>

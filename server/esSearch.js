@@ -486,16 +486,26 @@ Meteor.methods({
               //           field: [options[0].id+".ar_stems"]
               //       }
               //  },
-                "s_Urdu": {
-                      significant_terms: {
-                          field: "Urdu"
-                      }
-                },
-                "s_UrduTS": {
-                      significant_terms: {
-                          field: "UrduTS"
-                      }
-                },
+              "s_Urdu": {
+                    significant_terms: {
+                        field: "Urdu"
+                    }
+              },
+              "s_Urdu_phrases": {
+                    significant_terms: {
+                        field: "Urdu.trigram"
+                    }
+              },
+              "s_UrduTS": {
+                    significant_terms: {
+                        field: "UrduTS"
+                    }
+              },
+              "s_UrduTS_phrases": {
+                    significant_terms: {
+                        field: "UrduTS.trigram"
+                    }
+              },
                 "s_English": {
                        significant_terms: {
                            field: "English"
@@ -511,9 +521,19 @@ Meteor.methods({
                             field: "German"
                       }
                 },
+                "s_German_phrases": {
+                        significant_terms: {
+                            field: "German.trigram"
+                      }
+                },
                 "s_Spanish": {
                         significant_terms: {
                             field: "Spanish"
+                      }
+                },
+                "s_Spanish_phrases": {
+                        significant_terms: {
+                            field: "Spanish.trigram"
                       }
                 },
                 "s_French": {
@@ -521,9 +541,19 @@ Meteor.methods({
                             field: "French"
                       }
                 },
+                "s_French_phrases": {
+                        significant_terms: {
+                            field: "French.trigram"
+                      }
+                },
                 "s_EnglishCorpus": {
                        significant_terms: {
                            field: "EnglishCorpus"
+                       }
+                },
+                "s_EnglishCorpus_phrases": {
+                       significant_terms: {
+                           field: "EnglishCorpus.trigram"
                        }
                 },
                 "Surah": {

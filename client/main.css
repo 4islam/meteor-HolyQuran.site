@@ -285,6 +285,16 @@ div.btn.btn-default.surah, {
   font-size: 1em;
 }
 
+span.cohorts {
+  display: inline-block;
+  padding: 3px;
+}
+
+span.cohortsCount{
+  color: grey;
+  font-size: smaller;
+}
+
  .Urdu, .UrduTS {
    /* font-family: NafeesWeb, NafeesWebNaskh; */
    font-family: 'Jameel Noori Nastaleeq', -apple-system, BlinkMacSystemFont, noto_nastaliq, 'Urdu Naskh Asiatype', 'Nafees Web Naskh';
