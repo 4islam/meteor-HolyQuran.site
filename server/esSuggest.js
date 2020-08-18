@@ -58,6 +58,9 @@ Meteor.methods({
         } else if (o=="French") {
           fields.push("French.fr_normalized_ngram")
           fields.push("French.trigram")
+        } else if (o=="EnglishCorpus") {
+          fields.push("EnglishCorpus.en_normalized_ngram")
+          fields.push("EnglishCorpus.trigram")
         } else if (o=="Surah") {
           fields.push("Surah.ar_ngram_normalized")
           fields.push("Surah.ar_ngram_stems")
