@@ -486,6 +486,27 @@ Meteor.methods({
               //           field: [options[0].id+".ar_stems"]
               //       }
               //  },
+              ["s_"+options[0].id+"_propernouns"]: {
+                   significant_terms: {
+                       field: options[0].id+".ar_propernouns"
+                   }
+               },
+             ["s_"+options[0].id+"_nouns"]: {
+                  significant_terms: {
+                      field: options[0].id+".ar_nouns"
+                  }
+              },
+              ["s_"+options[0].id+"_adjectives"]: {
+                   significant_terms: {
+                       field: options[0].id+".ar_adjectives"
+                   }
+               },
+               ["s_"+options[0].id+"_verbs"]: {
+                    significant_terms: {
+                        field: options[0].id+".ar_verbs"
+                    }
+                },
+
               "s_Surah": {
                     significant_terms: {
                         field: "Surah.trigram"
