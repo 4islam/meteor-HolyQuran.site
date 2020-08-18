@@ -134,9 +134,10 @@ export default class Master extends Component {
       if (chapter > 114) {chapter = 114}
       if (verse > verse_max[chapter-1]) {verse = verse_max[chapter-1]}
 
-      // this.setState({verse: chapter + ":" + verse
-      //                 , page:1
-      //                 , limit:limit})
+      this.setState({verse: chapter + ":" + verse
+                      // , page:1
+                      // , limit:limit
+                    })
 
       window.hash = chapter + ":" + verse
     } else {
