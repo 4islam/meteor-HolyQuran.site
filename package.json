@@ -19,7 +19,7 @@
   "author": "ls",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.10.5",
+    "@babel/runtime": "^7.11.2",
     "babel-runtime": "^6.26.0",
     "caniuse-lite": "^1.0.30001114",
     "core-util-is": "^1.0.2",
