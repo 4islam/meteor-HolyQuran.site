@@ -9,7 +9,7 @@ export default class TokenHighlights extends Component {
 
    var objCounts=[]
    data.map(function(x,i) {
-     analyzers.slice(1).reverse().map(function (z){
+     analyzers.slice(0,3).reverse().map(function (z){
        if(x.analyzer===z.id){
          var ro={token:'',positions:[], count:0, analyzer:z.id};
          //if(!x.tokens.tokens){console.log(x.tokens, x[i], i, x)}
