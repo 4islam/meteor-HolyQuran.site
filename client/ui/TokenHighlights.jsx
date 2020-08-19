@@ -114,7 +114,7 @@ export default class TokenHighlights extends Component {
                       //  (j==k)?
                         //  (analyzers.map(z=>z.id).indexOf(y.type)!='-1')?
                             (i>0 && dataTable[i-1][j] && dataTable[i-1][j].token != dataTable[i][j].token || i==0)?
-                               <td className="notblank" key={i+'-'+j}><span key={i+'-'+j+':'+y.token}><a onClick={this.handleChange.bind(this, y.token)}>{y.token}</a> {y.count?' ' + y.count + ' ':''} {(j != 2) ?'':''}</span></td>
+                               <td className="notblank" key={i+'-'+j}><span className="cohorts" key={i+'-'+j+':'+y.token}><a onClick={this.handleChange.bind(this, y.token)}>{y.token}</a> {y.count?<span className="cohortsCount">{y.count}</span>:''} {(j != 2) ?'':''}</span></td>
                               :<td className="blank" key={i+'-'+j}></td>
 
                         //  :'-'
