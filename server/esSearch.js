@@ -628,7 +628,7 @@ Meteor.methods({
               text_array = highlights.map(x=>x.token.id)
               if (text_array.length > 0) {
                 update_analyzers(options[0].id)
-                getAnalysis(analyzers,text_array,tquery,sessionId,date,0,ESAnalyzerHighlightsCol,options[0].id)
+                getAnalysis(analyzers.slice(0,3),text_array,tquery,sessionId,date,0,ESAnalyzerHighlightsCol,options[0].id)
               }
             }
 
