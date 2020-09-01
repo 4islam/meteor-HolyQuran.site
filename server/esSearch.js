@@ -539,7 +539,7 @@ Meteor.methods({
               },
                 "s_English": {
                        significant_terms: {
-                           field: "English"
+                           field: "English.significant"
                        }
                 },
                 "s_English_phrases": {
@@ -549,7 +549,7 @@ Meteor.methods({
                 },
                 "s_German": {
                         significant_terms: {
-                            field: "German"
+                            field: "German.significant"
                       }
                 },
                 "s_German_phrases": {
@@ -559,7 +559,7 @@ Meteor.methods({
                 },
                 "s_Spanish": {
                         significant_terms: {
-                            field: "Spanish"
+                            field: "Spanish.significant"
                       }
                 },
                 "s_Spanish_phrases": {
@@ -569,7 +569,7 @@ Meteor.methods({
                 },
                 "s_French": {
                         significant_terms: {
-                            field: "French"
+                            field: "French.significant"
                       }
                 },
                 "s_French_phrases": {
@@ -579,7 +579,7 @@ Meteor.methods({
                 },
                 "s_EnglishCorpus": {
                        significant_terms: {
-                           field: "EnglishCorpus"
+                           field: "EnglishCorpus.significant"
                        }
                 },
                 "s_EnglishCorpus_phrases": {
