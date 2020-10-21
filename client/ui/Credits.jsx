@@ -34,6 +34,7 @@ export default class Credits extends Component {
                       <ul>
                         <b>5 </b>
                         <li>English Topics Search added</li>
+                        <li>UI updated</li>
                       </ul>
 
                       <ul>

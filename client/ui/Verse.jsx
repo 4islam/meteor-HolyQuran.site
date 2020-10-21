@@ -98,7 +98,7 @@ componentDidMount() {
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
               </div>
           </a>
-          {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French","EnglishCorpus"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
+          {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French","EnglishCorpus","TopicsEn"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
@@ -153,6 +153,14 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.EnglishCorpus}
                        Type="EnglishCorpus"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="TopicsEn"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Topics English">
+                    <VerseHighlights
+                       base={this.props.TopicsEn}
+                       Type="TopicsEn"
                        highlights={this.props.highlights}/>
                 </a>:''
               }

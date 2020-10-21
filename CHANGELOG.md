@@ -1,5 +1,6 @@
 ## 5:
   * English Topics Search added
+  * UI updated
 
 ## 4:
   * Arabic Grammar added: Nouns, Proper Nouns, Verbs and Adjectives
