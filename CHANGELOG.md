@@ -1,3 +1,9 @@
+## 4:
+  * Arabic Grammar added: Nouns, Proper Nouns, Verbs and Adjectives
+  * Arabic Grammar also added for Noor Majidi script
+  * Word for word translation added for English Corpus to Arabic
+  * Word for word translation added for Arabic to English Corpus
+
 ## 3.2:
   * English Corpus Translation added
   * Translation Phrases added in the summary section

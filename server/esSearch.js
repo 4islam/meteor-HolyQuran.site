@@ -109,6 +109,8 @@ Meteor.methods({
         {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
         {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
+        {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
+
         {match: {"Surah": {query: query,"boost": 3}}},
 
         {match: {"Surah.ar_normalized": {query: query,"boost": 1.7}}},
@@ -167,6 +169,8 @@ Meteor.methods({
         {match: {"EnglishCorpus.en_normalized": {query: query,"boost": 3}}},
         {match: {"EnglishCorpus.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"EnglishCorpus.en_normalized_ngram": {query: query,"boost": 2}}},
+        {match: {"EnglishCorpus.en_corpus_to_ar": {query: query,"boost": 2}}},
+        {match: {"EnglishCorpus.en_corpus_to_ar_noor": {query: query,"boost": 2}}}
 
       ];
 
@@ -208,6 +212,16 @@ Meteor.methods({
             if (x.id == 'phonetic') {
               matchArray.find(function (x,i){
                 var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp(y.id+"(\\..*)?$");
+                if (Object.keys(x.match)[0].search(re)!=-1) {
+                  if (removeCandidates.indexOf(i)==-1) {
+                    removeCandidates.push(i);
+                  }
+                }
+              })
+            }
+            if (x.id == 'translation') {
+              matchArray.find(function (x,i){
+                var re = (y.state)? new RegExp(y.id+"\\..*_to_.*"): new RegExp(y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -506,6 +520,11 @@ Meteor.methods({
                         field: options[0].id+".ar_verbs"
                     }
                 },
+                ["s_"+options[0].id+"_to_en_corpus"]: {
+                     significant_terms: {
+                         field: options[0].id+".ar_to_en_corpus"
+                     }
+                 },
 
               "s_Surah": {
                     significant_terms: {
@@ -577,14 +596,24 @@ Meteor.methods({
                             field: "French.trigram"
                       }
                 },
-                "s_EnglishCorpus": {
+                "s_English_Corpus": {
                        significant_terms: {
                            field: "EnglishCorpus.significant"
                        }
                 },
-                "s_EnglishCorpus_phrases": {
+                "s_English_Corpus_phrases": {
                        significant_terms: {
                            field: "EnglishCorpus.trigram"
+                       }
+                },
+                "s_English_Corpus_to_Arabic": {
+                       significant_terms: {
+                           field: "EnglishCorpus.en_corpus_to_ar"
+                       }
+                },
+                "s_English_Corpus_to_ArabicNoor": {
+                       significant_terms: {
+                           field: "EnglishCorpus.en_corpus_to_ar_noor"
                        }
                 }
           }

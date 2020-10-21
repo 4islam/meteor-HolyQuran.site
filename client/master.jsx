@@ -21,7 +21,8 @@ export default class Master extends Component {
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
+                  {id:"normalized",state:true,name:'Normalized'},
+                  {id:"translation",state:false,name:'Translation'}
                 ]},
         {id:"Surah",state:true,name:'Chapter Names',options: [
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -56,7 +57,8 @@ export default class Master extends Component {
                 ]}
         ,{id:"EnglishCorpus",state:false,name:'Corpus (English)',options: [
                   {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
+                  {id:"normalized",state:true,name:'Normalized'},
+                  {id:"translation",state:true,name:'Translation'}
                 ]}
 
       ],
@@ -709,7 +711,7 @@ window.suggest_e = function(query) {
           boldq = query.split(" ").slice(-1).toString();var req = new RegExp(boldq, 'gi')
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
             $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/^s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
-                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/^s_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
+                    + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/\bs_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
                     // + " "+ i.score
                     + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
                   +"</a></li>");

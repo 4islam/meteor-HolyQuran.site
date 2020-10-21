@@ -208,9 +208,12 @@ div.highlights mark {
 .highlights.root mark {
   background: #ff0;
 }
+.highlights.to mark {
+  background: #333;
+}
 
 .highlights.Arabic mark {
-  /*background: #fc0; */
+  /* background: #fc0; */
 }
 
 .highlights.Arabic {

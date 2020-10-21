@@ -61,6 +61,8 @@ Meteor.methods({
         } else if (o=="EnglishCorpus") {
           fields.push("EnglishCorpus.en_normalized_ngram")
           fields.push("EnglishCorpus.trigram")
+          fields.push("EnglishCorpus.en_corpus_to_ar")
+          fields.push("EnglishCorpus.en_corpus_to_ar_noor")
         } else if (o=="Surah") {
           fields.push("Surah.ar_ngram_normalized")
           fields.push("Surah.ar_ngram_stems")
@@ -90,6 +92,12 @@ Meteor.methods({
      fields.push(ArStr+".ar_query_suggest_ngram_stems_normalized_phonetic")
      fields.push(ArStr+".ar_query_suggest_ngram_root_normalized_phonetic")
 
+     fields.push(ArStr+".ar_nouns")
+     fields.push(ArStr+".ar_adjectives")
+     fields.push(ArStr+".ar_propernouns")
+     fields.push(ArStr+".ar_verbs")
+     fields.push(ArStr+".ar_to_en_corpus")
+
    }
 
     //console.log(fields)
@@ -115,53 +123,53 @@ Meteor.methods({
           return names_array.indexOf(o) !== -1                 //String matchi sanitization
         }).map(function(o) {
           if (o=="Urdu") {
-            aggs["s_Urdu_translation_words"] = {
+            aggs["s_Urdu_Translation_Words"] = {
                         significant_terms: {
-                           "field": "Urdu",
+                            "field": "Urdu",
                            "size": size
                         }
                   }
-            aggs["s_Urdu_translation_phrases"] = {
+            aggs["s_Urdu_Translation_Phrases"] = {
                         significant_terms: {
-                           "field": "Urdu.trigram",
+                            "field": "Urdu.trigram",
                            "size": size
                         }
                   }
           } else if (o=="English") {
-            aggs["s_English_translation_words"] = {
+            aggs["s_English_Translation_Words"] = {
                  significant_terms: {
                      "field": "English",
-                     "size": size
+                   "size": size
                   }
             }
-            aggs["s_English_translation_phrases"] = {
+            aggs["s_English_Translation_Phrases"] = {
                  significant_terms: {
                      "field": "English.trigram",
-                     "size": size
+                   "size": size
                   }
             }
 
           } else if (o=="UrduTS") {
-            aggs["s_Urdu_Tafseer_words"] = {
+            aggs["s_Urdu_Tafseer_Words"] = {
                  significant_terms: {
                      "field": "UrduTS",
                    "size": size
                   }
             }
-            aggs["s_Urdu_Tafseer_phrases"] = {
+            aggs["s_Urdu_Tafseer_Phrases"] = {
                  significant_terms: {
                      "field": "UrduTS.trigram",
                    "size": size
                   }
             }
           } else if (o=="German") {
-            aggs["s_German_translation_words"] = {
+            aggs["s_German_Translation_Words"] = {
                   significant_terms: {
                       "field": "German",
                        "size": size
                   }
             }
-            aggs["s_German_translation_phrases"] = {
+            aggs["s_German_Translation_Phrases"] = {
                   significant_terms: {
                       "field": "German.trigram",
                        "size": size
@@ -169,13 +177,13 @@ Meteor.methods({
             }
 
           } else if (o=="Spanish") {
-            aggs["s_Spanish_translation_words"] = {
+            aggs["s_Spanish_Translation_Words"] = {
                   significant_terms: {
                       "field": "Spanish",
                        "size": size
                   }
             }
-            aggs["s_Spanish_translation_phrases"] = {
+            aggs["s_Spanish_Translation_Phrases"] = {
                   significant_terms: {
                       "field": "Spanish.trigram",
                        "size": size
@@ -183,16 +191,16 @@ Meteor.methods({
             }
 
           } else if (o=="French") {
-            aggs["s_French_translation_words"] = {
+            aggs["s_French_Translation_Words"] = {
                   significant_terms: {
                       "field": "French",
                        "size": size
                   }
             }
-            aggs["s_French_translation_phrases"] = {
+            aggs["s_French_Translation_Phrases"] = {
                   significant_terms: {
                       "field": "French.trigram",
-                      "size": size
+                       "size": size
                   }
             }
           } else if (o=="EnglishCorpus") {
@@ -208,6 +216,22 @@ Meteor.methods({
                    "size": size
                   }
             }
+            if (ArStr == "Arabic") {
+              aggs["s_English_Corpus_to_Arabic"] = {
+                   significant_terms: {
+                     "field": "EnglishCorpus.en_corpus_to_ar",
+                     "size": size
+                    }
+              }
+            } else {
+              aggs["s_English_Corpus_to_ArabicNoor"] = {
+                   significant_terms: {
+                     "field": "EnglishCorpus.en_corpus_to_ar_noor",
+                     "size": size
+                    }
+              }
+            }
+
 
           } else if (o=="Surah") {
             // aggs["s_Surah"] = {
@@ -257,6 +281,37 @@ Meteor.methods({
                "size": 1
                }
          }
+         aggs["s_"+ArStr+"_nouns"] = {
+               significant_terms: {
+                   "field": ArStr+".ar_nouns",
+                "size": 1
+               }
+          }
+        aggs["s_"+ArStr+"_adjectives"] = {
+              significant_terms: {
+                  "field": ArStr+".ar_adjectives",
+               "size": 1
+              }
+         }
+         aggs["s_"+ArStr+"_propernouns"] = {
+               significant_terms: {
+                   "field": ArStr+".ar_propernouns",
+                "size": 1
+               }
+          }
+          aggs["s_"+ArStr+"_verbs"] = {
+                significant_terms: {
+                    "field": ArStr+".ar_verbs",
+                 "size": 1
+                }
+           }
+           aggs["s_"+ArStr+"_to_English_Corpus"] = {
+                 significant_terms: {
+                     "field": ArStr+".ar_to_en_corpus",
+                  "size": 1
+                 }
+            }
+
        }
        //console.log((Object.prototype.toString.call(aggs)))
 

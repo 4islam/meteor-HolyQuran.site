@@ -32,6 +32,14 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>4 </b>
+                        <li>Arabic Grammar added: Nouns, Proper Nouns, Verbs and Adjectives</li>
+                        <li>Arabic Grammar also added for Noor Majidi script</li>
+                        <li>Word for word translation added for English Corpus to Arabic</li>
+                        <li>Word for word translation added for Arabic to English Corpus</li>                        
+                      </ul>
+
+                      <ul>
                         <b>3.2 </b>
                         <li>English Corpus Translation added</li>
                         <li>Translation Phrases added in the summary section</li>
