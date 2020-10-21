@@ -54,8 +54,12 @@ export default class Master extends Component {
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
-                ]}
-        ,{id:"EnglishCorpus",state:false,name:'Corpus (English)',options: [
+                ]},
+        {id:"TopicsEn",state:true,name:'Topics - English',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishCorpus",state:false,name:'English - corpus',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}

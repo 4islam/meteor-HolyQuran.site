@@ -1,3 +1,6 @@
+## 5:
+  * English Topics Search added
+
 ## 4:
   * Arabic Grammar added: Nouns, Proper Nouns, Verbs and Adjectives
   * Arabic Grammar also added for Noor Majidi script

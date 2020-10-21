@@ -148,6 +148,11 @@ Meteor.methods({
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"TopicsEn": {query: query,"boost": 5}}},
+        {match: {"TopicsEn.en_normalized": {query: query,"boost": 3}}},
+        {match: {"TopicsEn.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"TopicsEn.en_normalized_ngram": {query: query,"boost": 2}}},
+
         {match: {"German": {query: query,"boost": 5}}},
         {match: {"German.de_normalized": {query: query,"boost": 3}}},
         {match: {"German.de_ngram_original": {query: query,"boost": 2.5}}},
@@ -564,6 +569,11 @@ Meteor.methods({
                 "s_English_phrases": {
                        significant_terms: {
                            field: "English.trigram"
+                       }
+                },
+                "s_Topics_English": {
+                       significant_terms: {
+                           field: "TopicsEn.significant"
                        }
                 },
                 "s_German": {

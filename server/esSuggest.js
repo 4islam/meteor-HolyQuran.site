@@ -49,6 +49,10 @@ Meteor.methods({
         } else if (o=="English") {
           fields.push("English.en_normalized_ngram")
           fields.push("English.trigram")
+        } else if (o=="TopicsEn") {
+          fields.push("TopicsEn.en_original")
+          fields.push("TopicsEn.en_normalized_ngram")
+          fields.push("TopicsEn.trigram")
         } else if (o=="German") {
           fields.push("German.de_normalized_ngram")
           fields.push("German.trigram")
@@ -100,12 +104,12 @@ Meteor.methods({
 
    }
 
-    //console.log(fields)
+    // console.log(fields)
 
     var aggs = {
       }
 
-      //console.log((Object.prototype.toString.call(aggs)))
+      // console.log((Object.prototype.toString.call(aggs)))
       let size = 5
       if (options.includes(ArStr)) {
         size = 1
@@ -148,8 +152,21 @@ Meteor.methods({
                    "size": size
                   }
             }
+        } else if (o=="TopicsEn") {
+          aggs["s_Topics_English"] = {
+               significant_terms: {
+                "field": "TopicsEn",
+                 "size": size
+                }
+          }
+          aggs["s_Topics_English_Phrases"] = {
+               significant_terms: {
+                   "field": "TopicsEn.trigram",
+                 "size": size
+                }
+          }
 
-          } else if (o=="UrduTS") {
+        } else if (o=="UrduTS") {
             aggs["s_Urdu_Tafseer_Words"] = {
                  significant_terms: {
                      "field": "UrduTS",
@@ -313,7 +330,7 @@ Meteor.methods({
             }
 
        }
-       //console.log((Object.prototype.toString.call(aggs)))
+       // console.log((Object.prototype.toString.call(aggs)))
 
     var requestSync = Meteor.wrapAsync(function(query,callback) {
       let suggest_query =
