@@ -337,11 +337,11 @@ Meteor.methods({
       {
         index: "hq",
         body: {
-            size: 3,
+            size: 5,
             "sort": [
                 {
                   "_score": {
-                    "order": "asc"
+                    "order": "desc"
                   }
                 }
               ],
@@ -363,7 +363,8 @@ Meteor.methods({
                 ],
                fields: {
                  "*": {
-                        "number_of_fragments" : 0
+                        "number_of_fragments" : 5,
+                        "fragment_size": 100
                        }
                 }
               }
@@ -376,7 +377,31 @@ Meteor.methods({
             //matches = res.suggest;
             result=obj;
 
+            var hits = result.hits.hits
+
             var complete = []
+            Object.keys(hits).map(function (v) {        //controlled by Hit Size
+              // if (l == 0) {
+                Object.keys(hits[v].highlight).map(function (k) {
+                    // console.log(hits[v].highlight);
+                    // console.log(Object.keys(hits[v].highlight[k]).length);
+                    var text = hits[v].highlight[k][0];
+                    // console.log(typeof(text));
+                    if (text.search(re_match) != -1) {
+                        token = text.match(re_match)[0]
+                                  .replace(re_pre,'').replace(re_post,'')
+                                  .replace(re_clean,'') //To clean commas, semicolons etc.
+                                  .trim() //to remove spaces
+                        t=complete.map(r=>r.key).indexOf(token)
+                        if (t==-1) {
+                          complete.push({key:token,count:1,score:hits[v]._score,type:["String matches"]});
+                        }
+                    }
+                  // }
+                })
+              // }
+            })
+
             Object.keys(result.aggregations).map(function (z){
               result.aggregations[z].buckets.map(function(k){
                 t=complete.map(r=>r.key).indexOf(k.key)
@@ -396,7 +421,7 @@ Meteor.methods({
               })
             })
 
-            var hits = result.hits.hits
+            // var hits = result.hits.hits
             Object.keys(hits).map(function (v,l) {        //controlled by Hit Size
               if (l == 0) {
                 Object.keys(hits[0].highlight).map(function (k,m) {
