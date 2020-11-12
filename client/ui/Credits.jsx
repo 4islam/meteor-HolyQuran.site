@@ -33,6 +33,11 @@ export default class Credits extends Component {
 
                       <ul>
                         <b>5 </b>
+                        <li>Suggestion Menu response updated to include matched strings from search results</li>                        
+                      </ul>
+
+                      <ul>
+                        <b>5 </b>
                         <li>English Topics Search added</li>
                         <li>UI updated</li>
                       </ul>

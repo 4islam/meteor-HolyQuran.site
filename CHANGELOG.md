@@ -1,3 +1,6 @@
+## 5.1:
+  * Suggestion Menu response updated to include matched strings from search results
+
 ## 5:
   * English Topics Search added
   * UI updated
