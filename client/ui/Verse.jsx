@@ -96,6 +96,7 @@ componentDidMount() {
                <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
                <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
+               // <span>Score {this.props.score} </span>
               </div>
           </a>
           {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French","EnglishCorpus","TopicsEn"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
