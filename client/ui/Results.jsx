@@ -17,9 +17,9 @@ class Results extends Component {
        {
         r?
            r.results.hits?
-             (r.results.hits.hits && r.results.hits.total>0)?
+             (r.results.hits.hits && r.results.hits.total.value>0)?
              <div>
-               <div className='resultCount' dir='ltr'><small>{r.results.hits.total} verses found.</small></div>
+               <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found.</small></div>
                {Object.keys(r.results.hits.hits).map((v) => (
                   <Verse key={r.results.hits.hits[v]._id}
                       highlights={r.results.hits.hits[v].highlight}
@@ -31,7 +31,7 @@ class Results extends Component {
                       analyzers={this.props.analyzers}/>
 
                ))}
-               <Paging total={r.results.hits.total}
+               <Paging total={r.results.hits.total.value}
                   setPage={this.setPage.bind(this)}
                   options={this.props.options}
                   search={this.props.search.bind(this)}
