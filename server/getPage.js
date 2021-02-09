@@ -2,7 +2,7 @@ var http = require("https");
 
 var es = require('elasticsearch');
 var esClient = new es.Client({
-  host: 'localhost:9200',
+  host: '162.213.10.171:9200',
   log: 'warning'
 });
 
