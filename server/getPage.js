@@ -83,8 +83,7 @@ Meteor.methods({
           "query": {
             "match": {
               "ayah": {
-                "query": verse,
-                "type": "phrase"
+                "query": verse
               }
             }
           }
@@ -103,8 +102,7 @@ Meteor.methods({
                     "query": {
                       "match": {
                         "_id": {
-                          "query": nid,
-                          "type": "phrase"
+                          "query": nid
                         }
                       }
                     }
