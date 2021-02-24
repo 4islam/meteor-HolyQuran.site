@@ -32,6 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>5.2 </b>
+                        <li>Performance optimizations</li>
+                      </ul>
+
+                      <ul>
                         <b>5.1 </b>
                         <li>Suggestion Menu response updated to include matched strings from search results</li>
                       </ul>
