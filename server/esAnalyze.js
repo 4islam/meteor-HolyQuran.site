@@ -1,10 +1,11 @@
 // var Future = Npm.require('fibers/future');
-
+const eshost = (process.env.ESHOST || 'localhost:9200');
 var es = require('elasticsearch');
 var esClient = new es.Client({
-  host: 'localhost:9200',
+  host: eshost,
   log: 'warning'
 });
+
 
 Meteor.startup(() => {
   //ESAnalyzerCol.remove({});// Removes collection per session
@@ -82,9 +83,11 @@ getAnalysis = function (analyzersStr,text,id,sessionId,date,i,Collection,ArStr,m
   //console.log(analyzer);
   esClient.indices.analyze(
     {
-      analyzer : analyzer.id,
       index : 'hq',
-      text : text.slice(0,batchsize)
+      body : {
+        analyzer : analyzer.id,
+        text : text.slice(0,batchsize)
+      }
     }, Meteor.bindEnvironment(function (err, res) {
       if (!err) {
         var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));

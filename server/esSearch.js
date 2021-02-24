@@ -1,8 +1,8 @@
 // var Future = Npm.require('fibers/future');
-
+const eshost = (process.env.ESHOST || 'localhost:9200');
 var es = require('elasticsearch');
 var esClient = new es.Client({
-  host: 'localhost:9200',
+  host: eshost,
   log: 'warning'
 });
 

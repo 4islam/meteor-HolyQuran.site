@@ -55,7 +55,7 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"TopicsEn",state:true,name:'Topics - English',options: [
+        {id:"TopicsEn",state:false,name:'Topics - English',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},

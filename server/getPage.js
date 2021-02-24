@@ -1,8 +1,8 @@
 var http = require("https");
-
+const eshost = (process.env.ESHOST || 'localhost:9200');
 var es = require('elasticsearch');
 var esClient = new es.Client({
-  host: 'localhost:9200',
+  host: eshost,
   log: 'warning'
 });
 
@@ -83,8 +83,7 @@ Meteor.methods({
           "query": {
             "match": {
               "ayah": {
-                "query": verse,
-                "type": "phrase"
+                "query": verse
               }
             }
           }
@@ -103,8 +102,7 @@ Meteor.methods({
                     "query": {
                       "match": {
                         "_id": {
-                          "query": nid,
-                          "type": "phrase"
+                          "query": nid
                         }
                       }
                     }
