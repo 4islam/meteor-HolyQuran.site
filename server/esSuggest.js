@@ -337,6 +337,7 @@ Meteor.methods({
       let suggest_query =
       {
         index: "hq",
+        request_cache: request_cache,
         body: {
             size: 5,
             "sort": [

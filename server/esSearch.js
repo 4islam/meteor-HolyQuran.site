@@ -268,6 +268,7 @@ Meteor.methods({
 
       let search_query = {
         index: "hq",
+        request_cache: request_cache,
         body: {
           size: limit,
           from: (page-1)*limit,

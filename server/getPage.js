@@ -79,6 +79,7 @@ Meteor.methods({
     var requestSync = Meteor.wrapAsync(function(verse,callback) {
     esClient.search({
       index: "hq",
+      request_cache: request_cache,
       body: {
           "query": {
             "match": {
