@@ -15,7 +15,7 @@ class Aggregates extends Component {
  var aggs=this.props.aggregates
 
  return <div className="Aggregates base tab-pane active" role="tabpanel" id="Summaries">
-         <div className="English" dir="rtl"><span>Search Refinement Options:</span></div>
+         <div className="English" dir="rtl"><span>Search cohorts:</span></div>
          <br/>
        {
          aggs?
@@ -46,8 +46,10 @@ class Aggregates extends Component {
  }
  handleChange(query, e) {
    //console.log(query, options, e.target);
-   this.props.search(window.query+' '+query, this.props.options);
-   $(window.inputId)[0].value = window.query+' '+query;
+   // this.props.search(window.query+' '+query, this.props.options);
+   this.props.search(query, this.props.options);
+   // $(window.inputId)[0].value = window.query+' '+query;
+   $(window.inputId)[0].value = query;
  }
 }
 

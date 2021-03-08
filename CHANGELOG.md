@@ -1,6 +1,11 @@
+## 5.3:
+  * Multi-word match priority added
+  * Aggregation menu now replaces the query instead of appending to it
+  * Minimum match score increased for performance reasons 
+
 ## 5.2:
   * Performance enhanced by query caching
-  *
+
 ## 5.1:
   * Suggestion Menu response updated to include matched strings from search results
 

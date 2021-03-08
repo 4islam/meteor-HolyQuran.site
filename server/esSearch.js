@@ -83,6 +83,8 @@ Meteor.methods({
 
       matchArray = [
         {match: {[options[0].id]: {query: query,"boost": 10}}},
+        {match: {[options[0].id+".trigram"]: {query: query,"boost": 10.5}}},
+        {match: {[options[0].id+".trigram_normalized"]: {query: query,"boost": 9.5}}},
         // {match: {"Arabic": {query: query,"boost": 10}}},
 
         {match: {[options[0].id+".ar_stems"]: {query: query,"boost": 6}}},
@@ -112,7 +114,7 @@ Meteor.methods({
         {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
 
         {match: {"Surah": {query: query,"boost": 3}}},
-
+        {match: {"Surah.trigram": {query: query,"boost": 3.5}}},
         {match: {"Surah.ar_normalized": {query: query,"boost": 1.7}}},
         {match: {"Surah.ar_ngram_original": {query: query,"boost": 1}}},
         {match: {"Surah.ar_normalized_phonetic": {query: query,"boost": 1.7}}},
@@ -132,38 +134,50 @@ Meteor.methods({
         {match: {"ayah.ayah_normalized_ur": {query: query,"boost": 6}}},
 
         {match: {"Urdu": {query: query,"boost": 5}}},
+        {match: {"Urdu.trigram": {query: query,"boost": 5.5}}},
         // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
         {match: {"Urdu.ur_normalized": {query: query,"boost": 3}}},
         {match: {"Urdu.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"Urdu.ur_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"UrduTS": {query: query,"boost": 5}}},
+        {match: {"UrduTS.trigram": {query: query,"boost": 5.5}}},
         // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
         {match: {"UrduTS.ur_normalized": {query: query,"boost": 3}}},
         {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"English": {query: query,"boost": 5}}},
+        {match: {"English.trigram": {query: query,"boost": 5.5}}},
+        {match: {"English.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"English.en_normalized": {query: query,"boost": 3}}},
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
+        {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
+        {match: {"TopicsEn.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"TopicsEn.en_normalized": {query: query,"boost": 3}}},
         {match: {"TopicsEn.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"TopicsEn.en_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"German": {query: query,"boost": 5}}},
+        {match: {"German.trigram": {query: query,"boost": 5.5}}},
+        {match: {"German.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"German.de_normalized": {query: query,"boost": 3}}},
         {match: {"German.de_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"German.de_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"Spanish": {query: query,"boost": 5}}},
+        {match: {"Spanish.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Spanish.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"Spanish.es_normalized": {query: query,"boost": 3}}},
         {match: {"Spanish.es_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"Spanish.es_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"French": {query: query,"boost": 5}}},
+        {match: {"French.trigram": {query: query,"boost": 5.5}}},
+        {match: {"French.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"French.fr_normalized": {query: query,"boost": 3}}},
         {match: {"French.fr_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}},
@@ -171,6 +185,8 @@ Meteor.methods({
         //{match: {[options[0].id+".trigram"]: {query: query,"boost": 8}}}
 
         {match: {"EnglishCorpus": {query: query,"boost": 5}}},
+        {match: {"EnglishCorpus.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishCorpus.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"EnglishCorpus.en_normalized": {query: query,"boost": 3}}},
         {match: {"EnglishCorpus.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"EnglishCorpus.en_normalized_ngram": {query: query,"boost": 2}}},
@@ -269,10 +285,11 @@ Meteor.methods({
       let search_query = {
         index: "hq",
         request_cache: request_cache,
+        requestTimeout : "150000",  //150 seconds
         body: {
           size: limit,
           from: (page-1)*limit,
-          min_score: 1,
+          min_score: 9,
           query: {
             bool:{
               should:matchArray
@@ -652,26 +669,30 @@ Meteor.methods({
       // console.log(JSON.stringify(search_query.body));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
-            var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
-            //matches = res.suggest;
-            matches = obj;
+            // console.log(JSON.stringify(res));
+            if (res && JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1')).hits) {
+              var obj = JSON.parse(JSON.stringify(res).replace(/\.([\w]+":)/g,'_$1'));
+              //matches = res.suggest;
+              matches = obj;
 
-            highlights = []
-            if (Object.keys(search_query.body.highlight).length !== 0) {
-              highlights = getMarkedTokens(matches);
-            }
-            ESCol.insert({query:tquery, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
-            // console.log(matches.hits.hits.length)
-            console.log(sessionId,"Search Query ES retrieved for:",tquery);
-
-            if (highlights.length>0) {
-              text_array = highlights.map(x=>x.token.id)
-              if (text_array.length > 0) {
-                update_analyzers(options[0].id)
-                getAnalysis(analyzers.slice(0,3),text_array,tquery,sessionId,date,0,ESAnalyzerHighlightsCol,options[0].id)
+              highlights = []
+              if (Object.keys(search_query.body.highlight).length !== 0) {
+                highlights = getMarkedTokens(matches);
               }
-            }
+              ESCol.insert({query:tquery, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
+              // console.log(matches.hits.hits.length)
+              console.log(sessionId,"Search Query ES retrieved for:",tquery);
 
+              if (highlights.length>0) {
+                text_array = highlights.map(x=>x.token.id)
+                if (text_array.length > 0) {
+                  update_analyzers(options[0].id)
+                  getAnalysis(analyzers.slice(0,3),text_array,tquery,sessionId,date,0,ESAnalyzerHighlightsCol,options[0].id)
+                }
+              }
+            } else {
+              console.log("Error: ", err,res);
+            }
       }))
      }
  }
