@@ -289,7 +289,7 @@ Meteor.methods({
         body: {
           size: limit,
           from: (page-1)*limit,
-          min_score: 9,
+          min_score: 25,
           query: {
             bool:{
               should:matchArray
