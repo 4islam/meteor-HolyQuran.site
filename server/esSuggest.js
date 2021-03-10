@@ -103,6 +103,9 @@ Meteor.methods({
      fields.push(ArStr+".ar_verbs")
      fields.push(ArStr+".ar_to_en_corpus")
 
+     fields.push(ArStr+".trigram")
+     fields.push(ArStr+".trigram_normalized")
+
    }
 
     // console.log(fields)
