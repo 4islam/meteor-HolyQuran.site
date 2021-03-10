@@ -1,4 +1,5 @@
 ## 5.3:
+  * Multi-word suggestion for Arabic added
   * Multi-word match priority added
   * Aggregation menu now replaces the query instead of appending to it
   * Minimum match score increased for performance reasons 
