@@ -660,6 +660,7 @@ Meteor.methods({
           search_query.body["sort"]=[{"s":"asc"},{"a":"asc"}]
           search_query.body.highlight={}
           search_query.body.suggest={}
+          search_query.body.min_score=1
         } else {
           search_query.body.query.bool["should"] = shouldDSL
         }
