@@ -250,6 +250,16 @@ Meteor.methods({
                 }
               })
             }
+            if (x.id == 'phrases') {
+              matchArray.find(function (x,i){
+                var re = new RegExp(y.id+"\\..*trigram");
+                if (Object.keys(x.match)[0].search(re)!=-1) {
+                  if (removeCandidates.indexOf(i)==-1) {
+                    removeCandidates.push(i);
+                  }
+                }
+              })
+            }
             if (x.id == 'ngram') {
               matchArray.find(function (x,i){
                 var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp(y.id+"(\\..*)?$");
