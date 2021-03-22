@@ -59,6 +59,36 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
+        {id:"UrduAhmedAli",state:false,name:'احمد علی اردو',options: [
+                  {id:"phonetic",state:false,name:'Phonetic'},
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"UrduMaududi",state:false,name:'مودودی اردو',options: [
+                  {id:"phonetic",state:false,name:'Phonetic'},
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishAhmedAli",state:false,name:'English Ahmed Ali',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishArberry",state:false,name:'English Arberry',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishMaududi",state:false,name:'English Maududi',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishPickthall",state:false,name:'English Pickthall',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishSahih",state:false,name:'English Sahih',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
         {id:"EnglishCorpus",state:false,name:'English - corpus',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},

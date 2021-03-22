@@ -96,10 +96,10 @@ componentDidMount() {
                <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
                <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
-               
+
               </div>
           </a>
-          {(this.props.options.map(x=>(["Urdu","UrduTS","English","German","Spanish","French","EnglishCorpus","TopicsEn"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
+          {(this.props.options.map(x=>(["Urdu","UrduTS","UrduMaududi","UrduAhmedAli","English","German","Spanish","French","EnglishCorpus","TopicsEn","EnglishSahih","EnglishPickthall","EnglishMaududi","EnglishArberry","EnglishAhmedAli"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
@@ -146,6 +146,62 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.UrduAhmedAli}
+                       Type="UrduAhmedAli"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="UrduMaududi"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.UrduMaududi}
+                       Type="UrduMaududi"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishAhmedAli}
+                       Type="EnglishAhmedAli"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishArberry"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishArberry}
+                       Type="EnglishArberry"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishMaududi"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishMaududi}
+                       Type="EnglishMaududi"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishPickthall"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishPickthall}
+                       Type="EnglishPickthall"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishSahih"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishSahih}
+                       Type="EnglishSahih"
                        highlights={this.props.highlights}/>
                 </a>:''
               }

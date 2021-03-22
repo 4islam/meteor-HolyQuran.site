@@ -285,11 +285,11 @@ a.list-group-item.Verse {
     font-family: Scheheraza, Scheherazade;
     word-spacing: 2px;
 }
-.English, .German, .Spanish, .French, .Urdu, .UrduTS, .EnglishCorpus {
+div.Translation.well {
   font-weight:lighter;
   font-size: 1em;
 }
-.English, .German, .Spanish, .French, .EnglishCorpus {
+.English, .German, .Spanish, .French, .EnglishCorpus, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
   direction: ltr;
   text-align: left;
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -310,7 +310,7 @@ span.cohortsCount{
   font-size: smaller;
 }
 
- .Urdu, .UrduTS {
+ .Urdu, .UrduTS, .UrduMaududi, .UrduAhmedAli {
    /* font-family: NafeesWeb, NafeesWebNaskh; */
    font-family: 'Jameel Noori Nastaleeq', -apple-system, BlinkMacSystemFont, noto_nastaliq, 'Urdu Naskh Asiatype', 'Nafees Web Naskh';
    font-size: 1.2em;

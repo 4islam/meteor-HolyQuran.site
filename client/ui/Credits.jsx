@@ -32,6 +32,21 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>5.4 </b>
+                        <li>Following translations added</li>
+                        <ul>
+                        <li>English Pickthall</li>
+                        <li>English Sahih</li>
+                        <li>English Maududi</li>
+                        <li>English Ahmed Ali</li>
+                        <li>English Arberry</li>
+                        <li>English Yusuf Ali</li>
+                        <li>Urdu Maududi</li>
+                        <li>Urdu Ahmed li</li>
+                        </ul>
+                      </ul>
+
+                      <ul>
                         <b>5.3 </b>
                         <li>Multi-word search enhanced</li>
                         <li>Minor bug fixes</li>

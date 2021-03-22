@@ -147,6 +147,21 @@ Meteor.methods({
         {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"UrduAhmedAli": {query: query,"boost": 5}}},
+        {match: {"UrduAhmedAli.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduAhmedAli.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduAhmedAli.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduAhmedAli.ur_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"UrduMaududi": {query: query,"boost": 5}}},
+        {match: {"UrduMaududi.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduMaududi.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduMaududi.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduMaududi.ur_normalized_ngram": {query: query,"boost": 2}}},
+
+
         {match: {"English": {query: query,"boost": 5}}},
         {match: {"English.trigram": {query: query,"boost": 5.5}}},
         {match: {"English.trigram_normalized": {query: query,"boost": 4.5}}},
@@ -191,7 +206,42 @@ Meteor.methods({
         {match: {"EnglishCorpus.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"EnglishCorpus.en_normalized_ngram": {query: query,"boost": 2}}},
         {match: {"EnglishCorpus.en_corpus_to_ar": {query: query,"boost": 2}}},
-        {match: {"EnglishCorpus.en_corpus_to_ar_noor": {query: query,"boost": 2}}}
+        {match: {"EnglishCorpus.en_corpus_to_ar_noor": {query: query,"boost": 2}}},
+
+        {match: {"EnglishAhmedAli": {query: query,"boost": 5}}},
+        {match: {"EnglishAhmedAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishAhmedAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishAhmedAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishAhmedAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishAhmedAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishArberry": {query: query,"boost": 5}}},
+        {match: {"EnglishArberry.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishArberry.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishArberry.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishArberry.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishArberry.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishMaududi": {query: query,"boost": 5}}},
+        {match: {"EnglishMaududi.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishMaududi.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishMaududi.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishMaududi.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishMaududi.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishPickthall": {query: query,"boost": 5}}},
+        {match: {"EnglishPickthall.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishPickthall.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishPickthall.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishPickthall.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishPickthall.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishSahih": {query: query,"boost": 5}}},
+        {match: {"EnglishSahih.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishSahih.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishSahih.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishSahih.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishSahih.en_normalized_ngram": {query: query,"boost": 2}}}
 
       ];
 

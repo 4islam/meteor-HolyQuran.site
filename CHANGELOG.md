@@ -1,8 +1,19 @@
+## 5.4:
+  * The following translations added with all related layers:
+    - English Pickthall
+    - English Sahih
+    - English Maududi
+    - English Ahmed Ali
+    - English Arberry
+    - English Yusuf Ali
+    - Urdu Maududi
+    - Urdu AhmedAli
+
 ## 5.3:
   * Multi-word suggestion for Arabic added
   * Multi-word match priority added
   * Aggregation menu now replaces the query instead of appending to it
-  * Minimum match score increased for performance reasons 
+  * Minimum match score increased for performance reasons
 
 ## 5.2:
   * Performance enhanced by query caching
