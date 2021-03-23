@@ -285,7 +285,7 @@ a.list-group-item.Verse {
     font-family: Scheheraza, Scheherazade;
     word-spacing: 2px;
 }
-div.Translation.well {
+.English, .German, .Spanish, .French, .Urdu, .UrduTS, .EnglishCorpus, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
   font-weight:lighter;
   font-size: 1em;
 }

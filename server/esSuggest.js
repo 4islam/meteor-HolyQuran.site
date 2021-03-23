@@ -47,9 +47,33 @@ Meteor.methods({
         } else if (o=="UrduTS") {
           fields.push("UrduTS.ur_normalized_ngram")
           fields.push("UrduTS.trigram")
+        } else if (o=="UrduAhmedAli") {
+          fields.push("UrduAhmedAli.ur_normalized_ngram")
+          fields.push("UrduAhmedAli.trigram")
+        } else if (o=="UrduMaududi") {
+          fields.push("UrduMaududi.ur_normalized_ngram")
+          fields.push("UrduMaududi.trigram")
         } else if (o=="English") {
           fields.push("English.en_normalized_ngram")
           fields.push("English.trigram")
+        } else if (o=="EnglishPickthall") {
+          fields.push("EnglishPickthall.en_normalized_ngram")
+          fields.push("EnglishPickthall.trigram")
+        } else if (o=="EnglishSahih") {
+          fields.push("EnglishSahih.en_normalized_ngram")
+          fields.push("EnglishSahih.trigram")
+        } else if (o=="EnglishMaududi") {
+          fields.push("EnglishMaududi.en_normalized_ngram")
+          fields.push("EnglishMaududi.trigram")
+        } else if (o=="EnglishAhmedAli") {
+          fields.push("EnglishAhmedAli.en_normalized_ngram")
+          fields.push("EnglishAhmedAli.trigram")
+        } else if (o=="EnglishArberry") {
+          fields.push("EnglishArberry.en_normalized_ngram")
+          fields.push("EnglishArberry.trigram")
+        } else if (o=="EnglishYusufAli") {
+          fields.push("EnglishYusufAli.en_normalized_ngram")
+          fields.push("EnglishYusufAli.trigram")
         } else if (o=="TopicsEn") {
           fields.push("TopicsEn.en_original")
           fields.push("TopicsEn.en_normalized_ngram")
