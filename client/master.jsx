@@ -36,7 +36,8 @@ export default class Master extends Component {
                 ]},
         {id:"English",state:true,name:'English',options: [
                   {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
+                  {id:"normalized",state:true,name:'Normalized'},
+                  {id:"translation",state:true,name:'Translation (beta)'}
                 ]},
         {id:"German",state:false,name:'German',options: [
                   {id:"ngram",state:true,name:'Teilweise'},

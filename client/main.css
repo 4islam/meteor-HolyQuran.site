@@ -218,7 +218,7 @@ div.highlights mark {
   background: #ff0;
 }
 .highlights.to mark {
-  background: #333;
+  background: #f37e00;
 }
 .highlights.trigram mark {
   border-bottom: 2px solid blue;

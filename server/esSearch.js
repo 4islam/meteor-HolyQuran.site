@@ -111,6 +111,7 @@ Meteor.methods({
         {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
         {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
+        {match: {[options[0].id+".ar_to_en"]: {query: query,"boost": 2}}},
         {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
 
         {match: {"Surah": {query: query,"boost": 3}}},
@@ -168,6 +169,8 @@ Meteor.methods({
         {match: {"English.en_normalized": {query: query,"boost": 3}}},
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar": {query: query,"boost": 2}}},
+        // {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
@@ -603,6 +606,11 @@ Meteor.methods({
                         field: options[0].id+".ar_verbs"
                     }
                 },
+                ["s_"+options[0].id+"_to_en"]: {
+                     significant_terms: {
+                         field: options[0].id+".ar_to_en"
+                     }
+                 },
                 ["s_"+options[0].id+"_to_en_corpus"]: {
                      significant_terms: {
                          field: options[0].id+".ar_to_en_corpus"
@@ -649,6 +657,16 @@ Meteor.methods({
                            field: "English.trigram"
                        }
                 },
+                "s_English_to_Arabic": {
+                       significant_terms: {
+                           field: "English.en_to_ar"
+                       }
+                },
+                // "s_English_to_ArabicNoor": {
+                //        significant_terms: {
+                //            field: "English.en_to_ar_noor"
+                //        }
+                // },
                 "s_Topics_English": {
                        significant_terms: {
                            field: "TopicsEn.significant"

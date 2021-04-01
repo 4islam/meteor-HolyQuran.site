@@ -56,6 +56,8 @@ Meteor.methods({
         } else if (o=="English") {
           fields.push("English.en_normalized_ngram")
           fields.push("English.trigram")
+          fields.push("English.en_to_ar")
+          // fields.push("English.en_to_ar_noor")
         } else if (o=="EnglishPickthall") {
           fields.push("EnglishPickthall.en_normalized_ngram")
           fields.push("EnglishPickthall.trigram")
@@ -125,6 +127,7 @@ Meteor.methods({
      fields.push(ArStr+".ar_adjectives")
      fields.push(ArStr+".ar_propernouns")
      fields.push(ArStr+".ar_verbs")
+     fields.push(ArStr+".ar_to_en")
      fields.push(ArStr+".ar_to_en_corpus")
 
      fields.push(ArStr+".trigram")
@@ -152,7 +155,7 @@ Meteor.methods({
 
       if (Object.prototype.toString.call(options) === '[object Array]') {
         options.filter(function(o){
-          return names_array.indexOf(o) !== -1                 //String matchi sanitization
+          return names_array.indexOf(o) !== -1                 //String matching sanitization
         }).map(function(o) {
           if (o=="Urdu") {
             aggs["s_Urdu_Translation_Words"] = {
@@ -179,6 +182,21 @@ Meteor.methods({
                      "field": "English.trigram",
                    "size": size
                   }
+            }
+            if (ArStr == "Arabic") {
+              aggs["s_English_to_Arabic"] = {
+                   significant_terms: {
+                     "field": "English.en_to_ar",
+                     "size": size
+                    }
+              }
+            } else {
+              // aggs["s_English_to_Arabic"] = {
+              //      significant_terms: {
+              //        "field": "English.en_to_ar_noor",
+              //        "size": size
+              //       }
+              // }
             }
         } else if (o=="TopicsEn") {
           aggs["s_Topics_English"] = {
@@ -350,6 +368,12 @@ Meteor.methods({
                  "size": 1
                 }
            }
+           aggs["s_"+ArStr+"_to_English"] = {
+                 significant_terms: {
+                     "field": ArStr+".ar_to_en",
+                  "size": 1
+                 }
+            }
            aggs["s_"+ArStr+"_to_English_Corpus"] = {
                  significant_terms: {
                      "field": ArStr+".ar_to_en_corpus",
