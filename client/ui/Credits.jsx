@@ -39,6 +39,7 @@ export default class Credits extends Component {
                           <li>English to Arabic Noor</li>
                           <li>Arabic Noor to English</li>
                         </ul>
+                      </ul>
 
                       <ul>
                         <b>5.5 </b>
@@ -47,6 +48,7 @@ export default class Credits extends Component {
                           <li>English to Arabic</li>
                           <li>Arabic to English</li>
                         </ul>
+                      </ul>
 
                       <ul>
                         <b>5.4 </b>
