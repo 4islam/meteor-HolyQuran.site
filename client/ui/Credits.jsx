@@ -31,6 +31,23 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
 
+
+                      <ul>
+                        <b>5.6 </b>
+                        <li>English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:</li>
+                        <ul>
+                          <li>English to Arabic Noor</li>
+                          <li>Arabic Noor to English</li>
+                        </ul>
+
+                      <ul>
+                        <b>5.5 </b>
+                        <li>English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:</li>
+                        <ul>
+                          <li>English to Arabic</li>
+                          <li>Arabic to English</li>
+                        </ul>
+
                       <ul>
                         <b>5.4 </b>
                         <li>Following translations added</li>

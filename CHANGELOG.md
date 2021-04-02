@@ -1,3 +1,8 @@
+## 5.6:
+  * English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:
+    - English to Arabic Noor
+    - Arabic Noor to English
+
 ## 5.5:
   * English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:
     - English to Arabic

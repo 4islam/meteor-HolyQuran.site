@@ -57,7 +57,7 @@ Meteor.methods({
           fields.push("English.en_normalized_ngram")
           fields.push("English.trigram")
           fields.push("English.en_to_ar")
-          // fields.push("English.en_to_ar_noor")
+          fields.push("English.en_to_ar_noor")
         } else if (o=="EnglishPickthall") {
           fields.push("EnglishPickthall.en_normalized_ngram")
           fields.push("EnglishPickthall.trigram")

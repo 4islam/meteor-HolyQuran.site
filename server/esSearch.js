@@ -170,7 +170,7 @@ Meteor.methods({
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
         {match: {"English.en_to_ar": {query: query,"boost": 2}}},
-        // {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
@@ -348,7 +348,7 @@ Meteor.methods({
       let search_query = {
         index: "hq",
         request_cache: request_cache,
-        requestTimeout : "150000",  //150 seconds
+        requestTimeout : "60000",  //150 seconds
         body: {
           size: limit,
           from: (page-1)*limit,
@@ -662,11 +662,11 @@ Meteor.methods({
                            field: "English.en_to_ar"
                        }
                 },
-                // "s_English_to_ArabicNoor": {
-                //        significant_terms: {
-                //            field: "English.en_to_ar_noor"
-                //        }
-                // },
+                "s_English_to_ArabicNoor": {
+                       significant_terms: {
+                           field: "English.en_to_ar_noor"
+                       }
+                },
                 "s_Topics_English": {
                        significant_terms: {
                            field: "TopicsEn.significant"
