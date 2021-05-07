@@ -58,6 +58,8 @@ Meteor.methods({
           fields.push("English.trigram")
           fields.push("English.en_to_ar")
           fields.push("English.en_to_ar_noor")
+          fields.push("English.en_to_ar_trigram")
+          fields.push("English.en_to_ar_noor_trigram")
         } else if (o=="EnglishPickthall") {
           fields.push("EnglishPickthall.en_normalized_ngram")
           fields.push("EnglishPickthall.trigram")
@@ -127,7 +129,9 @@ Meteor.methods({
      fields.push(ArStr+".ar_adjectives")
      fields.push(ArStr+".ar_propernouns")
      fields.push(ArStr+".ar_verbs")
+
      fields.push(ArStr+".ar_to_en")
+     fields.push(ArStr+".ar_to_en_trigram")
      fields.push(ArStr+".ar_to_en_corpus")
 
      fields.push(ArStr+".trigram")

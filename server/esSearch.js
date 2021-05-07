@@ -111,8 +111,9 @@ Meteor.methods({
         {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
         {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
-        {match: {[options[0].id+".ar_to_en"]: {query: query,"boost": 2}}},
+        // {match: {[options[0].id+".ar_to_en"]: {query: query,"boost": 2}}},
         {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
+        {match: {[options[0].id+".ar_to_en_trigram"]: {query: query,"boost": 2.5}}},
 
         {match: {"Surah": {query: query,"boost": 3}}},
         {match: {"Surah.trigram": {query: query,"boost": 3.5}}},
@@ -171,6 +172,8 @@ Meteor.methods({
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
         {match: {"English.en_to_ar": {query: query,"boost": 2}}},
         {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_trigram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor_trigram": {query: query,"boost": 2.5}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
@@ -352,7 +355,12 @@ Meteor.methods({
         body: {
           size: limit,
           from: (page-1)*limit,
-          min_score: 25,
+          sort : [
+            {_score: "desc"},
+            {s:"asc"},
+            {a:"asc"}
+          ],
+          // min_score: 25,
           query: {
             bool:{
               should:matchArray
