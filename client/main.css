@@ -285,11 +285,11 @@ a.list-group-item.Verse {
     font-family: Scheheraza, Scheherazade;
     word-spacing: 2px;
 }
-.English, .German, .Spanish, .French, .Urdu, .UrduTS, .EnglishCorpus, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
+.English, .German, .Spanish, .French, .Urdu, .UrduTS, .EnglishCorpus, .EnglishMuhammadAli , .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
   font-weight:lighter;
   font-size: 1em;
 }
-.English, .German, .Spanish, .French, .EnglishCorpus, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
+.English, .German, .Spanish, .French, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
   direction: ltr;
   text-align: left;
   font-family: Verdana, Arial, Helvetica, sans-serif;

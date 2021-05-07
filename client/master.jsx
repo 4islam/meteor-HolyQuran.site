@@ -70,6 +70,10 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
+        {id:"EnglishMuhammadAli",state:false,name:'English Muhammad Ali ra',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
         {id:"EnglishAhmedAli",state:false,name:'English Ahmed Ali',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -90,7 +94,7 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishCorpus",state:false,name:'English - corpus',options: [
+        {id:"EnglishCorpus",state:false,name:'English - Talal Itani',options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}

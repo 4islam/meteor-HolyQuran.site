@@ -1,3 +1,6 @@
+## 5.8:
+  * English Translation of Muhammad Ali ra added     
+
 ## 5.7:
   * Translation phrases layers added for     
     - Arabic to English

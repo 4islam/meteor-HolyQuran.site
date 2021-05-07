@@ -31,6 +31,11 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
                       <ul>
+                        <b>5.8 </b>
+                        <li>English Translation of Muhammad Ali ra added</li>
+                      </ul>
+
+                      <ul>
                         <b>5.7 </b>
                         <li>Translation phrases layers added for:</li>
                         <ul>

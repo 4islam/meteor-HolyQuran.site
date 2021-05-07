@@ -247,7 +247,14 @@ Meteor.methods({
         {match: {"EnglishSahih.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"EnglishSahih.en_normalized": {query: query,"boost": 3}}},
         {match: {"EnglishSahih.en_ngram_original": {query: query,"boost": 2.5}}},
-        {match: {"EnglishSahih.en_normalized_ngram": {query: query,"boost": 2}}}
+        {match: {"EnglishSahih.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishMuhammadAli": {query: query,"boost": 5}}},
+        {match: {"EnglishMuhammadAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishMuhammadAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishMuhammadAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishMuhammadAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}}
 
       ];
 
@@ -663,6 +670,16 @@ Meteor.methods({
                 "s_English_phrases": {
                        significant_terms: {
                            field: "English.trigram"
+                       }
+                },
+                "s_English_Muhammad_Ali": {
+                       significant_terms: {
+                           field: "EnglishMuhammadAli.significant"
+                       }
+                },
+                "s_English_Muhammad_Ali_phrases": {
+                       significant_terms: {
+                           field: "EnglishMuhammadAli.trigram"
                        }
                 },
                 "s_English_to_Arabic": {

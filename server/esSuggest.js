@@ -63,6 +63,9 @@ Meteor.methods({
         } else if (o=="EnglishPickthall") {
           fields.push("EnglishPickthall.en_normalized_ngram")
           fields.push("EnglishPickthall.trigram")
+        } else if (o=="EnglishMuhammadAli") {
+          fields.push("EnglishMuhammadAli.en_normalized_ngram")
+          fields.push("EnglishMuhammadAli.trigram")
         } else if (o=="EnglishSahih") {
           fields.push("EnglishSahih.en_normalized_ngram")
           fields.push("EnglishSahih.trigram")
