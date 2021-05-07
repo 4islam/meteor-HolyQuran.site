@@ -22,7 +22,7 @@ export default class Master extends Component {
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
-                  {id:"translation",state:false,name:'Translation (beta)'}
+                  {id:"translation",state:true,name:'Translation'}
                 ]},
         {id:"Surah",state:true,name:'Chapter Names',options: [
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -35,8 +35,9 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"English",state:true,name:'English',options: [
-                  {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
+                  {id:"ngram",state:false,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'},
+                  {id:"translation",state:true,name:'Translation'}
                 ]},
         {id:"German",state:false,name:'German',options: [
                   {id:"ngram",state:true,name:'Teilweise'},

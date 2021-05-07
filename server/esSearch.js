@@ -111,7 +111,9 @@ Meteor.methods({
         {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
         {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
+        // {match: {[options[0].id+".ar_to_en"]: {query: query,"boost": 2}}},
         {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
+        {match: {[options[0].id+".ar_to_en_trigram"]: {query: query,"boost": 2.5}}},
 
         {match: {"Surah": {query: query,"boost": 3}}},
         {match: {"Surah.trigram": {query: query,"boost": 3.5}}},
@@ -168,6 +170,10 @@ Meteor.methods({
         {match: {"English.en_normalized": {query: query,"boost": 3}}},
         {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_trigram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor_trigram": {query: query,"boost": 2.5}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
@@ -345,11 +351,16 @@ Meteor.methods({
       let search_query = {
         index: "hq",
         request_cache: request_cache,
-        requestTimeout : "150000",  //150 seconds
+        requestTimeout : "60000",  //150 seconds
         body: {
           size: limit,
           from: (page-1)*limit,
-          min_score: 25,
+          sort : [
+            {_score: "desc"},
+            {s:"asc"},
+            {a:"asc"}
+          ],
+          // min_score: 25,
           query: {
             bool:{
               should:matchArray
@@ -603,6 +614,11 @@ Meteor.methods({
                         field: options[0].id+".ar_verbs"
                     }
                 },
+                ["s_"+options[0].id+"_to_en"]: {
+                     significant_terms: {
+                         field: options[0].id+".ar_to_en"
+                     }
+                 },
                 ["s_"+options[0].id+"_to_en_corpus"]: {
                      significant_terms: {
                          field: options[0].id+".ar_to_en_corpus"
@@ -647,6 +663,16 @@ Meteor.methods({
                 "s_English_phrases": {
                        significant_terms: {
                            field: "English.trigram"
+                       }
+                },
+                "s_English_to_Arabic": {
+                       significant_terms: {
+                           field: "English.en_to_ar"
+                       }
+                },
+                "s_English_to_ArabicNoor": {
+                       significant_terms: {
+                           field: "English.en_to_ar_noor"
                        }
                 },
                 "s_Topics_English": {

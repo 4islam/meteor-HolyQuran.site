@@ -1,3 +1,21 @@
+## 5.7:
+  * Translation phrases layers added for     
+    - Arabic to English
+    - Arabic Noor to English
+    - English to Arabic Noor
+    - English to Arabic
+  * Meteor updated to 2.2
+
+## 5.6:
+  * English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:
+    - English to Arabic Noor
+    - Arabic Noor to English
+
+## 5.5:
+  * English Mapping for English Translation by Hadhrat Moulavi Sher Ali ra sahib added, with following stages:
+    - English to Arabic
+    - Arabic to English
+
 ## 5.4:
   * The following translations added with all related layers:
     - English Pickthall
