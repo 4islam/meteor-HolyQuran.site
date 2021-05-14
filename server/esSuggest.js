@@ -60,12 +60,15 @@ Meteor.methods({
           fields.push("English.en_to_ar_noor")
           fields.push("English.en_to_ar_trigram")
           fields.push("English.en_to_ar_noor_trigram")
-        } else if (o=="EnglishPickthall") {
-          fields.push("EnglishPickthall.en_normalized_ngram")
-          fields.push("EnglishPickthall.trigram")
+        } else if (o=="EnglishZafrullahKhan") {
+          fields.push("EnglishZafrullahKhan.en_normalized_ngram")
+          fields.push("EnglishZafrullahKhan.trigram")
         } else if (o=="EnglishMuhammadAli") {
           fields.push("EnglishMuhammadAli.en_normalized_ngram")
           fields.push("EnglishMuhammadAli.trigram")
+        } else if (o=="EnglishPickthall") {
+          fields.push("EnglishPickthall.en_normalized_ngram")
+          fields.push("EnglishPickthall.trigram")
         } else if (o=="EnglishSahih") {
           fields.push("EnglishSahih.en_normalized_ngram")
           fields.push("EnglishSahih.trigram")
@@ -180,7 +183,7 @@ Meteor.methods({
           } else if (o=="English") {
             aggs["s_English_Translation_Words"] = {
                  significant_terms: {
-                     "field": "English",
+                   "field": "English",
                    "size": size
                   }
             }
@@ -205,6 +208,111 @@ Meteor.methods({
               //       }
               // }
             }
+        } else if (o=="EnglishZafrullahKhan") {
+          aggs["s_English_Zafrullah_Khan"] = {
+               significant_terms: {
+                "field": "EnglishZafrullahKhan",
+                 "size": size
+                }
+          }
+          aggs["s_English_Zafrullah_Khan_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishZafrullahKhan.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishMuhammadAli") {
+          aggs["s_English_Muhammad_Ali"] = {
+               significant_terms: {
+                 "field": "EnglishMuhammadAli",
+                 "size": size
+                }
+          }
+          aggs["s_English_Muhammad_Ali_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishMuhammadAli.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishYusufAli") {
+          aggs["s_English_Yusuf_Ali"] = {
+               significant_terms: {
+                 "field": "EnglishYusufAli",
+                 "size": size
+                }
+          }
+          aggs["s_English_Yusuf_Ali_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishYusufAli.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishAhmedAli") {
+          aggs["s_English_Ahmed_Ali"] = {
+               significant_terms: {
+                 "field": "EnglishAhmedAli",
+                 "size": size
+                }
+          }
+          aggs["s_English_Ahmed_Ali_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishAhmedAli.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishPickthall") {
+          aggs["s_English_Pickthall"] = {
+               significant_terms: {
+                 "field": "EnglishPickthall",
+                 "size": size
+                }
+          }
+          aggs["s_English_Pickthall_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishPickthall.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishMaududi") {
+          aggs["s_English_Maududi"] = {
+               significant_terms: {
+                 "field": "EnglishMaududi",
+                 "size": size
+                }
+          }
+          aggs["s_English_Maududi_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishMaududi.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishArberry") {
+          aggs["s_English_Arberry"] = {
+               significant_terms: {
+                 "field": "EnglishArberry",
+                 "size": size
+                }
+          }
+          aggs["s_English_Arberry_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishArberry.trigram",
+                 "size": size
+                }
+          }
+        } else if (o=="EnglishSahih") {
+          aggs["s_English_Sahih"] = {
+               significant_terms: {
+                 "field": "EnglishSahih",
+                 "size": size
+                }
+          }
+          aggs["s_English_Sahih_phrases"] = {
+               significant_terms: {
+                 "field": "EnglishSahih.trigram",
+                 "size": size
+                }
+          }
+
         } else if (o=="TopicsEn") {
           aggs["s_Topics_English"] = {
                significant_terms: {
@@ -214,7 +322,7 @@ Meteor.methods({
           }
           aggs["s_Topics_English_Phrases"] = {
                significant_terms: {
-                   "field": "TopicsEn.trigram",
+                 "field": "TopicsEn.trigram",
                  "size": size
                 }
           }
@@ -274,27 +382,27 @@ Meteor.methods({
                   }
             }
           } else if (o=="EnglishCorpus") {
-            aggs["s_English_Corpus_translation_words"] = {
+            aggs["s_English_Talal_Itani_translation_words"] = {
                  significant_terms: {
                    "field": "EnglishCorpus",
                    "size": size
                   }
             }
-            aggs["s_English_Corpus_translation_phrases"] = {
+            aggs["s_English_Talal_Itani_translation_phrases"] = {
                  significant_terms: {
                    "field": "EnglishCorpus.trigram",
                    "size": size
                   }
             }
             if (ArStr == "Arabic") {
-              aggs["s_English_Corpus_to_Arabic"] = {
+              aggs["s_English_Talal_Itani_to_Arabic"] = {
                    significant_terms: {
                      "field": "EnglishCorpus.en_corpus_to_ar",
                      "size": size
                     }
               }
             } else {
-              aggs["s_English_Corpus_to_ArabicNoor"] = {
+              aggs["s_English_Talal_Itani_to_ArabicNoor"] = {
                    significant_terms: {
                      "field": "EnglishCorpus.en_corpus_to_ar_noor",
                      "size": size
@@ -389,7 +497,7 @@ Meteor.methods({
             }
 
        }
-       // console.log((Object.prototype.toString.call(aggs)))
+       // e.log((Object.prototype.toString.call(aggs)))
 
     var requestSync = Meteor.wrapAsync(function(query,callback) {
       let suggest_query =
@@ -437,7 +545,13 @@ Meteor.methods({
             //matches = res.suggest;
             result=obj;
 
-            var hits = result.hits.hits
+            try {
+              var hits = result.hits.hits
+              console.log("suggest:{query: \"" +query + "\",count:"+result.hits.total.value+",time:"+result.took+",fields:\""+"hidden"+"\"}");
+            } catch (e) {
+              console.log(err);
+              console.log("suggest:{query: \"" +query + "\", count:0, time:\"n/a\",error:\""+e+"\",fields:\""+options+"\"}");
+            }
 
             var complete = []
             Object.keys(hits).map(function (v) {        //controlled by Hit Size

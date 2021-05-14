@@ -39,6 +39,10 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
+        {id:"EnglishZafrullahKhan",state:false,name:'English Sir Zafrullah Khan ra',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
         {id:"German",state:false,name:'German',options: [
                   {id:"ngram",state:true,name:'Teilweise'},
                   {id:"normalized",state:true,name:'Normalisierte'}
@@ -95,7 +99,7 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"EnglishCorpus",state:false,name:'English - Talal Itani',options: [
-                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}
                 ]}

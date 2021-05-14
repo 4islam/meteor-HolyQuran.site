@@ -31,8 +31,14 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
                       <ul>
+                        <b>5.9 </b>
+                        <li>English Translation of Sir Muhammad Zafrullah Khan ra added</li>
+                      </ul>
+
+                      <ul>
                         <b>5.8 </b>
                         <li>English Translation of Muhammad Ali ra added</li>
+                        <li>Name changed from English Corpus to Talal Itani</li>
                       </ul>
 
                       <ul>
