@@ -4,6 +4,7 @@ meteor update
 npm update
 meteor update --all-packages
 npx browserslist@latest --update-db
+meteor npm install
 
 if [ -n "$1" ]; then
   #meteor build ../HQVC_ServerConfig/app/HQVC_Advance/$1 --architecture os.linux.x86_64 --server https://holyquran.site --directory
