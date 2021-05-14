@@ -99,7 +99,7 @@ componentDidMount() {
 
               </div>
           </a>
-          {(this.props.options.map(x=>(["Urdu","UrduTS","UrduMaududi","UrduAhmedAli","English","German","Spanish","French","EnglishCorpus","EnglishMuhammadAli","TopicsEn","EnglishSahih","EnglishPickthall","EnglishMaududi","EnglishArberry","EnglishAhmedAli"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
+          {(this.props.options.map(x=>(["Urdu","UrduTS","UrduMaududi","UrduAhmedAli","English","EnglishZafrullahKhan","German","Spanish","French","EnglishCorpus","EnglishMuhammadAli","TopicsEn","EnglishSahih","EnglishPickthall","EnglishMaududi","EnglishArberry","EnglishAhmedAli"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
@@ -114,6 +114,14 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.English}
                        Type="English"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.EnglishZafrullahKhan}
+                       Type="EnglishZafrullahKhan"
                        highlights={this.props.highlights}/>
                 </a>:''
               }

@@ -175,6 +175,14 @@ Meteor.methods({
         {match: {"English.en_to_ar_trigram": {query: query,"boost": 2}}},
         {match: {"English.en_to_ar_noor_trigram": {query: query,"boost": 2.5}}},
 
+        {match: {"EnglishZafrullahKhan": {query: query,"boost": 5}}},
+        {match: {"EnglishZafrullahKhan.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishZafrullahKhan.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishZafrullahKhan.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishZafrullahKhan.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishZafrullahKhan.en_normalized_ngram": {query: query,"boost": 2}}},
+
+
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
         {match: {"TopicsEn.trigram_normalized": {query: query,"boost": 4.5}}},
@@ -670,6 +678,16 @@ Meteor.methods({
                 "s_English_phrases": {
                        significant_terms: {
                            field: "English.trigram"
+                       }
+                },
+                "s_English_Zafrullah_Khan": {
+                       significant_terms: {
+                           field: "EnglishZafrullahKhan.significant"
+                       }
+                },
+                "s_English_Zafrullah_Khan_phrases": {
+                       significant_terms: {
+                           field: "EnglishZafrullahKhan.trigram"
                        }
                 },
                 "s_English_Muhammad_Ali": {
