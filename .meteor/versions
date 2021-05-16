@@ -63,7 +63,7 @@ raix:eventstate@0.0.6
 random@1.2.0
 rate-limit@1.0.9
 react@15.0.2
-react-fast-refresh@0.1.0
+react-fast-refresh@0.1.1
 react-meteor-data@0.2.16
 react-runtime@15.0.2
 reactive-dict@1.3.0
