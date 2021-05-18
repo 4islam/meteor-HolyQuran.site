@@ -26,7 +26,6 @@ Meteor.startup(() => {
 
 Meteor.methods({
  search:function (query, sID, options, page=1, limit=100, aggs="off") {
-   console.log(aggs);
   limit=parseInt(limit)
   page=parseInt(page)
   if (isNaN(limit)){
