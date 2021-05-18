@@ -829,39 +829,43 @@ getMarkedTokens = function (r) {
   var hits = r.hits.hits; var terms = [];var ret = [];
   Object.keys(hits).map(function (v,l) {
     //console.log(hits[v].highlight, hits[v]._score)
-    var term_loop = [];
-    Object.keys(hits[v].highlight).map(function (k,m) {
-      var text = hits[v].highlight[k][0].split(' ');
-      if (k.search(/^Arabic/) !== -1 || k.search(/_/) == -1) {    //Either Arabic layers or only main layers (without _)
-        // console.log(k);
-        text.map(function (t) {
-          if (t.search(re_pre) != -1) {
-            token = t.replace(re_pre,'').replace(re_post,'');
-            if (terms.indexOf(token) == -1) {
-              terms.push(token);
-              ret.push({token:{id:token, analyzers: [k], count:0, verses:[hits[v]._source.ayah]}})
-            } else {
-              ret.map(function (t) {if (t.token.id===token) {
-                if (t.token.analyzers.indexOf(k) == -1) {
-                  t.token.analyzers.push(k);
-                }
-              }})
+    if (hits[v].highlight) {
+      var term_loop = [];
+      Object.keys(hits[v].highlight).map(function (k,m) {
+        var text = hits[v].highlight[k][0].split(' ');
+        if (k.search(/^Arabic/) !== -1 || k.search(/_/) == -1) {    //Either Arabic layers or only main layers (without _)
+          // console.log(k);
+          text.map(function (t) {
+            if (t.search(re_pre) != -1) {
+              token = t.replace(re_pre,'').replace(re_post,'');
+              if (terms.indexOf(token) == -1) {
+                terms.push(token);
+                ret.push({token:{id:token, analyzers: [k], count:0, verses:[hits[v]._source.ayah]}})
+              } else {
+                ret.map(function (t) {if (t.token.id===token) {
+                  if (t.token.analyzers.indexOf(k) == -1) {
+                    t.token.analyzers.push(k);
+                  }
+                }})
+              }
+              if (term_loop.indexOf(token) == -1) {
+                term_loop.push(token);
+              }
             }
-            if (term_loop.indexOf(token) == -1) {
-              term_loop.push(token);
-            }
+          })
+        }
+      })
+    }
+    // console.log(term_loop);
+    if (term_loop) {
+      ret.map(function (t) {if (term_loop.indexOf(t.token.id) != -1) {
+          if (t.token.verses.indexOf(hits[v]._source.ayah) == -1) {
+            t.token.verses.push(hits[v]._source.ayah);
           }
-        })
-      }
+          t.token.count = t.token.count + 1;
+        }})
+    }
     })
-    //console.log(term_loop);
-  ret.map(function (t) {if (term_loop.indexOf(t.token.id) != -1) {
-      if (t.token.verses.indexOf(hits[v]._source.ayah) == -1) {
-        t.token.verses.push(hits[v]._source.ayah);
-      }
-      t.token.count = t.token.count + 1;
-    }})
-  })
   return ret.sort(function(a, b){return b.token.count - a.token.count});
 }
 
