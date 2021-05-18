@@ -474,61 +474,11 @@ Meteor.methods({
                 }
           },
           aggs: {
-            // [options[0].id+".ar_normalized"]: {
-            //       terms: {
-            //           field: [options[0].id+".ar_normalized"]
-            //       }
-            //  },
-            //  [options[0].id+".ar_ngram_original"]: {
-            //        terms: {
-            //            field: [options[0].id+".ar_ngram_original"]
-            //        }
-            //   },
-            // [options[0].id+".ar_ngram_normalized"]: {
-            //      terms: {
-            //          field: [options[0].id+".ar_ngram_normalized"]
-            //      }
-            // },
-
             ["s_"+options[0].id+"_Trigram"]: {
                  significant_terms: {
                      field: options[0].id+".trigram"
-                 }//,
-                  // aggs:{
-                  //   "top_Arabic": {
-                  //     top_hits:{
-                  //         "highlight": {
-                  //             "fields": {
-                  //               "*" : {},
-                  //             }
-                  //         },
-                  //         // "_source": {
-                  //         //     "includes": [
-                  //         //         [options[0].id]
-                  //         //     ]
-                  //         // },
-                  //         "size" : 1
-                  //     }
-                  //   }
-                  //
-                  // }
+                 }
             },
-            // [options[0].id+".ar_ngram_stems"]: {
-            //      terms: {
-            //          field: [options[0].id+".ar_ngram_stems"]
-            //      }
-            // },
-            // [options[0].id+".ar_ngram_stems_normalized"]: {
-            //       terms: {
-            //           field: [options[0].id+".ar_ngram_stems_normalized"]
-            //       }
-            // },
-
-            // "ayah": {
-            //       terms: {
-            //           field: "ayah"
-            //       }
-            //  },
              ["s_"+options[0].id+"_Words"]: {
                   significant_terms: {
                       field: options[0].id
@@ -539,76 +489,21 @@ Meteor.methods({
                        field: options[0].id+".ar_stems"
                    }
               },
-                  //  aggs:{
-                  //    "top_Arabic": {
-                  //      top_hits:{
-                  //         //  "highlight": {
-                  //         //      "fields": {
-                  //         //        [options[0].id] : {},
-                  //         //      }
-                  //         //  },
-                  //          "_source": {
-                  //              "includes": [
-                  //                  [options[0].id]
-                  //              ]
-                  //          },
-                  //          "size" : 1
-                  //      }
-                  //    }
-                   //
-                  //  }
-               //},
               ["s_"+options[0].id+"_root"]: {
                     significant_terms: {
                         field: options[0].id+".ar_root_normalized"
-                    }//,
-                    // aggs:{
-                    //   "top_Arabic": {
-                    //     top_hits:{
-                    //         "_source": {
-                    //             "includes": [
-                    //                 [options[0].id]
-                    //             ]
-                    //         },
-                    //         "size" : 1
-                    //     }
-                    //   }
-                    //
-                    // }
+                    }
                },
                ["s_"+options[0].id+"_normalized"]: {
                      significant_terms: {
                          field: options[0].id+".ar_normalized"
-                     }//,
-                    //  aggs:{
-                    //    "top_Arabic": {
-                    //      top_hits:{
-                    //          "_source": {
-                    //              "includes": [
-                    //                  [options[0].id]
-                    //              ]
-                    //          },
-                    //          "size" : 1
-                    //      }
-                    //    }
-                     //
-                    //  }
+                     }
                 },
-              // "s_ayah": {                          //Fielddata is disabled on text fields by default. Set fielddata=true on [ayah] in order to load fielddata in memory by uninverting the inverted index. Note that this can however use significant memory.
-              //       significant_terms: {
-              //           field: "ayah"
-              //       }
-              //  },
-              // "s_Surah": {
-              //       significant_terms: {
-              //           field: "Surah"
-              //       }
-              //  },
-              //  "Arabic_Stems": {
-              //       terms: {
-              //           field: [options[0].id+".ar_stems"]
-              //       }
-              //  },
+              "s_ayah": {                          //Fielddata is disabled on text fields by default. Set fielddata=true on [ayah] in order to load fielddata in memory by uninverting the inverted index. Note that this can however use significant memory.
+                    significant_terms: {
+                        field: "ayah"
+                    }
+               },
               ["s_"+options[0].id+"_propernouns"]: {
                    significant_terms: {
                        field: options[0].id+".ar_propernouns"
