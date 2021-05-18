@@ -25,7 +25,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  search:function (query, sID, options, page=1, limit=100) {
+  search:function (query, sID, options, page=1, limit=100, aggs="all") {
   limit=parseInt(limit)
   page=parseInt(page)
   if (isNaN(limit)){
@@ -663,6 +663,10 @@ Meteor.methods({
           }
         }//,
         //analyzer:"my_arabic"
+      }
+
+      if (aggs!="all") {
+        delete search_query.body.aggs;
       }
 
       let shouldDSL = search_query.body.query.bool.should
