@@ -709,7 +709,7 @@ Meteor.methods({
               // console.log(date);
               console.log(sessionId,"Search Query ES retrieved (summary: "+aggs+") for:",tquery);
 
-              if (highlights.length>0) {
+              if (aggs!="all" && highlights.length>0) {
                 text_array = highlights.map(x=>x.token.id)
                 if (text_array.length > 0) {
                   update_analyzers(options[0].id)
