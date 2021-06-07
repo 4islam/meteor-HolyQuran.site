@@ -25,7 +25,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-  search:function (query, sID, options, page=1, limit=100) {
+ search:function (query, sID, options, page=1, limit=100, aggs="off") {
   limit=parseInt(limit)
   page=parseInt(page)
   if (isNaN(limit)){
@@ -66,7 +66,7 @@ Meteor.methods({
   // tquery = '"'+tquery.replace('"','\'')+'"';
   if (tquery != "") {
 
-    console.log(sessionId,"Search Query request for:",tquery);
+    console.log(sessionId,"Search Query request (summary: "+aggs+") for:",tquery);
     if (cacheResults && ESCol.findOne({$and:[{query:tquery},{options:options_str},{page:page},{limit:limit}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
 
       ESCol.update({$and:[{query:tquery},{options:options_str},{page:page},{limit:limit}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
@@ -79,7 +79,7 @@ Meteor.methods({
 
     } else {
 
-      console.log(sessionId,"Search Query ES Start for:",tquery);
+      console.log(sessionId,"Search Query ES Start (summary: "+aggs+") for:",tquery);
 
       matchArray = [
         {match: {[options[0].id]: {query: query,"boost": 10}}},
@@ -665,6 +665,10 @@ Meteor.methods({
         //analyzer:"my_arabic"
       }
 
+      if (aggs!="all") {
+        delete search_query.body.aggs;
+      }
+
       let shouldDSL = search_query.body.query.bool.should
       if (queryFilters.length > 0) {
         search_query.body.query.bool=genFilterDSL(queryFilters)
@@ -696,11 +700,16 @@ Meteor.methods({
               if (Object.keys(search_query.body.highlight).length !== 0) {
                 highlights = getMarkedTokens(matches);
               }
-              ESCol.insert({query:tquery, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
+              if (aggs!="all") {
+                ESCol.insert({query:tquery, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
+              } else {
+                ESCol.update({$and:[{query:tquery},{options:options_str},{page:page},{limit:limit}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
+              }
               // console.log(matches.hits.hits.length)
-              console.log(sessionId,"Search Query ES retrieved for:",tquery);
+              // console.log(date);
+              console.log(sessionId,"Search Query ES retrieved (summary: "+aggs+") for:",tquery);
 
-              if (highlights.length>0) {
+              if (aggs!="all" && highlights.length>0) {
                 text_array = highlights.map(x=>x.token.id)
                 if (text_array.length > 0) {
                   update_analyzers(options[0].id)
@@ -713,7 +722,11 @@ Meteor.methods({
       }))
      }
  }
-}})
+},
+ searchAggs:function (query, sID, options, page=1, limit=100) {
+  Meteor.call("search",query, sID, options, page=1, limit=100, "all") //Call with all summaries
+ }
+})
 
 
 // var re_pre = new RegExp(pre_tag, 'g');       //Moved to constants

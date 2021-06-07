@@ -1,3 +1,6 @@
+## 6:
+  * Performance enhancements by delaying summary results
+
 ## 5.9:
   * English Translation of Sir Muhammad Zafrullah Khan ra
   * Bugs fixed related to matching of recent translation layers

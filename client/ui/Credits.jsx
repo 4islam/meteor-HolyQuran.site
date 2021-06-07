@@ -30,6 +30,12 @@ export default class Credits extends Component {
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+
+                      <ul>
+                        <b>6.0 </b>
+                        <li>Performance enhancements by delaying summary results</li>
+                      </ul>
+
                       <ul>
                         <b>5.9 </b>
                         <li>English Translation of Sir Muhammad Zafrullah Khan ra added</li>

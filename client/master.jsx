@@ -632,9 +632,12 @@ export default class Master extends Component {
           //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                   //  that you just typed disappears, moved this before next line
           window.scroll(0,0)  //scroll to top
-          setTimeout(ui_ready, 333);
+          Meteor.call('searchAggs', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
+            setTimeout(ui_ready, 333);
+          }.bind(this));
           // console.log(Date(), "Call complete");
         }.bind(this));
+
       // }
     // }
   }
