@@ -42,11 +42,11 @@ Meteor.methods({
     console.log(sessionId,"is:",this.connection.id);
   }
   tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
-  queryArray = tquery.split(' ');
+  queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_]+:[><=]?.+$/i)!= '-1') {q1.push(q)}
+      if (q.search(/^[a-zA-Z_]+:[><=]?.+$/i)!= '-1' || q.search(/^".+"$/i)!= '-1') {q1.push(q)}
       else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
     })[ql]
@@ -671,7 +671,7 @@ Meteor.methods({
 
       let shouldDSL = search_query.body.query.bool.should
       if (queryFilters.length > 0) {
-        search_query.body.query.bool=genFilterDSL(queryFilters)
+        search_query.body.query.bool=genFilterDSL(queryFilters,options.map(o=>(o.state)?o.id:''))
         // console.log(JSON.stringify(search_query.body.query.bool.should));
         if (query == "*") {
           if (!search_query.body.query.bool.should) {  //genFilterDSL assignes this empty array
