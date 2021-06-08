@@ -687,7 +687,7 @@ Meteor.methods({
       }
       // console.log(JSON.stringify(search_query.body.from));
       // console.log(JSON.stringify(search_query.body.size));
-      console.log(JSON.stringify(search_query.body));
+      // console.log(JSON.stringify(search_query.body));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             // console.log(JSON.stringify(res));
