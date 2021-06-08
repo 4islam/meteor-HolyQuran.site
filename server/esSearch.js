@@ -671,7 +671,7 @@ Meteor.methods({
 
       let shouldDSL = search_query.body.query.bool.should
       if (queryFilters.length > 0) {
-        search_query.body.query.bool=genFilterDSL(queryFilters,options.map(o=>(o.state)?o.id:''))
+        search_query.body.query.bool=genFilterDSL(queryFilters,options.filter(o=>o.state!="").map(o=>o.id))
         // console.log(JSON.stringify(search_query.body.query.bool.should));
         if (query == "*") {
           if (!search_query.body.query.bool.should) {  //genFilterDSL assignes this empty array
@@ -687,7 +687,7 @@ Meteor.methods({
       }
       // console.log(JSON.stringify(search_query.body.from));
       // console.log(JSON.stringify(search_query.body.size));
-      // console.log(JSON.stringify(search_query.body));
+      console.log(JSON.stringify(search_query.body));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             // console.log(JSON.stringify(res));
