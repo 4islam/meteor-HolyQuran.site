@@ -32,6 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.1 </b>
+                        <li>Query DSL enhanced, now can perform field-specific phrase filters</li>
+                      </ul>
+
+                      <ul>
                         <b>6.0 </b>
                         <li>Performance enhancements by delaying summary results</li>
                       </ul>

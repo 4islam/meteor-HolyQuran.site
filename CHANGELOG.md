@@ -1,3 +1,6 @@
+## 6.1:
+  * Query DSL enhanced, now can perform field-specific phrase filters
+
 ## 6:
   * Performance enhancements by delaying summary results
 
