@@ -41,3 +41,16 @@ FlowRouter.route("/:query", {
     });
   }
 });
+
+FlowRouter.notFound = {
+    // Subscriptions registered here don't have Fast Render support.
+    // subscriptions: function() {
+    //
+    // },
+    action() {
+      mount(Master, {
+          query: "",
+          hash: window.location.hash
+      });
+    }
+};
