@@ -613,14 +613,14 @@ export default class Master extends Component {
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
 
-      // if (window.query != tquery || window.page != page || window.limit != limit || window.options != options) {
+      if (window.query != tquery || window.page != page || window.limit != limit || window.options != options) {
         ui_busy("#333")
-        // console.log("calling search for: '"+tquery+"'");
+        // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery);
         if (window.query != tquery) {page=1}        //New query will start with page one
         Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
 
           window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
-            tquery
+            encodeURIComponent(tquery)        //used this instead of encodeURI to ensure slash (/) is also encoded
             +"#" + window.hash
             );
             window.query = tquery
@@ -633,12 +633,13 @@ export default class Master extends Component {
                                                   //  that you just typed disappears, moved this before next line
           window.scroll(0,0)  //scroll to top
           Meteor.call('searchAggs', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
+            // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery, "secondary");
             setTimeout(ui_ready, 333);
           }.bind(this));
           // console.log(Date(), "Call complete");
         }.bind(this));
 
-      // }
+      }
     // }
   }
   // handleChange(e) {
