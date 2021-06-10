@@ -683,6 +683,7 @@ Meteor.methods({
           search_query.body.min_score=1
         } else {
           search_query.body.query.bool["should"] = shouldDSL
+          search_query.body.query.bool["minimum_should_match"] = 1
         }
       }
       // console.log(JSON.stringify(search_query.body.from));
