@@ -1,3 +1,6 @@
+## 6.2:
+  * Query DSL enhanced, now can perform perform negation logic in integer fields and their ranges
+
 ## 6.1:
   * Query DSL enhanced, now can perform field-specific phrase filters
 
