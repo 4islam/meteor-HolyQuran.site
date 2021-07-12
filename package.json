@@ -1,6 +1,6 @@
 {
   "name": "HolyQuranAdvance",
-  "version": "2.9.12",
+  "version": "6.3",
   "description": "Holy Qur'an Verse Centric Advance Search",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "French",
     "German"
   ],
-  "author": "ls",
+  "author": "Naveed ul Islam",
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.12.13",

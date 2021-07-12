@@ -1,3 +1,6 @@
+## 6.3:
+  * Significant Topics as Phrases added 
+
 ## 6.21:
   * iFrame verse selector bug fixed
 

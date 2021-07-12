@@ -605,9 +605,14 @@ Meteor.methods({
                            field: "English.en_to_ar_noor"
                        }
                 },
-                "s_Topics_English": {
+                // "s_Topics_English": {
+                //        significant_terms: {
+                //            field: "TopicsEn.trigram"
+                //        }
+                // },
+                "s_Topics_phrases": {
                        significant_terms: {
-                           field: "TopicsEn.significant"
+                           field: "TopicsEn.Topics"
                        }
                 },
                 "s_German": {
@@ -684,6 +689,7 @@ Meteor.methods({
         } else {
           search_query.body.query.bool["should"] = shouldDSL
           search_query.body.query.bool["minimum_should_match"] = 1
+          search_query.body.highlight={}
         }
       }
       // console.log(JSON.stringify(search_query.body.from));
