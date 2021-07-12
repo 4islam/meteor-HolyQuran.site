@@ -1,5 +1,8 @@
+## 6.31:
+  * Query double submissions removed. No longer needed
+
 ## 6.3:
-  * Significant Topics as Phrases added 
+  * Significant Topics as Phrases added
 
 ## 6.21:
   * iFrame verse selector bug fixed

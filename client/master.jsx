@@ -613,7 +613,7 @@ export default class Master extends Component {
       // console.log(Date(), "Call started");
       // console.log(Date(), window.sessionId);
 
-      if (tquery!= "" && (window.query != tquery || window.page != page || window.limit != limit || window.options != options)) {
+      if (tquery!= "") {  //window.query != tquery || window.page != page || window.limit != limit || window.options != options
         ui_busy("#333")
         // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery);
         if (window.query != tquery) {page=1}        //New query will start with page one
