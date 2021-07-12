@@ -82,7 +82,7 @@ Meteor.methods({
       request_cache: request_cache,
       body: {
           "query": {
-            "match": {
+            "match_phrase": {
               "ayah": {
                 "query": verse
               }

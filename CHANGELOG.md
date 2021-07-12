@@ -1,3 +1,6 @@
+## 6.21:
+  * iFrame verse selector bug fixed
+
 ## 6.2:
   * Query DSL enhanced, now can perform perform negation logic in integer fields and their ranges
 
