@@ -1,3 +1,6 @@
+## 6.32:
+  * Meteor packages updated
+
 ## 6.31:
   * Query double submissions removed. No longer needed
 
