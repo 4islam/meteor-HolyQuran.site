@@ -1,3 +1,7 @@
+## 6.33:
+  * Italian language added
+  * Requires ES version 10.5
+
 ## 6.32:
   * Meteor packages updated
 

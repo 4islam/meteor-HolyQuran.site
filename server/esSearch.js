@@ -211,6 +211,13 @@ Meteor.methods({
         {match: {"French.fr_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"Italian": {query: query,"boost": 5}}},
+        {match: {"Italian.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Italian.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"Italian.it_normalized": {query: query,"boost": 3}}},
+        {match: {"Italian.it_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Italian.it_normalized_ngram": {query: query,"boost": 2}}},
+
         //{match: {[options[0].id+".trigram"]: {query: query,"boost": 8}}}
 
         {match: {"EnglishCorpus": {query: query,"boost": 5}}},
@@ -643,6 +650,16 @@ Meteor.methods({
                 "s_French_phrases": {
                         significant_terms: {
                             field: "French.trigram"
+                      }
+                },
+                "s_Italian": {
+                        significant_terms: {
+                            field: "Italian.significant"
+                      }
+                },
+                "s_Italian_phrases": {
+                        significant_terms: {
+                            field: "Italian.trigram"
                       }
                 },
                 "s_English_Corpus": {
