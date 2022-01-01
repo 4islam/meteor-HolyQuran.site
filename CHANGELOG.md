@@ -1,3 +1,6 @@
+## 6.34:
+  * Packages updated
+
 ## 6.33:
   * Italian language added
   * Requires ES version 10.5
