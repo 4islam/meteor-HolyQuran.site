@@ -97,6 +97,9 @@ Meteor.methods({
         } else if (o=="French") {
           fields.push("French.fr_normalized_ngram")
           fields.push("French.trigram")
+        } else if (o=="Italian") {
+          fields.push("Italian.it_normalized_ngram")
+          fields.push("Italian.trigram")
         } else if (o=="EnglishCorpus") {
           fields.push("EnglishCorpus.en_normalized_ngram")
           fields.push("EnglishCorpus.trigram")
@@ -378,6 +381,19 @@ Meteor.methods({
             aggs["s_French_Translation_Phrases"] = {
                   significant_terms: {
                       "field": "French.trigram",
+                       "size": size
+                  }
+            }
+          } else if (o=="Italian") {
+            aggs["s_Italian_Translation_Words"] = {
+                  significant_terms: {
+                      "field": "Italian",
+                       "size": size
+                  }
+            }
+            aggs["s_Italian_Translation_Phrases"] = {
+                  significant_terms: {
+                      "field": "Italian.trigram",
                        "size": size
                   }
             }
