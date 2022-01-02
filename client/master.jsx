@@ -269,7 +269,7 @@ export default class Master extends Component {
       //console.log(e.type, q, window.query)
       if (q.substr(-1) == ' ' || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") {  //to detect if user has press space , add enter detection
 
-        if (window.query != q) {
+        if (window.query != q && [37,38,39,40].indexOf(e.which)==-1) {    //detecing up, down, left and right arrow keys
           //this.search_e(e);     //750ms
           var currentTO_search = setTimeout(this.search, 150, e.target.value, this.state.option_types);
           clearTimeout(previousTO_search); previousTO_search = currentTO_search
