@@ -1,5 +1,6 @@
 ## 6.4:
   * Aggregate section updated to allow layer and sublayer filtering in the query
+  * Suggest support for query layer and sublayer filtering added
 
 ## 6.34:
   * Packages updated
