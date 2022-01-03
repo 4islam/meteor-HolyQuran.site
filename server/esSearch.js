@@ -41,12 +41,13 @@ Meteor.methods({
     sessionId = sID
     console.log(sessionId,"is:",this.connection.id);
   }
+  
   tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
   queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_]+:[><=]?.+$/i)!= '-1' || q.search(/^".+"$/i)!= '-1') {q1.push(q)}
+      if (q.search(/^[a-zA-Z_\.]+:[><=]?.+$/i)!= '-1' || q.search(/^".+"$/i)!= '-1') {q1.push(q)}
       else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
     })[ql]
