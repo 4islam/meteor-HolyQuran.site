@@ -31,7 +31,7 @@ class Aggregates extends Component {
                         aggs.results.aggregations[x.id].buckets.map(y=>
                         (y.key!="سورة")?
                           <span className="cohorts" key={x.id+y.key}>
-                            <a onClick={this.handleChange.bind(this, y.key)}>{y.key}</a> <span className="cohortsCount">{y.doc_count}</span>
+                            <a onClick={this.handleChange.bind(this, y.key, x.esField)} dangerouslySetInnerHTML={{ __html: y.key }}/> <span className="cohortsCount">{y.doc_count}</span>
                           </span>:''
                         ):<br/>:''
                     }
@@ -44,12 +44,12 @@ class Aggregates extends Component {
        }
        </div>
  }
- handleChange(query, e) {
-   //console.log(query, options, e.target);
+ handleChange(query, filterField) {
+   // console.log(query, options, "target: " + field);
    // this.props.search(window.query+' '+query, this.props.options);
-   this.props.search(query, this.props.options);
+   this.props.search(window.query + ' '+filterField+':"'+query+'"', this.props.options);
    // $(window.inputId)[0].value = window.query+' '+query;
-   $(window.inputId)[0].value = query;
+   $(window.inputId)[0].value = window.query + ' '+filterField+':"'+query+'"';
  }
 }
 

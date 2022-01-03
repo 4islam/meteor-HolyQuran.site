@@ -32,6 +32,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.4 </b>
+                        <li>Aggregate section updated to allow layer and sublayer filtering in the query</li>
+                      </ul>
+
+                      <ul>
                         <b>6.3 </b>
                         <li>Italian Language added</li>
                         <li>Query double submission removed as performance opitimized</li>
