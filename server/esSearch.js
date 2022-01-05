@@ -47,7 +47,10 @@ Meteor.methods({
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' || q.search(/^".+"$/i)!= '-1') {q1.push(q)}
+      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||
+          q.search(/^".+"$/i)!= '-1' ||
+          q.search(/^\d+:[><=]?[=]?[\d]*-?\d+$/i)!= '-1')
+          {q1.push(q)}
       else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
     })[ql]

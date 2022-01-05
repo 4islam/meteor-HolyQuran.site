@@ -1,3 +1,6 @@
+## 6.43:
+  * Verse range filters added e.g. 4:6-8 or 5:>7 or 6:>=3 or 4:4 etc.
+
 ## 6.42:
   * Zero result response updated with option to perform a global search
 
