@@ -1,3 +1,6 @@
+## 6.42:
+  * Zero result response updated with option to perform a global search
+
 ## 6.41:
   * Enabling highlights for filter queries as well
 

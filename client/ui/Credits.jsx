@@ -37,6 +37,7 @@ export default class Credits extends Component {
                         <li>Aggregate section updated to allow layer and sublayer filtering in the query</li>
                         <li>Suggest support for query layer and sublayer filtering added</li>
                         <li>Help suggestions updated to showcase the power of layer and sublayer filtering</li>
+                        <li>Zero result response updated with option to perform a global search</li>
                       </ul>
 
                       <ul>

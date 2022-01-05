@@ -37,7 +37,8 @@ class Results extends Component {
                   search={this.props.search.bind(this)}
                   page={this.props.page}
                   limit={this.props.limit} />
-              </div>:<div className="NoResult"><h4>Sorry, no results found</h4><hr/><Help/></div>:"...":<Help/>
+              </div>:<div className="NoResult"><h4>Sorry, no results found</h4><hr/><h5>If like to perform a global search instead, click
+                      <a onClick={this.globalSearch.bind(this, 1, this.props.limit)}> here</a><br/><br/>See advance filter examples below for more details</h5><hr/><Help/></div>:"...":<Help/>
        }
        </div>
  }
@@ -47,6 +48,15 @@ class Results extends Component {
  }
  setPage(page,limit) {
     this.props.setPage(page,limit);
+ }
+
+ globalSearch(page,limit) {
+   // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
+   $(window.inputId)[0].value = window.query
+   this.props.options.map(y=>{y.state=true})
+   this.props.search(window.query,this.props.options,page,limit)
+
+   // alert(1)
  }
 
 }
