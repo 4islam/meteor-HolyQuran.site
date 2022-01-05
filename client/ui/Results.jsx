@@ -19,7 +19,7 @@ class Results extends Component {
            r.results.hits?
              (r.results.hits.hits && r.results.hits.total.value>0)?
              <div>
-               <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found.</small></div>
+               <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small></div>
                {Object.keys(r.results.hits.hits).map((v) => (
                   <Verse key={r.results.hits.hits[v]._id}
                       highlights={r.results.hits.hits[v].highlight}
