@@ -33,7 +33,7 @@ export default class Help extends Component {
                  <li><em>Stems</em><br/><a target="_self" href="جَنَّۃ">جَنَّۃ</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/وَاتَّقُوا%20اللّٰہَ">وَاتَّقُوا اللّٰہَ</a></li>
                  <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
-                 <li><em>Filter query examples:</em><br/>
+                 <li><b><em>Filter query examples:</em></b><br/>
                  <ul>
                    <li><a target="_self" href="/Allah s:50">Search for Allah in Sura 50</a></li>
                    <li><a target="_self" href="/TopicsEn:%22Jonah%22">Search for Jonah in English Topics</a></li>
@@ -47,8 +47,8 @@ export default class Help extends Component {
                    <li><a target="_self" href="/a%3A<>1">Show all verses (ayah) except first one</a></li>
                    <li><a target="_self" href="/Juz%3A<>2-29#1:1">Do not show parts (Juz) 2 to 29</a></li>
                    <li><a target="_self" href="/TopicsEn:%22animal*%22">All verses tagged with topic "animal" or "animals"</a></li>
-                 </ul>
-                 <li><em>Advance filter examples</em><br/>
+                 </ul></li>
+                 <li><b><em>Advance filter examples</em></b><br/>
                   <ul>
                    <li><em>Look for text or phrase matches in all enabled layers, without looking into sub-layers</em><br/>
                      <a target="_self" href="/%22Muhammad is not%22">"Muhammad is not"</a> or <a target="_self" href="/%22seal of%22">"seal of"</a></li>
@@ -56,6 +56,8 @@ export default class Help extends Component {
                       <a target="_self" href="/%3AYunus">:Yonus</a> or <a target="_self" href="/*%3AYunus">*:Yonus</a></li>
                     <li><em>Look for "Yunus" in all English translations</em><br/>
                         <a target="_self" href="/English*%3AYunus">English*:"Yunus"</a></li>
+                    <li><em>Look for "Bakr" everywhere, including topics</em><br/>
+                            <a target="_self" href="/%3Abakr">:bakr</a></li>
                     <li><em>Look for all verses with topic "Jonah" but not those verses where the name "Jonah" is mentioned in any English translation</em><br/>
                             <a target="_self" href="/TopicsEn%3A%22Jonah%22%20English*%3A%22-Jonah%22">TopicsEn:"Jonah" English*:"-Jonah" </a></li>
                     <li><em>Look for all verses where English translators have mentioned "Jonah" but not by Molana Sher Ali <sup>ra</sup></em><br/>
@@ -70,12 +72,11 @@ export default class Help extends Component {
                             <br/><em>Only using the translations does not work because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
                     <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
                             <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
-                   </ul>
-                  </li>
+                  </ul>
                  </li>
              </ul>
              <br/>
-             <i><Credits/></i>
+             <b><i><Credits/></i></b>
             </div>
 
             <div className="modal fade" id="helpModal" role="dialog" aria-labelledby="Help">
