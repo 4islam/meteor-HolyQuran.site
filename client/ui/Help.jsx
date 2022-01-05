@@ -56,7 +56,7 @@ export default class Help extends Component {
                       <a target="_self" href="/%3AYunus">:Yonus</a> or <a target="_self" href="/*%3AYunus">*:Yonus</a></li>
                     <li><em>Look for "Yunus" in all English translations</em><br/>
                         <a target="_self" href="/English*%3AYunus">English*:"Yunus"</a></li>
-                    <li><em>Look for "Bakr" everywhere, including topics</em><br/>
+                    <li><em>Look for "Bakr" for Hadhrat Abu Bakr<sup>ra</sup> everywhere, including topics</em><br/>
                             <a target="_self" href="/%3Abakr">:bakr</a></li>
                     <li><em>Look for all verses with topic "Jonah" but not those verses where the name "Jonah" is mentioned in any English translation</em><br/>
                             <a target="_self" href="/TopicsEn%3A%22Jonah%22%20English*%3A%22-Jonah%22">TopicsEn:"Jonah" English*:"-Jonah" </a></li>
@@ -69,7 +69,7 @@ export default class Help extends Component {
                             <br/><em>This can also be written as </em><a target="_self" href="/TopicsEn%3A%22animal*%20(birds%20%7C%20beasts)%20-cattle%22">TopicsEn:"animal* (birds | beasts) -cattle"</a></li>
                     <li><em>Show all verses where moon is mentioned but not the sun, using Arabic to English mapping</em><br/>
                             <a target="_self" href="/Arabic*%3A%22moon%20-sun%22">Arabic*:"moon -sun"</a>
-                            <br/><em>Only using the translations does not work because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
+                            <br/><em>Only using the translations returs one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
                     <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
                             <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
                   </ul>
