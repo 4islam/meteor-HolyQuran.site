@@ -1,5 +1,5 @@
 # Holy Qu'ran Advance Search Bundle
-### Project Version 4
+### Project Version 6
 
 ## Summary
 
