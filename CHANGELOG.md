@@ -1,3 +1,6 @@
+## 6.45:
+  * Similar verse syntax added. Requires New mapping and data in the ElasticSearch
+
 ## 6.44:
   * Quick Chapter matching filter added e.g. 114:* or just 114: will display all verses of last chapter
 
