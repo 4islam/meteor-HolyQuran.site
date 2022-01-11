@@ -39,6 +39,7 @@ export default class Credits extends Component {
                         <li>Help suggestions updated to showcase the power of layer and sublayer filtering</li>
                         <li>Zero result response updated with option to perform a global search</li>
                         <li>Verse range filters added e.g. 4:6-8 or 5:&gt;7 or 6:&gt;=3 or 4:4 etc.</li>
+                        <li>Quick Chapter matching filter added e.g. 114:* or just 114: will display all verses of last chapter</li>
                       </ul>
 
                       <ul>

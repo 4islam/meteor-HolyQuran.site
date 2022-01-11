@@ -1,3 +1,6 @@
+## 6.44:
+  * Quick Chapter matching filter added e.g. 114:* or just 114: will display all verses of last chapter
+
 ## 6.43:
   * Verse range filters added e.g. 4:6-8 or 5:>7 or 6:>=3 or 4:4 etc.
 

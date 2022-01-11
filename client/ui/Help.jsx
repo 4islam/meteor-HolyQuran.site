@@ -33,7 +33,8 @@ export default class Help extends Component {
                  <li><em>Stems</em><br/><a target="_self" href="جَنَّۃ">جَنَّۃ</a></li>
                  <li><em>Multi-word</em><br/><a target="_self"  href="/وَاتَّقُوا%20اللّٰہَ">وَاتَّقُوا اللّٰہَ</a></li>
                  <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
-                 <li><em>Specific verse ranges</em><br/><a target="_self" href="/24:>36">24:&gt;36</a>, <a target="_self" href="/6:>=3">6:&gt;=3</a>, <a target="_self" href="/5:>7">5:&gt;7</a>, or <a target="_self" href="/4:6-8">4:6-8</a></li>                
+                 <li><em>Specific verse ranges</em><br/><a target="_self" href="/24:>36">24:&gt;36</a>, <a target="_self" href="/6:>=3">6:&gt;=3</a>, <a target="_self" href="/5:>7">5:&gt;7</a>, or <a target="_self" href="/4:6-8">4:6-8</a></li>
+                 <li><em>Specific chapter</em><br/><a target="_self" href="/1:*">1:*</a> or <a target="_self" href="/107:">107:</a></li>
                  <li><b><em>Filter query examples:</em></b><br/>
                  <ul>
                    <li><a target="_self" href="/Allah s:50">Search for Allah in Sura 50</a></li>
@@ -52,7 +53,7 @@ export default class Help extends Component {
                  <li><b><em>Advance filter examples</em></b><br/>
                   <ul>
                    <li><em>Look for text or phrase matches in all enabled layers, without looking into sub-layers</em><br/>
-                     <a target="_self" href="/%22Muhammad is not%22">"Muhammad is not"</a> or <a target="_self" href="/%22seal of%22">"seal of"</a></li>
+                     <a target="_self" href="/%22best of%22">"best of"</a> or <a target="_self" href="/%22seal of%22">"seal of"</a></li>
                     <li><em>Look for "Yunus" in all layers including, Arabic, Surah names, English topics and all translations</em><br/>
                       <a target="_self" href="/%3AYunus">:Yonus</a> or <a target="_self" href="/*%3AYunus">*:Yonus</a></li>
                     <li><em>Look for "Yunus" in all English translations</em><br/>
