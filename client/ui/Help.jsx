@@ -70,7 +70,9 @@ export default class Help extends Component {
                               <br/><em>This can also be written as </em><a target="_self" href="/TopicsEn%3A%22animal*%20(birds%20%7C%20beasts)%20-cattle%22">TopicsEn:"animal* (birds | beasts) -cattle"</a></li>
                       <li><em>Show all verses where moon is mentioned but not the sun, using Arabic to English mapping</em><br/>
                               <a target="_self" href="/Arabic*%3A%22moon%20-sun%22">Arabic*:"moon -sun"</a>
-                              <br/><em>Only using the translations returs one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
+                              <br/><em>Only using the translations returs one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li><br/>
+                      <li>Collection of verses with Huroof-Muqataat (حروف مقطعات) <a target="_self" href="/ayah:2:2%20ayah:3:2%20ayah:7:2%20ayah:10:2%20ayah:11:2%20ayah:12:2%20ayah:13:2%20ayah:14:2%20ayah:15:2%20ayah:19:2%20ayah:20:2%20ayah:26:2%20ayah:27:2%20ayah:28:2%20ayah:29:2%20ayah:30:2%20ayah:31:2%20ayah:32:2%20ayah:36:2%20ayah:38:2%20ayah:40:2%20ayah:41:2%20ayah:42:2%20ayah:43:2%20ayah:44:2%20ayah:45:2%20ayah:46:2%20ayah:50:2%20ayah:68:2">with specific ayah selection</a>, <a target="_self" href="/%222:2%22%20%223:2%22%20%227:2%22%20%2210:2%22%20%2211:2%22%20%2212:2%22%20%2213:2%22%20%2214:2%22%20%2215:2%22%20%2219:2%22%20%2220:2%22%20%2226:2%22%20%2227:2%22%20%2228:2%22%20%2229:2%22%20%2230:2%22%20%2231:2%22%20%2232:2%22%20%2236:2%22%20%2238:2%22%20%2240:2%22%20%2241:2%22%20%2242:2%22%20%2243:2%22%20%2244:2%22%20%2245:2%22%20%2246:2%22%20%2250:2%22%20%2268:2%22%20">advance query filter</a>, and <a target="_self" href="/s:%222|3|5|7|10|11|12|13|14|15|19|20|26|27|28|29|30|31|32|36|38|40|41|42|43|44|45|46|50|68%22%20a:2">chapter and verse filters</a></li>
+                      <li>All verses tagged with topic <a target="_self" href="/TopicsEn:%22animal*%22">"animal" or "animals"</a></li>
 
                     </ul>
                   </ul>
@@ -85,10 +87,8 @@ export default class Help extends Component {
                    <li><a target="_self" href="/Ruku:99">Show Ruku 99</a></li>
                    <li><a target="_self" href="/Sajda_id:>0">Show all verses with Sajdah</a></li>
                    <li><a target="_self" href="/s:59%20a:22-24">Show verses 22 to 24 in Sura 59</a></li>
-                   <li>Collection of verses with Huroof-Muqataat (حروف مقطعات) <a target="_self" href="/ayah:2:2%20ayah:3:2%20ayah:7:2%20ayah:10:2%20ayah:11:2%20ayah:12:2%20ayah:13:2%20ayah:14:2%20ayah:15:2%20ayah:19:2%20ayah:20:2%20ayah:26:2%20ayah:27:2%20ayah:28:2%20ayah:29:2%20ayah:30:2%20ayah:31:2%20ayah:32:2%20ayah:36:2%20ayah:38:2%20ayah:40:2%20ayah:41:2%20ayah:42:2%20ayah:43:2%20ayah:44:2%20ayah:45:2%20ayah:46:2%20ayah:50:2%20ayah:68:2">with specific ayah selection</a>, <a target="_self" href="/%222:2%22%20%223:2%22%20%227:2%22%20%2210:2%22%20%2211:2%22%20%2212:2%22%20%2213:2%22%20%2214:2%22%20%2215:2%22%20%2219:2%22%20%2220:2%22%20%2226:2%22%20%2227:2%22%20%2228:2%22%20%2229:2%22%20%2230:2%22%20%2231:2%22%20%2232:2%22%20%2236:2%22%20%2238:2%22%20%2240:2%22%20%2241:2%22%20%2242:2%22%20%2243:2%22%20%2244:2%22%20%2245:2%22%20%2246:2%22%20%2250:2%22%20%2268:2%22%20">advance query filter</a>, and <a target="_self" href="/s:%222|3|5|7|10|11|12|13|14|15|19|20|26|27|28|29|30|31|32|36|38|40|41|42|43|44|45|46|50|68%22%20a:2">chapter and verse filters</a></li>
                    <li><a target="_self" href="/a%3A<>1">Show all verses (ayah) except first one</a></li>
                    <li><a target="_self" href="/Juz%3A<>2-29#1:1">Do not show parts (Juz) 2 to 29</a></li>
-                   <li><a target="_self" href="/TopicsEn:%22animal*%22">All verses tagged with topic "animal" or "animals"</a></li>
                  </ul>
 
              <br/>
