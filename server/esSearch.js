@@ -50,7 +50,7 @@ Meteor.methods({
       if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
           q.search(/^".+"$/i)!= '-1' ||                             // any character within quotes
           q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
-          q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value  
+          q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
           {q1.push(q)}
       else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
@@ -746,14 +746,15 @@ Meteor.methods({
                 }
               }
             } else {
-              console.log("Error: ", err,res);
+              console.log("Error: ", res.error.root_cause);
+              // TODO: Add Error collection to provide user feedback
             }
       }))
      }
  }
 },
  searchAggs:function (query, sID, options, page=1, limit=100) {
-  Meteor.call("search",query, sID, options, page, limit, "all") //Call with all summaries
+  Meteor.call("search",query, sID, options, page, limit, "all") //Call with all summaries  // TODO: Needs to be its own collection
  }
 })
 
