@@ -1,3 +1,6 @@
+## 6.46:
+  * Help file reviewed and updated
+
 ## 6.45:
   * Similar verse syntax added. Requires New mapping and data in the ElasticSearch
 

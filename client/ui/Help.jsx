@@ -23,20 +23,59 @@ export default class Help extends Component {
           </p>
 
            <div className="list-group">
-             <p>Some example searches by types are:</p>
-             <ul className="nav-stacked">
-                 <li><em>Translation</em><br/><a target="_self" href="/Muhammad">Muhammad</a></li>
-                 <li><em>Phonetic (transliteration) - Works without vowels</em><br/><a target="_self"  href="/msjd">msjd</a></li>
-                 <li><em>Search relevance based on Arabic roots</em><br/><a target="_self" href="/جَنَّٰتٍ">جَنَّٰتٍ</a></li>
-                 <li><em>Search relevance based on Arabic stems</em><br/><a target="_self"  href="/دَاوُد">دَاوُد</a></li>
-                 <li><em>Roots - Works without spaces</em><br/><a target="_self" href="/جنن">جنن</a></li>
-                 <li><em>Stems</em><br/><a target="_self" href="جَنَّۃ">جَنَّۃ</a></li>
-                 <li><em>Multi-word</em><br/><a target="_self"  href="/وَاتَّقُوا%20اللّٰہَ">وَاتَّقُوا اللّٰہَ</a></li>
-                 <li><em>Specific verse</em><br/><a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
-                 <li><em>Specific verse ranges</em><br/><a target="_self" href="/24:>36">24:&gt;36</a>, <a target="_self" href="/6:>=3">6:&gt;=3</a>, <a target="_self" href="/5:>7">5:&gt;7</a>, or <a target="_self" href="/4:6-8">4:6-8</a></li>
-                 <li><em>Specific chapter</em><br/><a target="_self" href="/1:*">1:*</a> or <a target="_self" href="/107:">107:</a></li>
-                 <li><em>Cross-referenced verses</em><br/><a target="_self" href="/1:~1">1:~1</a>, or <a target="_self" href="/4:~4">4:~4</a></li>
-                 <li><b><em>Filter query examples:</em></b><br/>
+             <b><em>Some example searches by types are</em></b>:
+              <ul className="nav-stacked">
+                 <li><em>Translation</em>: <a target="_self" href="/Muhammad">Muhammad</a></li>
+                 <li><em>Phonetic (transliteration) - Works without vowels</em>: <a target="_self"  href="/msjd">msjd</a></li>
+                 <li><em>Search Arabic words</em>: <a target="_self" href="/جَنَّٰتٍ">جَنَّٰتٍ</a></li>
+                 <li><em>Roots - without spaces</em>: <a target="_self" href="/جنن">جنن</a></li>
+                 <li><em>Multi-word Arabic search</em>: <a target="_self"  href="/وَاتَّقُوا%20اللّٰہَ">وَاتَّقُوا اللّٰہَ</a></li>
+                 <li><em>Specific verse</em>: <a target="_self" href="/24:36">24:36</a> or <a target="_self" href="/۲۴:۳۶">۲۴:۳۶</a></li>
+                 <li><em>Specific verse ranges</em>: <a target="_self" href="/24:>36">24:&gt;36</a>, <a target="_self" href="/6:>=3">6:&gt;=3</a>, <a target="_self" href="/5:>7">5:&gt;7</a>, or <a target="_self" href="/4:6-8">4:6-8</a></li>
+                 <li><em>Specific chapter</em>: <a target="_self" href="/1:*">1:*</a> or <a target="_self" href="/107:">107:</a></li>
+                 <li><em>Cross-referenced verses</em>: <a target="_self" href="/1:~1">1:~1</a>, or <a target="_self" href="/4:~4">4:~4</a></li>
+                 </ul>
+                 <b><em>Advance filter examples</em></b>:
+
+                  <ul>
+                   <li><em>Look for text or phrase matches in all enabled layers, without looking into sub-layers</em><br/>
+                     <a target="_self" href="/%22best of%22">"best of"</a> or <a target="_self" href="/%22seal of%22">"seal of"</a></li>
+                    <li><em>Look for "Yunus" in all layers including, Arabic, Surah names, English topics and all translations</em><br/>
+                      <a target="_self" href="/%3AYunus">:Yonus</a> or <a target="_self" href="/*%3AYunus">*:Yonus</a></li>
+                    <li><em>Look for "Yunus" in all English translations</em><br/>
+                        <a target="_self" href="/English*%3AYunus">English*:"Yunus"</a></li>
+                    <li><em>Look for "Bakr" for Hadhrat Abu Bakr<sup>ra</sup> everywhere, including topics</em><br/>
+                            <a target="_self" href="/%3Abakr">:bakr</a></li>
+                    <li><em>Look for "stars" but filter results where "رَءَا" is mentioned in Arabic verbs only</em><br/>
+                            <a target="_self" href="/stars%20Arabic*.ar_verbs%3A%22رَءَا%22">stars Arabic*.ar_verbs:"رَءَا"</a></li>
+                    <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
+                            <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
+                    <br/>
+                    <ul><b><em>Query syntax for more advance queries:</em> <code class="literal">:"query"</code></b><br/>
+                      <code class="literal">+</code> signifies AND operation <br/>
+                      <code class="literal">|</code> signifies OR operation <br/>
+                      <code class="literal">-</code> negates a single token <br/>
+                      <code class="literal">*</code> at the end of a term signifies a prefix query <br/>
+                      <code class="literal">(</code> and <code class="literal">)</code> signify precedence <br/>
+                      <code class="literal">~N</code> after a word signifies edit distance (fuzziness) <br/>
+                      <code class="literal">~N</code> after a phrase signifies slop amount <br/>
+                      <br/>
+                      <b><em>Examples:</em></b>
+                      <li><em>Look for all verses with topic "Jonah" but not those verses where the name "Jonah" is mentioned in any English translation</em><br/>
+                              <a target="_self" href="/TopicsEn%3A%22Jonah%22%20English*%3A%22-Jonah%22">TopicsEn:"Jonah" English*:"-Jonah" </a></li>
+                      <li><em>Look for all verses where English translators have mentioned "Jonah" but not by Molana Sher Ali <sup>ra</sup></em><br/>
+                              <a target="_self" href="/English*%3A%22Jonah%22%20English%3A%22-Jonah%22">English*:"Jonah" English:"-Jonah"</a></li>
+                      <li><em>Show all verses with topic tags with "animals", and also with either "beasts" or "birds", but not with "cattle"</em><br/>
+                              <a target="_self" href="/TopicsEn%3A%22animal*%22%20TopicsEn%3A%22birds%20%7C%20beasts%22%20TopicsEn%3A%22-cattle%22">TopicsEn:"animal*" TopicsEn:"birds | beasts" TopicsEn:"-cattle"</a>
+                              <br/><em>This can also be written as </em><a target="_self" href="/TopicsEn%3A%22animal*%20(birds%20%7C%20beasts)%20-cattle%22">TopicsEn:"animal* (birds | beasts) -cattle"</a></li>
+                      <li><em>Show all verses where moon is mentioned but not the sun, using Arabic to English mapping</em><br/>
+                              <a target="_self" href="/Arabic*%3A%22moon%20-sun%22">Arabic*:"moon -sun"</a>
+                              <br/><em>Only using the translations returs one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
+
+                    </ul>
+                  </ul>
+                 <br/>
+                 <b><em>Simple filter examples:</em></b><br/>
                  <ul>
                    <li><a target="_self" href="/Allah s:50">Search for Allah in Sura 50</a></li>
                    <li><a target="_self" href="/TopicsEn:%22Jonah%22">Search for Jonah in English Topics</a></li>
@@ -50,34 +89,8 @@ export default class Help extends Component {
                    <li><a target="_self" href="/a%3A<>1">Show all verses (ayah) except first one</a></li>
                    <li><a target="_self" href="/Juz%3A<>2-29#1:1">Do not show parts (Juz) 2 to 29</a></li>
                    <li><a target="_self" href="/TopicsEn:%22animal*%22">All verses tagged with topic "animal" or "animals"</a></li>
-                 </ul></li>
-                 <li><b><em>Advance filter examples</em></b><br/>
-                  <ul>
-                   <li><em>Look for text or phrase matches in all enabled layers, without looking into sub-layers</em><br/>
-                     <a target="_self" href="/%22best of%22">"best of"</a> or <a target="_self" href="/%22seal of%22">"seal of"</a></li>
-                    <li><em>Look for "Yunus" in all layers including, Arabic, Surah names, English topics and all translations</em><br/>
-                      <a target="_self" href="/%3AYunus">:Yonus</a> or <a target="_self" href="/*%3AYunus">*:Yonus</a></li>
-                    <li><em>Look for "Yunus" in all English translations</em><br/>
-                        <a target="_self" href="/English*%3AYunus">English*:"Yunus"</a></li>
-                    <li><em>Look for "Bakr" for Hadhrat Abu Bakr<sup>ra</sup> everywhere, including topics</em><br/>
-                            <a target="_self" href="/%3Abakr">:bakr</a></li>
-                    <li><em>Look for all verses with topic "Jonah" but not those verses where the name "Jonah" is mentioned in any English translation</em><br/>
-                            <a target="_self" href="/TopicsEn%3A%22Jonah%22%20English*%3A%22-Jonah%22">TopicsEn:"Jonah" English*:"-Jonah" </a></li>
-                    <li><em>Look for all verses where English translators have mentioned "Jonah" but not by Molana Sher Ali <sup>ra</sup></em><br/>
-                            <a target="_self" href="/English*%3A%22Jonah%22%20English%3A%22-Jonah%22">English*:"Jonah" English:"-Jonah"</a></li>
-                    <li><em>Look for "stars" but filter results where "رَءَا" is mentioned in Arabic verbs only</em><br/>
-                            <a target="_self" href="/stars%20Arabic*.ar_verbs%3A%22رَءَا%22">stars Arabic*.ar_verbs:"رَءَا"</a></li>
-                    <li><em>Show all verses with topic tags with "animals", and also with either "beasts" or "birds", but not with "cattle"</em><br/>
-                            <a target="_self" href="/TopicsEn%3A%22animal*%22%20TopicsEn%3A%22birds%20%7C%20beasts%22%20TopicsEn%3A%22-cattle%22">TopicsEn:"animal*" TopicsEn:"birds | beasts" TopicsEn:"-cattle"</a>
-                            <br/><em>This can also be written as </em><a target="_self" href="/TopicsEn%3A%22animal*%20(birds%20%7C%20beasts)%20-cattle%22">TopicsEn:"animal* (birds | beasts) -cattle"</a></li>
-                    <li><em>Show all verses where moon is mentioned but not the sun, using Arabic to English mapping</em><br/>
-                            <a target="_self" href="/Arabic*%3A%22moon%20-sun%22">Arabic*:"moon -sun"</a>
-                            <br/><em>Only using the translations returs one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
-                    <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
-                            <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
-                  </ul>
-                 </li>
-             </ul>
+                 </ul>
+
              <br/>
              <Credits/>
             </div>
