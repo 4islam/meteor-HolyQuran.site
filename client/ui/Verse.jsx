@@ -96,6 +96,9 @@ componentDidMount() {
                <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
                <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
+               {
+                 this.props.CR?<span>CR <b onClick={this.replaceFilter.bind(this, this.props.ayah, "CR*")}>{this.props.CR}</b> </span>:""
+               }
 
               </div>
           </a>
@@ -305,6 +308,17 @@ componentDidMount() {
        this.props.search(query, this.props.options)
      } else {
        $(window.inputId)[0].value += ' '+filter
+     }
+   }
+   replaceFilter(filterValue, filterType, search=true , e) {
+     // console.log(filterValue, filterType, e);
+     let filter = filterType+":"+filterValue
+     let query = filter
+     if (search) {
+       $(window.inputId)[0].value = query
+       this.props.search(query, this.props.options)
+     } else {
+       $(window.inputId)[0].value += filter
      }
    }
 }
