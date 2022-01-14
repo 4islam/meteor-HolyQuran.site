@@ -24,11 +24,15 @@ Meteor.methods({
   //var sessionId = (sID)?sID.replace(/\W/g, ''):0; //Only takes alphanumerics
 
   tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
-  queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);
+  queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);       //(?:x) is a non-capturing group, not sure why it is needed
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_\.]+:[><=]?.+$/i)!= '-1' || q.search(/^".+"$/i)!= '-1') {q1.push(q)}
+      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
+          q.search(/^".+"$/i)!= '-1' ||                             // any character within quotes
+          q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
+          q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
+          {q1.push(q)}
       else {q2.push(q)}
       if (i==ql) {return [q1,q2]}
     })[ql]
