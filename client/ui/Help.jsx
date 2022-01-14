@@ -51,14 +51,14 @@ export default class Help extends Component {
                     <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
                             <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
                     <br/>
-                    <ul><b><em>Query syntax for more advance queries:</em> <code class="literal">:"query"</code></b><br/>
-                      <code class="literal">+</code> signifies AND operation <br/>
-                      <code class="literal">|</code> signifies OR operation <br/>
-                      <code class="literal">-</code> negates a single token <br/>
-                      <code class="literal">*</code> at the end of a term signifies a prefix query <br/>
-                      <code class="literal">(</code> and <code class="literal">)</code> signify precedence <br/>
-                      <code class="literal">~N</code> after a word signifies edit distance (fuzziness) <br/>
-                      <code class="literal">~N</code> after a phrase signifies slop amount <br/>
+                    <ul><b><em>Query syntax for more advance queries:</em> <code className="literal">:"query"</code></b><br/>
+                      <code className="literal">+</code> signifies AND operation <br/>
+                      <code className="literal">|</code> signifies OR operation <br/>
+                      <code className="literal">-</code> negates a single token <br/>
+                      <code className="literal">*</code> at the end of a term signifies a prefix query <br/>
+                      <code className="literal">(</code> and <code className="literal">)</code> signify precedence <br/>
+                      <code className="literal">~N</code> after a word signifies edit distance (fuzziness) <br/>
+                      <code className="literal">~N</code> after a phrase signifies slop amount <br/>
                       <br/>
                       <b><em>Examples:</em></b>
                       <li><em>Look for all verses with topic "Jonah" but not those verses where the name "Jonah" is mentioned in any English translation</em><br/>
