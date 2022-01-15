@@ -12,7 +12,11 @@ if [ -n "$1" ]; then
   scp -P2222 ../HQVC_ServerConfig/home/centos/upload/$1 centos@158.69.72.248:/home/centos/upload
 else
   #echo "Useage: ./build.sh Target_Folder_Version_Number  (example: ./build.sh 2.2)"
-  meteor build ../HQVC_ServerConfig/home/centos/upload --architecture os.linux.x86_64 --server https://holyquran.site
-
+  meteor build ../HQVC_ServerConfig/home/centos/upload/build --architecture os.linux.x86_64 --server https://holyquran.site
+  mkdir ../HQVC_ServerConfig/home/centos/upload/build/temp
+  tar -xzf ../HQVC_ServerConfig/home/centos/upload/build/*.tar.gz -C ../HQVC_ServerConfig/home/centos/upload/build/temp
+  cp Docker* ../HQVC_ServerConfig/home/centos/upload/build/temp
+  docker build  ../HQVC_ServerConfig/home/centos/upload/build/temp -t hqvc_advance
+  rm -fr ../HQVC_ServerConfig/home/centos/upload/build/temp
   #scp -P2222 ../HQVC_ServerConfig/home/centos/upload/HQVC.tar.gz centos@158.69.72.248:/home/centos/upload
 fi

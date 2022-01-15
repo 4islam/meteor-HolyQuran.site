@@ -41,7 +41,7 @@ WORKDIR /app
 
 EXPOSE 3000
 #CMD [ "node", "bundle/main.js" ]
-CMD [ "./startDocker.sh" ]
+CMD [ "./DockerRun.sh" ]
 
 
 # Run me like:
