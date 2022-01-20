@@ -96,9 +96,7 @@ componentDidMount() {
                <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
                <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
-               {
-                 this.props.CR?<span>CR <b onClick={this.replaceFilter.bind(this, this.props.ayah, "CR*")}>{this.props.CR}</b> </span>:""
-               }
+               
 
               </div>
           </a>
@@ -125,6 +123,14 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.EnglishZafrullahKhan}
                        Type="EnglishZafrullahKhan"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.English5VC}
+                       Type="English5VC"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
@@ -165,6 +171,14 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="Chinese"?x.state:false).indexOf(true) != -1)?
+                <a className="list-group-item Translation">
+                    <VerseHighlights
+                       base={this.props.Chinese}
+                       Type="Chinese"
                        highlights={this.props.highlights}/>
                 </a>:''
               }

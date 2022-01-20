@@ -77,9 +77,15 @@ Meteor.methods({
           fields.push("English.en_to_ar_noor")
           fields.push("English.en_to_ar_trigram")
           fields.push("English.en_to_ar_noor_trigram")
+        } else if (o=="English5VC") {
+          fields.push("English5VC.en_normalized_ngram")
+          fields.push("English5VC.trigram")
         } else if (o=="EnglishZafrullahKhan") {
           fields.push("EnglishZafrullahKhan.en_normalized_ngram")
           fields.push("EnglishZafrullahKhan.trigram")
+        } else if (o=="Chinese") {
+          fields.push("Chinese.cn_normalized_ngram")
+          fields.push("Chinese.trigram")
         } else if (o=="EnglishMuhammadAli") {
           fields.push("EnglishMuhammadAli.en_normalized_ngram")
           fields.push("EnglishMuhammadAli.trigram")

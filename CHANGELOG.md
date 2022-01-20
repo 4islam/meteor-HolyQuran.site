@@ -1,3 +1,7 @@
+## 6.5:
+  * English Tranlsation from Five Volume Commentary added
+  * Chinese translation added
+
 ## 6.46:
   * Help file reviewed and updated
 

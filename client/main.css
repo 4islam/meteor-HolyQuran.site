@@ -285,11 +285,10 @@ a.list-group-item.Verse {
     font-family: Scheheraza, Scheherazade;
     word-spacing: 2px;
 }
-.English, .EnglishZafrullahKhan, .German, .Spanish, .Italian, .French, .Urdu, .UrduTS, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
+
+.English, .EnglishZafrullahKhan, .German, .Spanish, .Italian, .French, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall, .English5VC {
   font-weight:lighter;
   font-size: 1em;
-}
-.English, .EnglishZafrullahKhan, .German, .Spanish, .Italian, .French, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall {
   direction: ltr;
   text-align: left;
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -310,12 +309,26 @@ span.cohortsCount{
   font-size: smaller;
 }
 
+.Urdu, .UrduTS {
+  font-weight:lighter;
+  font-size: 1em;
+}
+
  .Urdu, .UrduTS, .UrduMaududi, .UrduAhmedAli {
    /* font-family: NafeesWeb, NafeesWebNaskh; */
    font-family: 'Jameel Noori Nastaleeq', -apple-system, BlinkMacSystemFont, noto_nastaliq, 'Urdu Naskh Asiatype', 'Nafees Web Naskh';
    font-size: 1.2em;
    direction: rtl;
    direction: right;
+ }
+
+ .Chinese {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  direction: ltr;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  text-align: left;
  }
 
 

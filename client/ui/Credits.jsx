@@ -30,7 +30,11 @@ export default class Credits extends Component {
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
-
+                      <ul>
+                        <b>6.5 </b>
+                        <li>English Tranlsation from Five Volume Commentary added</li>
+                        <li>Chinese translation added</li>
+                      </ul>
                       <ul>
                         <b>6.4 </b>
                         <li>Multi-layer global filter search added</li>

@@ -187,6 +187,19 @@ Meteor.methods({
         {match: {"EnglishZafrullahKhan.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"EnglishZafrullahKhan.en_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"English5VC": {query: query,"boost": 5}}},
+        {match: {"English5VC.trigram": {query: query,"boost": 5.5}}},
+        {match: {"English5VC.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"English5VC.en_normalized": {query: query,"boost": 3}}},
+        {match: {"English5VC.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"English5VC.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"Chinese": {query: query,"boost": 5}}},
+        {match: {"Chinese.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Chinese.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"Chinese.cn_normalized": {query: query,"boost": 3}}},
+        {match: {"Chinese.cn_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Chinese.en_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"TopicsEn": {query: query,"boost": 5}}},
         {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
@@ -577,16 +590,26 @@ Meteor.methods({
                         field: "UrduTS.trigram"
                     }
               },
-                "s_English": {
-                       significant_terms: {
-                           field: "English.significant"
-                       }
-                },
-                "s_English_phrases": {
-                       significant_terms: {
-                           field: "English.trigram"
-                       }
-                },
+              "s_English": {
+                     significant_terms: {
+                         field: "English.significant"
+                     }
+              },
+              "s_English_phrases": {
+                     significant_terms: {
+                         field: "English.trigram"
+                     }
+              },
+              "s_English5VC": {
+                     significant_terms: {
+                         field: "English5VC.significant"
+                     }
+              },
+              "s_English5VC_phrases": {
+                     significant_terms: {
+                         field: "English5VC.trigram"
+                     }
+              },
                 "s_English_Zafrullah_Khan": {
                        significant_terms: {
                            field: "EnglishZafrullahKhan.significant"
@@ -665,6 +688,16 @@ Meteor.methods({
                 "s_Italian_phrases": {
                         significant_terms: {
                             field: "Italian.trigram"
+                      }
+                },
+                "s_Chinese": {
+                        significant_terms: {
+                            field: "Chinese.significant"
+                      }
+                },
+                "s_Chinese_phrases": {
+                        significant_terms: {
+                            field: "Chinese.trigram"
                       }
                 },
                 "s_English_Corpus": {

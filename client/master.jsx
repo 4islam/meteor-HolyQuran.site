@@ -43,6 +43,10 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
+        {id:"English5VC",state:false,name:'English Five Volume Commentary',options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
         {id:"German",state:false,name:'German',options: [
                   {id:"ngram",state:true,name:'Teilweise'},
                   {id:"normalized",state:true,name:'Normalisierte'}
@@ -63,6 +67,10 @@ export default class Master extends Component {
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"Chinese",state:false,name:'Chinese',options: [
+                  {id:"ngram",state:true,name:'Teilweise'},
+                  {id:"normalized",state:true,name:'Normalisierte'}
                 ]},
         {id:"TopicsEn",state:false,name:'Topics - English',options: [
                   {id:"ngram",state:true,name:'Partial'},
