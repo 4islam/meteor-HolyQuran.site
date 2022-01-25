@@ -1,3 +1,8 @@
+## 6.6:
+  * English Five Volume Commentary added
+  * Chinese Commentary added
+  * (Requires ES Version 12)
+
 ## 6.5:
   * English Tranlsation from Five Volume Commentary added
   * Chinese translation added

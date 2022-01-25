@@ -47,7 +47,7 @@ Meteor.methods({
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
+      if (q.search(/^[a-zA-Z_\.\*\d]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
           q.search(/^".+"$/i)!= '-1' ||                             // any character within quotes
           q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
           q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
@@ -287,7 +287,10 @@ Meteor.methods({
         {match: {"EnglishMuhammadAli.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"EnglishMuhammadAli.en_normalized": {query: query,"boost": 3}}},
         {match: {"EnglishMuhammadAli.en_ngram_original": {query: query,"boost": 2.5}}},
-        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}}
+        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"Notes_English5V.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_Chinese.notes": {query: query,"boost": 2}}},
 
       ];
 
@@ -439,6 +442,11 @@ Meteor.methods({
                       //"type" : "fvh"
                       "number_of_fragments" : 0
                      }
+                 ,
+                 "Notes_*" : {
+                   "number_of_fragments" : 3,
+                   "fragment_size" : 50
+                 }
                 //"require_field_match": false,
                  //"*":{}//,
 

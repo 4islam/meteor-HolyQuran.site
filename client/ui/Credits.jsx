@@ -31,6 +31,12 @@ export default class Credits extends Component {
 
                       <h5><b>Release information</b></h5>
                       <ul>
+                        <b>6.6 </b>
+                        <li>English Five Volume Commentary search added</li>
+                        <li>Chinese Commentary search added</li>
+                      </ul>
+
+                      <ul>
                         <b>6.5 </b>
                         <li>English Tranlsation from Five Volume Commentary added</li>
                         <li>Chinese translation added</li>

@@ -1,6 +1,7 @@
 import React, { Component, state } from 'react';
 import Analyze from './Analyze.jsx';
 import VerseHighlights from './VerseHighlights.jsx'
+import NotesHighlights from './NotesHighlights.jsx'
 
 var tokens={tokens:[]};
 export default class Verse extends Component {
@@ -96,11 +97,13 @@ componentDidMount() {
                <span>Juz <b onClick={this.addFilter.bind(this, this.props.Juz, "Juz")}>{this.props.Juz}</b> </span>
                <span>Hisb <b onClick={this.addFilter.bind(this, this.props.Hisb, "Hisb")}>{this.props.Hisb}</b> </span>
                <span>Ruku <b onClick={this.addFilter.bind(this, this.props.Ruku, "Ruku")}>{this.props.Ruku}</b> </span>
-               
+               {
+                 this.props.CR_English5V.length?<span>CR <b onClick={this.replaceFilter.bind(this, this.props.ayah, "CR_*")}>{this.props.CR_English5V.map(x=>(Object.keys(x)+" "))}</b> </span>:""
+               }
 
               </div>
           </a>
-          {(this.props.options.map(x=>(["Urdu","UrduTS","UrduMaududi","UrduAhmedAli","English","EnglishZafrullahKhan","German","Spanish","French","Italian","EnglishCorpus","EnglishMuhammadAli","TopicsEn","EnglishSahih","EnglishPickthall","EnglishMaududi","EnglishArberry","EnglishAhmedAli"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
+          {(this.props.options.map(x=>(["Urdu","UrduTS","UrduMaududi","UrduAhmedAli","English","English5VC","Chinese","Notes_English5V_notes","EnglishZafrullahKhan","German","Spanish","French","Italian","EnglishCorpus","EnglishMuhammadAli","TopicsEn","EnglishSahih","EnglishPickthall","EnglishMaududi","EnglishArberry","EnglishAhmedAli"].indexOf(x.id)!=-1)?x.state:false).indexOf(true) != -1)?
             <div className="Translation well">
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
@@ -133,6 +136,15 @@ componentDidMount() {
                        Type="English5VC"
                        highlights={this.props.highlights}/>
                 </a>:''
+              }
+              {Object.keys(this.props.highlights).find((k)=>(k==="Notes_English5V_notes"))?
+                  <div className="Notes well">
+                    <a className="list-group-item English5VC English">
+                        <NotesHighlights
+                           Type="Notes_English5V_notes"
+                           highlights={this.props.highlights}/>
+                    </a>
+                  </div>:''
               }
               {(this.props.options.map(x=>x.id==="German"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">
@@ -181,6 +193,15 @@ componentDidMount() {
                        Type="Chinese"
                        highlights={this.props.highlights}/>
                 </a>:''
+              }
+              {Object.keys(this.props.highlights).find((k)=>(k==="Notes_Chinese_notes"))?
+                  <div className="Notes well">
+                    <a className="list-group-item Chinese">
+                        <NotesHighlights
+                           Type="Notes_Chinese_notes"
+                           highlights={this.props.highlights}/>
+                    </a>
+                  </div>:''
               }
               {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1)?
                 <a className="list-group-item Translation">

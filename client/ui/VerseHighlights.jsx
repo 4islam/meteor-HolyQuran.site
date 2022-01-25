@@ -5,7 +5,7 @@ export default class VerseHighlights extends Component {
     return (
         <div className={this.props.Type+" reference"}>
             {(this.props.highlights)?Object.keys(this.props.highlights).map(function(k) {
-                var re = new RegExp(this.props.Type + '(_.*)?$', 'g')              //Must end with either '_' or end of line
+                var re = new RegExp('^'+this.props.Type + '(_.*)?$', 'g')              //Must end with either '_' or end of line
                 return (k.search(re)!=-1?
                   <div key={k} className={"highlights noselect " + k.replace(/\.|_/g,' ')}
                     dangerouslySetInnerHTML={{__html: this.props.highlights[k][0].replace(/(\u06E3|\u06E8)/,' $1')}}/>

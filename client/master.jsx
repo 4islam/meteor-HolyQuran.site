@@ -69,8 +69,8 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"Chinese",state:false,name:'Chinese',options: [
-                  {id:"ngram",state:true,name:'Teilweise'},
-                  {id:"normalized",state:true,name:'Normalisierte'}
+                  // {id:"ngram",state:true,name:'Teilweise'},
+                  {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"TopicsEn",state:false,name:'Topics - English',options: [
                   {id:"ngram",state:true,name:'Partial'},
