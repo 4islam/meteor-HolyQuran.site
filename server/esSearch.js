@@ -301,7 +301,7 @@ Meteor.methods({
           if (!x.state || !y.state) {
             if (x.id == 'root') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*root"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*root"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -311,7 +311,7 @@ Meteor.methods({
             }
             if (x.id == 'normalized') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*normal"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*normal"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -321,7 +321,7 @@ Meteor.methods({
             }
             if (x.id == 'stems') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*stem"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*stem"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -331,7 +331,7 @@ Meteor.methods({
             }
             if (x.id == 'phonetic') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -341,7 +341,7 @@ Meteor.methods({
             }
             if (x.id == 'translation') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*_to_.*"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*_to_.*"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -361,7 +361,7 @@ Meteor.methods({
             }
             if (x.id == 'ngram') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);

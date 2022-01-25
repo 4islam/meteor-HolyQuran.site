@@ -114,6 +114,12 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}
+                ]},
+        {id:"Notes_English5V",state:false,name:'English Five Volume Commentaries',options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"Notes_Chinese",state:false,name:'Chinese Commentaries',options: [
+                    {id:"normalized",state:true,name:'Normalized'}
                 ]}
 
       ],
