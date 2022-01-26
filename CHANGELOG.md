@@ -1,3 +1,7 @@
+## 6.61:
+  * Commentaries integration to global search
+  * Global search enhancements, now no need to select layers when performing global search
+
 ## 6.6:
   * English Five Volume Commentary added
   * Chinese Commentary added

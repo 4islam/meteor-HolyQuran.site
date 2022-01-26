@@ -141,23 +141,14 @@ div.Notes.well {
   border-width: thin;
 }
 
-div.Notes.well > a {
+a.Notes {
   display: block;
   height: auto;
   overflow-y: scroll;
   overflow: hidden;
   background-color: whitesmoke;
+  font-size: small;
 }
-
-div.Notes_English5V_notes {
-  height: auto;
-  overflow: hidden;
-}
-
- div.Notes.well .fragments {
-   position: relative;
-   font-size: small;
- }
 
  ul.fragments.Notes {
    list-style: none;
@@ -171,7 +162,7 @@ div.Notes_English5V_notes {
 
 
 a.Topics.English {
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
 }
 
 a.Topics.English > div > div.TopicsEn {
