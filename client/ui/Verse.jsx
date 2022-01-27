@@ -114,7 +114,7 @@ componentDidMount() {
               //       this.props.highlights &&
               //       Object.keys(this.props.highlights).find((k)=>(new RegExp('^'+z.id+'\b?.*').test(k))))?
               //         <a className="list-group-item Translation">
-              //
+              //          <span className="label label-info">{this.props.options.map(x=>x.id==="z.id"?x.name:"")}</span>
               //             <VerseHighlights key={z.id}
               //                base={this.props[z.id]}
               //                Type={z.id}
@@ -131,22 +131,25 @@ componentDidMount() {
 
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
-                    <VerseHighlights
-                       base={this.props.Urdu}
-                       Type="Urdu"
-                       highlights={this.props.highlights}/>
+                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="Urdu"?x.name:"")}</span>
+                  <VerseHighlights
+                     base={this.props.Urdu}
+                     Type="Urdu"
+                     highlights={this.props.highlights}/>
                 </a>:''
               }
               {(this.props.options.map(x=>x.id==="English"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
-                    <VerseHighlights
-                       base={this.props.English}
-                       Type="English"
-                       highlights={this.props.highlights}/>
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="English"?x.name:"")}</span>
+                  <VerseHighlights
+                     base={this.props.English}
+                     Type="English"
+                     highlights={this.props.highlights}/>
                 </a>:''
               }
               {(this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishZafrullahKhan\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishZafrullahKhan}
                        Type="EnglishZafrullahKhan"
@@ -155,6 +158,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English5VC\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="English5VC"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.English5VC}
                        Type="English5VC"
@@ -163,6 +167,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="German"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^German\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="German"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.German}
                        Type="German"
@@ -171,6 +176,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Spanish"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Spanish\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Spanish"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.Spanish}
                        Type="Spanish"
@@ -179,6 +185,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="French"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^French\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="French"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.French}
                        Type="French"
@@ -187,6 +194,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Italian"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Italian\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Italian"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.Italian}
                        Type="Italian"
@@ -195,6 +203,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTS\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduTS"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
@@ -203,6 +212,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Chinese"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Chinese\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Chinese"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.Chinese}
                        Type="Chinese"
@@ -211,6 +221,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduAhmedAli\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduAhmedAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.UrduAhmedAli}
                        Type="UrduAhmedAli"
@@ -219,6 +230,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduMaududi"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduMaududi\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduMaududi"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.UrduMaududi}
                        Type="UrduMaududi"
@@ -227,6 +239,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMuhammadAli\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishMuhammadAli}
                        Type="EnglishMuhammadAli"
@@ -235,6 +248,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishAhmedAli\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishAhmedAli}
                        Type="EnglishAhmedAli"
@@ -243,6 +257,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishArberry"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishArberry\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishArberry"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishArberry}
                        Type="EnglishArberry"
@@ -251,6 +266,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishMaududi"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMaududi\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishMaududi"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishMaududi}
                        Type="EnglishMaududi"
@@ -259,6 +275,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishPickthall"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishPickthall\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishPickthall"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishPickthall}
                        Type="EnglishPickthall"
@@ -267,6 +284,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishSahih"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishSahih.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishSahih"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishSahih}
                        Type="EnglishSahih"
@@ -275,6 +293,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishCorpus"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishCorpus.*/.test(k))))?
                 <a className="list-group-item Translation">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishCorpus"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishCorpus}
                        Type="EnglishCorpus"
@@ -283,6 +302,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="TopicsEn"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/TopicsEn.*/.test(k))))?
                 <a className="list-group-item Topics English">
+                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="TopicsEn"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.TopicsEn}
                        Type="TopicsEn"
@@ -291,6 +311,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_English5V_notes"))?
                     <a className="list-group-item Notes English5VC English">
+                      <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Notes_English5V"?x.name:"")}</span>
                         <NotesHighlights
                            Type="Notes_English5V_notes"
                            ayah={this.props.ayah}
@@ -299,6 +320,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_Chinese_notes"))?
                     <a className="list-group-item Notes Chinese">
+                      <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Notes_Chinese"?x.name:"")}</span>
                         <NotesHighlights
                            Type="Notes_Chinese_notes"
                            ayah={this.props.ayah}

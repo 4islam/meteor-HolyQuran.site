@@ -30,6 +30,18 @@ div.switchIbarat label {
   font-size: .8em;
 }
 
+.label-info {
+    position: absolute;
+    background-color: #ccc;
+    top: -1px;
+}
+.rtll {
+  right: 0;
+}
+.ltrl {
+  left: 0;
+}
+
 div.switchIbarat.Arabic {
   font-weight: bolder;
 }
@@ -148,6 +160,7 @@ a.Notes {
   overflow: hidden;
   background-color: whitesmoke;
   font-size: small;
+  padding: 15px 15px 5px;
 }
 
  ul.fragments.Notes {
@@ -163,6 +176,7 @@ a.Notes {
 
 a.Topics.English {
   background-color: whitesmoke;
+  padding: 15px 15px 5px;
 }
 
 a.Topics.English > div > div.TopicsEn {
@@ -361,6 +375,7 @@ span.cohortsCount{
 a.list-group-item.Translation {
   font-weight:lighter;
   font-size: .9em;
+  padding: 15px 15px 5px;
 }
 
 @media all and (max-width: 1200px) { /* screen size until 1200px */

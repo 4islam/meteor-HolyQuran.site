@@ -29,12 +29,12 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:'اردو',type:"Translation",options: [
+        {id:"Urdu",state:false,name:'اردو ترجمہ از خلیفة المسیح الرابعؒ',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English",state:true,name:'English',type:"Translation",options: [
+        {id:"English",state:true,name:'English - Hadhrat Molavi Sher Ali ra',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
