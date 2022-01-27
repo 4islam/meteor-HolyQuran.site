@@ -110,6 +110,10 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
+        {id:"EnglishYusufAli",state:false,name:'English - Yusuf Ali',type:"Translation",options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
         {id:"EnglishCorpus",state:false,name:'English - Talal Itani',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},

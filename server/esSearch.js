@@ -289,6 +289,14 @@ Meteor.methods({
         {match: {"EnglishMuhammadAli.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"EnglishYusufAli": {query: query,"boost": 5}}},
+        {match: {"EnglishYusufAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishYusufAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishYusufAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishYusufAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishYusufAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+
         {match: {"Notes_English5V.notes": {query: query,"boost": 2}}},
         {match: {"Notes_Chinese.notes": {query: query,"boost": 2}}},
 
@@ -636,6 +644,16 @@ Meteor.methods({
                 "s_English_Muhammad_Ali_phrases": {
                        significant_terms: {
                            field: "EnglishMuhammadAli.trigram"
+                       }
+                },
+                "s_English_Yusuf_Ali": {
+                       significant_terms: {
+                           field: "EnglishYusufAli.significant"
+                       }
+                },
+                "s_English_Yusuf_Ali_phrases": {
+                       significant_terms: {
+                           field: "EnglishYusufAli.trigram"
                        }
                 },
                 "s_English_to_Arabic": {

@@ -30,9 +30,15 @@ export default class Credits extends Component {
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+
+                      <ul>
+                        <b>6.7 </b>
+                        <li>Yusuf Ali's English Translation added</li>                        
+                      </ul>
+
                       <ul>
                         <b>6.62 </b>
-                        <li>Translation labels are added</li>                        
+                        <li>Translation labels are added</li>
                       </ul>
 
                       <ul>
