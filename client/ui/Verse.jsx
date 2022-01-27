@@ -107,7 +107,28 @@ componentDidMount() {
               </div>
           </a>
 
-            <div className="Translation well">
+             <div className="Translation well">
+              {// TODO: Need to get this loop working to consolidate this component into a few lines
+              //   this.props.options.map(function(z) { if (z.type==="Translation") {
+              //     (z.state === true ||
+              //       this.props.highlights &&
+              //       Object.keys(this.props.highlights).find((k)=>(new RegExp('^'+z.id+'\b?.*').test(k))))?
+              //         <a className="list-group-item Translation">
+              //
+              //             <VerseHighlights key={z.id}
+              //                base={this.props[z.id]}
+              //                Type={z.id}
+              //                highlights={this.props.highlights}/>
+              //         </a>:''
+              //   }}.bind(this))
+              }
+              {
+                // this.props.options.map((x)=>(x.type==="Commentary"?
+
+
+                // :''))
+              }
+
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu\b_?.*/.test(k))))?
                 <a className="list-group-item Translation">
                     <VerseHighlights
