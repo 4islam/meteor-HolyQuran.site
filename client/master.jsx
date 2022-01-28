@@ -76,12 +76,12 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduAhmedAli",state:false,name:'احمد علی اردو',type:"Translation",options: [
+        {id:"UrduAhmedAli",state:false,name:'اردو ترجمہ احمد علی',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduMaududi",state:false,name:'مودودی اردو',type:"Translation",options: [
+        {id:"UrduMaududi",state:false,name:'اردو ترجمہ مودودی',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
