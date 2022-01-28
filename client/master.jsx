@@ -16,7 +16,7 @@ export default class Master extends Component {
     super();
     this.state = {
       option_types:[
-        {id:ArabicSrc,state:true,name:'Arabic',options: [
+        {id:ArabicSrc,state:true,name:'Arabic',type:"Verses",options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -24,96 +24,106 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
-        {id:"Surah",state:true,name:'Chapter Names',options: [
+        {id:"Surah",state:true,name:'Chapter Names',type:"Chapters",options: [
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:'اردو',options: [
+        {id:"Urdu",state:false,name:'اردو ترجمہ از خلیفة المسیح الرابعؒ',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English",state:true,name:'English',options: [
+        {id:"English",state:true,name:'English - Hadhrat Molavi Sher Ali ra',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
-        {id:"EnglishZafrullahKhan",state:false,name:'English Sir Zafrullah Khan ra',options: [
+        {id:"EnglishZafrullahKhan",state:false,name:'English Sir Zafrullah Khan ra',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English5VC",state:false,name:'English Five Volume Commentary',options: [
+        {id:"English5VC",state:false,name:'English Five Volume Commentary',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"German",state:false,name:'German',options: [
+        {id:"German",state:false,name:'German',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Teilweise'},
                   {id:"normalized",state:true,name:'Normalisierte'}
                 ]},
-        {id:"Spanish",state:false,name:'Spanish',options: [
+        {id:"Spanish",state:false,name:'Spanish',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"French",state:false,name:'French',options: [
+        {id:"French",state:false,name:'French',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Italian",state:false,name:'Italian',options: [
+        {id:"Italian",state:false,name:'Italian',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'تفسیرِ صغیر اردو',options: [
+        {id:"UrduTS",state:false,name:'تفسیرِ صغیر اردو',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Chinese",state:false,name:'Chinese',options: [
-                  {id:"ngram",state:true,name:'Teilweise'},
-                  {id:"normalized",state:true,name:'Normalisierte'}
+        {id:"Chinese",state:false,name:'Chinese',type:"Translation",options: [
+                  // {id:"ngram",state:true,name:'Teilweise'},
+                  {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"TopicsEn",state:false,name:'Topics - English',options: [
+        {id:"TopicsEn",state:false,name:'Topics - English',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduAhmedAli",state:false,name:'احمد علی اردو',options: [
+        {id:"UrduAhmedAli",state:false,name:'اردو ترجمہ احمد علی',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduMaududi",state:false,name:'مودودی اردو',options: [
+        {id:"UrduMaududi",state:false,name:'اردو ترجمہ مودودی',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishMuhammadAli",state:false,name:'English Muhammad Ali ra',options: [
+        {id:"EnglishMuhammadAli",state:false,name:'English Muhammad Ali ra',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishAhmedAli",state:false,name:'English Ahmed Ali',options: [
+        {id:"EnglishAhmedAli",state:false,name:'English Ahmed Ali',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishArberry",state:false,name:'English Arberry',options: [
+        {id:"EnglishArberry",state:false,name:'English Arberry',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishMaududi",state:false,name:'English Maududi',options: [
+        {id:"EnglishMaududi",state:false,name:'English Maududi',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishPickthall",state:false,name:'English Pickthall',options: [
+        {id:"EnglishPickthall",state:false,name:'English Pickthall',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishSahih",state:false,name:'English Sahih',options: [
+        {id:"EnglishSahih",state:false,name:'English Sahih',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishCorpus",state:false,name:'English - Talal Itani',options: [
+        {id:"EnglishYusufAli",state:false,name:'English - Yusuf Ali',type:"Translation",options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishCorpus",state:false,name:'English - Talal Itani',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}
+                ]},
+        {id:"Notes_English5V",state:false,name:'English Five Volume Commentaries',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"Notes_Chinese",state:false,name:'Chinese Commentaries',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
                 ]}
 
       ],

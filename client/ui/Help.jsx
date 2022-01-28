@@ -50,6 +50,8 @@ export default class Help extends Component {
                             <a target="_self" href="/stars%20Arabic*.ar_verbs%3A%22رَءَا%22">stars Arabic*.ar_verbs:"رَءَا"</a></li>
                     <li><em>Look for verses where Arabic roots of both قمر and شمس are present</em><br/>
                             <a target="_self" href="/*.ar_root:%22قمر شمس%22">*.ar_root:"قمر شمس"</a></li>
+                    <li><em>Look for خاتم in all Urdu translations</em><br/>
+                            <a target="_self" href="Urdu*%3Aخاتم">Urdu*:خاتم</a></li>
                     <br/>
                     <ul><b><em>Query syntax for more advance queries:</em> <code className="literal">:"query"</code></b><br/>
                       <code className="literal">+</code> signifies AND operation <br/>

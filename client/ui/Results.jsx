@@ -51,9 +51,9 @@ class Results extends Component {
  }
 
  globalSearch(page,limit) {
-   // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
+   window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
    $(window.inputId)[0].value = window.query
-   this.props.options.map(y=>{y.state=true})
+   // this.props.options.map(y=>{y.state=true})
    this.props.search(window.query,this.props.options,page,limit)
 
    // alert(1)

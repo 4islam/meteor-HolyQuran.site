@@ -30,6 +30,29 @@ export default class Credits extends Component {
                       <p>For API support and feedback, please write to <a href="mailto:info@alislam.org">info@alislam.org</a>.</p>
 
                       <h5><b>Release information</b></h5>
+
+                      <ul>
+                        <b>6.7 </b>
+                        <li>Yusuf Ali's English Translation added</li>                        
+                      </ul>
+
+                      <ul>
+                        <b>6.62 </b>
+                        <li>Translation labels are added</li>
+                      </ul>
+
+                      <ul>
+                        <b>6.61 </b>
+                        <li>Commentaries are now integrated with global search function</li>
+                        <li>Global search enhancements, now no need to select layers when performing global search</li>
+                      </ul>
+
+                      <ul>
+                        <b>6.6 </b>
+                        <li>English Five Volume Commentary search added</li>
+                        <li>Chinese Commentary search added</li>
+                      </ul>
+
                       <ul>
                         <b>6.5 </b>
                         <li>English Tranlsation from Five Volume Commentary added</li>

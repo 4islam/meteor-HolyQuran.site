@@ -1,3 +1,18 @@
+## 6.7:
+  * Yusuf Ali's English Translation added
+
+## 6.62:
+  * Adds translation labels
+
+## 6.61:
+  * Commentaries integration to global search
+  * Global search enhancements, now no need to select layers when performing global search
+
+## 6.6:
+  * English Five Volume Commentary added
+  * Chinese Commentary added
+  * (Requires ES Version 12)
+
 ## 6.5:
   * English Tranlsation from Five Volume Commentary added
   * Chinese translation added

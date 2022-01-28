@@ -47,7 +47,7 @@ Meteor.methods({
   ql = queryArray.length-1;
   var q1=[];var q2=[];
   queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
+      if (q.search(/^[a-zA-Z_\.\*\d]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
           q.search(/^".+"$/i)!= '-1' ||                             // any character within quotes
           q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
           q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
@@ -287,7 +287,18 @@ Meteor.methods({
         {match: {"EnglishMuhammadAli.trigram_normalized": {query: query,"boost": 4.5}}},
         {match: {"EnglishMuhammadAli.en_normalized": {query: query,"boost": 3}}},
         {match: {"EnglishMuhammadAli.en_ngram_original": {query: query,"boost": 2.5}}},
-        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}}
+        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishYusufAli": {query: query,"boost": 5}}},
+        {match: {"EnglishYusufAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishYusufAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishYusufAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishYusufAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishYusufAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+
+        {match: {"Notes_English5V.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_Chinese.notes": {query: query,"boost": 2}}},
 
       ];
 
@@ -298,7 +309,7 @@ Meteor.methods({
           if (!x.state || !y.state) {
             if (x.id == 'root') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*root"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*root"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -308,7 +319,7 @@ Meteor.methods({
             }
             if (x.id == 'normalized') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*normal"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*normal"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -318,7 +329,7 @@ Meteor.methods({
             }
             if (x.id == 'stems') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*stem"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*stem"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -328,7 +339,7 @@ Meteor.methods({
             }
             if (x.id == 'phonetic') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*phonetic"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -338,7 +349,7 @@ Meteor.methods({
             }
             if (x.id == 'translation') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*_to_.*"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*_to_.*"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -358,7 +369,7 @@ Meteor.methods({
             }
             if (x.id == 'ngram') {
               matchArray.find(function (x,i){
-                var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp(y.id+"(\\..*)?$");
+                var re = (y.state)? new RegExp(y.id+"\\..*ngram"): new RegExp("^"+y.id+"(\\..*)?$");
                 if (Object.keys(x.match)[0].search(re)!=-1) {
                   if (removeCandidates.indexOf(i)==-1) {
                     removeCandidates.push(i);
@@ -439,6 +450,11 @@ Meteor.methods({
                       //"type" : "fvh"
                       "number_of_fragments" : 0
                      }
+                 ,
+                 "Notes_*" : {
+                   "number_of_fragments" : 3,
+                   "fragment_size" : 50
+                 }
                 //"require_field_match": false,
                  //"*":{}//,
 
@@ -630,6 +646,16 @@ Meteor.methods({
                            field: "EnglishMuhammadAli.trigram"
                        }
                 },
+                "s_English_Yusuf_Ali": {
+                       significant_terms: {
+                           field: "EnglishYusufAli.significant"
+                       }
+                },
+                "s_English_Yusuf_Ali_phrases": {
+                       significant_terms: {
+                           field: "EnglishYusufAli.trigram"
+                       }
+                },
                 "s_English_to_Arabic": {
                        significant_terms: {
                            field: "English.en_to_ar"
@@ -738,7 +764,7 @@ Meteor.methods({
             search_query.body.query.bool.should={"match_all": {}}
           }
           search_query.body["sort"]=[{"s":"asc"},{"a":"asc"}]
-          search_query.body.highlight={}
+          // search_query.body.highlight={}
           // search_query.body.suggest={}
           search_query.body.min_score=1
         } else {
