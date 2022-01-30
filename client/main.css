@@ -21,6 +21,21 @@
   font-weight: normal;
 }
 
+sup {
+  color:darkslategrey;
+}
+
+div.Notes_CR {
+  border-bottom-style: inset;
+}
+.Notes_CR p {
+  display: inline-block;
+  padding-right: 5px;
+}
+.Notes_Commentary p {
+
+}
+
 div.switchIbarat label {
   font-size: 1.2em;
 }

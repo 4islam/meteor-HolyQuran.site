@@ -1,5 +1,6 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
+import IframeVerse from './IframeVerse.jsx'
 
 import { createContainer } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
@@ -36,10 +37,11 @@ class Iframe extends Component {
      </div>
      <div className="modal-body">
        {
-         this.props.pages?
-            <span dangerouslySetInnerHTML={{__html: this.props.pages.page}}></span>
-         :''
+         // this.props.pages?
+         //    <span dangerouslySetInnerHTML={{__html: this.props.pages.page}}></span>
+         // :''
        }
+       <IframeVerse verse={this.props.verse} options={this.props.options}/>
        </div>
        { (this.props.showClose)?
          <div className="modal-footer">

@@ -32,8 +32,13 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.8 </b>
+                        <li>Commentaries and other verse details loading from ES in the iFrame</li>                        
+                      </ul>
+
+                      <ul>
                         <b>6.7 </b>
-                        <li>Yusuf Ali's English Translation added</li>                        
+                        <li>Yusuf Ali's English Translation added</li>
                       </ul>
 
                       <ul>

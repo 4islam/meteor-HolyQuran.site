@@ -1,3 +1,6 @@
+## 6.8:
+  * Commentaries and other verse details loading from ES in the iFrame now
+
 ## 6.7:
   * Yusuf Ali's English Translation added
 
