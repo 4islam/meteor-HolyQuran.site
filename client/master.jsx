@@ -485,7 +485,10 @@ export default class Master extends Component {
                                   checked={x.state}
                                   disabled={this.state.hideUnmatched}
                                   onChange={this.handleChange} />
-                              
+                                <small>
+                                  <span>{ ' ' + x.name + ' '}</span>
+                                  <span className="caret"></span>
+                                </small>
                               </button>
                             <ul className={(x.name=='Arabic')?'dropdown-menu dropdown-menu-right':'dropdown-menu'}
                                 aria-labelledby="dLabel">
