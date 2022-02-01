@@ -130,7 +130,7 @@ componentDidMount() {
                 // :''))
               }
 
-              {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
                   <span className="label label-info rtll">{this.props.options.map(x=>x.id==="Urdu"?x.name:"")}</span>
                   <VerseHighlights
@@ -139,180 +139,180 @@ componentDidMount() {
                      highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="English"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="English"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="English"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English")}>{this.props.options.map(x=>x.id==="English"?x.name:"")}</span>
                   <VerseHighlights
                      base={this.props.English}
                      Type="English"
                      highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishZafrullahKhan(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishZafrullahKhan(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishZafrullahKhan")}> {this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishZafrullahKhan}
                        Type="EnglishZafrullahKhan"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English5VC(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English5VC(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="English5VC"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English5VC")}> {this.props.options.map(x=>x.id==="English5VC"?x.name:"")}</span>
                     <VerseHighlightsSpecialCase
                        base={this.props.English5VC}
                        Type="English5VC"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="German"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^German(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="German"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^German(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="German"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "German")}> {this.props.options.map(x=>x.id==="German"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.German}
                        Type="German"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="Spanish"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Spanish(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="Spanish"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Spanish(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Spanish"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Spanish")}> {this.props.options.map(x=>x.id==="Spanish"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.Spanish}
                        Type="Spanish"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="French"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^French(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="French"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^French(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="French"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "French")}> {this.props.options.map(x=>x.id==="French"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.French}
                        Type="French"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="Italian"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Italian(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="Italian"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Italian(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Italian"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Italian")}> {this.props.options.map(x=>x.id==="Italian"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.Italian}
                        Type="Italian"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTS(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTS(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduTS"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTS")}> {this.props.options.map(x=>x.id==="UrduTS"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="Chinese"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Chinese(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="Chinese"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Chinese(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Chinese"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Chinese")}> {this.props.options.map(x=>x.id==="Chinese"?x.name:"")}</span>
                     <VerseHighlightsSpecialCase
                        base={this.props.Chinese}
                        Type="Chinese"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduAhmedAli(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduAhmedAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduAhmedAli"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduAhmedAli")}> {this.props.options.map(x=>x.id==="UrduAhmedAli"?x.name:"")}</span>
                     <VerseHighlightsSpecialCase
                        base={this.props.UrduAhmedAli}
                        Type="UrduAhmedAli"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="UrduMaududi"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduMaududi(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="UrduMaududi"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduMaududi(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="UrduMaududi"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduMaududi")}> {this.props.options.map(x=>x.id==="UrduMaududi"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.UrduMaududi}
                        Type="UrduMaududi"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMuhammadAli(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMuhammadAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMuhammadAli")}> {this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishMuhammadAli}
                        Type="EnglishMuhammadAli"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishAhmedAli(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishAhmedAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishAhmedAli")}> {this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishAhmedAli}
                        Type="EnglishAhmedAli"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishArberry"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishArberry(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishArberry"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishArberry(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishArberry"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishArberry")}> {this.props.options.map(x=>x.id==="EnglishArberry"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishArberry}
                        Type="EnglishArberry"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishMaududi"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMaududi(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishMaududi"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMaududi(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishMaududi"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMaududi")}> {this.props.options.map(x=>x.id==="EnglishMaududi"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishMaududi}
                        Type="EnglishMaududi"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishPickthall"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishPickthall(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishPickthall"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishPickthall(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishPickthall"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishPickthall")}> {this.props.options.map(x=>x.id==="EnglishPickthall"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishPickthall}
                        Type="EnglishPickthall"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishSahih"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishSahih(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishSahih"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishSahih(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishSahih"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSahih")}> {this.props.options.map(x=>x.id==="EnglishSahih"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishSahih}
                        Type="EnglishSahih"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishCorpus"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishCorpus(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishCorpus"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishCorpus(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishCorpus"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishCorpus")}> {this.props.options.map(x=>x.id==="EnglishCorpus"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishCorpus}
                        Type="EnglishCorpus"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="EnglishYusufAli"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishYusufAli(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="EnglishYusufAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishYusufAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="EnglishYusufAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishYusufAli")}> {this.props.options.map(x=>x.id==="EnglishYusufAli"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.EnglishYusufAli}
                        Type="EnglishYusufAli"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="TopicsEn"?x.state:false).indexOf(true) != -1 || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/TopicsEn(\b|_).*/.test(k))))?
+              {(this.props.options.map(x=>x.id==="TopicsEn"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/TopicsEn(\b|_).*/.test(k))))?
                 <a className="list-group-item Topics English">
-                  <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="TopicsEn"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "TopicsEn")}> {this.props.options.map(x=>x.id==="TopicsEn"?x.name:"")}</span>
                     <VerseHighlights
                        base={this.props.TopicsEn}
                        Type="TopicsEn"
@@ -321,7 +321,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_English5V_notes"))?
                     <a className="list-group-item Notes English5VC English">
-                      <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Notes_English5V"?x.name:"")}</span>
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_English5V")}> {this.props.options.map(x=>x.id==="Notes_English5V"?x.name:"")}</span>
                         <NotesHighlights
                            Type="Notes_English5V_notes"
                            ayah={this.props.ayah}
@@ -330,7 +330,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_Chinese_notes"))?
                     <a className="list-group-item Notes Chinese">
-                      <span className="label label-info ltrl">{this.props.options.map(x=>x.id==="Notes_Chinese"?x.name:"")}</span>
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_Chinese")}> {this.props.options.map(x=>x.id==="Notes_Chinese"?x.name:"")}</span>
                         <NotesHighlights
                            Type="Notes_Chinese_notes"
                            ayah={this.props.ayah}
@@ -408,5 +408,10 @@ componentDidMount() {
      } else {
        $(window.inputId)[0].value += filter
      }
+   }
+   selectLayer(layer) {
+     this.props.options.map(y=>{y.id===layer?y.state=true:y.state=false})
+     this.props.switchLayers(false)
+     this.props.search(query, this.props.options)
    }
 }

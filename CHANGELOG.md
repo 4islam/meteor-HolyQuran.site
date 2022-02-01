@@ -1,3 +1,7 @@
+## 6.9:
+  * Added function to hide unmatching layers when searching across all layers
+  * Feature added to click on the translation to disable all others from search
+
 ## 6.8:
   * Commentaries and other verse details loading from ES in the iFrame now
 

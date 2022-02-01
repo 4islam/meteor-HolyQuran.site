@@ -49,6 +49,7 @@ div.switchIbarat label {
     position: absolute;
     background-color: #ccc;
     top: -1px;
+    cursor: pointer;
 }
 .rtll {
   right: 0;

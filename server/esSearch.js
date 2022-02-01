@@ -71,6 +71,8 @@ Meteor.methods({
   // tquery = '"'+tquery.replace('"','\'')+'"';
   if (tquery != "") {
 
+    tquery=tquery.replace(/:/g,'\:')
+
     console.log(sessionId,"Search Query request (summary: "+aggs+") for:",tquery, "page:" ,page);
     if (cacheResults && ESCol.findOne({$and:[{query:tquery},{options:options_str},{page:page},{limit:limit}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
 

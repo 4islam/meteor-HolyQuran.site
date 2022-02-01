@@ -137,7 +137,8 @@ export default class Master extends Component {
                     ],
       verse:'1:1',
       page: 1,
-      limit: globalLimit
+      limit: globalLimit,
+      hideUnmatched: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -482,11 +483,9 @@ export default class Master extends Component {
                                   type="checkbox"
                                   value={x.state}
                                   checked={x.state}
+                                  disabled={this.state.hideUnmatched}
                                   onChange={this.handleChange} />
-                                <small>
-                                  <span>{ ' ' + x.name + ' '}</span>
-                                  <span className="caret"></span>
-                                </small>
+                              
                               </button>
                             <ul className={(x.name=='Arabic')?'dropdown-menu dropdown-menu-right':'dropdown-menu'}
                                 aria-labelledby="dLabel">
@@ -525,6 +524,11 @@ export default class Master extends Component {
                        عربی عبارت:
                     </label>
                   </div>
+                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
+                    <label className={this.state.hideUnmatched?"btn btn-default btn-xs active":"btn btn-default btn-xs"} onClick={e=>this.switchLayers()}>
+                      <input type="checkbox" checked={this.state.hideUnmatched} /> Hide Unmatching Translations
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -554,7 +558,10 @@ export default class Master extends Component {
                        options={this.state.option_types}
                        analyzers={this.state.analyzers}
                        page={this.state.page} limit={this.state.limit}
-                       search={this.search.bind(this)} options={this.state.option_types}/>
+                       search={this.search.bind(this)}
+                       hideUnmatched={this.state.hideUnmatched}
+                       switchLayers={this.switchLayers.bind(this)}
+                       options={this.state.option_types}/>
                   </div>
                 </div>
                 <div className="col-lg-3 Summary sidebar-offcanvas">
@@ -705,6 +712,11 @@ export default class Master extends Component {
     update_analyzers(ibarat)
     this.setState({analyzers:analyzers})
     this.search(window.query, option_types)
+  }
+
+  switchLayers(state) {
+    // console.log(this.state.hideUnmatched," => " ,!this.state.hideUnmatched);
+    this.setState({hideUnmatched:state!==undefined?state:!this.state.hideUnmatched})
   }
 
   options_panel(event) {
