@@ -27,7 +27,7 @@ class Queries extends Component {
        {
          this.props.queries? this.props.queries.map(x =>
              <li className="btn-block btn btn-xs" key={x._id} dir="ltr">
-               <a onClick={()=>this.handleChange(x.query, x.options)}>{x.query} {JSON.parse(x.options).map(y=>
+               <a onClick={()=>this.handleChange(x.query, x.options)}>{x.query.replace(/\\:/g,':') } {JSON.parse(x.options).map(y=>
                 y.state? <span className={"query highlights " + y.id} key={'span_' + y.id}>
                     <mark>{y.name.substring(0,2)}</mark>
                   </span>:''
@@ -40,6 +40,7 @@ class Queries extends Component {
  }
  handleChange(query, options) {
    //console.log(query, options);
+   query=query.replace(/\\:/g,':')
    this.props.search(query, JSON.parse(options));
    $(window.inputId)[0].value = query;
  }
