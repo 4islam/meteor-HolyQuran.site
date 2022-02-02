@@ -410,7 +410,7 @@ componentDidMount() {
      }
    }
    selectLayer(layer) {
-     this.props.options.map(y=>{y.id===layer?y.state=true:y.state=false})
+     this.props.options.map((y,z)=>{y.id===layer||z===0||z===1?y.state=true:y.state=false}) //Exceptions: 0 is Arabic and 1 is Chapters
      this.props.switchLayers(false)
      this.props.search(query, this.props.options)
    }
