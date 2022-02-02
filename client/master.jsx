@@ -476,6 +476,7 @@ export default class Master extends Component {
                             <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
                               id="dLabel" type="button" onClick={this.openMenu}
                               name={x.name}
+                              style={this.state.hideUnmatched?{'color':'#bcbcbc'}:{}} 
                               aria-haspopup="true" aria-expanded="false">
                                 <input className="checkbox-inline"
                                   name={x.id}
@@ -483,7 +484,6 @@ export default class Master extends Component {
                                   type="checkbox"
                                   value={x.state}
                                   checked={x.state}
-                                  disabled={this.state.hideUnmatched}
                                   onChange={this.handleChange} />
                                 <small>
                                   <span>{ ' ' + x.name + ' '}</span>

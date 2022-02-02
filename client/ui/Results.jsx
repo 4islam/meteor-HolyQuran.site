@@ -79,10 +79,16 @@ componentDidUpdate () {
  globalSearch(page,limit) {
    // console.log(page,limit);
    // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
+
+   window.layersMessage+=" Searching in all layers "
    this.props.switchLayers(true)
    this.props.options.map(y=>{if (!y.id.match(/Chinese/i)){y.state=true}})
 
-   $('button.Search').trigger("click")
+   const myTimeout = setTimeout(function(){
+     window.layersMessage+=" (done)"
+      $('button.Search').trigger("click")
+   },1000)
+
 
    try {
      // setTimeout(this.props.search, 1000, window.query, this.props.options,page,limit);
