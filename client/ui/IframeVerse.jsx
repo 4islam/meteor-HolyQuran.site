@@ -29,14 +29,14 @@ componentDidMount() {
     var v = r?r.results.hits?(r.results.hits.hits && r.results.hits.total.value>0)?r.results.hits.hits[0]._source:null:null:null
     return <div>
         { v?<div className="Verse base">
-            <VerseHighlights
+          <VerseHighlights
                base={v.Surah}
                Type="Surah"/>
                <br/>
-             <VerseHighlights
+               {/*<VerseHighlights
                 base={v['Arabic']}
                 Type="Arabic"
-                />
+                />*/}
               <br/>
               <br/>
 

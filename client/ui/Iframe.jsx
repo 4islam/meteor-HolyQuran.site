@@ -37,9 +37,9 @@ class Iframe extends Component {
      </div>
      <div className="modal-body">
        {
-         // this.props.pages?
-         //    <span dangerouslySetInnerHTML={{__html: this.props.pages.page}}></span>
-         // :''
+         this.props.pages?
+            <span dangerouslySetInnerHTML={{__html: this.props.pages.page}}></span>
+         :''
        }
        <IframeVerse verse={this.props.verse} options={this.props.options}/>
        </div>

@@ -18,7 +18,7 @@ componentDidMount() {
 }
 
 componentWillMount() {
-
+  window.layersMessage=""
 }
 
 componentDidUpdate () {
@@ -80,12 +80,12 @@ componentDidUpdate () {
    // console.log(page,limit);
    // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
 
-   window.layersMessage+=" Searching in all layers "
+   // window.layersMessage+=" Searching in all layers "
    this.props.switchLayers(true)
    this.props.options.map(y=>{if (!y.id.match(/Chinese/i)){y.state=true}})
 
    const myTimeout = setTimeout(function(){
-     window.layersMessage+=" (done)"
+     // window.layersMessage+=" (done)"
       $('button.Search').trigger("click")
    },1000)
 
