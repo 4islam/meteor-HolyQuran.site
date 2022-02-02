@@ -22,22 +22,22 @@ class Aggregates extends Component {
            aggs.results.aggregations?
              aggregates.map(x=>(
                //this.props.options.map(z=>z.state?z.id:'').indexOf(x.lang) != -1?
+               aggs.results.aggregations[x.id]&&aggs.results.aggregations[x.id].buckets.length>0?
                  <div key={"div " + x.id} className={"Aggregate " + x.id.replace(/_/g,' ') + ' ' + x.id}>
-                   {x.name}
+                   {x.name}                   
                    <div key={x.id} className="nav nav-pills nav-stacked">
                     {
-                      aggs.results.aggregations[x.id]?
                       aggs.results.aggregations[x.id].buckets[0]?
                         aggs.results.aggregations[x.id].buckets.map(y=>
                         (y.key!="سورة")?
                           <span className="cohorts" key={x.id+y.key}>
                             <a onClick={this.handleChange.bind(this, y.key, x.esField)} dangerouslySetInnerHTML={{ __html: y.key }}/> <span className="cohortsCount">{y.doc_count}</span>
                           </span>:''
-                        ):<br/>:''
+                        ):<br/>
                     }
                     </div>
                     <hr/>
-                  </div>
+                  </div>:""
                 //  :<span>{x.lang}</span>
              ))
            :'':''
