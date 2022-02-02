@@ -127,6 +127,15 @@ span.suggestInfo {
   white-space: normal;
 }
 
+.Aggregates div.en {
+  white-space: normal;
+  font-weight:lighter;
+  font-size: 1em;
+  direction: ltr;
+  text-align: left;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
 ul.Queries li {
   word-spacing: 3px;
 }
