@@ -1,5 +1,6 @@
 ## 6.10:
   * Auto search in all layer (except for Chinese) feature is added when no match is found
+  * Default Keyboard size increased
 
 ## 6.9:
   * Added function to hide unmatching layers when searching across all layers
