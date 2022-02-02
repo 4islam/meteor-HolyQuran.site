@@ -52,7 +52,21 @@ Meteor.methods({
     console.log(sessionId,"is:",this.connection.id);
   }
 
-  query=query.replace(/\\:/g,':') 
+  // query=query.replace(/\\:/g,':')
+  // options=options.filter(x=>x.state)
+  // options=options.map((x) => {
+  //   return {...x, options: x.options.filter(y=>y.state)}
+  // })
+  // console.log(JSON.stringify(options))
+  options_str=JSON.stringify(options);
+  // console.log(options_str);
+  options_str_hash = query+options_str+page
+  options_str_hash = options_str_hash.hashCode()
+  console.log(options_str_hash);
+  // options_str=JSON.stringify(options.map(x=>x.state?{id:x.id,name:x.name,options:x.options.map(y=>y.state?{id:y.id,state:true}:null)}:null))
+  // options_str=JSON.stringify(options.map(x=>x.state?x.id+","+x.options.map(y=>y.state?y.id:""):"")).replace(/\"/g,"").replace(/,+/g,",");
+
+
 
   tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
   queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);       //(?:x) is a non-capturing group, not sure why it is needed
@@ -68,6 +82,7 @@ Meteor.methods({
       if (i==ql) {return [q1,q2]}
     })[ql]
   queryFilters = queryTypes[0]
+  // console.log(queryFilters);
   query = queryTypes[1].join(' ')
   if (query == '') {query='*'}
   //var sessionId = (sID)?sID.replace(/\W/g, ''):''; //Only takes alphanumerics
@@ -76,34 +91,21 @@ Meteor.methods({
   var date = new Date();
   // console.log(sessionId, page, limit);
 
-    // options=options.filter(x=>x.state)
-    // options=options.map((x) => {
-    //   return {...x, options: x.options.filter(y=>y.state)}
-    // })
-  // console.log(JSON.stringify(options))
-  options_str=JSON.stringify(options);
-  // console.log(options_str);
-  options_str_hash = options_str.hashCode()
-  console.log(options_str_hash);
-  // options_str=JSON.stringify(options.map(x=>x.state?{id:x.id,name:x.name,options:x.options.map(y=>y.state?{id:y.id,state:true}:null)}:null))
-  // options_str=JSON.stringify(options.map(x=>x.state?x.id+","+x.options.map(y=>y.state?y.id:""):"")).replace(/\"/g,"").replace(/,+/g,",");
-
-
   // tquery = tquery.replace(':','\\:')
   // tquery = '"'+tquery.replace('"','\'')+'"';
   if (tquery != "") {
 
-    tquery=tquery.replace(/:/g,'\\:')           //For issues with Mongodb
+    // tquery=tquery.replace(/:/g,'\\:')           //For issues with Mongodb
 
     console.log(sessionId,"Search Query request (summary: "+aggs+") for:",tquery, "page:" ,page);
-    if (cacheResults && ESCol.findOne({$and:[{query:tquery},{optionshash:options_str_hash},{page:page},{limit:limit}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
+    if (cacheResults && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
 
       ESCol.update({$and:[{query:tquery},{optionshash:options_str_hash},{page:page},{limit:limit}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
       console.log(sessionId,"Search Query updated for:",tquery, "page:" ,page);
 
-    } else if (cacheResults && ESCol.findOne({$and:[{query:query},{optionshash:options_str_hash},{page:page},{limit:limit}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
+    } else if (cacheResults && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
 
-      ESCol.update({$and:[{query:tquery},{optionshash:options_str_hash},{page:page},{limit:limit}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
+      ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
       console.log(sessionId,"Search Query shuffled for:",tquery, "page:" ,page);
 
     } else {
@@ -815,7 +817,7 @@ Meteor.methods({
               if (aggs!="all") {
                 ESCol.insert({query:tquery, optionshash:options_str_hash, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
               } else {
-                ESCol.update({$and:[{query:tquery},{optionshash:options_str_hash},{page:page},{limit:limit}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
+                ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
               }
               // console.log(matches.hits.hits.length)
               // console.log(date);
