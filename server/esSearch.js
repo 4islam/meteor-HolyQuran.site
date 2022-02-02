@@ -21,6 +21,16 @@ Meteor.startup(() => {
         {"session.date" : 1},
         { expireAfterSeconds: 14*(24*3600) }  //14 days
       );
+
+      ESColAggregates._ensureIndex( {
+        "session.id" : 1,
+        "session.date" : 1,
+        "query" : 1
+     });
+     ESColAggregates._ensureIndex(
+       {"session.date" : 1},
+       { expireAfterSeconds: 14*(24*3600) }  //14 days
+     );
   }
 });
 
@@ -64,8 +74,15 @@ Meteor.methods({
   var date = new Date();
   // console.log(sessionId, page, limit);
 
-  //console.log(JSON.stringify(options))
+  // options=options.filter(x=>x.state)
+  // options=options.map((x) => {
+  //   return {...x, options: x.options.filter(y=>y.state)}
+  // })
+  // console.log(JSON.stringify(options))
   options_str=JSON.stringify(options);
+  // options_str=JSON.stringify(options.map(x=>x.state?{id:x.id,name:x.name,options:x.options.map(y=>y.state?{id:y.id,state:true}:null)}:null))
+  // options_str=JSON.stringify(options.map(x=>x.state?x.id+","+x.options.map(y=>y.state?y.id:""):"")).replace(/\"/g,"").replace(/,+/g,",");
+
 
   // tquery = tquery.replace(':','\\:')
   // tquery = '"'+tquery.replace('"','\'')+'"';

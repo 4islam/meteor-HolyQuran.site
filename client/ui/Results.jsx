@@ -10,15 +10,40 @@ import Paging from './Paging.jsx';
 
 // App component - represents the whole app
 class Results extends Component {
+
+componentDidMount() {
+  window.autosearch=false
+  window.searchedQuery=""
+  window.layersMessage=""
+}
+
+componentWillMount() {
+
+}
+
+componentDidUpdate () {
+  var r=this.props.results
+  window.autosearch=window.query==window.searchedQuery?false:true
+  // $(window.inputId)[0].value = window.query
+  if (window.autosearch && r && r.results.hits && r.results.hits.hits && r.results.hits.total.value==0) {
+      window.searchedQuery=window.query
+      // window.layersMessage=" all layers (except Chinese)"
+      this.globalSearch(1, this.props.limit)
+      // console.log("should have called")
+  } else {
+    window.autosearch=true;
+  }
+}
+
  render() {
    var r=this.props.results
-   //console.log(r);
    return <div className="Result base">
        {
         r?
            r.results.hits?
              (r.results.hits.hits && r.results.hits.total.value>0)?
              <div>
+              {window.layersMessage=""}
                <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small></div>
                {Object.keys(r.results.hits.hits).map((v) => (
                   <Verse key={r.results.hits.hits[v]._id}
@@ -39,8 +64,7 @@ class Results extends Component {
                   search={this.props.search.bind(this)}
                   page={this.props.page}
                   limit={this.props.limit} />
-              </div>:<div className="NoResult"><h4>Sorry, no results found</h4><hr/><h5>If like to perform a global search instead,
-                click <a onClick={this.globalSearch.bind(this, 1, this.props.limit)}>here</a><br/><br/>See advance filter examples below for more details</h5><hr/><Help/></div>:"...":<Help/>
+              </div>:<div className="NoResult"><h4>Sorry, no results found {window.layersMessage}</h4><hr/><h5><br/>See advance filter examples below for more details</h5><hr/><Help/></div>:"...":<Help/>
        }
        </div>
  }
@@ -55,13 +79,15 @@ class Results extends Component {
  globalSearch(page,limit) {
    // console.log(page,limit);
    // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
-   $(window.inputId)[0].value = window.query
-   this.props.switchLayers()
+   this.props.switchLayers(true)
    this.props.options.map(y=>{if (!y.id.match(/Chinese/i)){y.state=true}})
+
+   $('button.Search').trigger("click")
 
    try {
      // setTimeout(this.props.search, 1000, window.query, this.props.options,page,limit);
-     this.props.search(window.query,this.props.options,page,limit)
+     // this.props.search(window.query,this.props.options,page,limit)
+
    } catch (e) {
 
    }

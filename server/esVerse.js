@@ -52,7 +52,7 @@ Meteor.methods({
   // console.log(sessionId,"is:",this.connection.id);
 
   var date = new Date();
-  cacheResults = true
+  // cacheResults = true
   // console.log(sessionId, this.connection.id);
 
   console.log(sessionId,"Verse Query request for:",verse);
