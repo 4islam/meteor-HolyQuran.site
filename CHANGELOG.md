@@ -1,3 +1,6 @@
+## 6.10:
+  * Auto search in all layer (except for Chinese) feature is added when no match is found
+
 ## 6.9:
   * Added function to hide unmatching layers when searching across all layers
   * Feature added to click on the translation to disable all others from search
