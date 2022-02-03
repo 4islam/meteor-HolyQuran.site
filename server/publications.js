@@ -28,6 +28,29 @@ Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) 
     })
 });
 
+Meteor.publish('Aggregates/all', function(notRequired, sessionId, page, limit, by) {
+   //console.log(sessionId, this.connection.id);
+
+  //console.log(page,limit, by)
+  return ESColAggregates.find(
+    {
+      'session.id': {
+        $in: [
+              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
+             ]
+        }
+    },
+    {
+      sort:{
+        'session.date':-1
+      },
+      fields:{
+        //'results.hits.hits':{ $slice: [(page-1)*limit,limit] }
+      },
+     limit: 1        //Past 10 queries
+    })
+});
+
 
 Meteor.publish('Analysis', function(notRequired, sessionId) {
 //  console.log(sessionId, this.connection.id);
@@ -68,4 +91,27 @@ Meteor.publish('Pages', function(verse, sessionId) {
   return Pages.find({verse:verse},{
     limit: 1
   })
+});
+
+Meteor.publish('Verse/all',  function(notRequired, sessionId) {
+   console.log(sessionId, this.connection.id);
+
+  //console.log(page,limit, by)
+  return VerseCol.find(
+    {
+      'session.id': {
+        $in: [
+              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
+             ]
+        }
+    },
+    {
+      sort:{
+        'session.date':-1
+      },
+      fields:{
+        //'results.hits.hits':{ $slice: [(page-1)*limit,limit] }
+      },
+     limit: 1
+    })
 });

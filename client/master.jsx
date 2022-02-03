@@ -137,7 +137,8 @@ export default class Master extends Component {
                     ],
       verse:'1:1',
       page: 1,
-      limit: globalLimit
+      limit: globalLimit,
+      hideUnmatched: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -475,6 +476,7 @@ export default class Master extends Component {
                             <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
                               id="dLabel" type="button" onClick={this.openMenu}
                               name={x.name}
+                              style={this.state.hideUnmatched?{'color':'#bcbcbc'}:{}} 
                               aria-haspopup="true" aria-expanded="false">
                                 <input className="checkbox-inline"
                                   name={x.id}
@@ -525,6 +527,11 @@ export default class Master extends Component {
                        عربی عبارت:
                     </label>
                   </div>
+                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
+                    <label className={this.state.hideUnmatched?"btn btn-default btn-xs active":"btn btn-default btn-xs"} onClick={e=>this.switchLayers()}>
+                      <input type="checkbox" checked={this.state.hideUnmatched} /> Hide Unmatching Translations
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -554,7 +561,10 @@ export default class Master extends Component {
                        options={this.state.option_types}
                        analyzers={this.state.analyzers}
                        page={this.state.page} limit={this.state.limit}
-                       search={this.search.bind(this)} options={this.state.option_types}/>
+                       search={this.search.bind(this)}
+                       hideUnmatched={this.state.hideUnmatched}
+                       switchLayers={this.switchLayers.bind(this)}
+                       options={this.state.option_types}/>
                   </div>
                 </div>
                 <div className="col-lg-3 Summary sidebar-offcanvas">
@@ -582,7 +592,7 @@ export default class Master extends Component {
 
         <div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
           <div className="modal-dialog" role="document">
-            <Iframe query={this.props.query} verse={this.state.verse} setVerse={this.setVerse.bind(this)} showClose="true"/>
+            <Iframe query={this.props.query} options={this.state.option_types} verse={this.state.verse} setVerse={this.setVerse.bind(this)} showClose="true"/>
           </div>
         </div>
 
@@ -705,6 +715,11 @@ export default class Master extends Component {
     update_analyzers(ibarat)
     this.setState({analyzers:analyzers})
     this.search(window.query, option_types)
+  }
+
+  switchLayers(state) {
+    // console.log(this.state.hideUnmatched," => " ,!this.state.hideUnmatched);
+    this.setState({hideUnmatched:state!==undefined?state:!this.state.hideUnmatched})
   }
 
   options_panel(event) {

@@ -21,6 +21,21 @@
   font-weight: normal;
 }
 
+sup {
+  color:darkslategrey;
+}
+
+div.Notes_CR {
+  border-bottom-style: inset;
+}
+.Notes_CR p {
+  display: inline-block;
+  padding-right: 5px;
+}
+.Notes_Commentary p {
+
+}
+
 div.switchIbarat label {
   font-size: 1.2em;
 }
@@ -34,6 +49,7 @@ div.switchIbarat label {
     position: absolute;
     background-color: #ccc;
     top: -1px;
+    cursor: pointer;
 }
 .rtll {
   right: 0;
@@ -59,6 +75,14 @@ span.suggestInfo {
 
 #datalistUl {
   font-size: small;
+  max-width: 75%;
+  overflow-x: hidden;
+  /* max-height: 100%;
+  overflow-y: scroll; */
+}
+
+.datalistUl li {
+
 }
 
  /*.well.pre-scrollable div {
@@ -101,6 +125,15 @@ span.suggestInfo {
 
 .Aggregates div.nav {
   white-space: normal;
+}
+
+.Aggregates div.en {
+  white-space: normal;
+  font-weight:lighter;
+  font-size: 1em;
+  direction: ltr;
+  text-align: left;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 ul.Queries li {

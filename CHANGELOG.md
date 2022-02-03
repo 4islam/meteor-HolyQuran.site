@@ -1,3 +1,16 @@
+## 6.10:
+  * Auto search in all layer (except for Chinese) feature is added when no match is found
+  * Default Keyboard size increased
+  * Mongo performance optimizations using hash matching instead of the whole string
+  * Cohorts updated to only show when not empty
+
+## 6.9:
+  * Added function to hide unmatching layers when searching across all layers
+  * Feature added to click on the translation to disable all others from search
+
+## 6.8:
+  * Commentaries and other verse details loading from ES in the iFrame now
+
 ## 6.7:
   * Yusuf Ali's English Translation added
 

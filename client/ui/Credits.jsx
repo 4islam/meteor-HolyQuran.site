@@ -32,8 +32,25 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.10: </b>
+                        <li>Auto search in all layers (except for Chinese) feature is added when no match is found</li>
+                      </ul>
+
+
+                      <ul>
+                        <b>6.9: </b>
+                        <li>Added function to hide unmatching layers when searching across all layers</li>
+                        <li>Feature added to click on the translation to disable all others from search</li>
+                      </ul>
+
+                      <ul>
+                        <b>6.8 </b>
+                        <li>Commentaries and other verse details loading from ES in the iFrame</li>
+                      </ul>
+
+                      <ul>
                         <b>6.7 </b>
-                        <li>Yusuf Ali's English Translation added</li>                        
+                        <li>Yusuf Ali's English Translation added</li>
                       </ul>
 
                       <ul>
