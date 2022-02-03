@@ -25,19 +25,22 @@ Meteor.methods({
 
   tquery = query.trim().replace(/ +/g, ' ').replace(/\t+/g,' ').substring(0,500);      //max 500 character limit
   queryArray = tquery.match(/(?:[^\s"]+|"[^"]*")+/g);       //(?:x) is a non-capturing group, not sure why it is needed
-  ql = queryArray.length-1;
-  var q1=[];var q2=[];
-  queryTypes = queryArray.map((q,i)=>{
-      if (q.search(/^[a-zA-Z_\.\*]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
-          q.search(/^".+"$/i)!= '-1' ||                             // any character within quotes
-          q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
-          q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
-          {q1.push(q)}
-      else {q2.push(q)}
-      if (i==ql) {return [q1,q2]}
-    })[ql]
-  queryFilters = queryTypes[0]
-  query = queryTypes[1].join(' ')
+  if(queryArray){
+    ql = queryArray.length-1;
+    var q1=[];var q2=[];
+    queryTypes = queryArray.map((q,i)=>{
+        if (q.search(/^[a-zA-Z_\.\*\d]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
+            q.search(/^"[^\"]+"$/i)!= '-1' ||                             // any character within quotes
+            q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
+            q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
+            {q1.push(q)}
+        else {q2.push(q)}
+        if (i==ql) {return [q1,q2]}
+      })[ql]
+    queryFilters = queryTypes[0]
+    // console.log(queryFilters);
+    query = queryTypes[1].join(' ')
+  }
   if (query == '') {query='*'}
 
   var date = new Date();
@@ -577,6 +580,25 @@ Meteor.methods({
               }
         }
       }
+
+      // let shouldDSL = suggest_query.body.query.bool.should
+      // if (queryFilters.length > 0) {
+      //   suggest_query.body.query.bool=genFilterDSL(queryFilters,options.filter(o=>o.state!="").map(o=>o.id))
+      //   // console.log(JSON.stringify(search_query.body.query.bool.should));
+      //   if (query == "*") {
+      //     if (!suggest_query.body.query.bool.should) {  //genFilterDSL assignes this empty array
+      //       suggest_query.body.query.bool.should={"match_all": {}}
+      //     }
+      //     suggest_query.body["sort"]=[{"s":"asc"},{"a":"asc"}]
+      //     // search_query.body.highlight={}
+      //     // search_query.body.suggest={}
+      //     suggest_query.body.min_score=1
+      //   } else {
+      //     // suggest_query.body.query.bool["should"] = shouldDSL
+      //     suggest_query.body.query.bool["minimum_should_match"] = 1
+      //     // search_query.body.highlight={}
+      //   }
+      // }
       // console.log(JSON.stringify(suggest_query));
       esClient.search(suggest_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
