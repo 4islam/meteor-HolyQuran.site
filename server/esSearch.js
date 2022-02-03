@@ -62,7 +62,7 @@ Meteor.methods({
   // console.log(options_str);
   options_str_hash = query+options_str+page
   options_str_hash = options_str_hash.hashCode()
-  console.log(options_str_hash);
+  // console.log(options_str_hash);
   // options_str=JSON.stringify(options.map(x=>x.state?{id:x.id,name:x.name,options:x.options.map(y=>y.state?{id:y.id,state:true}:null)}:null))
   // options_str=JSON.stringify(options.map(x=>x.state?x.id+","+x.options.map(y=>y.state?y.id:""):"")).replace(/\"/g,"").replace(/,+/g,",");
 
@@ -74,7 +74,7 @@ Meteor.methods({
     ql = queryArray.length-1;
     var q1=[];var q2=[];
     queryTypes = queryArray.map((q,i)=>{
-        if (q.search(/^[a-zA-Z_\.\*\d]*:[><=]?.+$/i)!= '-1' ||          // any key with with any value seperated by colon
+        if (q.search(/^[a-zA-Z_\.\*\d]*[:\-+][><=]?.+$/i)!= '-1' ||          // any key with with any value seperated or started by colon, a minus or a plus
             q.search(/^"[^\"]+"$/i)!= '-1' ||                             // any character within quotes
             q.search(/^\d+:[><=~]?[=]?[\d]*-?\d+$/i)!= '-1' ||        // any numercial key with numerical range as value
             q.search(/^\d+:\*?$/i) != '-1')                           // any numerical key with value as asterik or empty value
@@ -823,7 +823,7 @@ Meteor.methods({
               }
               // console.log(matches.hits.hits.length)
               // console.log(date);
-              console.log(sessionId,"Search Query ES retrieved (summary: "+aggs+") for:",tquery, "hash",options_str_hash)
+              console.log(sessionId,"Search Query ES retrieved (summary: "+aggs+") for:",tquery)
 
               if (aggs!="all" && highlights.length>0) {
                 text_array = highlights.map(x=>x.token.id)

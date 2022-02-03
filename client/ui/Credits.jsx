@@ -32,6 +32,13 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.11: </b>
+                        <li>Search query use case with + and - in from of a word or phrase added</li>
+                        <li>Menu structure updated</li>
+                      </ul>
+
+
+                      <ul>
                         <b>6.10: </b>
                         <li>Auto search in all layers (except for Chinese) feature is added when no match is found</li>
                       </ul>

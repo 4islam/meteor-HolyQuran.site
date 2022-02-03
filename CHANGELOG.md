@@ -1,5 +1,6 @@
 ## 6.11:
   * Menu structure updated
+  * New search query use case added: words and phrases with just + and - in front
 
 ## 6.10:
   * Auto search in all layer (except for Chinese) feature is added when no match is found
