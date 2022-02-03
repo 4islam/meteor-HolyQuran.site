@@ -49,14 +49,14 @@ Meteor.methods({
       }));
 
       res.on('end', Meteor.bindEnvironment(function () {
-        if (Meteor.isProduction) {          //For production
+        // if (Meteor.isProduction) {          //For production
         /////****************************************
           if (Pages.findOne({verse:c+':'+v})) {
           } else {
             Pages.insert({verse:c+':'+v, page:oString, creationDate: new Date()});
           }
         /////****************************************
-        }
+        // }
 
       }));
     }));

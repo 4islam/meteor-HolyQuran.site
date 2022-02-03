@@ -435,7 +435,7 @@ export default class Master extends Component {
                            list="datalist"
                           aria-haspopup="true" aria-expanded="false"/> */}
 
-                        <input dir="rtl" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className={this.state.option_types[0].id + " form-control"} placeholder="Type here to search..."
+                        <input dir="rtl" autoComplete="off" id="QueryRTL" disabled defaultValue={this.props.query+" "} type="text" className={this.state.option_types[0].id + " form-control"} placeholder="Type here to search..."
                             maxLength="500"
                             onKeyUp={this.input_e.bind(this)}
                             onChange={this.input_e.bind(this)}
@@ -443,7 +443,8 @@ export default class Master extends Component {
                             onFocus={this.input_e_focusRTL.bind(this)}
                             onBlur={this.suggestDiv_close.bind(this)}
                              list="datalist"
-                            aria-haspopup="true" aria-expanded="false"/>
+                            aria-haspopup="true" aria-expanded="false"
+                            />
 
                     {/*<datalist id="datalist">
                       <option value="اللہ"/>
@@ -468,15 +469,15 @@ export default class Master extends Component {
                           page={this.state.page} limit={this.state.limit}/>
 
 
-              <div id="collapsible">
-                <div>
+              <div id="collapsible" className="searchButtons">
+                <div className="searchButtonsDiv">
                   {
                     this.state.option_types.map(x=>
                         <div className={x.id+" btn-group"} role="group" key={x.name}>
                             <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
                               id="dLabel" type="button" onClick={this.openMenu}
                               name={x.name}
-                              style={this.state.hideUnmatched?{'color':'#bcbcbc'}:{}} 
+                              style={this.state.hideUnmatched?{'color':'#bcbcbc'}:{}}
                               aria-haspopup="true" aria-expanded="false">
                                 <input className="checkbox-inline"
                                   name={x.id}
@@ -512,29 +513,30 @@ export default class Master extends Component {
                               </ul>
                         </div>)
                   }
-                  <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
-                    <label className={(this.state.option_types[0].id=="ArabicNoor")?"btn btn-default btn-xs ArabicNoor active":"btn btn-default btn-xs ArabicNoor"}
-                        onClick={e => this.switchIbarat("ArabicNoor")}>
-                      <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
-                        defaultChecked={(this.state.option_types[0].id=="ArabicNoor")?true:false} /> نور ماجدی
-                    </label>
-                    <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
-                        onClick={e => this.switchIbarat("Arabic")}>
-                      <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
-                        defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/>عثمانى
-                    </label>
-                    <label className="Arabic ibarat btn-xs">
-                       عربی عبارت:
-                    </label>
-                  </div>
-                  <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
-                    <label className={this.state.hideUnmatched?"btn btn-default btn-xs active":"btn btn-default btn-xs"} onClick={e=>this.switchLayers()}>
-                      <input type="checkbox" checked={this.state.hideUnmatched} /> Hide Unmatching Translations
-                    </label>
-                  </div>
                 </div>
               </div>
-
+              <div className="searchButtonsDiv SecondRow">
+              <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
+                <label className="Arabic ibarat btn-xs">
+                   عربی عبارت:
+                </label>
+                <label className={(this.state.option_types[0].id=="ArabicNoor")?"btn btn-default btn-xs ArabicNoor active":"btn btn-default btn-xs ArabicNoor"}
+                    onClick={e => this.switchIbarat("ArabicNoor")}>
+                  <input type="radio" name="ibarat" id="ibarat_noor" value="ibarat_noor"
+                    defaultChecked={(this.state.option_types[0].id=="ArabicNoor")?true:false} /> نور ماجدی
+                </label>
+                <label className={(this.state.option_types[0].id=="Arabic")?"btn btn-default btn-xs Arabic active":"btn btn-default btn-xs Arabic"}
+                    onClick={e => this.switchIbarat("Arabic")}>
+                  <input type="radio" name="ibarat" id="ibarat_uthmani" value="ibarat_uthmani"
+                    defaultChecked={(this.state.option_types[0].id=="Arabic")?true:false}/>عثمانى
+                </label>
+              </div>
+                <div className="btn-group btn-xs btn-group-toggle" data-toggle="buttons">
+                  <label className={this.state.hideUnmatched?"btn btn-default btn-xs active":"btn btn-default btn-xs"} onClick={e=>this.switchLayers()}>
+                    <input type="checkbox" checked={this.state.hideUnmatched} /> Hide Unmatching Translations
+                  </label>
+                </div>
+              </div>
             </div>
         </div>
         <div className="container-fluid body">

@@ -7,6 +7,20 @@
   padding: 11px;
 }
 
+div.searchButtons {
+  /* display: flex; */
+  overflow-x: scroll;
+}
+
+div.searchButtonsDiv {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.searchButtonsDiv.SecondRow {
+  padding-bottom: 0;
+  display: inline-flex;
+}
 
 .ArabicNoor, .noor {
   font-family: "noorehuda";
@@ -38,6 +52,16 @@ div.Notes_CR {
 
 div.switchIbarat label {
   font-size: 1.2em;
+
+  white-space: nowrap;
+}
+
+div.switchIbarat {
+  display: flex;
+}
+
+ ul.dropdown-menu {
+  position: sticky;
 }
 
 .ibarat {
@@ -76,7 +100,9 @@ span.suggestInfo {
 #datalistUl {
   font-size: small;
   max-width: 75%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  position: absolute;
+  z-index: 1001;
   /* max-height: 100%;
   overflow-y: scroll; */
 }
@@ -91,9 +117,12 @@ span.suggestInfo {
 
  .list-group .btn  {
     float: left;
-    font-size: 8px;
+    /* font-size: 8px; */
  }
 
+.btn-xs {
+  height: max-content;
+}
 
 .Results {
   /*height: 100%;

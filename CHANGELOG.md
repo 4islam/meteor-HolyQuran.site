@@ -1,3 +1,6 @@
+## 6.11:
+  * Menu structure updated
+
 ## 6.10:
   * Auto search in all layer (except for Chinese) feature is added when no match is found
   * Default Keyboard size increased
