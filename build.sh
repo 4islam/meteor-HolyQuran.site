@@ -18,5 +18,7 @@ else
   cp Docker* ../HQVC_ServerConfig/home/centos/upload/build/temp
   docker build  ../HQVC_ServerConfig/home/centos/upload/build/temp -t hqvc_advance
   rm -fr ../HQVC_ServerConfig/home/centos/upload/build/temp
+  echo "to run locally, use the following command:"
+  echo "docker run -it -p 3000:3000 -e ESHOST=docker.for.mac.localhost:9200 hqvc_advance"
   #scp -P2222 ../HQVC_ServerConfig/home/centos/upload/HQVC.tar.gz centos@158.69.72.248:/home/centos/upload
 fi
