@@ -67,17 +67,20 @@ export default class Help extends Component {
                               <a target="_self" href="/TopicsEn%3A%22Jonah%22%20English*%3A%22-Jonah%22">TopicsEn:"Jonah" English*:"-Jonah" </a></li>
                       <li><em>Look for all verses where English translators have mentioned "Jonah" but not by Molana Sher Ali <sup>ra</sup></em><br/>
                               <a target="_self" href="/English*%3A%22Jonah%22%20English%3A%22-Jonah%22">English*:"Jonah" English:"-Jonah"</a></li>
-                      <li><em>Show all verses with topic tags with "animals", and also with either "beasts" or "birds", but not with "cattle"</em><br/>
+                      <li><em>Show all verses with topic tags with "animals", and also with either "beasts" or "birds", but not with "cattle"</em>
                               <a target="_self" href="/TopicsEn%3A%22animal*%22%20TopicsEn%3A%22birds%20%7C%20beasts%22%20TopicsEn%3A%22-cattle%22">TopicsEn:"animal*" TopicsEn:"birds | beasts" TopicsEn:"-cattle"</a>
                               <br/><em>This can also be written as </em><a target="_self" href="/TopicsEn%3A%22animal*%20(birds%20%7C%20beasts)%20-cattle%22">TopicsEn:"animal* (birds | beasts) -cattle"</a></li>
                       <li><em>Show all verses where moon is mentioned but not the sun, using Arabic to English mapping</em>
                               <a target="_self" href="/Arabic*%3A%22moon%20-sun%22">Arabic*:"moon -sun"</a>
-                              <br/><em>Only using the translations returns one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li><br/>
+                              <br/><em>Only using the translations returns one less verse because of translators additions, see below </em><a target="_self" href="/English%3A%22moon%20-sun%22">English:"moon -sun"</a></li>
                       <li>Collection of verses with Huroof-Muqataat (حروف مقطعات) <a target="_self" href="/ayah:2:2%20ayah:3:2%20ayah:7:2%20ayah:10:2%20ayah:11:2%20ayah:12:2%20ayah:13:2%20ayah:14:2%20ayah:15:2%20ayah:19:2%20ayah:20:2%20ayah:26:2%20ayah:27:2%20ayah:28:2%20ayah:29:2%20ayah:30:2%20ayah:31:2%20ayah:32:2%20ayah:36:2%20ayah:38:2%20ayah:40:2%20ayah:41:2%20ayah:42:2%20ayah:43:2%20ayah:44:2%20ayah:45:2%20ayah:46:2%20ayah:50:2%20ayah:68:2">with specific ayah selection</a>, <a target="_self" href="/%222:2%22%20%223:2%22%20%227:2%22%20%2210:2%22%20%2211:2%22%20%2212:2%22%20%2213:2%22%20%2214:2%22%20%2215:2%22%20%2219:2%22%20%2220:2%22%20%2226:2%22%20%2227:2%22%20%2228:2%22%20%2229:2%22%20%2230:2%22%20%2231:2%22%20%2232:2%22%20%2236:2%22%20%2238:2%22%20%2240:2%22%20%2241:2%22%20%2242:2%22%20%2243:2%22%20%2244:2%22%20%2245:2%22%20%2246:2%22%20%2250:2%22%20%2268:2%22%20">advance query filter</a>, and <a target="_self" href="/s:%222|3|5|7|10|11|12|13|14|15|19|20|26|27|28|29|30|31|32|36|38|40|41|42|43|44|45|46|50|68%22%20a:2">chapter and verse filters</a></li>
                       <li>All verses tagged with topic <a target="_self" href="/TopicsEn:%22animal*%22">"animal" or "animals"</a></li>
-                      <li><em>Show all verses with "Rama" but do not show "Ramadan" or words starting with "ramas"</em><br/>
-                              <a target="_self" href="/rama%20-ramas*%20-ramadan">rama -ramas* -ramadan </a>
-                              <br/><em>This is short form of and is equivalent to</em><a target="_self" href="/rama%20%3A-ramas*%20%3A-ramadan">rama :-ramas* :-ramadan </a></li><br/>
+                      <li>Search for <em>Muhammad</em> but must include "father" within the cuurent search scope <a target="_self" href="/Muhammad%20%2Bfather">Muhammad +father</a><br/>
+                            (<em>This is not equivalent to <a target="_self" href="/Muhammad%20%3Afather">Muhammad :father</a>
+                            or <a target="_self" href="/Muhammad%20%3A%22%2Bfather%22">Muhammad *:"+father"</a> because "father" is in global scope here</em></li>)
+                      
+                      <li>Show all verses with "Rama" but do not show "Ramadan" or words starting with "ramas"<br/>
+                              <a target="_self" href="/rama%20-ramas*%20-ramadan">rama -ramas* -ramadan </a></li>
 
                     </ul>
                   </ul>
