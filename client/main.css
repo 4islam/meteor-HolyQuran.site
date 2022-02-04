@@ -107,8 +107,8 @@ span.suggestInfo {
   overflow-y: scroll; */
 }
 
-.datalistUl li {
-
+.datalistUl li.btn-lg  {
+  overflow: hidden;
 }
 
  /*.well.pre-scrollable div {

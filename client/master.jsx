@@ -230,7 +230,7 @@ export default class Master extends Component {
 
     if (this.props.query != "") {
       //console.log("SessionID: ", window.sessionId);
-      console.log(this.props.query);
+      // console.log(this.props.query);
       this.search(this.props.query, this.state.option_types)  // TODO: Maybe this will fail
                                                               // on a new session, time will tell,
                                                               // should be called only after Meteor

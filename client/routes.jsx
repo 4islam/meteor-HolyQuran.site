@@ -36,7 +36,7 @@ FlowRouter.route("/", {
 FlowRouter.route("/:query", {
   action(params) {
     mount(Master, {
-        query: decodeURI(window.location.pathname.substr(1)).replace(/%2B/g,"+"),
+        query: decodeURIComponent(window.location.pathname.substr(1)),
         hash: window.location.hash
     });
   }
