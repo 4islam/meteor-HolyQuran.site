@@ -25,6 +25,7 @@ else
   echo "docker run -it -p 3000:3000 -e ESHOST=docker.for.mac.localhost:9200 hqvc/$ver"
   echo ""
   echo "--- To push to AWS (once you are authenticated to AWS CLI): ---"
+  echo "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 190285172867.dkr.ecr.us-east-1.amazonaws.com"
   echo "docker tag hqvc_advance 190285172867.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
   echo "docker push 190285172867.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
   #scp -P2222 ../HQVC_ServerConfig/home/centos/upload/HQVC.tar.gz centos@158.69.72.248:/home/centos/upload
