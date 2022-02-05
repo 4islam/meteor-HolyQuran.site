@@ -5,7 +5,7 @@ import VerseHighlightsSpecialCase from './VerseHighlightsSpecialCase.jsx'
 import NotesHighlights from './NotesHighlights.jsx'
 
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
  class IframeVerse extends Component {
@@ -91,7 +91,7 @@ componentDidMount() {
    }
 }
 
-export default createContainer(props => {
+export default IframeVerse = withTracker(props => {
   if (!VerseCol.findOne({query:props.verse})) {
     Meteor.call('getVerse', props.verse, window.sessionId, window.ArabicSrc, function(e,r) {
       // console.log("calling for Verse ",props.verse);
@@ -101,4 +101,4 @@ export default createContainer(props => {
   return {
     r: VerseCol.findOne({query:props.verse})
    }
-}, IframeVerse);
+})(IframeVerse);

@@ -1,7 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 import Tokens from './Tokens.jsx';
 
 class Analyze extends Component {
@@ -21,9 +21,9 @@ Analyze.propTypes = {
  //analysis: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default Analyze = withTracker(props => {
    Meteor.subscribe('Analysis','', window.sessionId);
    return {
      analyze: ESAnalyzerCol.findOne({id:props.verse})
     }
-}, Analyze);
+})(Analyze);

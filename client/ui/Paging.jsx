@@ -1,8 +1,6 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
-
 // App component - represents the whole app
 export default class Paging extends Component {
  render() {

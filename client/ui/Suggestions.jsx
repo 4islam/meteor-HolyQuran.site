@@ -1,7 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
 
@@ -38,11 +38,11 @@ Suggestions.propTypes = {
  //suggestions: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default Suggestions = withTracker(props => {
    //console.log(window.sessionId, props.query, window.query);
    Meteor.subscribe('Results/all',props.query, window.sessionId,props.page
    ,props.limit,"Suggest");
    return {
      suggestions: ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})
     }
-}, Suggestions);
+})(Suggestions);

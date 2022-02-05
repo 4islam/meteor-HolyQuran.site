@@ -2,7 +2,7 @@ import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 import IframeVerse from './IframeVerse.jsx'
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
 
@@ -70,9 +70,9 @@ Iframe.propTypes = {
  //aggregates: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default Iframe = withTracker(props => {
    Meteor.subscribe('getPage',props.verse, window.sessionId);
    return {
      pages: Pages.findOne({verse:props.verse})
     }
-}, Iframe);
+})(Iframe);

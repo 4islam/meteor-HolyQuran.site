@@ -1,6 +1,6 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
 
@@ -24,7 +24,7 @@ class Aggregates extends Component {
                //this.props.options.map(z=>z.state?z.id:'').indexOf(x.lang) != -1?
                aggs.results.aggregations[x.id]&&aggs.results.aggregations[x.id].buckets.length>0?
                  <div key={"div " + x.id} className={"Aggregate " + x.id.replace(/_/g,' ') + ' ' + x.id}>
-                   {x.name}                   
+                   {x.name}
                    <div key={x.id} className="nav nav-pills nav-stacked">
                     {
                       aggs.results.aggregations[x.id].buckets[0]?
@@ -57,11 +57,11 @@ Aggregates.propTypes = {
  //aggregates: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default Aggregates = withTracker(props => {
    //console.log(window.sessionId, props.query, window.query);
    Meteor.subscribe('Results/all',props.query, window.sessionId,props.page
    ,props.limit,"Aggregates");
    return {
      aggregates: ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})
     }
-}, Aggregates);
+})(Aggregates);

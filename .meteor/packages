@@ -23,6 +23,5 @@ session@1.2.0
 dynamic-import@0.7.2
 ecmascript@0.16.1
 underscore@1.0.10
-ground:db
 ddp-rate-limiter@1.1.0
 twbs:bootstrap

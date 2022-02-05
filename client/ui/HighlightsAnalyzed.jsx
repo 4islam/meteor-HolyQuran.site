@@ -1,7 +1,8 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import TokenHighlights from './TokenHighlights.jsx';
 
 class HighlightsAnalyzed extends Component {
@@ -37,7 +38,7 @@ HighlightsAnalyzed.propTypes = {
  //highlights: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default HighlightsAnalyzed = withTracker(props => {
    Meteor.subscribe('AnalysisHighlights','', window.sessionId);
    Meteor.subscribe('Results/all',props.query, window.sessionId,props.page
    ,props.limit,"HighlightsAnalyzed");
@@ -45,4 +46,4 @@ export default createContainer(props => {
      highlights: ESAnalyzerHighlightsCol.findOne({}, {sort:{'session.date':-1}}),
      tags: ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})
     }
-}, HighlightsAnalyzed);
+})(HighlightsAnalyzed);

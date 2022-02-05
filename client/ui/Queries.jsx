@@ -1,7 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
 
@@ -50,10 +50,10 @@ Queries.propTypes = {
  queries: PropTypes.array.isRequired
 }
 
-export default createContainer(props => {
+export default Queries = withTracker(props => {
    Meteor.subscribe('Results/all',props.query, window.sessionId,props.page
    ,props.limit,"Queries");
    return {
      queries: ESCol.find({}, {sort:{'session.date':-1}}).fetch()
     }
-}, Queries);
+})(Queries);

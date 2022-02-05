@@ -1,7 +1,7 @@
 import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
-import { createContainer } from 'meteor/react-meteor-data';
+import { withTracker } from 'meteor/react-meteor-data';
 import Verse from './Verse.jsx';
 import Help from './Help.jsx';
 import Paging from './Paging.jsx';
@@ -107,7 +107,7 @@ Results.propTypes = {
  // results: PropTypes.object.isRequired
 }
 
-export default createContainer(props => {
+export default Results = withTracker(props => {
    // console.log(window.sessionId, props, window.query);
    Meteor.subscribe('Results/all'
                      ,props.query
@@ -118,4 +118,4 @@ export default createContainer(props => {
    return {
      results: ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})
     }
-}, Results);
+})(Results);

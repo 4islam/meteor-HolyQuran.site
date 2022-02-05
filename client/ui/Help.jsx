@@ -2,7 +2,6 @@ import React, { Component , state } from 'react';
 import PropTypes from 'prop-types';
 
 import Credits from './Credits.jsx';
-import { createContainer } from 'meteor/react-meteor-data';
 // import { ESCol } from '/lib/collections.js';
 
 
