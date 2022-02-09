@@ -132,7 +132,7 @@ componentDidMount() {
 
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll">{this.props.options.map(x=>x.id==="Urdu"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Urdu")}>{this.props.options.map(x=>x.id==="Urdu"?x.name:"")}</span>
                   <VerseHighlights
                      base={this.props.Urdu}
                      Type="Urdu"
