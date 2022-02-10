@@ -47,7 +47,7 @@ Meteor.methods({
   //var sessionId = sID.replace(/\W/g, ''); //Only takes alphanumerics
   var sessionId = this.connection.id
   if (sID) {
-    sessionId = sID
+    // sessionId = sID
   }
   // console.log(sessionId,"is:",this.connection.id);
 

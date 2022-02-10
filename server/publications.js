@@ -98,8 +98,8 @@ Meteor.publish('Verse/all',  function(notRequired, sessionId) {
   return VerseCol.find(
     {
       'session.id': {
-        $in: [
-              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
+        $in: [this.connection.id
+              // ,(sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
              ]
         }
     },
