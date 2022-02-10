@@ -228,6 +228,8 @@ export default class Master extends Component {
       });
     }
 
+    Meteor.subscribe('Aggregates/all',window.sessionId);
+
     if (this.props.query != "") {
       //console.log("SessionID: ", window.sessionId);
       // console.log(this.props.query);
@@ -280,7 +282,7 @@ export default class Master extends Component {
 
   input_e(e) {
     //console.log(window.query, e.target.value, e.type)
-    //console.log( e.type, e.key)
+    // console.log( e.type, e.key, e.which)
 
     let q=e.target.value.replace(/ +/, ' ').replace(/\t+/,' ')
 
@@ -289,7 +291,7 @@ export default class Master extends Component {
       //console.log(e.type, q, window.query)
       if (q.substr(-1) == ' ' || e.which && [13,32].indexOf(e.which)!=-1 || e.type=="blur") {  //to detect if user has press space , add enter detection
 
-        if (window.query != q && [37,38,39,40].indexOf(e.which)==-1) {    //detecing up, down, left and right arrow keys
+        if (window.query != q && [16,17,18,91,93,37,38,39,40].indexOf(e.which)==-1) {    //detecing: cmd, alt, shift, etc (16...93)  up, down, left and right (37-40) arrow keys
           //this.search_e(e);     //750ms
           var currentTO_search = setTimeout(this.search, 150, e.target.value, this.state.option_types);
           clearTimeout(previousTO_search); previousTO_search = currentTO_search
@@ -828,7 +830,7 @@ window.suggest_e = function(query) {
 
 window.detectKeyboard = function(e){
   //console.log(e.key);
-  if (e.key != " " && ['Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
+  if (e.key != " " && ['Shift',",",":",".","۔",'Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
     let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
     let a = e.key.match(re);
     if (a == null){
@@ -886,7 +888,7 @@ window.updateIbaratFont = function(){
     })
   }
 
-Tracker.autorun(function () {
+window.queryStatus = function () {
     if (Meteor.status().status === "connected") {
       if ($(window.inputId) && $(window.inputId)[0]) {
         $('button.Search').trigger("click")
@@ -899,7 +901,9 @@ Tracker.autorun(function () {
     } else {
       if ($(window.inputId) && $(window.inputId)[0]) {
         $(window.inputId)[0].disabled=true; $('div.input.row').css('background-color','#fff')
+
         ui_busy("#C00")
       }
     }
-});
+}
+Tracker.autorun(queryStatus)

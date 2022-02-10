@@ -108,7 +108,7 @@ Results.propTypes = {
 }
 
 export default Results = withTracker(props => {
-   // console.log(window.sessionId, props, window.query);
+   // console.log("Results", window.sessionId, props, window.query);
    Meteor.subscribe('Results/all'
                      ,props.query
                      ,window.sessionId

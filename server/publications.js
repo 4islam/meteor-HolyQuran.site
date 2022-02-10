@@ -6,7 +6,7 @@ Meteor.methods({
 
 
 Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) {
-   //console.log(sessionId, this.connection.id);
+   // console.log('Results/all', sessionId, this.connection.id);
 
   //console.log(page,limit, by)
   return ESCol.find(
@@ -28,15 +28,15 @@ Meteor.publish('Results/all', function(notRequired, sessionId, page, limit, by) 
     })
 });
 
-Meteor.publish('Aggregates/all', function(notRequired, sessionId, page, limit, by) {
-   //console.log(sessionId, this.connection.id);
+Meteor.publish('Aggregates/all', function(notRequired) {
+   // console.log('Aggregates/all', this.connection.id);
 
   //console.log(page,limit, by)
   return ESColAggregates.find(
     {
       'session.id': {
-        $in: [
-              (sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
+        $in: [ this.connection.id
+          // ,(sessionId&&sessionId!='')?sessionId.replace(/\W/g, ''):this.connection.id
              ]
         }
     },
@@ -44,11 +44,9 @@ Meteor.publish('Aggregates/all', function(notRequired, sessionId, page, limit, b
       sort:{
         'session.date':-1
       },
-      fields:{
-        //'results.hits.hits':{ $slice: [(page-1)*limit,limit] }
-      },
      limit: 1        //Past 10 queries
     })
+
 });
 
 

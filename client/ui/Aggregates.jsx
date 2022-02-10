@@ -58,10 +58,10 @@ Aggregates.propTypes = {
 }
 
 export default Aggregates = withTracker(props => {
-   //console.log(window.sessionId, props.query, window.query);
-   Meteor.subscribe('Results/all',props.query, window.sessionId,props.page
-   ,props.limit,"Aggregates");
+   // aggSessionId=localStorage.getItem('clientId')?localStorage.getItem('clientId'):window.sessionId
+   // console.log('Aggregates',aggSessionId);
+   Meteor.subscribe('Aggregates/all');
    return {
-     aggregates: ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})
+     aggregates: ESColAggregates.findOne({},{sort:{'session.date':-1}})
     }
 })(Aggregates);

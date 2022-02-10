@@ -33,6 +33,7 @@ export default class Credits extends Component {
                         <b>6.11: </b>
                         <li>Search query use case with + and - in from of a word or phrase added</li>
                         <li>Menu structure updated</li>
+                        <li>Performance enhancements</li>
                       </ul>
 
 

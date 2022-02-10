@@ -12,30 +12,18 @@ var requestTimeout = 475;
 
 Meteor.startup(() => {
   if (Meteor.isServer) {
-       ESCol._ensureIndex( {
-         "session.id" : 1,
-         "session.date" : 1,
-         "query" : 1
+      ESCol._ensureIndex( {
+         "session.id" : 1
       });
-      ESCol._ensureIndex(
-        {"session.date" : 1},
-        { expireAfterSeconds: 14*(24*3600) }  //14 days
-      );
-
       ESColAggregates._ensureIndex( {
-        "session.id" : 1,
-        "session.date" : 1,
-        "query" : 1
+        "session.id" : 1
+
      });
-     ESColAggregates._ensureIndex(
-       {"session.date" : 1},
-       { expireAfterSeconds: 14*(24*3600) }  //14 days
-     );
   }
 });
 
 Meteor.methods({
- search:function (query, sID, options, page=1, limit=100, aggs="off") {
+ search:function (query, sID, options, page=1, limit=limit, aggs="off") {
   limit=parseInt(limit)
   page=parseInt(page)
   if (isNaN(limit)){
@@ -47,7 +35,8 @@ Meteor.methods({
   // console.log("Received: ", page,limit);
   // var future = new Future();
   var sessionId = this.connection.id
-  if (sID != '') {
+  console.log('eSearch connection.id', sessionId);
+  if (sID != '' && aggs != "all") {
     sessionId = sID
     console.log(sessionId,"is:",this.connection.id);
   }
@@ -100,15 +89,25 @@ Meteor.methods({
     // tquery=tquery.replace(/:/g,'\\:')           //For issues with Mongodb
 
     console.log(sessionId,"Search Query request (summary: "+aggs+") for:",tquery, "page:" ,page);
-    if (cacheResults && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$nin:[sessionId]}}]})) {  // If query is present already
+    if (cacheResults && (aggs!="all" && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$nin:[sessionId]}}]}) ||
+                         aggs=="all" && ESColAggregates.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$nin:[sessionId]}}]}) )) {  // If query is present already
 
-      ESCol.update({$and:[{query:tquery},{optionshash:options_str_hash},{page:page},{limit:limit}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
-      console.log(sessionId,"Search Query updated for:",tquery, "page:" ,page);
+      if (aggs!="all") {
+        ESCol.update({$and:[{optionshash:options_str_hash},{page:page},{limit:limit}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
+      } else {
+        ESColAggregates.update({$and:[{optionshash:options_str_hash},{page:page},{limit:limit}]},{$push:{session:{id:sessionId,date:date}}},{ upsert: true }); // Updating existing Mongo DB
+      }
+      console.log(sessionId,"Search Query updated for:",tquery, "page:" ,page, "aggs", aggs);
 
-    } else if (cacheResults && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]})) { //If query exists for the current user, it must be shiffled to bring to top
+    } else if (cacheResults && (aggs!="all" && ESCol.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]}) ||
+                                aggs=="all" && ESColAggregates.findOne({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]}))) { //If query exists for the current user, it must be shiffled to bring to top
 
-      ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
-      console.log(sessionId,"Search Query shuffled for:",tquery, "page:" ,page);
+      if (aggs!="all") {
+        ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
+      } else {
+        ESColAggregates.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date}});
+      }
+      console.log(sessionId,"Search Query shuffled for:",tquery, "page:" ,page, "aggs", aggs);
 
     } else {
 
@@ -819,7 +818,10 @@ Meteor.methods({
               if (aggs!="all") {
                 ESCol.insert({query:tquery, optionshash:options_str_hash, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
               } else {
-                ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
+                // ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
+                console.log("inserting into aggregates", sessionId);
+                ESColAggregates.insert({query:tquery, optionshash:options_str_hash, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
+                // console.log(ESColAggregates.find({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]}).count());
               }
               // console.log(matches.hits.hits.length)
               // console.log(date);
