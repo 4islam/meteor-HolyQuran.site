@@ -219,15 +219,6 @@ export default class Master extends Component {
     //   console.log(error,result)
     // });
 
-    if (localStorage.getItem('clientId')) {
-      window.sessionId = localStorage.getItem('clientId');
-    } else {
-      Meteor.call("getSessionId", function(err, id) {
-        localStorage.setItem('clientId',id);
-        window.sessionId = localStorage.getItem('clientId');
-      });
-    }
-
     Meteor.subscribe('Aggregates/all',window.sessionId);
 
     if (this.props.query != "") {
