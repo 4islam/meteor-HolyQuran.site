@@ -34,16 +34,20 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English",state:true,name:'English - Hadhrat Molavi Sher Ali ra',type:"Translation",options: [
+        {id:"English",state:true,name:'English - Hazrat Molavi Sher Ali ra',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
-        {id:"EnglishZafrullahKhan",state:false,name:'English Sir Zafrullah Khan ra',type:"Translation",options: [
+        {id:"EnglishZafrullahKhan",state:false,name:'English - Sir Zafrullah Khan ra',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English5VC",state:false,name:'English Five Volume Commentary',type:"Translation",options: [
+        {id:"English5VC",state:false,name:'English - Translation with Five Volume Commentary',type:"Translation",options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishSC",state:false,name:'English - Translation with Short Commentary',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
@@ -63,7 +67,12 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'تفسیرِ صغیر اردو',type:"Translation",options: [
+        {id:"UrduTS",state:false,name:'اردو تفسیرِ صغیر',type:"Translation",options: [
+                  {id:"phonetic",state:false,name:'Phonetic'},
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"UrduTSN",state:false,name:'اردو تفسیرِ صغیر نکات',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
@@ -86,27 +95,27 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishMuhammadAli",state:false,name:'English Muhammad Ali ra',type:"Translation",options: [
+        {id:"EnglishMuhammadAli",state:false,name:'English - Muhammad Ali ra',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishAhmedAli",state:false,name:'English Ahmed Ali',type:"Translation",options: [
+        {id:"EnglishAhmedAli",state:false,name:'English - Ahmed Ali',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishArberry",state:false,name:'English Arberry',type:"Translation",options: [
+        {id:"EnglishArberry",state:false,name:'English - Arberry',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishMaududi",state:false,name:'English Maududi',type:"Translation",options: [
+        {id:"EnglishMaududi",state:false,name:'English - Maududi',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishPickthall",state:false,name:'English Pickthall',type:"Translation",options: [
+        {id:"EnglishPickthall",state:false,name:'English - Pickthall',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishSahih",state:false,name:'English Sahih',type:"Translation",options: [
+        {id:"EnglishSahih",state:false,name:'English - Sahih',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
@@ -119,12 +128,19 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}
                 ]},
-        {id:"Notes_English5V",state:false,name:'English Five Volume Commentaries',type:"Commentary",options: [
+        {id:"Notes_English5V",state:false,name:'English Five Volume Commentary',type:"Commentary",options: [
                     {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Notes_Chinese",state:false,name:'Chinese Commentaries',type:"Commentary",options: [
+        {id:"Notes_Chinese",state:false,name:'Chinese Commentary',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"Notes_EnglishSC",state:false,name:'English Short Commentary',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"Notes_UrduTSN",state:false,name:'اردہ تفصیرِ صغیر نوٹس',type:"Commentary",options: [
                     {id:"normalized",state:true,name:'Normalized'}
                 ]}
+
 
       ],
       analyzers: analyzers,

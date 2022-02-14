@@ -1,3 +1,7 @@
+## 6.12:
+  * English Short Commentary with cross-references and notes added
+  * Urdu Tafseer e Saghir with notes added
+
 ## 6.11:
   * Menu structure updated
   * New search query use case added: words and phrases with just + and - in front

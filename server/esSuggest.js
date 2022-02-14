@@ -67,6 +67,9 @@ Meteor.methods({
         } else if (o=="UrduTS") {
           fields.push("UrduTS.ur_normalized_ngram")
           fields.push("UrduTS.trigram")
+        } else if (o=="UrduTSN") {
+          fields.push("UrduTSN.ur_normalized_ngram")
+          fields.push("UrduTSN.trigram")
         } else if (o=="UrduAhmedAli") {
           fields.push("UrduAhmedAli.ur_normalized_ngram")
           fields.push("UrduAhmedAli.trigram")
@@ -83,6 +86,9 @@ Meteor.methods({
         } else if (o=="English5VC") {
           fields.push("English5VC.en_normalized_ngram")
           fields.push("English5VC.trigram")
+        } else if (o=="EnglishSC") {
+          fields.push("EnglishSC.en_normalized_ngram")
+          fields.push("EnglishSC.trigram")
         } else if (o=="EnglishZafrullahKhan") {
           fields.push("EnglishZafrullahKhan.en_normalized_ngram")
           fields.push("EnglishZafrullahKhan.trigram")
@@ -137,6 +143,10 @@ Meteor.methods({
           fields.push("Surah.ar_ngram_stems_normalized")
           fields.push("Surah.trigram")
 
+          // TODO: These need to be included but only as part of Sura sublayer, not new layers:
+          // fields.push("Surah_EN_transliteration_Ahmadiyya.trigram")
+          // fields.push("Surah_EN_transliteration_Ahmadiyya.en_normalized_ngram")
+          // fields.push("Surah_EN_transliteration_Ahmadiyya.en_ngram_original") 
 
           fields.push("ayah")                         // This add Surah name
           fields.push("ayah.ayah_normalized_ar")      // suggestion from

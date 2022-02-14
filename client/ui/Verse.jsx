@@ -157,6 +157,15 @@ componentDidMount() {
                        highlights={this.props.highlights}/>
                 </a>:''
               }
+              {(this.props.options.map(x=>x.id==="EnglishSC"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishSC(\b|_).*/.test(k))))?
+                <a className="list-group-item Translation">
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSC")}> {this.props.options.map(x=>x.id==="EnglishSC"?x.name:"")}</span>
+                    <VerseHighlightsSpecialCase
+                       base={this.props.EnglishSC}
+                       Type="EnglishSC"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
               {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English5VC(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
                   <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English5VC")}> {this.props.options.map(x=>x.id==="English5VC"?x.name:"")}</span>
@@ -208,6 +217,15 @@ componentDidMount() {
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
+                       highlights={this.props.highlights}/>
+                </a>:''
+              }
+              {(this.props.options.map(x=>x.id==="UrduTSN"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTSN(\b|_).*/.test(k))))?
+                <a className="list-group-item Translation">
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTSN")}> {this.props.options.map(x=>x.id==="UrduTSN"?x.name:"")}</span>
+                    <VerseHighlightsSpecialCase
+                       base={this.props.UrduTSN}
+                       Type="UrduTSN"
                        highlights={this.props.highlights}/>
                 </a>:''
               }
@@ -318,6 +336,24 @@ componentDidMount() {
                        Type="TopicsEn"
                        highlights={this.props.highlights}/>
                 </a>:''
+              }
+              {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_UrduTSN_notes"))?
+                    <a className="list-group-item Notes UrduTSN English">
+                      <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Notes_UrduTSN")}> {this.props.options.map(x=>x.id==="Notes_UrduTSN"?x.name:"")}</span>
+                        <NotesHighlights
+                           Type="Notes_UrduTSN"
+                           ayah={this.props.ayah}
+                           highlights={this.props.highlights}/>
+                    </a>:''
+              }
+              {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_EnglishSC_notes"))?
+                    <a className="list-group-item Notes EnglishSC English">
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_EnglishSC")}> {this.props.options.map(x=>x.id==="Notes_EnglishSC"?x.name:"")}</span>
+                        <NotesHighlights
+                           Type="Notes_EnglishSC"
+                           ayah={this.props.ayah}
+                           highlights={this.props.highlights}/>
+                    </a>:''
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_English5V_notes"))?
                     <a className="list-group-item Notes English5VC English">

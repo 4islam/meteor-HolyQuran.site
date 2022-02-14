@@ -30,6 +30,12 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.12: </b>
+                        <li>English Short Commentary with cross-references and notes added</li>
+                        <li>Urdu Tafseer e Saghir with notes added</li>
+                      </ul>
+
+                      <ul>
                         <b>6.11: </b>
                         <li>Search query use case with + and - in from of a word or phrase added</li>
                         <li>Menu structure updated</li>

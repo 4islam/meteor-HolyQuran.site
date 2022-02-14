@@ -40,20 +40,60 @@ componentDidMount() {
               <br/>
               <br/>
 
-              <span className="label label-info ltrl"></span>
+
+              <a className="list-group-item Notes UrduTSN Urdu">
+                <span className="label label-info rtll">اردو تفصیر، صغیر</span>
+                <VerseHighlightsSpecialCase
+                   base={v['UrduTSN']}
+                   Type="UrduTSN"
+                   />
+              </a>
+              {
+                v.Notes_UrduTSN&&v.Notes_UrduTSN[0]?
+                  <a className="list-group-item Notes UrduTSN Urdu">
+                      <div className="Notes_Commentary UrduTSN" dangerouslySetInnerHTML={{__html: v.Notes_UrduTSN[0].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                  </a>:''
+              }
+              <br/>
+              <a className="list-group-item Notes EnglishSC English">
+                <span className="label label-info ltrl">English - Short Commentary</span>
+                <VerseHighlightsSpecialCase
+                   base={v['EnglishSC']}
+                   Type="EnglishSC"
+                   />
+              </a>
+              {
+                console.log(v.Notes_EnglishSC)
+              }
+              {
+                v.Notes_EnglishSC?
+                  <a className="list-group-item Notes EnglishSC English">
+                    {v.Notes_EnglishSC[0]?
+                      <div className="Notes_CR EnglishSC" dangerouslySetInnerHTML={{__html: v.Notes_EnglishSC[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    :''}
+                    {v.Notes_EnglishSC[1]?
+                      <div className="Notes_Commentary EnglishSC" dangerouslySetInnerHTML={{__html: v.Notes_EnglishSC[1].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    :''}
+                  </a>:''
+              }
+              <br/>
               <a className="list-group-item Notes English5VC English">
-              <span className="label label-info ltrl">English Five Volume</span>
-              <VerseHighlightsSpecialCase
-                 base={v['English5VC']}
-                 Type="English5VC"
-                 />
-             </a>
-              {v.Notes_English5V?v.Notes_English5V[1]?
-                <a className="list-group-item Notes English5VC English">
-                  <span className="label label-info ltrl">English Five Volume Commentary</span>
-                    <div className="Notes_CR English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
-                    <div className="Notes_Commentary English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[1].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
-                </a>:'':''
+                <span className="label label-info ltrl">English Five Volume</span>
+                <VerseHighlightsSpecialCase
+                   base={v['English5VC']}
+                   Type="English5VC"
+                   />
+              </a>
+              {
+                v.Notes_English5V&&(v.Notes_English5V[0]||v.Notes_English5V[1])?
+                  <a className="list-group-item Notes English5VC English">
+                    {v.Notes_English5V[0]?
+                      <div className="Notes_CR English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    :''}
+                    {v.Notes_English5V[1]?
+                      <div className="Notes_Commentary English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[1].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    :''}
+                  </a>:''
               }
               <br/>
               <a className="list-group-item Translation">
@@ -62,12 +102,15 @@ componentDidMount() {
                      base={v["Chinese"]}
                      Type="Chinese"/>
               </a>
-              {v.Notes_Chinese?v.Notes_Chinese[1]?
+              {v.Notes_Chinese&&(v.Notes_Chinese[0]||v.Notes_Chinese[1])?
                 <a className="list-group-item Notes Chinese English">
-                  <span className="label label-info ltrl">Chinese Commentary</span>
+                  {v.Notes_Chinese[0]?
                     <div className="Notes_CR Chinese" dangerouslySetInnerHTML={{__html: v.Notes_Chinese[0].crs.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
+                  :''}
+                  {v.Notes_Chinese[1]?
                     <div className="Notes_Commentary Chinese" dangerouslySetInnerHTML={{__html: v.Notes_Chinese[1].notes.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
-                </a>:'':''
+                  :''}
+                </a>:''
               }
 
 

@@ -231,6 +231,11 @@ a.Notes {
    padding: 0;
  }
 
+ ul.fragments.Notes.UrduTSN {
+   text-align: right;
+ }
+
+
  ul.fragments.Notes li {
    margin: 0px;
  }
@@ -270,7 +275,7 @@ div.highlights {
   opacity: .3;
 }
 
-div.highlights.Urdu, div.highlights.UrduTS, div.highlights.Surah, div.highlights.ayah {
+div.highlights.Urdu, div.highlights.UrduTS, div.highlights.UrduTSN, div.highlights.Notes_UrduTSN, div.highlights.Surah, div.highlights.ayah {
   float: right;
 }
 
@@ -388,7 +393,7 @@ a.list-group-item.Verse {
     word-spacing: 2px;
 }
 
-.English, .EnglishZafrullahKhan, .German, .Spanish, .Italian, .French, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall, .English5VC {
+.English, .EnglishSC, .EnglishZafrullahKhan, .German, .Spanish, .Italian, .French, .EnglishCorpus, .EnglishMuhammadAli, .EnglishSahih, .EnglishMaududi, .EnglishArberry, .EnglishYusufAli, .EnglishAhmedAli, .EnglishPickthall, .English5VC {
   font-weight:lighter;
   font-size: 1em;
   direction: ltr;
@@ -411,17 +416,16 @@ span.cohortsCount{
   font-size: smaller;
 }
 
-.Urdu, .UrduTS {
+.Urdu, .UrduTS, .UrduTSN, .Notes_UrduTSN {
   font-weight:lighter;
   font-size: 1em;
 }
 
- .Urdu, .UrduTS, .UrduMaududi, .UrduAhmedAli {
+ .Urdu, .UrduTS, .UrduTSN, .UrduMaududi, .UrduAhmedAli, .Notes_UrduTSN {
    /* font-family: NafeesWeb, NafeesWebNaskh; */
    font-family: 'Jameel Noori Nastaleeq', -apple-system, BlinkMacSystemFont, noto_nastaliq, 'Urdu Naskh Asiatype', 'Nafees Web Naskh';
    font-size: 1.2em;
    direction: rtl;
-   direction: right;
  }
 
  .Chinese {

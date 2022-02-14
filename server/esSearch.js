@@ -181,6 +181,13 @@ Meteor.methods({
         {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
 
+        {match: {"UrduTSN": {query: query,"boost": 5}}},
+        {match: {"UrduTSN.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduTSN.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduTSN.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduTSN.ur_normalized_ngram": {query: query,"boost": 2}}},
+
         {match: {"UrduAhmedAli": {query: query,"boost": 5}}},
         {match: {"UrduAhmedAli.trigram": {query: query,"boost": 5.5}}},
         // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
@@ -220,6 +227,13 @@ Meteor.methods({
         {match: {"English5VC.en_normalized": {query: query,"boost": 3}}},
         {match: {"English5VC.en_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"English5VC.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishSC": {query: query,"boost": 5}}},
+        {match: {"EnglishSC.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishSC.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishSC.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishSC.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishSC.en_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"Chinese": {query: query,"boost": 5}}},
         {match: {"Chinese.trigram": {query: query,"boost": 5.5}}},
@@ -325,6 +339,8 @@ Meteor.methods({
 
 
         {match: {"Notes_English5V.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_EnglishSC.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_UrduTSN.notes": {query: query,"boost": 2}}},
         {match: {"Notes_Chinese.notes": {query: query,"boost": 2}}},
 
       ];
