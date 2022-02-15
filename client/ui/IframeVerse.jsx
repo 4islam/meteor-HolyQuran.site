@@ -41,7 +41,7 @@ componentDidMount() {
               <br/>
 
 
-              <a className="list-group-item Notes UrduTSN Urdu">
+              <a className="list-group-item Translation UrduTSN Urdu">
                 <span className="label label-info rtll">اردو تفصیر، صغیر</span>
                 <VerseHighlightsSpecialCase
                    base={v['UrduTSN']}
@@ -55,7 +55,7 @@ componentDidMount() {
                   </a>:''
               }
               <br/>
-              <a className="list-group-item Notes EnglishSC English">
+              <a className="list-group-item Translation EnglishSC English">
                 <span className="label label-info ltrl">English - Short Commentary</span>
                 <VerseHighlightsSpecialCase
                    base={v['EnglishSC']}
@@ -63,10 +63,7 @@ componentDidMount() {
                    />
               </a>
               {
-                console.log(v.Notes_EnglishSC)
-              }
-              {
-                v.Notes_EnglishSC?
+                v.Notes_EnglishSC&&(v.Notes_EnglishSC[0]||v.Notes_EnglishSC[1])?
                   <a className="list-group-item Notes EnglishSC English">
                     {v.Notes_EnglishSC[0]?
                       <div className="Notes_CR EnglishSC" dangerouslySetInnerHTML={{__html: v.Notes_EnglishSC[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
@@ -77,7 +74,7 @@ componentDidMount() {
                   </a>:''
               }
               <br/>
-              <a className="list-group-item Notes English5VC English">
+              <a className="list-group-item Translation English5VC English">
                 <span className="label label-info ltrl">English Five Volume</span>
                 <VerseHighlightsSpecialCase
                    base={v['English5VC']}
