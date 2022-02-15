@@ -4,7 +4,8 @@ FROM node:14.18.2
 RUN apt-get update || : && apt-get install python3 -y	#required for building
 
 #Mongo related stuff
-RUN apt-get update && apt-get install -y mongodb
+RUN echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/5.0 main" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
 RUN mkdir -p /data/db
 #EXPOSE 27017
 
