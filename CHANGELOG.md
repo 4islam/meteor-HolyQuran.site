@@ -1,3 +1,7 @@
+## 6.12.1:
+  * Chinese keyboard added
+  * Other minor fixes
+
 ## 6.12:
   * English Short Commentary with cross-references and notes added
   * Urdu Tafseer e Saghir with notes added

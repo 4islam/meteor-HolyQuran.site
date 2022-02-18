@@ -63,15 +63,15 @@ componentDidMount() {
                    />
               </a>
               {
-                v.Notes_EnglishSC&&(v.Notes_EnglishSC[0]||v.Notes_EnglishSC[1])?
-                  <a className="list-group-item Notes EnglishSC English">
-                    {v.Notes_EnglishSC[0]?
-                      <div className="Notes_CR EnglishSC" dangerouslySetInnerHTML={{__html: v.Notes_EnglishSC[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                v.Notes_EnglishSC?v.Notes_EnglishSC.map((x,i)=>
+                  <a key={"SC"+i} className="list-group-item Notes EnglishSC English">
+                    {x.crs?
+                      <div className="Notes_CR EnglishSC" dangerouslySetInnerHTML={{__html: x.crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
                     :''}
-                    {v.Notes_EnglishSC[1]?
-                      <div className="Notes_Commentary EnglishSC" dangerouslySetInnerHTML={{__html: v.Notes_EnglishSC[1].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    {x.notes?
+                      <div className="Notes_Commentary EnglishSC" dangerouslySetInnerHTML={{__html: x.notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
                     :''}
-                  </a>:''
+                  </a>):''
               }
               <br/>
               <a className="list-group-item Translation English5VC English">
@@ -82,15 +82,15 @@ componentDidMount() {
                    />
               </a>
               {
-                v.Notes_English5V&&(v.Notes_English5V[0]||v.Notes_English5V[1])?
-                  <a className="list-group-item Notes English5VC English">
-                    {v.Notes_English5V[0]?
-                      <div className="Notes_CR English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[0].crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                v.Notes_English5V?v.Notes_English5V.map((x,i)=>
+                  <a key={"5V"+i} className="list-group-item Notes English5VC English">
+                    {x.crs?
+                      <div className="Notes_CR English5VC" dangerouslySetInnerHTML={{__html: x.crs.replace(/(\u06E3|\u06E8)/,' $1')}}/>
                     :''}
-                    {v.Notes_English5V[1]?
-                      <div className="Notes_Commentary English5VC" dangerouslySetInnerHTML={{__html: v.Notes_English5V[1].notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
+                    {x.notes?
+                      <div className="Notes_Commentary English5VC" dangerouslySetInnerHTML={{__html: x.notes.replace(/(\u06E3|\u06E8)/,' $1')}}/>
                     :''}
-                  </a>:''
+                  </a>):''
               }
               <br/>
               <a className="list-group-item Translation">
@@ -99,15 +99,16 @@ componentDidMount() {
                      base={v["Chinese"]}
                      Type="Chinese"/>
               </a>
-              {v.Notes_Chinese&&(v.Notes_Chinese[0]||v.Notes_Chinese[1])?
-                <a className="list-group-item Notes Chinese English">
-                  {v.Notes_Chinese[0]?
-                    <div className="Notes_CR Chinese" dangerouslySetInnerHTML={{__html: v.Notes_Chinese[0].crs.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
+              {
+                v.Notes_Chinese?v.Notes_Chinese.map((x,i)=>
+                <a key={"CN"+i} className="list-group-item Notes Chinese English">
+                  {x.crs?
+                    <div className="Notes_CR Chinese" dangerouslySetInnerHTML={{__html: x.crs.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
                   :''}
-                  {v.Notes_Chinese[1]?
-                    <div className="Notes_Commentary Chinese" dangerouslySetInnerHTML={{__html: v.Notes_Chinese[1].notes.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
+                  {x.notes?
+                    <div className="Notes_Commentary Chinese" dangerouslySetInnerHTML={{__html: x.notes.replace(/(\u06E3|\u06E8)/,' $1').replace(/\\\\/g,'')}}/>
                   :''}
-                </a>:''
+                </a>):''
               }
 
 
