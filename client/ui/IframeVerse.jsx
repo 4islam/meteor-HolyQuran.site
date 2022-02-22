@@ -75,7 +75,7 @@ componentDidMount() {
               }
               <br/>
               <a className="list-group-item Translation English5VC English">
-                <span className="label label-info ltrl">English Five Volume</span>
+                <span className="label label-info ltrl">English - Five Volume</span>
                 <VerseHighlightsSpecialCase
                    base={v['English5VC']}
                    Type="English5VC"
