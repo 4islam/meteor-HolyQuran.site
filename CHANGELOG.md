@@ -1,3 +1,6 @@
+## 6.12.2:
+  * Logic for "must_not" or minus query fixed
+
 ## 6.12.1:
   * Chinese keyboard added
   * Other minor fixes
