@@ -808,7 +808,7 @@ iframe {
 }
 
 div.container-fluid.body {
-  min-height: 900px;
+  min-height: 1024px;
 }
 
 .Help {

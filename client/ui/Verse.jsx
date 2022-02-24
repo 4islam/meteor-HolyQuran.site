@@ -211,15 +211,6 @@ componentDidMount() {
                        highlights={this.props.highlights}/>
                 </a>:''
               }
-              {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTS(\b|_).*/.test(k))))?
-                <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTS")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduTS"?x.name:"").toString().replaceAll(",","")}}/>
-                    <VerseHighlights
-                       base={this.props.UrduTS}
-                       Type="UrduTS"
-                       highlights={this.props.highlights}/>
-                </a>:''
-              }
               {(this.props.options.map(x=>x.id==="UrduTSN"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTSN(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
                   <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTSN")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduTSN"?x.name:"").toString().replaceAll(",","")}}/>

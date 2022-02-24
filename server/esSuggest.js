@@ -64,9 +64,9 @@ Meteor.methods({
         if (o=="Urdu") {
           fields.push("Urdu.ur_normalized_ngram")
           fields.push("Urdu.trigram")
-        } else if (o=="UrduTS") {
-          fields.push("UrduTS.ur_normalized_ngram")
-          fields.push("UrduTS.trigram")
+        // } else if (o=="UrduTS") {
+        //   fields.push("UrduTS.ur_normalized_ngram")
+        //   fields.push("UrduTS.trigram")
         } else if (o=="UrduTSN") {
           fields.push("UrduTSN.ur_normalized_ngram")
           fields.push("UrduTSN.trigram")
@@ -146,7 +146,7 @@ Meteor.methods({
           // TODO: These need to be included but only as part of Sura sublayer, not new layers:
           // fields.push("Surah_EN_transliteration_Ahmadiyya.trigram")
           // fields.push("Surah_EN_transliteration_Ahmadiyya.en_normalized_ngram")
-          // fields.push("Surah_EN_transliteration_Ahmadiyya.en_ngram_original") 
+          // fields.push("Surah_EN_transliteration_Ahmadiyya.en_ngram_original")
 
           fields.push("ayah")                         // This add Surah name
           fields.push("ayah.ayah_normalized_ar")      // suggestion from
@@ -365,17 +365,29 @@ Meteor.methods({
                  "size": size
                 }
           }
-
-        } else if (o=="UrduTS") {
+        // } else if (o=="UrduTS") {
+        //     aggs["s_Urdu_Tafseer_Words"] = {
+        //          significant_terms: {
+        //              "field": "UrduTS",
+        //            "size": size
+        //           }
+        //     }
+        //     aggs["s_Urdu_Tafseer_Phrases"] = {
+        //          significant_terms: {
+        //              "field": "UrduTS.trigram",
+        //            "size": size
+        //           }
+        //     }
+      } else if (o=="UrduTSN") {
             aggs["s_Urdu_Tafseer_Words"] = {
                  significant_terms: {
-                     "field": "UrduTS",
+                     "field": "UrduTSN",
                    "size": size
                   }
             }
             aggs["s_Urdu_Tafseer_Phrases"] = {
                  significant_terms: {
-                     "field": "UrduTS.trigram",
+                     "field": "UrduTSN.trigram",
                    "size": size
                   }
             }

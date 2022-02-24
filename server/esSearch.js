@@ -174,12 +174,12 @@ Meteor.methods({
         {match: {"Urdu.ur_ngram_original": {query: query,"boost": 2.5}}},
         {match: {"Urdu.ur_normalized_ngram": {query: query,"boost": 2}}},
 
-        {match: {"UrduTS": {query: query,"boost": 5}}},
-        {match: {"UrduTS.trigram": {query: query,"boost": 5.5}}},
-        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
-        {match: {"UrduTS.ur_normalized": {query: query,"boost": 3}}},
-        {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
-        {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
+        // {match: {"UrduTS": {query: query,"boost": 5}}},
+        // {match: {"UrduTS.trigram": {query: query,"boost": 5.5}}},
+        // // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        // {match: {"UrduTS.ur_normalized": {query: query,"boost": 3}}},
+        // {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
+        // {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
 
         {match: {"UrduTSN": {query: query,"boost": 5}}},
         {match: {"UrduTSN.trigram": {query: query,"boost": 5.5}}},
@@ -639,14 +639,24 @@ Meteor.methods({
                         field: "Urdu.trigram"
                     }
               },
-              "s_UrduTS": {
+              // "s_UrduTS": {
+              //       significant_terms: {
+              //           field: "UrduTS"
+              //       }
+              // },
+              // "s_UrduTS_phrases": {
+              //       significant_terms: {
+              //           field: "UrduTS.trigram"
+              //       }
+              // },
+              "s_UrduTSN": {
                     significant_terms: {
-                        field: "UrduTS"
+                        field: "UrduTSN"
                     }
               },
-              "s_UrduTS_phrases": {
+              "s_UrduTSN_phrases": {
                     significant_terms: {
-                        field: "UrduTS.trigram"
+                        field: "UrduTSN.trigram"
                     }
               },
               "s_English": {
