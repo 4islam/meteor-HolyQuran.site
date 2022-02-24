@@ -17,7 +17,7 @@ export default class Master extends Component {
     super();
     this.state = {
       option_types:[
-        {id:ArabicSrc,state:true,name:'العَرَبیّا  (Arabic)',type:"Verses",options: [
+        {id:ArabicSrc,state:true,name:'العربیّا  (Arabic)',type:"Verses",options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},

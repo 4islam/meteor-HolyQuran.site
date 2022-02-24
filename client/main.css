@@ -34,7 +34,11 @@ div.searchButtonsDiv {
 }
 
 .searchButtonsFilters button {
-  /* margin: 3px; */
+  margin: 3px;
+}
+
+.searchButtonsFilters .input-group button {
+  margin: 0;
 }
 
 .ArabicNoor, .noor {
@@ -517,6 +521,7 @@ span.cohortsCount{
   line-height: 1.5;
   letter-spacing: 0.00938em;
   text-align: left;
+  font-size: 1em;
  }
 
 

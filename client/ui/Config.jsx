@@ -14,16 +14,17 @@ export default class Config extends Component {
    return (
      <div id="collapsible" className="searchButtons">
       <div className="searchButtonsFilters">
-        <button type="button" onClick={e => this.filterLayersForward("Urdu")} className="btn btn-secondary active">All Urdu</button>
-        <button type="button" onClick={e => this.filterLayersForward("English")} className="btn btn-secondary active">All English</button>
-        <button type="button" onClick={e => this.filterLayersReverese("(English|Urdu)")} className="btn btn-secondary active">Everything but English or Urdu</button>
-        <button type="button" onClick={e => this.filterLayersForward("Comment")} className="btn btn-secondary active">Commentaries only</button>
-        <button type="button" onClick={e => this.filterLayersForward("nothing")} className="btn btn-secondary active">Disable all</button>
-        <button type="button" onClick={e => this.filterLayersForward("")} className="btn btn-secondary active">Enable all</button>
-        <button type="button" onClick={e => this.filterLayersDefault()} className="btn btn-secondary active">Default</button> | <button type="button" onClick={e => this.showEnabledToggle()} className={"btn btn-secondary "+(this.state.showDisabled?"active":"")}>Show Enabled Only</button>
+        <button type="button" onClick={e => this.filterLayersForward("Urdu")} className="btn btn-secondary">All Urdu</button>
+        <button type="button" onClick={e => this.filterLayersForward("English")} className="btn btn-secondary">All English</button>
+        <button type="button" onClick={e => this.filterLayersReverese("(English|Urdu)")} className="btn btn-secondary">Everything but English or Urdu</button>
+        <button type="button" onClick={e => this.filterLayersForward("Notes")} className="btn btn-secondary">Commentaries only</button>
+        <button type="button" onClick={e => this.filterLayersForward("nothing")} className="btn btn-secondary">Disable all</button>
+        <button type="button" onClick={e => this.filterLayersForward("")} className="btn btn-secondary">Enable all</button>
+        <button type="button" onClick={e => this.filterLayersDefault()} className="btn btn-secondary">
+          Default</button> <br/> <button type="button" onClick={e => this.showEnabledToggle()} className={"btn btn-secondary "+(this.state.showDisabled?"":"active")}>Show Enabled Only</button>
         <div className="input-group" dir="ltr">
           <div className="input row">
-            <input type="text" autoComplete="off"
+            <input id="searchfilter" type="text" autoComplete="off"
                onChange={e => this.filterLayers(e.target.value)}
                className="form-control" placeholder="Search by layer name"/>
           </div>
@@ -97,7 +98,7 @@ export default class Config extends Component {
  }
  filterLayers(layer) {
    this.setState({showDisabled:false})
-   layer=layer.replace(/^[\\p{L}\w]+$/, '').trim()
+   layer=layer.replace(/ +/g,".*").trim()
    console.log(layer);
    this.setState(this.props.options.map((y,z)=>{
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
@@ -107,10 +108,11 @@ export default class Config extends Component {
 
    // this.setState(options) //Exceptions: 0 is Arabic and 1 is Chapters
    // this.props.search(query, this.props.options)
-   var currentTO_search = setTimeout(this.props.search, 500, query, this.props.options);
+   var currentTO_search = setTimeout(this.props.search, 750, query, this.props.options);
    clearTimeout(previousTO_search); previousTO_search = currentTO_search
  }
  filterLayersReverese(layer) {
+   this.setState({showDisabled:false})
    this.setState(this.props.options.map((y,z)=>{
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
         y.state=false:y.state=true}
@@ -125,6 +127,9 @@ export default class Config extends Component {
    this.props.search(query, this.props.options)
  }
  filterLayersDefault() {
+   this.setState({showDisabled:false})
+   $("#searchfilter")[0].value=""
+
    this.setState(this.props.options.map((y,z)=>{y.id==="English"||z===0||z===1?y.state=true:y.state=false})) //Exceptions: 0 is Arabic and 1 is Chapters)
    this.props.search(query, this.props.options)
  }
