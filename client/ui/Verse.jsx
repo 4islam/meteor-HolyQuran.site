@@ -115,7 +115,7 @@ componentDidMount() {
               //       this.props.highlights &&
               //       Object.keys(this.props.highlights).find((k)=>(new RegExp('^'+z.id+'\b?.*').test(k))))?
               //         <a className="list-group-item Translation">
-              //          <span className="label label-info">{this.props.options.map(x=>x.id==="z.id"?x.name:"")}</span>
+              //          <span className="label label-info" dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="z.id"?x.name:"").toString().replaceAll(",","")}}/>
               //             <VerseHighlights key={z.id}
               //                base={this.props[z.id]}
               //                Type={z.id}
@@ -132,7 +132,7 @@ componentDidMount() {
 
               {(this.props.options.map(x=>x.id==="Urdu"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Urdu(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Urdu")}>{this.props.options.map(x=>x.id==="Urdu"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Urdu")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Urdu"?x.name:"").toString().replaceAll(",","")}}/>
                   <VerseHighlights
                      base={this.props.Urdu}
                      Type="Urdu"
@@ -141,7 +141,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="English"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English")}>{this.props.options.map(x=>x.id==="English"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="English"?x.name:"").toString().replaceAll(",","")}}/>
                   <VerseHighlights
                      base={this.props.English}
                      Type="English"
@@ -150,7 +150,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishZafrullahKhan(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishZafrullahKhan")}> {this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishZafrullahKhan")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishZafrullahKhan"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishZafrullahKhan}
                        Type="EnglishZafrullahKhan"
@@ -159,7 +159,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishSC"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishSC(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSC")}> {this.props.options.map(x=>x.id==="EnglishSC"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSC")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishSC"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlightsSpecialCase
                        base={this.props.EnglishSC}
                        Type="EnglishSC"
@@ -168,7 +168,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="English5VC"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^English5VC(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English5VC")}> {this.props.options.map(x=>x.id==="English5VC"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "English5VC")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="English5VC"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlightsSpecialCase
                        base={this.props.English5VC}
                        Type="English5VC"
@@ -177,7 +177,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="German"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^German(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "German")}> {this.props.options.map(x=>x.id==="German"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "German")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="German"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.German}
                        Type="German"
@@ -186,7 +186,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Spanish"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Spanish(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Spanish")}> {this.props.options.map(x=>x.id==="Spanish"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Spanish")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Spanish"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.Spanish}
                        Type="Spanish"
@@ -195,7 +195,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="French"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^French(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "French")}> {this.props.options.map(x=>x.id==="French"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "French")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="French"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.French}
                        Type="French"
@@ -204,7 +204,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Italian"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Italian(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Italian")}> {this.props.options.map(x=>x.id==="Italian"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Italian")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Italian"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.Italian}
                        Type="Italian"
@@ -213,7 +213,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduTS"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTS(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTS")}> {this.props.options.map(x=>x.id==="UrduTS"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTS")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduTS"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.UrduTS}
                        Type="UrduTS"
@@ -222,7 +222,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduTSN"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduTSN(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTSN")}> {this.props.options.map(x=>x.id==="UrduTSN"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduTSN")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduTSN"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlightsSpecialCase
                        base={this.props.UrduTSN}
                        Type="UrduTSN"
@@ -231,7 +231,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="Chinese"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^Chinese(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Chinese")}> {this.props.options.map(x=>x.id==="Chinese"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Chinese")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Chinese"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlightsSpecialCase
                        base={this.props.Chinese}
                        Type="Chinese"
@@ -240,7 +240,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduAhmedAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduAhmedAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduAhmedAli")}> {this.props.options.map(x=>x.id==="UrduAhmedAli"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduAhmedAli")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduAhmedAli"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlightsSpecialCase
                        base={this.props.UrduAhmedAli}
                        Type="UrduAhmedAli"
@@ -249,7 +249,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="UrduMaududi"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^UrduMaududi(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduMaududi")}> {this.props.options.map(x=>x.id==="UrduMaududi"?x.name:"")}</span>
+                  <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "UrduMaududi")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="UrduMaududi"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.UrduMaududi}
                        Type="UrduMaududi"
@@ -258,7 +258,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMuhammadAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMuhammadAli")}> {this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMuhammadAli")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishMuhammadAli"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishMuhammadAli}
                        Type="EnglishMuhammadAli"
@@ -267,7 +267,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishAhmedAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishAhmedAli")}> {this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishAhmedAli")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishAhmedAli"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishAhmedAli}
                        Type="EnglishAhmedAli"
@@ -276,7 +276,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishArberry"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishArberry(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishArberry")}> {this.props.options.map(x=>x.id==="EnglishArberry"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishArberry")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishArberry"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishArberry}
                        Type="EnglishArberry"
@@ -285,7 +285,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishMaududi"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishMaududi(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMaududi")}> {this.props.options.map(x=>x.id==="EnglishMaududi"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishMaududi")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishMaududi"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishMaududi}
                        Type="EnglishMaududi"
@@ -294,7 +294,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishPickthall"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/^EnglishPickthall(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishPickthall")}> {this.props.options.map(x=>x.id==="EnglishPickthall"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishPickthall")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishPickthall"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishPickthall}
                        Type="EnglishPickthall"
@@ -303,7 +303,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishSahih"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishSahih(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSahih")}> {this.props.options.map(x=>x.id==="EnglishSahih"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishSahih")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishSahih"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishSahih}
                        Type="EnglishSahih"
@@ -312,7 +312,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishCorpus"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishCorpus(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishCorpus")}> {this.props.options.map(x=>x.id==="EnglishCorpus"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishCorpus")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishCorpus"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishCorpus}
                        Type="EnglishCorpus"
@@ -321,7 +321,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="EnglishYusufAli"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/EnglishYusufAli(\b|_).*/.test(k))))?
                 <a className="list-group-item Translation">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishYusufAli")}> {this.props.options.map(x=>x.id==="EnglishYusufAli"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "EnglishYusufAli")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="EnglishYusufAli"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.EnglishYusufAli}
                        Type="EnglishYusufAli"
@@ -330,7 +330,7 @@ componentDidMount() {
               }
               {(this.props.options.map(x=>x.id==="TopicsEn"?x.state:false).indexOf(true) != -1 && !this.props.hideUnmatched || this.props.highlights && Object.keys(this.props.highlights).find((k)=>(/TopicsEn(\b|_).*/.test(k))))?
                 <a className="list-group-item Topics English">
-                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "TopicsEn")}> {this.props.options.map(x=>x.id==="TopicsEn"?x.name:"")}</span>
+                  <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "TopicsEn")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="TopicsEn"?x.name:"").toString().replaceAll(",","")}}/>
                     <VerseHighlights
                        base={this.props.TopicsEn}
                        Type="TopicsEn"
@@ -339,7 +339,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_UrduTSN_notes"))?
                     <a className="list-group-item Notes UrduTSN English">
-                      <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Notes_UrduTSN")}> {this.props.options.map(x=>x.id==="Notes_UrduTSN"?x.name:"")}</span>
+                      <span className="label label-info rtll" onClick={this.selectLayer.bind(this, "Notes_UrduTSN")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Notes_UrduTSN"?x.name:"").toString().replaceAll(",","")}}/>
                         <NotesHighlights
                            Type="Notes_UrduTSN"
                            ayah={this.props.ayah}
@@ -348,7 +348,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_EnglishSC_notes"))?
                     <a className="list-group-item Notes EnglishSC English">
-                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_EnglishSC")}> {this.props.options.map(x=>x.id==="Notes_EnglishSC"?x.name:"")}</span>
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_EnglishSC")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Notes_EnglishSC"?x.name:"").toString().replaceAll(",","")}}/>
                         <NotesHighlights
                            Type="Notes_EnglishSC"
                            ayah={this.props.ayah}
@@ -357,7 +357,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_English5V_notes"))?
                     <a className="list-group-item Notes English5VC English">
-                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_English5V")}> {this.props.options.map(x=>x.id==="Notes_English5V"?x.name:"")}</span>
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_English5V")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Notes_English5V"?x.name:"").toString().replaceAll(",","")}}/>
                         <NotesHighlights
                            Type="Notes_English5V_notes"
                            ayah={this.props.ayah}
@@ -366,7 +366,7 @@ componentDidMount() {
               }
               {this.props.highlights && Object.keys(this.props.highlights).find((k)=>(k==="Notes_Chinese_notes"))?
                     <a className="list-group-item Notes Chinese">
-                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_Chinese")}> {this.props.options.map(x=>x.id==="Notes_Chinese"?x.name:"")}</span>
+                      <span className="label label-info ltrl" onClick={this.selectLayer.bind(this, "Notes_Chinese")} dangerouslySetInnerHTML={{__html: this.props.options.map(x=>x.id==="Notes_Chinese"?x.name:"").toString().replaceAll(",","")}}/>
                         <NotesHighlights
                            Type="Notes_Chinese_notes"
                            ayah={this.props.ayah}

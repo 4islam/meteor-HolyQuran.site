@@ -1,7 +1,12 @@
 /* CSS declarations go here */
-.list-group div, a {
-  text-align: right;
- }
+ ul.datalistUl li a {
+   text-align: left;
+  }
+
+  ul.datalistUl li  {
+    text-align: ;
+   }
+
 
 .well {
   padding: 11px;
@@ -13,13 +18,23 @@ div.searchButtons {
 }
 
 div.searchButtonsDiv {
-  display: flex;
+  /* display: flex; */
+  display: inline-grid;
   padding-bottom: 10px;
+  font-size: x-small;
 }
 
 .searchButtonsDiv.SecondRow {
   padding-bottom: 0;
   display: inline-flex;
+}
+
+.searchButtonsFilters {
+  direction: ltr;
+}
+
+.searchButtonsFilters button {
+  /* margin: 3px; */
 }
 
 .ArabicNoor, .noor {
@@ -40,7 +55,7 @@ sup {
 }
 
 div.Notes_CR {
-  border-bottom-style: inset;
+  /* border-bottom-style: inset; */
 }
 .Notes_CR p {
   display: inline-block;
@@ -61,7 +76,30 @@ div.switchIbarat {
 }
 
  ul.dropdown-menu {
-  position: sticky;
+  /* position: sticky; */
+  position: initial;
+  padding: 0;
+  border: none;
+}
+
+.switchLayers {
+  float: left;
+  margin: 1px 4px 1px 4px;
+  position: initial;
+}
+
+.switchLayersSub {
+  position: initial;
+}
+
+.switchLayersSubText {
+  float: left;
+  padding: 5px;
+  font-size: x-small;
+}
+
+.alert-info {
+  direction: ltr;
 }
 
 .ibarat {
@@ -71,9 +109,14 @@ div.switchIbarat {
 
 .label-info {
     position: absolute;
-    background-color: #ccc;
+    background-color: rgb(221 221 221);
     top: -1px;
     cursor: pointer;
+    font-size: 9px;
+}
+
+.label-info sup {
+  color: white;
 }
 .rtll {
   right: 0;
@@ -124,11 +167,11 @@ span.suggestInfo {
   height: max-content;
 }
 
-.Results {
+/* .Results { */
   /*height: 100%;
   overflow: scroll; */
-  direction:rtl;
-}
+  /* direction:rtl; */
+/* } */
 
 .tooltip {
     position: fixed;
@@ -164,6 +207,10 @@ span.suggestInfo {
   text-align: left;
   font-family: Verdana, Arial, Helvetica, sans-serif;
 }
+div.Aggregate.English {
+  font-size: 1em;
+}
+
 
 ul.Queries li {
   word-spacing: 3px;
@@ -215,13 +262,51 @@ div.Notes.well {
   border-width: thin;
 }
 
-a.Notes {
+.list-group div[class^="Notes_"] {
+  direction: ltr;
+  background-color: whitesmoke;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.list-group div[class^="Notes_"] span {
+  font-size: .75em;
+}
+
+.list-group div[class^="Topics"] {
+  background-color: whitesmoke;
+  direction: ltr;
+}
+
+.list-group div[class^="Topics"] span {
+  font-size: 0.75em;
+}
+
+.searchButtonsDiv div[class^="Urdu"] span.switchLayers, .searchButtonsDiv div[class^="Urdu"] button {
+  float: right;
+}
+.list-group div[class^="Notes_Urdu"] span.switchLayers,  .list-group div[class^="Notes_Urdu"] button {
+  float: right;
+}
+
+.searchButtonsDiv div[class^="Arabic"] span.switchLayers, .searchButtonsDiv div[class^="Arabic"] button {
+  float: right;
+}
+.list-group div[class^="Surah"] span.switchLayers,  .list-group div[class^="Surah"] button {
+  float: right;
+}
+
+.btn span.caret {
+  margin: 4px;
+}
+
+*.Notes {
   display: block;
   height: auto;
   overflow-y: scroll;
   overflow: hidden;
   background-color: whitesmoke;
-  font-size: small;
+  font-size: 0.9em;
   padding: 15px 15px 5px;
 }
 
@@ -275,9 +360,9 @@ div.highlights {
   opacity: .3;
 }
 
-div.highlights.Urdu, div.highlights.UrduTS, div.highlights.UrduTSN, div.highlights.Notes_UrduTSN, div.highlights.Surah, div.highlights.ayah {
+/* div.highlights.Urdu, div.highlights.UrduTS, div.highlights.UrduTSN, div.highlights.Notes_UrduTSN, div.highlights.Surah, div.highlights.ayah {
   float: right;
-}
+} */
 
 div.highlights.Arabic, div.highlights.ArabicNoor  {
   opacity: .5;
@@ -416,16 +501,13 @@ span.cohortsCount{
   font-size: smaller;
 }
 
-.Urdu, .UrduTS, .UrduTSN, .Notes_UrduTSN {
-  font-weight:lighter;
-  font-size: 1em;
-}
 
  .Urdu, .UrduTS, .UrduTSN, .UrduMaududi, .UrduAhmedAli, .Notes_UrduTSN {
    /* font-family: NafeesWeb, NafeesWebNaskh; */
    font-family: 'Jameel Noori Nastaleeq', -apple-system, BlinkMacSystemFont, noto_nastaliq, 'Urdu Naskh Asiatype', 'Nafees Web Naskh';
    font-size: 1.2em;
    direction: rtl;
+   font-weight:lighter;
  }
 
  .Chinese {
