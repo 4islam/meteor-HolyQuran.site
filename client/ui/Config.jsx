@@ -97,7 +97,8 @@ export default class Config extends Component {
  }
  filterLayers(layer) {
    this.setState({showDisabled:false})
-   layer=layer.replace(/[^a-zA-Z]+/, '').trim()
+   layer=layer.replace(/^[\\p{L}\w]+$/, '').trim()
+   console.log(layer);
    this.setState(this.props.options.map((y,z)=>{
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
         y.state=true:y.state=false}
