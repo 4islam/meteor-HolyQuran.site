@@ -16,7 +16,7 @@ export default class Config extends Component {
       <div className="searchButtonsFilters">
         <button type="button" onClick={e => this.filterLayersForward("Urdu")} className="btn btn-secondary">All Urdu</button>
         <button type="button" onClick={e => this.filterLayersForward("English")} className="btn btn-secondary">All English</button>
-        <button type="button" onClick={e => this.filterLayersReverese("(English|Urdu)")} className="btn btn-secondary">Everything but English or Urdu</button>
+        <button type="button" onClick={e => this.filterLayersReverese("(English|Urdu)")} className="btn btn-secondary">All but English or Urdu</button>
         <button type="button" onClick={e => this.filterLayersForward("Notes")} className="btn btn-secondary">Commentaries only</button>
         <button type="button" onClick={e => this.filterLayersForward("nothing")} className="btn btn-secondary">Disable all</button>
         <button type="button" onClick={e => this.filterLayersForward("")} className="btn btn-secondary">Enable all</button>
@@ -29,7 +29,7 @@ export default class Config extends Component {
                className="form-control" placeholder="Search by layer name"/>
           </div>
           <div className="input-group-btn">
-            <button type="button" onClick={e => this.props.search(query, this.props.options)} className="btn btn-secondary">Set</button>
+            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -97,9 +97,10 @@ export default class Config extends Component {
    this.props.search(window.query, option_types);
  }
  filterLayers(layer) {
+   window.query="";$(window.inputId)[0].value=window.query
    this.setState({showDisabled:false})
    layer=layer.replace(/ +/g,".*").trim()
-   console.log(layer);
+   // console.log(layer);
    this.setState(this.props.options.map((y,z)=>{
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
         y.state=true:y.state=false}
@@ -108,8 +109,10 @@ export default class Config extends Component {
 
    // this.setState(options) //Exceptions: 0 is Arabic and 1 is Chapters
    // this.props.search(query, this.props.options)
-   var currentTO_search = setTimeout(this.props.search, 750, query, this.props.options);
-   clearTimeout(previousTO_search); previousTO_search = currentTO_search
+
+   //Disabled below, does't work well on phones when it searches on its own.
+   // var currentTO_search = setTimeout(this.props.search, 750, query, this.props.options);
+   // clearTimeout(previousTO_search); previousTO_search = currentTO_search
  }
  filterLayersReverese(layer) {
    this.setState({showDisabled:false})

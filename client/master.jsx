@@ -181,6 +181,10 @@ export default class Master extends Component {
     window.previousTO_suggest = 0  //Previous Timeout
     window.previousTO_search = 0  //Previous Timeout
 
+    $('#SearchConfig').on('hidden.bs.modal', function () {
+      setTimeout(window.queryStatus,250)
+    });
+
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
         //$('.row-offcanvas').removeClass('row-offcanvas-left').addClass('row-offcanvas-right');
@@ -492,7 +496,7 @@ export default class Master extends Component {
                       <button type="button" className="btn btn-secondary input-group" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <h3 className="modal-title" id="SearchConfigTitle">Search Configuration Menu</h3>
+                      <h3 className="modal-title" id="SearchConfigTitle">Search Configuration</h3>
                     </div>
                     <div className="modal-body">
                     <Config
@@ -881,4 +885,6 @@ window.queryStatus = function () {
       }
     }
 }
+
+
 Tracker.autorun(queryStatus)

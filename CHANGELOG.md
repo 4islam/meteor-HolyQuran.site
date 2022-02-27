@@ -1,3 +1,6 @@
+## 6.13.1:
+  * Menus Optimizations
+
 ## 6.13:
   * New search layer selection system added
 
