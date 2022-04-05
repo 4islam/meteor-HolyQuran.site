@@ -1,6 +1,6 @@
 {
   "name": "HolyQuranAdvance",
-  "version": "6.12.1",
+  "version": "6.13.1",
   "description": "Holy Qur'an Verse Centric Advance Search",
   "private": true,
   "scripts": {
@@ -39,6 +39,7 @@
     "react-addons-update": "^15.6.3",
     "react-dom": "^15.7.0",
     "react-mounter": "^1.2.0",
+    "react-switch": "^6.0.0",
     "react-transition-group": "^1.2.1"
   }
 }

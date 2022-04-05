@@ -1,3 +1,9 @@
+## 6.13.1:
+  * Menus Optimizations
+
+## 6.13:
+  * New search layer selection system added
+
 ## 6.12.2:
   * Logic for "must_not" or minus query fixed
 

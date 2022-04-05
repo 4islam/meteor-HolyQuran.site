@@ -10,13 +10,14 @@ import Aggregates from './ui/Aggregates.jsx';
 import Iframe from './ui/Iframe.jsx';
 import Help from './ui/Help.jsx';
 import Credits from './ui/Credits.jsx';
+import Config from './ui/Config.jsx';
 
 export default class Master extends Component {
   constructor() {
     super();
     this.state = {
       option_types:[
-        {id:ArabicSrc,state:true,name:'Arabic',type:"Verses",options: [
+        {id:ArabicSrc,state:true,name:'العربیّا  (Arabic)',type:"Verses",options: [
                   {id:"root",state:true, name:'Roots'},
                   {id:"stems",state:true,name:'Stems'},
                   {id:"phonetic",state:true,name:'Phonetic'},
@@ -24,30 +25,53 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
-        {id:"Surah",state:true,name:'Chapter Names',type:"Chapters",options: [
+        {id:"Surah",state:true,name:'أسماء السورة  (Chapter names)',type:"Chapters",options: [
                   {id:"phonetic",state:true,name:'Phonetic'},
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:'اردو ترجمہ از خلیفة المسیح الرابعؒ',type:"Translation",options: [
+        {id:"Urdu",state:false,name:"اردو ترجمہ مرزا طاہر احمد خلیفة المسیح الرابعؒ",type:"Translation",options: [
+          {id:"phonetic",state:false,name:'Phonetic'},
+          {id:"ngram",state:true,name:'Partial'},
+          {id:"normalized",state:true,name:'Normalized'}
+        ]},
+        {id:"UrduTSN",state:false,name:'اردو تفسیرِ صغیر',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English",state:true,name:'English - Hazrat Molavi Sher Ali ra',type:"Translation",options: [
+        // {id:"UrduTSN",state:false,name:'اردو تفسیرِ صغیر نکات',type:"Translation",options: [
+        //           {id:"phonetic",state:false,name:'Phonetic'},
+        //           {id:"ngram",state:true,name:'Partial'},
+        //           {id:"normalized",state:true,name:'Normalized'}
+        //         ]},
+        {id:"Notes_UrduTSN",state:false,name:' اردہ تفصیرِ صغیر نوٹس <sup>*</sup>',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"English",state:true,name:'English - Hazrat Molavi Sher Ali <sup>ra</sup>',type:"Translation",options: [
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation'}
                 ]},
-        {id:"EnglishZafrullahKhan",state:false,name:'English - Sir Zafrullah Khan ra',type:"Translation",options: [
+        {id:"English5VC",state:false,name:'English - Five Volume Translation',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"English5VC",state:false,name:'English - Translation with Five Volume Commentary',type:"Translation",options: [
+        {id:"Notes_English5V",state:false,name:'English - Five Volume Commentary <sup>*</sup>',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishSC",state:false,name:'English - Short Commentary Translation',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishSC",state:false,name:'English - Translation with Short Commentary',type:"Translation",options: [
+        {id:"Notes_EnglishSC",state:false,name:'English - Short Commentary Notes <sup>*</sup>',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"EnglishZafrullahKhan",state:false,name:'English - Sir Muhammad Zafrullah Khan <sup>ra</sup>',type:"Translation",options: [
+                  {id:"ngram",state:true,name:'Partial'},
+                  {id:"normalized",state:true,name:'Normalized'}
+                ]},
+        {id:"TopicsEn",state:false,name:'English - Topics',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
@@ -67,23 +91,12 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"UrduTS",state:false,name:'اردو تفسیرِ صغیر',type:"Translation",options: [
-                  {id:"phonetic",state:false,name:'Phonetic'},
-                  {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
-                ]},
-        {id:"UrduTSN",state:false,name:'اردو تفسیرِ صغیر نکات',type:"Translation",options: [
-                  {id:"phonetic",state:false,name:'Phonetic'},
-                  {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
-                ]},
         {id:"Chinese",state:false,name:'Chinese',type:"Translation",options: [
                   // {id:"ngram",state:true,name:'Teilweise'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"TopicsEn",state:false,name:'Topics - English',type:"Translation",options: [
-                  {id:"ngram",state:true,name:'Partial'},
-                  {id:"normalized",state:true,name:'Normalized'}
+        {id:"Notes_Chinese",state:false,name:'Chinese Commentary <sup>*</sup>',type:"Commentary",options: [
+                    {id:"normalized",state:true,name:'Normalized'}
                 ]},
         {id:"UrduAhmedAli",state:false,name:'اردو ترجمہ احمد علی',type:"Translation",options: [
                   {id:"phonetic",state:false,name:'Phonetic'},
@@ -95,7 +108,7 @@ export default class Master extends Component {
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"EnglishMuhammadAli",state:false,name:'English - Muhammad Ali ra',type:"Translation",options: [
+        {id:"EnglishMuhammadAli",state:false,name:'English - Muhammad Ali <sup>ra</sup>',type:"Translation",options: [
                   {id:"ngram",state:true,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
@@ -128,20 +141,6 @@ export default class Master extends Component {
                   {id:"normalized",state:true,name:'Normalized'},
                   {id:"translation",state:true,name:'Translation (beta)'}
                 ]},
-        {id:"Notes_English5V",state:false,name:'English Five Volume Commentary',type:"Commentary",options: [
-                    {id:"normalized",state:true,name:'Normalized'}
-                ]},
-        {id:"Notes_Chinese",state:false,name:'Chinese Commentary',type:"Commentary",options: [
-                    {id:"normalized",state:true,name:'Normalized'}
-                ]},
-        {id:"Notes_EnglishSC",state:false,name:'English Short Commentary',type:"Commentary",options: [
-                    {id:"normalized",state:true,name:'Normalized'}
-                ]},
-        {id:"Notes_UrduTSN",state:false,name:'اردہ تفصیرِ صغیر نوٹس',type:"Commentary",options: [
-                    {id:"normalized",state:true,name:'Normalized'}
-                ]}
-
-
       ],
       analyzers: analyzers,
       options_panel: 'none',
@@ -181,6 +180,10 @@ export default class Master extends Component {
 
     window.previousTO_suggest = 0  //Previous Timeout
     window.previousTO_search = 0  //Previous Timeout
+
+    $('#SearchConfig').on('hidden.bs.modal', function () {
+      setTimeout(window.queryStatus,250)
+    });
 
     $(document).ready(function () {
       $('[data-toggle="offcanvas-right"]').click(function () {
@@ -433,8 +436,8 @@ export default class Master extends Component {
                   </button>
                 </div>
                 <div className="input-group-btn">
-                  <button type="button" className="btn btn-default" onClick={this.inputDir_switch}>
-                    <span className="glyphicon glyphicon-transfer"></span>
+                  <button type="button" className="btn btn-default" data-toggle="modal" data-target="#SearchConfig">
+                      <span className="glyphicon glyphicon-option-vertical"></span>
                   </button>
                 </div>
                 <div className="input row">
@@ -462,7 +465,12 @@ export default class Master extends Component {
                       <option value="الله الرحمان الرحيم"/>
                     </datalist>*/}
                   </div>
-                  <ul id="datalistUl" className={"datalistUl dropdown-menu dropdown-menu-right "+this.state.option_types[0].id} aria-labelledby="Query">
+                  <div className="input-group-btn">
+                    <button type="button" className="btn btn-default" onClick={this.inputDir_switch}>
+                      <span className="glyphicon glyphicon-transfer"></span>
+                    </button>
+                  </div>
+                  <ul id="datalistUl" className={"datalistUl dropdown-menu dropdown-menu-right"} aria-labelledby="Query">
                     {
                       // this.state.suggestionlist.map(i=>
                       //   <li className='btn-block btn btn-xs' key={i.key}><a href="#" onClick={() => this.search_q(i.key)}>{i.key}</a></li>
@@ -475,56 +483,37 @@ export default class Master extends Component {
                     </button>
                   </div>
                </div>
-              <Suggestions query={this.props.query} search={this.search} options={this.state.option_types}
-                          page={this.state.page} limit={this.state.limit}/>
+              <Suggestions
+                query={this.props.query}
+                search={this.search}
+                options={this.state.option_types}
+                page={this.state.page} limit={this.state.limit}/>
 
-
-              <div id="collapsible" className="searchButtons">
-                <div className="searchButtonsDiv">
-                  {
-                    this.state.option_types.map(x=>
-                        <div className={x.id+" btn-group"} role="group" key={x.name}>
-                            <button className={"btn btn-default btn-xs dropdown-toggle" + x.id}
-                              id="dLabel" type="button" onClick={this.openMenu}
-                              name={x.name}
-                              style={this.state.hideUnmatched?{'color':'#bcbcbc'}:{}}
-                              aria-haspopup="true" aria-expanded="false">
-                                <input className="checkbox-inline"
-                                  name={x.id}
-                                  id={x.id}
-                                  type="checkbox"
-                                  value={x.state}
-                                  checked={x.state}
-                                  onChange={this.handleChange} />
-                                <small>
-                                  <span>{ ' ' + x.name + ' '}</span>
-                                  <span className="caret"></span>
-                                </small>
-                              </button>
-                            <ul className={(x.name=='Arabic')?'dropdown-menu dropdown-menu-right':'dropdown-menu'}
-                                aria-labelledby="dLabel">
-                              {
-                                x.options.map(y=>
-                                  <li key={'span_' + y.id}>
-                                    <span className={"highlights " + y.id}>
-                                        <small>
-                                          {y.name + ' '}
-                                        </small>
-                                        <input className="checkbox-inline"
-                                          name={y.id}
-                                          type="checkbox"
-                                          checked={y.state}
-                                          disabled={!x.state}
-                                          onChange={this.handleChangeOptions.bind(this,y.id,x.id)} />
-                                    </span>
-                                  </li>
-                                )
-                              }
-                              </ul>
-                        </div>)
-                  }
+              <div className="modal fade" id="SearchConfig" role="dialog" aria-labelledby="SearchConfigTitle" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="btn btn-secondary input-group" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h3 className="modal-title" id="SearchConfigTitle">Search Configuration</h3>
+                    </div>
+                    <div className="modal-body">
+                    <Config
+                      options={this.state.option_types}
+                      hideUnmatched={false}
+                      handleChange={this.handleChange}
+                      search={this.search.bind(this)}/>
+                      <div className="alert alert-info"> <strong>*</strong> When enabled for searching, only matching segments are shown. Complete text is available in the details panel.</div>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+
               <div className="searchButtonsDiv SecondRow">
               <div className="btn-group btn-xs btn-group-toggle switchIbarat" data-toggle="buttons">
                 <label className="Arabic ibarat btn-xs">
@@ -710,13 +699,6 @@ export default class Master extends Component {
     this.search(window.query, option_types);
   }
 
-  handleChangeOptions(x,y) {
-    let option_types = this.state.option_types;
-    option_types.find(o=>o.id===y).options.find(p=>p.id===x).state = !option_types.find(o=>o.id===y).options.find(p=>p.id===x).state;
-    this.setState(option_types);
-    this.search(window.query, option_types);
-  }
-
   switchIbarat(ibarat){
     let option_types = this.state.option_types
     window.ArabicSrc = ibarat
@@ -759,16 +741,6 @@ export default class Master extends Component {
     })
 
   }
-
-  openMenu(event) { //data-toggle="dropdown" This is removed as input boxes don't render properly with bootstap toggle. The custom function is written to accomodate instead - NI
-    event.stopPropagation(); //Target changes based on click focus on DOM, this line and next are to accomodate for that as $(this) doesn't work in JSX
-    var $btn = $(event.target).is('button')?$(event.target):$(event.target).parent().parent();
-    let classExists = ($btn.parent().hasClass('open'))?true:false
-    $btn.parent().parent().children().removeClass('open')
-    if (!classExists) {
-      $btn.parent().addClass('open')
-    }
-  }
 }
 
 window.suggestDiv_close_delayed = function() {
@@ -806,10 +778,10 @@ window.suggest_e = function(query) {
         if (complete.length >0) {
           boldq = query.split(" ").slice(-1).toString();var req = new RegExp(boldq, 'gi')
           complete.sort(function (a,b){ return a.score - b.score}).map(function(i){
-            $('#datalistUl').prepend("<li class='btn-block btn btn-lg "+ i.type.join(" ").replace(/^s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
+            $('#datalistUl').prepend("<li className='btn-block btn btn-lg "+ i.type.join(" ").replace(/^s_/g," ").replace(/_/g," ") + "'><a id=\'"+i.key+"\' href=\"#\" onclick=\"search_q(\'"+i.key+"\',\'"+i.type.join(" ")+"\')\">" + i.key.replace(req,"<b><u>"+boldq+"</u></b>")
                     + "<br/><span class='suggestInfo'>In "+ i.type.join(" & ").replace(/\bs_/g," ").replace(/_/g," ").replace(/Noor/g,"") + "</i></span>"               // TODO: To be implemented with good graphics/icons
                     // + " "+ i.score
-                    + "<span class=\"btn-xs pull-left\">" + (i.count) + "</span>"
+                    + "<span class=\"btn-xs pull-right\">" + (i.count) + "</span>"
                   +"</a></li>");
           })
           $('#datalistUl').append("<button type=\"button\" class=\"close\" style=\"float:left\" \
@@ -913,4 +885,6 @@ window.queryStatus = function () {
       }
     }
 }
+
+
 Tracker.autorun(queryStatus)

@@ -28,5 +28,7 @@ else
   echo "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 190285172867.dkr.ecr.us-east-1.amazonaws.com"
   echo "docker tag hqvc:$ver 190285172867.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
   echo "docker push 190285172867.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
+  echo ""
+  echo ""
   #scp -P2222 ../HQVC_ServerConfig/home/centos/upload/HQVC.tar.gz centos@158.69.72.248:/home/centos/upload
 fi

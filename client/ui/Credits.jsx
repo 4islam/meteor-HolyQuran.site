@@ -30,6 +30,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.13: </b>
+                        <li>New search layer selection system added</li>
+                      </ul>
+
+                      <ul>
                         <b>6.12: </b>
                         <li>English Short Commentary with cross-references and notes added</li>
                         <li>Urdu Tafseer e Saghir with notes added</li>
