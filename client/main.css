@@ -43,6 +43,7 @@ div.searchButtonsDiv {
 
 .ArabicNoor, .noor {
   font-family: "noorehuda";
+  /* font-family: "ManzoorWebNaskh"; */
   font-size: 1.403em;
   font-weight: normal;
   /* word-spacing: 0.3em; */
@@ -898,6 +899,13 @@ button.Summary {
 
 
 /* epub styles */
+
+@font-face {
+  font-family: 'ManzoorWebNaskh';
+  src: url('/fonts/ManzoorWebNaskh.woff2') format('woff2'),
+       url('/fonts/ManzoorWebNaskh.woff') format('woff'),
+       url('/fonts/ManzoorWebNaskh.ttf') format('truetype');
+}
 
 @font-face {
   font-family: "NafeesWeb";

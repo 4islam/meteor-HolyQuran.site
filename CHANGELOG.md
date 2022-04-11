@@ -1,3 +1,6 @@
+## 6.14:
+  * Fonts update
+
 ## 6.13.1:
   * Menus Optimizations
 
