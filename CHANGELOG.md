@@ -1,5 +1,6 @@
 ## 6.14:
   * Fonts update
+  * Help file corrections
 
 ## 6.13.1:
   * Menus Optimizations

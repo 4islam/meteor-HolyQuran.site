@@ -30,6 +30,12 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.14: </b>
+                        <li>Fonts update</li>
+                        <li>Help file corrections</li>
+                      </ul>
+
+                      <ul>
                         <b>6.13: </b>
                         <li>New search layer selection system added</li>
                       </ul>
