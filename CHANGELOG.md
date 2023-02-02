@@ -1,3 +1,7 @@
+## 6.14.1:
+  * Package updates
+  * Search suggestions for phrases now add quotes 
+
 ## 6.14:
   * Fonts update
   * Help file corrections

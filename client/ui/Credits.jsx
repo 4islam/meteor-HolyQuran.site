@@ -33,6 +33,7 @@ export default class Credits extends Component {
                         <b>6.14: </b>
                         <li>Fonts update</li>
                         <li>Help file corrections</li>
+                        <li>Quotes added around phases in suggestions</li>
                       </ul>
 
                       <ul>

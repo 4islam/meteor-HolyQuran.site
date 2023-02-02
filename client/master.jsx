@@ -827,7 +827,11 @@ window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
-  $(window.inputId)[0].value=q.replace(/^ +/,'').trim()+' '
+  q=q.replace(/^ +/,'').trim()
+  if (q.indexOf(' ') >= 0) {
+    q='"'+q+'"'
+  }
+  $(window.inputId)[0].value=q+' '
 
   //this.searchButton()
   $('button.Search').trigger("click")
