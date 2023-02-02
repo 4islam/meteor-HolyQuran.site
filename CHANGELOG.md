@@ -1,6 +1,9 @@
+## 6.15:
+  * Auto search in all layers from 6:10 has been reverted to string search accross all layers for faster performance
+
 ## 6.14.1:
   * Package updates
-  * Search suggestions for phrases now add quotes 
+  * Search suggestions for phrases now add quotes
 
 ## 6.14:
   * Fonts update

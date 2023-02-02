@@ -77,15 +77,16 @@ componentDidUpdate () {
  }
 //{this.globalSearch(this, 1, this.props.limit)}
  globalSearch(page,limit) {
-   // console.log(page,limit);
-   // window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
+   // console.log("Global Search", page,limit);
+   window.query = ":\""+window.query.replace(/"|\:/g,'') + "\""
 
    // window.layersMessage+=" Searching in all layers "
-   this.props.switchLayers(true)
-   this.props.options.map(y=>{if (!y.id.match(/Chinese/i)){y.state=true}})
+   // this.props.switchLayers(true)
+   // this.props.options.map(y=>{if (!y.id.match(/Chinese/i)){y.state=true}})
 
    const myTimeout = setTimeout(function(){
      // window.layersMessage+=" (done)"
+     $(window.inputId)[0].value = window.query
       $('button.Search').trigger("click")
    },1000)
 
