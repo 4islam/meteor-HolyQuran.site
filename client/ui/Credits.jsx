@@ -30,6 +30,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.15.1: </b>
+                        <li>Global phrase search capability added</li>
+                      </ul>
+
+                      <ul>
                         <b>6.15: </b>
                         <li>Auto search in all layers from 6:10 has been reverted to string search accross all layers for faster performance</li>
                       </ul>

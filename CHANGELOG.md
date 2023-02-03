@@ -1,3 +1,6 @@
+## 6.15.1:
+  * Global phrase search capability added
+
 ## 6.15:
   * Auto search in all layers from 6:10 has been reverted to string search accross all layers for faster performance
 

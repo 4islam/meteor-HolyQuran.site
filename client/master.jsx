@@ -360,6 +360,9 @@ export default class Master extends Component {
           $('#datalistUl > li').eq(window.highlight).addClass("active")
 
           var suggested_term = $('#datalistUl > li.active a').attr('id')
+          if (suggested_term.indexOf(' ') >= 0) {
+            suggested_term='"'+suggested_term+'"'
+          }
 
           q=$(window.inputId)[0].value
           q=q.split(' ').slice(0,-1*window.termcount)
@@ -825,12 +828,15 @@ window.detectKeyboard = function(e){
 
 window.search_q = function (query, type) {
   //$(window.inputId)[0].value=query
+
+// if (/^[a-zA-Z0-9 !@#$%^&*)(]$/.test(query)) {
+  if (query.indexOf(' ') >= 0) {
+    query='"'+query+'"'
+  }
   q=$(window.inputId)[0].value
   q=q.split(' ').slice(0,-1).join(' ').trim() + ' ' + query
   q=q.replace(/^ +/,'').trim()
-  if (q.indexOf(' ') >= 0) {
-    q='"'+q+'"'
-  }
+
   $(window.inputId)[0].value=q+' '
 
   //this.searchButton()
@@ -883,7 +889,8 @@ window.queryStatus = function () {
 
     } else {
       if ($(window.inputId) && $(window.inputId)[0]) {
-        $(window.inputId)[0].disabled=true; $('div.input.row').css('background-color','#fff')
+        $(window.inputId)[0].disabled=true;
+        $('div.input.row').css('background-color','#fff')
 
         ui_busy("#C00")
       }

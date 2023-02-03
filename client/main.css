@@ -425,6 +425,12 @@ div.highlights mark {
   /* background: #fc0; */
 }
 
+mark, .mark {
+  /* background-color: #fcf8e3; */
+  /* background-color: #f9eca8; */
+  background-color: #ffff0080;
+}
+
 .highlights.Arabic {
   /*top:50px;*/
 }

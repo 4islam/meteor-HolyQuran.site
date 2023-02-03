@@ -77,7 +77,7 @@ export default class Help extends Component {
                       <li>Search for <em>Muhammad</em> but must include "father" within the current search scope <a target="_self" href="/Muhammad%20%2Bfather">Muhammad +father</a><br/>
                             (<em>This is not equivalent to <a target="_self" href="/Muhammad%20%3Afather">Muhammad :father</a> or <a target="_self" href="/Muhammad%20%3A%22%2Bfather%22">Muhammad *:"+father"</a> because "father" is in global scope here</em>)</li>
                       <li>Show all verses with "Rama" but do not show "Ramadan" or words starting with "ramas"<br/>
-                              <a target="_self" href="/rama%20-ramas*%20-ramadan">rama -ramas* -ramadan </a></li>
+                              <a target="_self" href="/:rama%20:-ramas*%20:-ramadan">:rama :-ramas* :-ramadan </a></li>
                       <li>Show all verses with moon or moons not where Arabic root قمر is used<br/>
                               <a target="_self" href="/moon%20ArabicNoor.ar_root%3A%22-قمر%22">moon ArabicNoor.ar_root:"-قمر"</a></li>
 
