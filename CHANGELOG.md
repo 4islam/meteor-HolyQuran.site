@@ -1,5 +1,6 @@
 ## 6.15.2:
   * Search scope configuration now retains in URL making results shareable
+  * Added Splats in routing to handle forward slashes in the query and it makes its way to the URL
 
 ## 6.15.1:
   * Global phrase search capability added
