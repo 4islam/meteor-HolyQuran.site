@@ -28,7 +28,8 @@ FlowRouter.route("/", {
   action() {
     mount(Master, {
         query: "",
-        hash: window.location.hash
+        hash: window.location.hash,
+        configStr:FlowRouter.getQueryParam("o")
     });
   }
 });
@@ -37,7 +38,8 @@ FlowRouter.route("/:query", {
   action(params) {
     mount(Master, {
         query: decodeURIComponent(window.location.pathname.substr(1)),
-        hash: window.location.hash
+        hash: window.location.hash,
+        configStr:FlowRouter.getQueryParam("o")
     });
   }
 });
@@ -50,7 +52,8 @@ FlowRouter.notFound = {
     action() {
       mount(Master, {
           query: "",
-          hash: window.location.hash
+          hash: window.location.hash,
+          configStr:FlowRouter.getQueryParam("o")
       });
     }
 };

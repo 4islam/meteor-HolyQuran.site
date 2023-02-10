@@ -1,3 +1,6 @@
+## 6.15.2:
+  * Search scope configuration now retains in URL making results shareable
+
 ## 6.15.1:
   * Global phrase search capability added
 

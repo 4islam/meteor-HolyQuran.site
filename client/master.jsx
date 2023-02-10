@@ -163,6 +163,16 @@ export default class Master extends Component {
     this.search = this.search.bind(this);
     this.showKeyboard = this.showKeyboard.bind(this);
     //this.openMenu = this.openMenu.bind(this);
+
+    this.ub64Decode = this.ub64Decode.bind(this);
+
+    window.encodingTab =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      // encodingTab+="+/"
+    encodingTab+="~._"            // Replacing ''+/=' with URL safe characters: '~._' //URL Safe Base 64: UB64
+
+    // window.optionStr = ub64Encode(this.state.option_types);
+
   }
 
   componentDidMount() {
@@ -174,12 +184,38 @@ export default class Master extends Component {
     window.limit = ""
     window.options = {}
 
-    //console.log(this.props)
+    // console.log(this.props)
     let hash = this.props.hash.substring(1)
     window.hash = (hash!='')?this.props.hash:"1:1"
 
     window.previousTO_suggest = 0  //Previous Timeout
     window.previousTO_search = 0  //Previous Timeout
+
+    if (this.props.configStr) {
+      let configStrArray = this.ub64Decode(this.props.configStr)
+      // console.log(configStrArray);
+      let option_types = this.state.option_types;
+      option_types.map((i,j)=>{
+        if (configStrArray[j]) {
+          i.state=true
+          configStrArray[j].split('').map((l,m)=>{
+            // console.log(j,l,m);
+            if (i.options[m] && i.options[m].state) {
+              if (l=="1") {
+                i.options[m].state=true
+              } else {
+                i.options[m].state=false
+              }
+            }
+          })
+        } else {
+          i.state=false
+        }
+      })
+      this.setState(option_types);
+      // this.search(window.query, option_types);
+    }
+    window.configStr=this.props.configStr
 
     $('#SearchConfig').on('hidden.bs.modal', function () {
       setTimeout(window.queryStatus,250)
@@ -324,7 +360,7 @@ export default class Master extends Component {
 
 
     //console.log(e.type, e.which)
-    if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from form
+    if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from
       if (e.type=="change") {   //not on keyup, but on change to make it faster
         let currentTO_suggest = setTimeout(suggest_e, 1000, $(window.inputId)[0].value.trimLeft());    //150ms
         clearTimeout(previousTO_suggest); previousTO_suggest = currentTO_suggest
@@ -655,10 +691,17 @@ export default class Master extends Component {
         if (window.query != tquery) {page=1}        //New query will start with page one
         Meteor.call('search', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
 
-          window.history.pushState("", "Holy Qur'an Advance Search - " + tquery, "/" +
-            encodeURIComponent(tquery)        //used this instead of encodeURI to ensure slash (/) is also encoded
-            +"#" + window.hash
-            );
+          window.optionStr = ub64Encode(options)
+
+          let url=encodeURIComponent(tquery)      //used this instead of encodeURI to ensure slash (/) is also encoded
+          if (window.optionStr.length > 0 && window.optionStr !== "0X1553") {     //check for default value
+            url += "?o="+window.optionStr
+          }
+          if (window.hash !== "1:1") {             //check for default value
+            url += "#" + window.hash
+          }
+
+            window.history.pushState("", tquery + " | Holy Qur'an Advance Search", "/"+url);
             window.query = tquery
             window.page = page
             window.limit = limit
@@ -743,6 +786,17 @@ export default class Master extends Component {
       this.search(window.query, this.state.option_types)
     })
 
+  }
+
+  ub64Decode(encodedStr) {
+    let returnArray=[]
+    encodedStr.match(/.{1,2}/g).map((i)=>{
+      let layer=encodingTab.indexOf(i[0])
+      let settings=encodingTab.indexOf(i[1])
+      let settingsb=(settings >>> 0).toString(2)
+      returnArray[layer]=settingsb
+    })
+    return returnArray;
   }
 }
 

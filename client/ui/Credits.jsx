@@ -30,6 +30,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.15.2: </b>
+                        <li>Search scope configuration now retains in URL making results shareable</li>
+                      </ul>
+
+                      <ul>
                         <b>6.15.1: </b>
                         <li>Global phrase search capability added</li>
                       </ul>
