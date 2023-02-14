@@ -865,8 +865,12 @@ window.suggest_e = function(query) {
 }
 
 window.detectKeyboard = function(e){
-  //console.log(e.key);
-  if (e.key != " " && ['Shift',",",":",".","۔",'Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete'].indexOf(e.key)==-1) {
+  console.log(e.key, e.keyCode, e);
+  if (e.key != " "
+        && ['Shift',",",":",".","۔",'Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete',"\""].indexOf(e.key)==-1
+        && !(e.keyCode == 90 && (e.ctrlKey || e.metaKey))      // Ctrl + z or Cmd + z
+        && !(e.keyCode == 65 && (e.ctrlKey || e.metaKey))      // Ctrl + a or Cmd + a
+      ) {
     let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
     let a = e.key.match(re);
     if (a == null){

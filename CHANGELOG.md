@@ -2,6 +2,7 @@
   * Search scope configuration now retains in URL making results shareable
   * Added Splats in routing to handle forward slashes in the query and it makes its way to the URL
   * Stopped auto search if colon is present in the query
+  * Disable left/right switch with quotes are typed or select all, or undo keyboard combination is pressed
 
 ## 6.15.1:
   * Global phrase search capability added
