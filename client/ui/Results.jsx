@@ -26,10 +26,12 @@ componentDidUpdate () {
   window.autosearch=window.query==window.searchedQuery?false:true
   // $(window.inputId)[0].value = window.query
   if (window.autosearch && r && r.results.hits && r.results.hits.hits && r.results.hits.total.value==0) {
+    if (window.query.indexOf(':')=="-1") {
       window.searchedQuery=window.query
       // window.layersMessage=" all layers (except Chinese)"
       this.globalSearch(1, this.props.limit)
       // console.log("should have called")
+    }
   } else {
     window.autosearch=true;
   }
