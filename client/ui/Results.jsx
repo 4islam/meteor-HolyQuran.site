@@ -29,7 +29,7 @@ componentDidUpdate () {
     if (window.query.indexOf(':')=="-1") {
       window.searchedQuery=window.query
       // window.layersMessage=" all layers (except Chinese)"
-      this.globalSearch(1, this.props.limit)
+      // this.globalSearch(1, this.props.limit)
       // console.log("should have called")
     }
   } else {
