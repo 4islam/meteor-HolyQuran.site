@@ -438,8 +438,18 @@ Meteor.methods({
     //  console.log('\n'+matchArray.length);
 
       //console.log(removeCandidates);
+      let crossFieldsArray=[]
       matchArray.find(function (x,i){
         // console.log(Object.keys(x.match)[0])
+        crossFieldsArray.push(Object.keys(x.match)[0])
+      })
+      matchArray.push({
+        multi_match : {
+          query:      query,
+          type:       "cross_fields",
+          fields:     crossFieldsArray,
+          operator:   "and"
+        }
       })
 
       let search_query = {
@@ -458,7 +468,7 @@ Meteor.methods({
           query: {
             bool:{
               should:matchArray
-            }
+            },
             /*multi_match : {
                   query : query+" ",
                   fields: [
