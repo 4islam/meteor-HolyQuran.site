@@ -30,6 +30,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.16: </b>
+                        <li>Multiword search improved</li>
+                      </ul>
+
+                      <ul>
                         <b>6.15.2: </b>
                         <li>Search scope configuration now retains in URL making results shareable</li>
                         <li>Added Splats in routing to handle forward slashes in the query and it makes its way to the URL</li>
