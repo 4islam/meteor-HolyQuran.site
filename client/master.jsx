@@ -185,8 +185,24 @@ export default class Master extends Component {
     window.options = {}
 
     // console.log(this.props)
-    let hash = this.props.hash.substring(1)
-    window.hash = (hash!='')?this.props.hash:"1:1"
+    let hashArr=this.props.hash.split('/')
+
+    let verse = hashArr[0].substring(1)
+
+    let tab = 1
+    if (hashArr[1]) {
+      hashArr.slice(1).map((h)=>{
+        let hArr=h.split(":")
+        if (hArr[0]=='tab'){
+          tab = hArr[1]
+        }
+      })
+    }
+    // console.log(tab);
+    window.hash = ""
+    window.hash = (verse!='')?this.props.hash:"1:1"
+                + (window.hash.indexOf('/tab'==-1) && tab!=1)?"/tab:"+tab:''
+    // console.log(window.hash);
 
     window.previousTO_suggest = 0  //Previous Timeout
     window.previousTO_search = 0  //Previous Timeout
@@ -244,27 +260,36 @@ export default class Master extends Component {
       // });
     });
 
+    $('[data-toggle="tab"]').click(function (e) {
+      window.test = e.target
+      console.log(e.target);
+    });
+
     $(function(){
         $('div.Details').affix({offset: {top: 316} });
         $('button.Summary').affix({offset: {top: 326} });
     })
 
-    if (hash != "") {
+    if (verse != "") {
 
-      let verse = isNaN(parseInt(hash.split(":")[1]))?1:parseInt(hash.split(":")[1])
-      let chapter = isNaN(parseInt(hash.split(":")[0]))?1:parseInt(hash.split(":")[0])
+      let v = isNaN(parseInt(verse.split(":")[1]))?1:parseInt(verse.split(":")[1])
+      let c = isNaN(parseInt(verse.split(":")[0]))?1:parseInt(verse.split(":")[0])
 
-      if (chapter > 114) {chapter = 114}
-      if (verse > verse_max[chapter-1]) {verse = verse_max[chapter-1]}
+      if (c > 114) {c = 114}
+      if (v > verse_max[c-1]) {v = verse_max[chapter-1]}
 
-      this.setState({verse: chapter + ":" + verse
+      this.setState({verse: c + ":" + v
                       // , page:1
                       // , limit:limit
                     })
 
-      window.hash = chapter + ":" + verse
+      window.hash = c + ":" + v
     } else {
       window.hash = "1:1"
+    }
+
+    if (tab != "1") {
+      window.hash+="/tab:"+tab
     }
 
 
@@ -362,7 +387,7 @@ export default class Master extends Component {
     //console.log(e.type, e.which)
     if (e.which != 27 && e.type!="blur") {        //Esc character or moving away from
       if (e.type=="change") {   //not on keyup, but on change to make it faster
-        let currentTO_suggest = setTimeout(suggest_e, 1000, $(window.inputId)[0].value.trimLeft());    //150ms
+        let currentTO_suggest = setTimeout(suggest_e, 500, $(window.inputId)[0].value.trimLeft());    //150ms
         clearTimeout(previousTO_suggest); previousTO_suggest = currentTO_suggest
       //}
         //setTimeout(suggest_e, 150, q.trim());    //150ms
@@ -698,7 +723,7 @@ export default class Master extends Component {
             url += "?o="+window.optionStr
           }
           if (window.hash !== "1:1") {             //check for default value
-            url += "#" + window.hash
+            url += "#" + window.hash.substring(1)
           }
 
             window.history.pushState("", tquery + " | Holy Qur'an Advance Search", "/"+url);

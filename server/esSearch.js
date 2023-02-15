@@ -443,9 +443,11 @@ Meteor.methods({
         // console.log(Object.keys(x.match)[0])
         crossFieldsArray.push(Object.keys(x.match)[0])
       })
+      // matchArray=[]
       matchArray.push({
         multi_match : {
           query:      query,
+          // boost:      100,
           type:       "cross_fields",
           fields:     crossFieldsArray,
           operator:   "and"
