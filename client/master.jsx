@@ -30,7 +30,7 @@ export default class Master extends Component {
                   {id:"ngram",state:false,name:'Partial'},
                   {id:"normalized",state:true,name:'Normalized'}
                 ]},
-        {id:"Urdu",state:false,name:"اردو ترجمہ مرزا طاہر احمد خلیفة المسیح الرابعؒ",type:"Translation",options: [
+        {id:"Urdu",state:true,name:"اردو ترجمہ مرزا طاہر احمد خلیفة المسیح الرابعؒ",type:"Translation",options: [
           {id:"phonetic",state:false,name:'Phonetic'},
           {id:"ngram",state:true,name:'Partial'},
           {id:"normalized",state:true,name:'Normalized'}
@@ -719,7 +719,7 @@ export default class Master extends Component {
           window.optionStr = ub64Encode(options)
 
           let url=encodeURIComponent(tquery)      //used this instead of encodeURI to ensure slash (/) is also encoded
-          if (window.optionStr.length > 0 && window.optionStr !== "0X1553") {     //check for default value
+          if (window.optionStr.length > 0 && window.optionStr !== "0X152353") {     //check for default value
             url += "?o="+window.optionStr
           }
           if (window.hash !== "1:1") {             //check for default value
@@ -895,6 +895,9 @@ window.detectKeyboard = function(e){
         && ['Shift',",",":",".","۔",'Meta','Alt','Control','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Backspace','Enter','Escape','Delete',"\""].indexOf(e.key)==-1
         && !(e.keyCode == 90 && (e.ctrlKey || e.metaKey))      // Ctrl + z or Cmd + z
         && !(e.keyCode == 65 && (e.ctrlKey || e.metaKey))      // Ctrl + a or Cmd + a
+        && !(e.keyCode == 67 && (e.ctrlKey || e.metaKey))      // Ctrl + c or Cmd + c
+        && !(e.keyCode == 86 && (e.ctrlKey || e.metaKey))      // Ctrl + v or Cmd + v
+        && !(e.keyCode == 88 && (e.ctrlKey || e.metaKey))      // Ctrl + x or Cmd + x
       ) {
     let re = new RegExp(/\d|\w|[\.\$@\*\\\/\+\-\^\!\(\)\[\]\~\%\&\=\?\>\<\{\}\"\'\,\:\;\_]/g);
     let a = e.key.match(re);

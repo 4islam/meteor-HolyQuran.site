@@ -114,234 +114,234 @@ Meteor.methods({
       console.log(sessionId,"Search Query ES Start (summary: "+aggs+") for:",tquery, "page:" ,page);
 
       matchArray = [
-        {match: {[options[0].id]: {query: query}}},
-        {match: {[options[0].id+".trigram"]: {query: query}}},
-        {match: {[options[0].id+".trigram_normalized"]: {query: query}}},
-        // {match: {"Arabic": {query: query}}},
+        {match: {[options[0].id]: {query: query,"boost": 10}}},
+        {match: {[options[0].id+".trigram"]: {query: query,"boost": 10.5}}},
+        {match: {[options[0].id+".trigram_normalized"]: {query: query,"boost": 9.5}}},
+        // {match: {"Arabic": {query: query,"boost": 10}}},
 
-        {match: {[options[0].id+".ar_stems"]: {query: query}}},
-        {match: {[options[0].id+".ar_root"]: {query: query}}}, //p
+        {match: {[options[0].id+".ar_stems"]: {query: query,"boost": 6}}},
+        {match: {[options[0].id+".ar_root"]: {query: query,"boost": 4}}}, //p
 
-        {match: {[options[0].id+".ar_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_normalized_phonetic"]: {query: query}}},
+        {match: {[options[0].id+".ar_normalized"]: {query: query,"boost": 9}}},
+        {match: {[options[0].id+".ar_normalized_phonetic"]: {query: query,"boost": 5}}},
 
-        {match: {[options[0].id+".ar_stems_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_stems_normalized_phonetic"]: {query: query}}},
-        {match: {[options[0].id+".ar_root_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_root_normalized_phonetic"]: {query: query}}},
+        {match: {[options[0].id+".ar_stems_normalized"]: {query: query,"boost": 8}}},
+        {match: {[options[0].id+".ar_stems_normalized_phonetic"]: {query: query,"boost": 4}}},
+        {match: {[options[0].id+".ar_root_normalized"]: {query: query,"boost": 7}}},
+        {match: {[options[0].id+".ar_root_normalized_phonetic"]: {query: query,"boost": 3}}},
 
-        {match: {[options[0].id+".ar_ngram_original"]: {query: query}}},
+        {match: {[options[0].id+".ar_ngram_original"]: {query: query,"boost": 5}}},
 
-        {match: {[options[0].id+".ar_ngram_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_normalized_ngram_phonetic"]: {query: query}}},
+        {match: {[options[0].id+".ar_ngram_normalized"]: {query: query,"boost": 4}}},
+        {match: {[options[0].id+".ar_normalized_ngram_phonetic"]: {query: query,"boost": 2}}},
 
-        {match: {[options[0].id+".ar_ngram_stems"]: {query: query}}},
-        {match: {[options[0].id+".ar_ngram_root"]: {query: query}}},
-        {match: {[options[0].id+".ar_ngram_root_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_ngram_root_normalized_phonetic"]: {query: query}}},
+        {match: {[options[0].id+".ar_ngram_stems"]: {query: query,"boost": 4}}},
+        {match: {[options[0].id+".ar_ngram_root"]: {query: query,"boost": 3}}},
+        {match: {[options[0].id+".ar_ngram_root_normalized"]: {query: query,"boost": 2}}},
+        {match: {[options[0].id+".ar_ngram_root_normalized_phonetic"]: {query: query,"boost": 1}}},
 
-        {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query}}},
-        {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query}}},
+        {match: {[options[0].id+".ar_ngram_stems_normalized"]: {query: query,"boost": 4}}},
+        {match: {[options[0].id+".ar_ngram_stems_normalized_phonetic"]: {query: query,"boost": 2}}},
 
-        // {match: {[options[0].id+".ar_to_en"]: {query: query}}},
-        {match: {[options[0].id+".ar_to_en_corpus"]: {query: query}}},
-        {match: {[options[0].id+".ar_to_en_trigram"]: {query: query}}},
+        // {match: {[options[0].id+".ar_to_en"]: {query: query,"boost": 2}}},
+        {match: {[options[0].id+".ar_to_en_corpus"]: {query: query,"boost": 2}}},
+        {match: {[options[0].id+".ar_to_en_trigram"]: {query: query,"boost": 2.5}}},
 
-        {match: {"Surah": {query: query}}},
-        {match: {"Surah.trigram": {query: query}}},
-        {match: {"Surah.ar_normalized": {query: query}}},
-        {match: {"Surah.ar_ngram_original": {query: query}}},
-        {match: {"Surah.ar_normalized_phonetic": {query: query}}},
+        {match: {"Surah": {query: query,"boost": 3}}},
+        {match: {"Surah.trigram": {query: query,"boost": 3.5}}},
+        {match: {"Surah.ar_normalized": {query: query,"boost": 1.7}}},
+        {match: {"Surah.ar_ngram_original": {query: query,"boost": 1}}},
+        {match: {"Surah.ar_normalized_phonetic": {query: query,"boost": 1.7}}},
 
-        {match: {"Surah.ar_ngram_normalized": {query: query}}},
-        {match: {"Surah.ar_normalized_ngram_phonetic": {query: query}}},
+        {match: {"Surah.ar_ngram_normalized": {query: query,"boost": 2.5}}},
+        {match: {"Surah.ar_normalized_ngram_phonetic": {query: query,"boost": 2.5}}},
 
-        // {match: {"Surah.ar_stems_normalized": {query: query}}},
-        // {match: {"Surah.ar_stems_normalized_phonetic": {query: query}}},
+        // {match: {"Surah.ar_stems_normalized": {query: query,"boost": 8}}},
+        // {match: {"Surah.ar_stems_normalized_phonetic": {query: query,"boost": 4}}},
         //
-        // {match: {"Surah.ar_ngram_stems": {query: query}}},
-        // {match: {"Surah.ar_ngram_stems_normalized": {query: query}}},
-        // {match: {"Surah.ar_ngram_stems_normalized_phonetic": {query: query}}},
+        // {match: {"Surah.ar_ngram_stems": {query: query,"boost": 4}}},
+        // {match: {"Surah.ar_ngram_stems_normalized": {query: query,"boost": 4}}},
+        // {match: {"Surah.ar_ngram_stems_normalized_phonetic": {query: query,"boost": 2}}},
 
-        {match: {"ayah": {query: query}}},
-        {match: {"ayah.ayah_normalized_ar": {query: query}}},
-        {match: {"ayah.ayah_normalized_ur": {query: query}}},
+        {match: {"ayah": {query: query,"boost": 8}}},
+        {match: {"ayah.ayah_normalized_ar": {query: query,"boost": 7}}},
+        {match: {"ayah.ayah_normalized_ur": {query: query,"boost": 6}}},
 
-        {match: {"Urdu": {query: query}}},
-        {match: {"Urdu.trigram": {query: query}}},
-        // {match: {"Urdu.ur_phonetic": {query: query}}},       // Not sure if needed
-        {match: {"Urdu.ur_normalized": {query: query}}},
-        {match: {"Urdu.ur_ngram_original": {query: query}}},
-        {match: {"Urdu.ur_normalized_ngram": {query: query}}},
+        {match: {"Urdu": {query: query,"boost": 5}}},
+        {match: {"Urdu.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"Urdu.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"Urdu.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Urdu.ur_normalized_ngram": {query: query,"boost": 2}}},
 
-        // {match: {"UrduTS": {query: query}}},
-        // {match: {"UrduTS.trigram": {query: query}}},
-        // // {match: {"Urdu.ur_phonetic": {query: query}}},       // Not sure if needed
-        // {match: {"UrduTS.ur_normalized": {query: query}}},
-        // {match: {"UrduTS.ur_ngram_original": {query: query}}},
-        // {match: {"UrduTS.ur_normalized_ngram": {query: query}}},
+        // {match: {"UrduTS": {query: query,"boost": 5}}},
+        // {match: {"UrduTS.trigram": {query: query,"boost": 5.5}}},
+        // // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        // {match: {"UrduTS.ur_normalized": {query: query,"boost": 3}}},
+        // {match: {"UrduTS.ur_ngram_original": {query: query,"boost": 2.5}}},
+        // {match: {"UrduTS.ur_normalized_ngram": {query: query,"boost": 2}}},
 
-        {match: {"UrduTSN": {query: query}}},
-        {match: {"UrduTSN.trigram": {query: query}}},
-        // {match: {"Urdu.ur_phonetic": {query: query}}},       // Not sure if needed
-        {match: {"UrduTSN.ur_normalized": {query: query}}},
-        {match: {"UrduTSN.ur_ngram_original": {query: query}}},
-        {match: {"UrduTSN.ur_normalized_ngram": {query: query}}},
+        {match: {"UrduTSN": {query: query,"boost": 5}}},
+        {match: {"UrduTSN.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduTSN.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduTSN.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduTSN.ur_normalized_ngram": {query: query,"boost": 2}}},
 
-        {match: {"UrduAhmedAli": {query: query}}},
-        {match: {"UrduAhmedAli.trigram": {query: query}}},
-        // {match: {"Urdu.ur_phonetic": {query: query}}},       // Not sure if needed
-        {match: {"UrduAhmedAli.ur_normalized": {query: query}}},
-        {match: {"UrduAhmedAli.ur_ngram_original": {query: query}}},
-        {match: {"UrduAhmedAli.ur_normalized_ngram": {query: query}}},
+        {match: {"UrduAhmedAli": {query: query,"boost": 5}}},
+        {match: {"UrduAhmedAli.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduAhmedAli.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduAhmedAli.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduAhmedAli.ur_normalized_ngram": {query: query,"boost": 2}}},
 
-        {match: {"UrduMaududi": {query: query}}},
-        {match: {"UrduMaududi.trigram": {query: query}}},
-        // {match: {"Urdu.ur_phonetic": {query: query}}},       // Not sure if needed
-        {match: {"UrduMaududi.ur_normalized": {query: query}}},
-        {match: {"UrduMaududi.ur_ngram_original": {query: query}}},
-        {match: {"UrduMaududi.ur_normalized_ngram": {query: query}}},
-
-
-        {match: {"English": {query: query}}},
-        {match: {"English.trigram": {query: query}}},
-        {match: {"English.trigram_normalized": {query: query}}},
-        {match: {"English.en_normalized": {query: query}}},
-        {match: {"English.en_ngram_original": {query: query}}},
-        {match: {"English.en_normalized_ngram": {query: query}}},
-        {match: {"English.en_to_ar": {query: query}}},
-        {match: {"English.en_to_ar_noor": {query: query}}},
-        {match: {"English.en_to_ar_trigram": {query: query}}},
-        {match: {"English.en_to_ar_noor_trigram": {query: query}}},
-
-        {match: {"EnglishZafrullahKhan": {query: query}}},
-        {match: {"EnglishZafrullahKhan.trigram": {query: query}}},
-        {match: {"EnglishZafrullahKhan.trigram_normalized": {query: query}}},
-        {match: {"EnglishZafrullahKhan.en_normalized": {query: query}}},
-        {match: {"EnglishZafrullahKhan.en_ngram_original": {query: query}}},
-        {match: {"EnglishZafrullahKhan.en_normalized_ngram": {query: query}}},
-
-        {match: {"English5VC": {query: query}}},
-        {match: {"English5VC.trigram": {query: query}}},
-        {match: {"English5VC.trigram_normalized": {query: query}}},
-        {match: {"English5VC.en_normalized": {query: query}}},
-        {match: {"English5VC.en_ngram_original": {query: query}}},
-        {match: {"English5VC.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishSC": {query: query}}},
-        {match: {"EnglishSC.trigram": {query: query}}},
-        {match: {"EnglishSC.trigram_normalized": {query: query}}},
-        {match: {"EnglishSC.en_normalized": {query: query}}},
-        {match: {"EnglishSC.en_ngram_original": {query: query}}},
-        {match: {"EnglishSC.en_normalized_ngram": {query: query}}},
-
-        {match: {"Chinese": {query: query}}},
-        {match: {"Chinese.trigram": {query: query}}},
-        {match: {"Chinese.trigram_normalized": {query: query}}},
-        {match: {"Chinese.cn_normalized": {query: query}}},
-        {match: {"Chinese.cn_ngram_original": {query: query}}},
-        {match: {"Chinese.en_normalized_ngram": {query: query}}},
-
-        {match: {"TopicsEn": {query: query}}},
-        {match: {"TopicsEn.trigram": {query: query}}},
-        {match: {"TopicsEn.trigram_normalized": {query: query}}},
-        {match: {"TopicsEn.en_normalized": {query: query}}},
-        {match: {"TopicsEn.en_ngram_original": {query: query}}},
-        {match: {"TopicsEn.en_normalized_ngram": {query: query}}},
-
-        {match: {"German": {query: query}}},
-        {match: {"German.trigram": {query: query}}},
-        {match: {"German.trigram_normalized": {query: query}}},
-        {match: {"German.de_normalized": {query: query}}},
-        {match: {"German.de_ngram_original": {query: query}}},
-        {match: {"German.de_normalized_ngram": {query: query}}},
-
-        {match: {"Spanish": {query: query}}},
-        {match: {"Spanish.trigram": {query: query}}},
-        {match: {"Spanish.trigram_normalized": {query: query}}},
-        {match: {"Spanish.es_normalized": {query: query}}},
-        {match: {"Spanish.es_ngram_original": {query: query}}},
-        {match: {"Spanish.es_normalized_ngram": {query: query}}},
-
-        {match: {"French": {query: query}}},
-        {match: {"French.trigram": {query: query}}},
-        {match: {"French.trigram_normalized": {query: query}}},
-        {match: {"French.fr_normalized": {query: query}}},
-        {match: {"French.fr_ngram_original": {query: query}}},
-        {match: {"French.fr_normalized_ngram": {query: query}}},
-
-        {match: {"Italian": {query: query}}},
-        {match: {"Italian.trigram": {query: query}}},
-        {match: {"Italian.trigram_normalized": {query: query}}},
-        {match: {"Italian.it_normalized": {query: query}}},
-        {match: {"Italian.it_ngram_original": {query: query}}},
-        {match: {"Italian.it_normalized_ngram": {query: query}}},
-
-        //{match: {[options[0].id+".trigram"]: {query: query}}}
-
-        {match: {"EnglishCorpus": {query: query}}},
-        {match: {"EnglishCorpus.trigram": {query: query}}},
-        {match: {"EnglishCorpus.trigram_normalized": {query: query}}},
-        {match: {"EnglishCorpus.en_normalized": {query: query}}},
-        {match: {"EnglishCorpus.en_ngram_original": {query: query}}},
-        {match: {"EnglishCorpus.en_normalized_ngram": {query: query}}},
-        {match: {"EnglishCorpus.en_corpus_to_ar": {query: query}}},
-        {match: {"EnglishCorpus.en_corpus_to_ar_noor": {query: query}}},
-
-        {match: {"EnglishAhmedAli": {query: query}}},
-        {match: {"EnglishAhmedAli.trigram": {query: query}}},
-        {match: {"EnglishAhmedAli.trigram_normalized": {query: query}}},
-        {match: {"EnglishAhmedAli.en_normalized": {query: query}}},
-        {match: {"EnglishAhmedAli.en_ngram_original": {query: query}}},
-        {match: {"EnglishAhmedAli.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishArberry": {query: query}}},
-        {match: {"EnglishArberry.trigram": {query: query}}},
-        {match: {"EnglishArberry.trigram_normalized": {query: query}}},
-        {match: {"EnglishArberry.en_normalized": {query: query}}},
-        {match: {"EnglishArberry.en_ngram_original": {query: query}}},
-        {match: {"EnglishArberry.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishMaududi": {query: query}}},
-        {match: {"EnglishMaududi.trigram": {query: query}}},
-        {match: {"EnglishMaududi.trigram_normalized": {query: query}}},
-        {match: {"EnglishMaududi.en_normalized": {query: query}}},
-        {match: {"EnglishMaududi.en_ngram_original": {query: query}}},
-        {match: {"EnglishMaududi.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishPickthall": {query: query}}},
-        {match: {"EnglishPickthall.trigram": {query: query}}},
-        {match: {"EnglishPickthall.trigram_normalized": {query: query}}},
-        {match: {"EnglishPickthall.en_normalized": {query: query}}},
-        {match: {"EnglishPickthall.en_ngram_original": {query: query}}},
-        {match: {"EnglishPickthall.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishSahih": {query: query}}},
-        {match: {"EnglishSahih.trigram": {query: query}}},
-        {match: {"EnglishSahih.trigram_normalized": {query: query}}},
-        {match: {"EnglishSahih.en_normalized": {query: query}}},
-        {match: {"EnglishSahih.en_ngram_original": {query: query}}},
-        {match: {"EnglishSahih.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishMuhammadAli": {query: query}}},
-        {match: {"EnglishMuhammadAli.trigram": {query: query}}},
-        {match: {"EnglishMuhammadAli.trigram_normalized": {query: query}}},
-        {match: {"EnglishMuhammadAli.en_normalized": {query: query}}},
-        {match: {"EnglishMuhammadAli.en_ngram_original": {query: query}}},
-        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query}}},
-
-        {match: {"EnglishYusufAli": {query: query}}},
-        {match: {"EnglishYusufAli.trigram": {query: query}}},
-        {match: {"EnglishYusufAli.trigram_normalized": {query: query}}},
-        {match: {"EnglishYusufAli.en_normalized": {query: query}}},
-        {match: {"EnglishYusufAli.en_ngram_original": {query: query}}},
-        {match: {"EnglishYusufAli.en_normalized_ngram": {query: query}}},
+        {match: {"UrduMaududi": {query: query,"boost": 5}}},
+        {match: {"UrduMaududi.trigram": {query: query,"boost": 5.5}}},
+        // {match: {"Urdu.ur_phonetic": {query: query,"boost": 2}}},       // Not sure if needed
+        {match: {"UrduMaududi.ur_normalized": {query: query,"boost": 3}}},
+        {match: {"UrduMaududi.ur_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"UrduMaududi.ur_normalized_ngram": {query: query,"boost": 2}}},
 
 
-        {match: {"Notes_English5V.notes": {query: query}}},
-        {match: {"Notes_EnglishSC.notes": {query: query}}},
-        {match: {"Notes_UrduTSN.notes": {query: query}}},
-        {match: {"Notes_Chinese.notes": {query: query}}},
+        {match: {"English": {query: query,"boost": 5}}},
+        {match: {"English.trigram": {query: query,"boost": 5.5}}},
+        {match: {"English.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"English.en_normalized": {query: query,"boost": 3}}},
+        {match: {"English.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"English.en_normalized_ngram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_trigram": {query: query,"boost": 2}}},
+        {match: {"English.en_to_ar_noor_trigram": {query: query,"boost": 2.5}}},
+
+        {match: {"EnglishZafrullahKhan": {query: query,"boost": 5}}},
+        {match: {"EnglishZafrullahKhan.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishZafrullahKhan.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishZafrullahKhan.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishZafrullahKhan.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishZafrullahKhan.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"English5VC": {query: query,"boost": 5}}},
+        {match: {"English5VC.trigram": {query: query,"boost": 5.5}}},
+        {match: {"English5VC.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"English5VC.en_normalized": {query: query,"boost": 3}}},
+        {match: {"English5VC.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"English5VC.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishSC": {query: query,"boost": 5}}},
+        {match: {"EnglishSC.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishSC.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishSC.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishSC.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishSC.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"Chinese": {query: query,"boost": 5}}},
+        {match: {"Chinese.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Chinese.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"Chinese.cn_normalized": {query: query,"boost": 3}}},
+        {match: {"Chinese.cn_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Chinese.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"TopicsEn": {query: query,"boost": 5}}},
+        {match: {"TopicsEn.trigram": {query: query,"boost": 5.5}}},
+        {match: {"TopicsEn.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"TopicsEn.en_normalized": {query: query,"boost": 3}}},
+        {match: {"TopicsEn.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"TopicsEn.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"German": {query: query,"boost": 5}}},
+        {match: {"German.trigram": {query: query,"boost": 5.5}}},
+        {match: {"German.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"German.de_normalized": {query: query,"boost": 3}}},
+        {match: {"German.de_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"German.de_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"Spanish": {query: query,"boost": 5}}},
+        {match: {"Spanish.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Spanish.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"Spanish.es_normalized": {query: query,"boost": 3}}},
+        {match: {"Spanish.es_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Spanish.es_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"French": {query: query,"boost": 5}}},
+        {match: {"French.trigram": {query: query,"boost": 5.5}}},
+        {match: {"French.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"French.fr_normalized": {query: query,"boost": 3}}},
+        {match: {"French.fr_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"French.fr_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"Italian": {query: query,"boost": 5}}},
+        {match: {"Italian.trigram": {query: query,"boost": 5.5}}},
+        {match: {"Italian.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"Italian.it_normalized": {query: query,"boost": 3}}},
+        {match: {"Italian.it_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"Italian.it_normalized_ngram": {query: query,"boost": 2}}},
+
+        //{match: {[options[0].id+".trigram"]: {query: query,"boost": 8}}}
+
+        {match: {"EnglishCorpus": {query: query,"boost": 5}}},
+        {match: {"EnglishCorpus.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishCorpus.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishCorpus.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishCorpus.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishCorpus.en_normalized_ngram": {query: query,"boost": 2}}},
+        {match: {"EnglishCorpus.en_corpus_to_ar": {query: query,"boost": 2}}},
+        {match: {"EnglishCorpus.en_corpus_to_ar_noor": {query: query,"boost": 2}}},
+
+        {match: {"EnglishAhmedAli": {query: query,"boost": 5}}},
+        {match: {"EnglishAhmedAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishAhmedAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishAhmedAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishAhmedAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishAhmedAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishArberry": {query: query,"boost": 5}}},
+        {match: {"EnglishArberry.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishArberry.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishArberry.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishArberry.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishArberry.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishMaududi": {query: query,"boost": 5}}},
+        {match: {"EnglishMaududi.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishMaududi.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishMaududi.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishMaududi.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishMaududi.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishPickthall": {query: query,"boost": 5}}},
+        {match: {"EnglishPickthall.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishPickthall.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishPickthall.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishPickthall.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishPickthall.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishSahih": {query: query,"boost": 5}}},
+        {match: {"EnglishSahih.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishSahih.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishSahih.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishSahih.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishSahih.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishMuhammadAli": {query: query,"boost": 5}}},
+        {match: {"EnglishMuhammadAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishMuhammadAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishMuhammadAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishMuhammadAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishMuhammadAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+        {match: {"EnglishYusufAli": {query: query,"boost": 5}}},
+        {match: {"EnglishYusufAli.trigram": {query: query,"boost": 5.5}}},
+        {match: {"EnglishYusufAli.trigram_normalized": {query: query,"boost": 4.5}}},
+        {match: {"EnglishYusufAli.en_normalized": {query: query,"boost": 3}}},
+        {match: {"EnglishYusufAli.en_ngram_original": {query: query,"boost": 2.5}}},
+        {match: {"EnglishYusufAli.en_normalized_ngram": {query: query,"boost": 2}}},
+
+
+        {match: {"Notes_English5V.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_EnglishSC.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_UrduTSN.notes": {query: query,"boost": 2}}},
+        {match: {"Notes_Chinese.notes": {query: query,"boost": 2}}},
 
       ];
 
@@ -447,7 +447,7 @@ Meteor.methods({
       matchArray.push({
         multi_match : {
           query:      query,
-          // boost:      100,
+          boost:      25,
           type:       "cross_fields",
           fields:     crossFieldsArray,
           operator:   "and"
@@ -820,10 +820,11 @@ Meteor.methods({
         delete search_query.body.aggs;
       }
 
+      console.log(queryFilters);
       let shouldDSL = search_query.body.query.bool.should
       if (queryFilters.length > 0) {
         search_query.body.query.bool=genFilterDSL(queryFilters,options.filter(o=>o.state!="").map(o=>o.id))
-        // console.log(JSON.stringify(search_query.body.query.bool.should));
+        console.log(JSON.stringify(search_query.body.query.bool.should));
         if (query == "*") {
           if (!search_query.body.query.bool.should) {  //genFilterDSL assignes this empty array
             search_query.body.query.bool.should={"match_all": {}}
@@ -840,7 +841,7 @@ Meteor.methods({
       }
       // console.log(JSON.stringify(search_query.body.from));
       // console.log(JSON.stringify(search_query.body.size));
-      // console.log(JSON.stringify(search_query.body, null, 2));
+      // console.log(JSON.stringify(search_query.body.query, null, 2));
       esClient.search(search_query, Meteor.bindEnvironment(function (err, res) {
             //var obj = JSON.parse(JSON.stringify(res).split(',"').map(x=>x.split('":',1)[0].replace(/\./g,'_')+'":'+x.split('":').slice(1,x.split('":').length).join('":')).join(',"'));
             // console.log(JSON.stringify(res));
