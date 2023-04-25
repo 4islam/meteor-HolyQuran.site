@@ -12,7 +12,7 @@ hqvc_frontend:
     - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\ apt-get install -y nodejs
     - apt-get update
     - curl https://install.meteor.com/ | sh
-    - apt-get install npm
+    - apt-get install npm --assume-yes
     - npm update
     - npm i -g npm
     - npm i -g npx
