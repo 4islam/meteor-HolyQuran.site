@@ -12,6 +12,12 @@ hqvc_frontend:
     - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\ apt-get install -y nodejs
     - apt-get update
     - curl https://install.meteor.com/ | sh
+    - npm i -g npm
+    - npm i -g npx
+    - npm update
+    - meteor update
+    - meteor update --all-packages
+    - meteor npm install
     - npx browserslist@latest --update-db
     - mkdir -p /tmp/meteor-build/
     - ver=`cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
