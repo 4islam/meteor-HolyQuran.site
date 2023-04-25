@@ -13,7 +13,7 @@ hqvc_frontend:
   stage: build
   image: docker:stable
   before_script: 
-    - sudo npm install -g npm
+    - npm install -g npm
     - meteor update
     - npm update
     - meteor update --all-packages
