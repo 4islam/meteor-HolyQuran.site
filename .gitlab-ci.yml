@@ -1,0 +1,49 @@
+image:
+ name: docker:stable
+
+ entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+services:
+- name: docker:dind
+  alias: thedockerhost
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://thedockerhost:2375/
+  IMAGE_NAME: hqvc
+  IMAGE_TAG: 6.16.1b
+
+stages:
+  - build
+  - deploy
+
+before_script: 
+- docker info
+- sudo npm install -g npm
+- meteor update
+- npm update
+- meteor update --all-packages
+- npx browserslist@latest --update-db
+- meteor npm install
+- ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
+
+
+hqvc frontend:
+  stage: build
+  script:
+  - pwd
+  - meteor build --architecture os.linux.x86_64 --server https://holyquran.site
+  - mkdir ../temp
+  - tar -xzf ../*.tar.gz -C ../temp
+  - cp Docker* ../temp
+
+   stage: deploy
+   script:
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  - docker build  ../temp -t "hqvc:$ver"
+  - rm -fr ../temp
+ 
