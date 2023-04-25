@@ -11,7 +11,7 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: docker:stable
+  image: node:stable
   before_script: 
     - npm install -g npm
     - meteor update
@@ -22,10 +22,10 @@ hqvc_frontend:
     - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
     - pwd
-    - meteor build --architecture os.linux.x86_64 --server https://holyquran.site
-    - mkdir ../temp
-    - tar -xzf ../*.tar.gz -C ../temp
-    - cp Docker* ../temp
+    - meteor build /builds/hqvc/meteor-advancesearch --architecture os.linux.x86_64 --server https://holyquran.site
+    - mkdir /builds/hqvc/meteor-advancesearch/temp
+    - tar -xzf /builds/hqvc/meteor-advancesearch/*.tar.gz -C /builds/hqvc/meteor-advancesearch/temp
+    - cp Docker* /builds/hqvc/meteor-advancesearch/temp
 
 aws_deploy:
    stage: deploy
@@ -37,6 +37,6 @@ aws_deploy:
    script:
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-    - docker build  ../temp -t "hqvc:$ver"
-    - rm -fr ../temp
+    - docker build  /builds/hqvc/meteor-advancesearch/temp -t "hqvc:$ver"
+    - rm -fr /builds/hqvc/meteor-advancesearch/temp
  
