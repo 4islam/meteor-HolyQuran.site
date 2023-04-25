@@ -1,3 +1,6 @@
+variables:
+  METEOR_ALLOW_SUPERUSER: "true"
+
 stages:
  - build
 
