@@ -11,7 +11,7 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: networksforchange/meteord
+  image: networksforchange/meteord:14.21.3
   variables:
       METEOR_ALLOW_SUPERUSER: "true"
   before_script: 
