@@ -11,12 +11,10 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: blurri/meteor-node
+  image: networksforchange/meteord
   variables:
       METEOR_ALLOW_SUPERUSER: "true"
   before_script: 
-    - meteor update
-    - meteor update --all-packages
     - meteor npm install
     - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
