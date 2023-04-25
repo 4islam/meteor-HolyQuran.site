@@ -1,3 +1,5 @@
+image: geoffreybooth/meteor-base:2.10.0
+
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375/
@@ -11,7 +13,6 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: node:20.0.0
   before_script: 
     - npm install -g npm
     - meteor update
@@ -29,11 +30,6 @@ hqvc_frontend:
 
 aws_deploy:
    stage: deploy
-   image: docker:stable
-   services:
-    - docker:dind
-   variables:
-     DOCKER_TLS_CERTDIR: "" 
    script:
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
