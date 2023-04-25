@@ -11,7 +11,7 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: node:stable
+  image: node:20.0.0
   before_script: 
     - npm install -g npm
     - meteor update
