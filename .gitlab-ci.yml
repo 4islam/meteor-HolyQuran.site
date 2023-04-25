@@ -13,6 +13,9 @@ hqvc_frontend:
     - apt-get update
     - curl https://install.meteor.com/ | sh
     - apt-get install npm
+    - npm update
+    - npm i -g npm
+    - npm i -g npx
     - meteor update
     - meteor update --all-packages
     - meteor npm install
