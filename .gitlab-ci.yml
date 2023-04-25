@@ -11,14 +11,12 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: node:20.0.0
+  image: blurri/meteor-node
+  variables:
+      METEOR_ALLOW_SUPERUSER: "true"
   before_script: 
-    - npm install -g npm
-    - npm install -g meteor
     - meteor update
-    - npm update
     - meteor update --all-packages
-    - npx browserslist@latest --update-db
     - meteor npm install
     - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
