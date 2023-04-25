@@ -16,7 +16,6 @@ hqvc_frontend:
   stage: build
   before_script: 
     - meteor npm install
-    - npx browserslist@latest --update-db
   script:
     - meteor build /builds/hqvc/meteor-advancesearch/build --architecture os.linux.x86_64 --server https://holyquran.site
     - mkdir /builds/hqvc/meteor-advancesearch/build/temp
