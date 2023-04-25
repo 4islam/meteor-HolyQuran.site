@@ -1,5 +1,3 @@
-image: geoffreybooth/meteor-base:2.10.0
-
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375/
@@ -13,13 +11,17 @@ stages:
 
 hqvc_frontend:
   stage: build
+  image: node:20.0.0
   before_script: 
+    - npm install -g npm
+    - npm install -g meteor
     - meteor update
+    - npm update
     - meteor update --all-packages
+    - npx browserslist@latest --update-db
     - meteor npm install
     - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
-    - pwd
     - meteor build /builds/hqvc/meteor-advancesearch --architecture os.linux.x86_64 --server https://holyquran.site
     - mkdir /builds/hqvc/meteor-advancesearch/temp
     - tar -xzf /builds/hqvc/meteor-advancesearch/*.tar.gz -C /builds/hqvc/meteor-advancesearch/temp
@@ -27,6 +29,10 @@ hqvc_frontend:
 
 aws_deploy:
    stage: deploy
+   image: docker:stable
+   services: docker:dind
+   variables:
+     DOCKER_TLS_CERTDIR: ""
    script:
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
