@@ -1,8 +1,11 @@
+image: geoffreybooth/meteor-base:2.10.0
+
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375/
   IMAGE_NAME: hqvc
   IMAGE_TAG: 6.16.1b
+  METEOR_ALLOW_SUPERUSER: "true"
 
 stages:
   - build
@@ -11,25 +14,19 @@ stages:
 
 hqvc_frontend:
   stage: build
-  image: geoffreybooth/meteor-base:2.10.0
-  variables:
-      METEOR_ALLOW_SUPERUSER: "true"
   before_script: 
     - meteor npm install
-    - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
+    - npx browserslist@latest --update-db
   script:
-    - meteor build /builds/hqvc/meteor-advancesearch --architecture os.linux.x86_64 --server https://holyquran.site
-    - mkdir /builds/hqvc/meteor-advancesearch/temp
-    - tar -xzf /builds/hqvc/meteor-advancesearch/*.tar.gz -C /builds/hqvc/meteor-advancesearch/temp
-    - cp Docker* /builds/hqvc/meteor-advancesearch/temp
+    - meteor build /builds/hqvc/meteor-advancesearch/build --architecture os.linux.x86_64 --server https://holyquran.site
+    - mkdir /builds/hqvc/meteor-advancesearch/build/temp
+    - tar -xzf /builds/hqvc/meteor-advancesearch/build/*.tar.gz -C /builds/hqvc/meteor-advancesearch/build/temp
 
 aws_deploy:
    stage: deploy
-   image: docker:stable
-   services:
-     - docker:dind
-   variables:
-     DOCKER_TLS_CERTDIR: "/certs"
+   before_script:
+    - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
+    - cp Docker* /builds/hqvc/meteor-advancesearch/build/temp
    script:
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
