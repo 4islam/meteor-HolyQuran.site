@@ -9,26 +9,18 @@ variables:
 
 stages:
   - build
-  - deploy
-
 
 hqvc_frontend:
   stage: build
   before_script: 
     - meteor npm install
+    - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
     - meteor build /builds/hqvc/meteor-advancesearch/build --architecture os.linux.x86_64 --server https://holyquran.site
     - mkdir /builds/hqvc/meteor-advancesearch/build/temp
     - tar -xzf /builds/hqvc/meteor-advancesearch/build/*.tar.gz -C /builds/hqvc/meteor-advancesearch/build/temp
-
-aws_deploy:
-   stage: deploy
-   before_script:
-    - ver=`cat package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
     - cp Docker* /builds/hqvc/meteor-advancesearch/build/temp
-   script:
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     - docker build  /builds/hqvc/meteor-advancesearch/temp -t "hqvc:$ver"
     - rm -fr /builds/hqvc/meteor-advancesearch/temp
- 
