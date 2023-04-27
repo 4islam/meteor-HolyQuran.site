@@ -16,7 +16,11 @@ hqvc_frontend:
     - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\ apt-get install -y nodejs
     - apt-get update
     - curl https://install.meteor.com/ | sh
-    - apt-get install -y npm
+    - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata
+    - apt-get install -y npm ntp ntpdate
+    - service ntp stop
+    - ntpd -q -p time.nist.gov
+    - service ntp start
     - npm i -g npx
     - meteor update
     - meteor update --all-packages
@@ -30,7 +34,6 @@ hqvc_frontend:
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
-    - ntpd -q -p time.nist.gov
     - apk add --no-cache aws-cli
     - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY

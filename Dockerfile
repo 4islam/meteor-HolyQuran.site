@@ -5,9 +5,7 @@ RUN apt-get update || : && apt-get install python3 -y	#required for building
 
 #Mongo related stuff
 RUN apt-get install -y gnupg curl dirmngr wget ca-certificates
-RUN mkdir -p /tmp/keyrings
 RUN wget --no-check-certificate -O - https://pgp.mongodb.com/server-6.0.asc > ~/server-6.0.key
-RUN file ~/server-6.0.key
 RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import ~/server-6.0.key
 RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output /etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg
 RUN rm temp-keyring.gpg
@@ -30,16 +28,16 @@ ENV HTTP_FORWARDED_COUNT=1
 ENV MONGO_URL='mongodb://localhost:27017/hqvc'
 #ENV MONGO_URL='mongodb://hqvcmaster:s9Yt#zbLuUj!Vg(@hqvc-meteor.cluster-cmlqrweeihqs.us-east-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false'
 
-
-# Bundle app source
+#Bundle app source
 COPY . /bundle
 RUN (cd /bundle/programs/server && npm i)
 
-# Set User
+#Set User
 USER node
 
 ENV NODE_ENV=production
 
 EXPOSE 3000
-#CMD [ "node", "bundle/main.js" ]
-CMD [ "/tmp/meteor-build/bundle//DockerRun.sh" ]
+
+CMD nohup mongod 2>&1
+CMD node /bundle/main.js
