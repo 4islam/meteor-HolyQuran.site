@@ -8,9 +8,8 @@ RUN apt-get install -y gnupg curl dirmngr wget ca-certificates
 RUN mkdir -p /tmp/keyrings
 RUN wget --no-check-certificate -O - https://pgp.mongodb.com/server-6.0.asc > ~/server-6.0.key
 RUN file ~/server-6.0.key
-RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import server-6.0.key
-RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output ./mongodb-server-6.0.gpg
-RUN mv ./mongodb-server-6.0.gpg /etc/apt/trusted.gpg.d/
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import ~/server-6.0.key
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output /etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg
 RUN rm temp-keyring.gpg
 RUN echo "deb [ signed-by=/etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg] http://repo.mongodb.org/apt/debian bullseye/mongodb-org/6.0 main" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
