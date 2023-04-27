@@ -1,4 +1,4 @@
-FROM node:20.0.0
+FROM node:14.18.2
 
 #Install Python3
 RUN apt-get update || : && apt-get install python3 -y	#required for building
@@ -6,12 +6,12 @@ RUN apt-get update || : && apt-get install python3 -y	#required for building
 #Mongo related stuff
 RUN apt-get install -y gnupg curl dirmngr wget ca-certificates
 RUN mkdir -p /tmp/keyrings
-RUN wget --no-check-certificate -O - https://pgp.mongodb.com/server-6.0.asc > ~/server-6.0.key
-RUN file ~/server-6.0.key
-RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import ~/server-6.0.key
-RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output /etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg
+RUN wget --no-check-certificate -O - https://pgp.mongodb.com/server-5.0.asc > ~/server-5.0.key
+RUN file ~/server-5.0.key
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import ~/server-5.0.key
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output /etc/apt/trusted.gpg.d/mongodb-server-5.0.gpg
 RUN rm temp-keyring.gpg
-RUN echo "deb [ signed-by=/etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg] http://repo.mongodb.org/apt/debian bullseye/mongodb-org/6.0 main" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+RUN echo "deb [ signed-by=/etc/apt/trusted.gpg.d/mongodb-server-5.0.gpg] http://repo.mongodb.org/apt/debian stretch/mongodb-org/5.0 main" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
 EXPOSE 27017
 
