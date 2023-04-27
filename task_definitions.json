@@ -1,41 +1,23 @@
-{
-    "family": "first-run-task-definition",
-    "containerDefinitions": [
+[   
         {
             "name": "hqvc_6_4_3m",
-            "image": "190285172867.dkr.ecr.us-east-1.amazonaws.com/hqvc:6.16.1b",
+            "image": "hqvc:latest",
             "cpu": 0,
-            "links": [],
             "portMappings": [
                 {
-                    "name": "hqvc_6_4_3m-3000-tcp",
                     "containerPort": 3000,
                     "hostPort": 3000,
                     "protocol": "tcp"
                 }
             ],
             "essential": true,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/first-run-task-definition",
+                    "awslogs-group": "/ecs/hqvc",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
         }
-    ],
-    "executionRoleArn": "arn:aws:iam::190285172867:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "2048",
-    "memory": "4096",
-    "runtimePlatform": {
-        "operatingSystemFamily": "LINUX"
-    }
-}
+    ]

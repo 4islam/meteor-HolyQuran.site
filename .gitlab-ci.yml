@@ -17,7 +17,7 @@ hqvc_frontend:
     - apt-get update
     - curl https://install.meteor.com/ | sh
     - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata
-    - apt-get install -y npm ntp ntpdate
+    - apt-get install -y npm ntp ntpdate python3 python3-pip
     - service ntp stop
     - ntpd -q -p time.nist.gov
     - service ntp start
@@ -27,14 +27,18 @@ hqvc_frontend:
     - meteor npm install
     - npx browserslist@latest --update-db
     - mkdir -p /tmp/meteor-build/
-    - ver=`cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
+    - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
   script:
     - npm i
     - meteor build --architecture os.linux.x86_64 --server https://holyquran.site --directory /tmp/meteor-build/
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
-    - apk add --no-cache aws-cli
-    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    - aws configure set region $AWS_REGION
+    - pip3 install awscli
+    - $(aws ecr get-login --no-include-email --region $AWS_REGION | tr -d '\r')
+    - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
+    - docker push 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
+    - definitions=$(cat /builds/hqvc/meteor-advancesearch/task_definitions.json)
+    - echo $definitions
+    - aws ecs register-task-definition --region $AWS_REGION --family "hqvc" --container-definitions "$definitions" --cpu "2048" --memory "4096" --network-mode "awsvpc" --requires-compatibilities "FARGATE" --execution-role-arn "arn:aws:iam::580790511472:role/ecsTaskExecutionRole"
+    - aws ecs update-service --region $AWS_REGION --cluster "hqvc-v6-4-3m" --service "hqvc_6_4_3m-service" --task-definition "hqvc"
