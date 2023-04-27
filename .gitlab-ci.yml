@@ -21,6 +21,8 @@ hqvc_frontend:
     - service ntp stop
     - ntpd -q -p time.nist.gov
     - service ntp start
+    - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
+    - echo $ver
     - npm i -g npx
     - meteor update
     - meteor update --all-packages
@@ -35,7 +37,7 @@ hqvc_frontend:
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
     - pip3 install awscli
-    - $(aws ecr get-login-password --no-include-email --region $AWS_REGION | docker login --username AWS --password-stdin 580790511472.dkr.ecr.us-east-1.amazonaws.com | tr -d '\r')
+    - $(aws ecr get-login --no-include-email --region $AWS_REGION | tr -d '\r')
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
     - docker push 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver"
