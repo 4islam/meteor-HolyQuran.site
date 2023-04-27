@@ -1,18 +1,19 @@
+image: stieneee/docker-in-ubuntu:latest
+
 variables:
   METEOR_ALLOW_SUPERUSER: "true"
 
 stages:
  - build
+ - deploy
 
 hqvc_frontend:
   stage: build
-  image: stieneee/docker-in-ubuntu:latest
   services:
     - docker:dind
   before_script: 
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-    - export AWS_REGION=$AWS_REGION
     - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\ apt-get install -y nodejs
     - apt-get update
     - curl https://install.meteor.com/ | sh
@@ -34,12 +35,26 @@ hqvc_frontend:
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
-    - pip3 install awscli
-    - $(aws ecr get-login --no-include-email --region $AWS_REGION | tr -d '\r')
     - echo $ver
+    - $(aws ecr get-login --no-include-email --region $AWS_REGION | tr -d '\r')
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
     - docker push 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
+
+deploy_to_aws:
+  stage: deploy
+    before_script: 
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export AWS_REGION=$AWS_REGION
+    - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata
+    - apt-get install -y npm ntp ntpdate python3 python3-pip
+    - pip3 install awscli
+    - service ntp stop
+    - ntpd -q -p time.nist.gov
+    - service ntp start
+  script:
     - definitions=$(cat /builds/hqvc/meteor-advancesearch/task_definitions.json)
     - echo $definitions
+    - $(aws ecr get-login --no-include-email --region $AWS_REGION | tr -d '\r')
     - aws ecs register-task-definition --region $AWS_REGION --family "hqvc" --container-definitions "$definitions" --cpu "2048" --memory "4096" --network-mode "awsvpc" --requires-compatibilities "FARGATE" --execution-role-arn "arn:aws:iam::580790511472:role/ecsTaskExecutionRole"
     - aws ecs update-service --region $AWS_REGION --cluster "hqvc-v6-4-3m" --service "hqvc_6_4_3m-service" --task-definition "hqvc"
