@@ -1,7 +1,7 @@
 [   
         {
             "name": "hqvc_6_4_3m",
-            "image": "hqvc:latest",
+            "image": "hqvc:$ver",
             "cpu": 0,
             "portMappings": [
                 {

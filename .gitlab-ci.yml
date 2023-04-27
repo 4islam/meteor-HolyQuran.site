@@ -21,8 +21,6 @@ hqvc_frontend:
     - service ntp stop
     - ntpd -q -p time.nist.gov
     - service ntp start
-    - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
-    - echo $ver
     - npm i -g npx
     - meteor update
     - meteor update --all-packages
@@ -30,6 +28,7 @@ hqvc_frontend:
     - npx browserslist@latest --update-db
     - mkdir -p /tmp/meteor-build/
   script:
+    - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
     - npm i
     - meteor build --architecture os.linux.x86_64 --server https://holyquran.site --directory /tmp/meteor-build/
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
