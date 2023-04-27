@@ -5,10 +5,11 @@ RUN apt-get update || : && apt-get install python3 -y	#required for building
 
 #Mongo related stuff
 RUN apt-get install -y gnupg curl dirmngr wget
-RUN gpg --version
 RUN mkdir -p /tmp/keyrings
-RUN curl -fsSL https://php.mongodb.com/server-6.0.asc -o /tmp/keyrings/mongodb-server-6.0.gpg
-RUN gpg --import /tmp/keyrings/mongodb-server-6.0.gpg
+RUN curl -fsSL https://php.mongodb.com/server-6.0.asc -o /tmp/keyrings/mongodb-server-6.0.asc
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --import /tmp/keyrings/mongodb-server-6.0.asc
+RUN gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --output /tmp/keyrings/mongodb-server-6.0.gpg
+RUN rm temp-keyring.gpg
 RUN echo "deb [ signed-by=/tmp/keyrings/mongodb-server-6.0.gpg] http://repo.mongodb.org/apt/debian bullseye/mongodb-org/6.0 main" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
 EXPOSE 27017
