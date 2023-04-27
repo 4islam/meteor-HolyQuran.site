@@ -12,6 +12,7 @@ hqvc_frontend:
   before_script: 
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export AWS_REGION=$AWS_REGION
     - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\ apt-get install -y nodejs
     - apt-get update
     - curl https://install.meteor.com/ | sh
@@ -25,7 +26,12 @@ hqvc_frontend:
     - ver=`cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g"`
   script:
     - npm i
-    - meteor build --allow-superuser --architecture os.linux.x86_64 --server https://holyquran.site --directory /tmp/meteor-build/
+    - meteor build --architecture os.linux.x86_64 --server https://holyquran.site --directory /tmp/meteor-build/
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
+    - ntpd -q -p time.nist.gov
+    - apk add --no-cache aws-cli
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region $AWS_REGION
