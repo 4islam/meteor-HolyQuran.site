@@ -5,7 +5,6 @@ RUN apt-get update || : && apt-get install python3 -y	#required for building
 
 #Mongo related stuff
 RUN apt-get install -y gnupg curl
-RUN curl -fsSL https://php.mongodb.com/server-6.0.asc | apt-key add -
 RUN echo "deb http://repo.mongodb.org/apt/debian bullseye/mongodb-org/6.0 main" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
 EXPOSE 27017
