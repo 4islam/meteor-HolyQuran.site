@@ -30,14 +30,14 @@ hqvc_frontend:
     - meteor update --all-packages
     - meteor npm install
     - npx browserslist@latest --update-db
-    - mkdir -p /tmp/meteor-build/
+    - mkdir /builds/hqvc/meteor-advancesearch/temp
   script:
     - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
     - npm i
-    - meteor build --architecture os.linux.x86_64 --server https://holyquran.site --directory /tmp/meteor-build/
-    - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
-    - cd /tmp/meteor-build/bundle/
-    - docker build -t "hqvc:$ver" .
+    - meteor build --architecture os.linux.x86_64 --server https://holyquran.site
+    - tar -xzf /builds/hqvc/meteor-advancesearch/*.tar.gz -C /builds/hqvc/meteor-advancesearch/temp
+    - cp /builds/hqvc/meteor-advancesearch/Docker* /builds/hqvc/meteor-advancesearch/temp
+    - docker build /builds/hqvc/meteor-advancesearch/temp -t "hqvc:$ver" .
     - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver

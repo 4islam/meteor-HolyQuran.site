@@ -1,7 +1,7 @@
 [   
         {
             "name": "hqvc_6_4_3m",
-            "image": "hqvc:6.16.1b",
+            "image": "580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:6.16.1b",
             "cpu": 0,
             "portMappings": [
                 {

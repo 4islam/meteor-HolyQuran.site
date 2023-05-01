@@ -13,7 +13,6 @@ RUN echo "deb [ signed-by=/etc/apt/trusted.gpg.d/mongodb-server-6.0.gpg] http://
 RUN apt-get update && apt-get install -y --allow-unauthenticated mongodb-org
 EXPOSE 27017
 
-
 #Setting Environment Variables
 ENV ROOT_URL=http://holyquran.site
 ENV NODE_ENV=production
@@ -28,16 +27,18 @@ ENV HTTP_FORWARDED_COUNT=1
 ENV MONGO_URL='mongodb://localhost:27017/hqvc'
 #ENV MONGO_URL='mongodb://hqvcmaster:s9Yt#zbLuUj!Vg(@hqvc-meteor.cluster-cmlqrweeihqs.us-east-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false'
 
+# Create app directory
+WORKDIR /app
+
 #Bundle app source
-COPY . /bundle
-RUN (cd /bundle/programs/server && npm i)
+COPY . .
 
-#Set User
-USER node
-
-ENV NODE_ENV=production
+# Install app dependencies
+WORKDIR /app/bundle/programs/server
+RUN npm install --production
+RUN npm i -g npm
 
 EXPOSE 3000
 
 CMD nohup mongod 2>&1
-CMD node /bundle/main.js
+CMD node bundle/main.js
