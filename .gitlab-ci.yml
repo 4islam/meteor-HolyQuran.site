@@ -35,7 +35,8 @@ hqvc_frontend:
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
     - pip3 install awscliv2
-    - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 580790511472.dkr.ecr.us-east-1.amazonaws.com
+    - alias aws='awsv2'
+    - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
     - docker push 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
