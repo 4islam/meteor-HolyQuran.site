@@ -34,7 +34,7 @@ hqvc_frontend:
     - cp /builds/hqvc/meteor-advancesearch/Docker* /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
     - docker build -t "hqvc:$ver" .
-    - pip3 install awscli
+    - pip3 install awscliv2
     - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
