@@ -38,7 +38,7 @@ hqvc_frontend:
     - mkdir /builds/hqvc/meteor-advancesearch/build/temp
     - tar -xzf /builds/hqvc/meteor-advancesearch/build/*.tar.gz -C /builds/hqvc/meteor-advancesearch/build/temp
     - cp /builds/hqvc/meteor-advancesearch/Docker* /builds/hqvc/meteor-advancesearch/build/temp
-    - docker build /builds/hqvc/meteor-advancesearch/build/temp -t "hqvc:$ver" .
+    - docker build /builds/hqvc/meteor-advancesearch/build/temp -t "hqvc:$ver" 
     - rm -fr /builds/hqvc/meteor-advancesearch/build/temp
     - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
