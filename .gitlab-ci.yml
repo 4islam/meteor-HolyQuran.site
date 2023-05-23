@@ -38,7 +38,7 @@ hqvc_frontend:
     - meteor build --directory /tmp/meteor-build/
     - cp Dockerfile /tmp/meteor-build/bundle/
     - cd /tmp/meteor-build/bundle/
-    - docker build -t "hqvc:$ver" 
+    - docker build /tmp/meteor-build/bundle/ -t "hqvc:$ver" 
     - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
