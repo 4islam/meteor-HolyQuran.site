@@ -10,8 +10,6 @@ hqvc_frontend:
   services:
     - docker:dind
   before_script: 
-    - pwd
-    - dir
     - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     - export AWS_REGION=$AWS_REGION
@@ -32,16 +30,15 @@ hqvc_frontend:
     - meteor update --all-packages
     - meteor npm install
     - npx browserslist@latest --update-db
+    - mkdir -p /tmp/meteor-build/
     
   script:
     - ver=$(cat /builds/hqvc/meteor-advancesearch/package.json | grep version | grep -oE "\"[^\"]+\"," | sed "s/[\",]//g")
     - npm i
-    - meteor build /builds/hqvc/meteor-advancesearch --architecture os.linux.x86_64 --server https://holyquran.site
-    - mkdir /builds/hqvc/meteor-advancesearch/temp
-    - tar -xzf /builds/hqvc/meteor-advancesearch/*.tar.gz -C /builds/hqvc/meteor-advancesearch/temp
-    - cp /builds/hqvc/meteor-advancesearch/Docker* /builds/hqvc/meteor-advancesearch/temp
-    - docker build /builds/hqvc/meteor-advancesearch/temp -t "hqvc:$ver" 
-    - rm -fr /builds/hqvc/meteor-advancesearch/temp
+    - meteor build --directory /tmp/meteor-build/
+    - cp Dockerfile /tmp/meteor-build/bundle/
+    - cd /tmp/meteor-build/bundle/
+    - docker build -t "hqvc:$ver" 
     - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) 580790511472.dkr.ecr.us-east-1.amazonaws.com
     - echo $ver
     - docker tag hqvc:$ver 580790511472.dkr.ecr.us-east-1.amazonaws.com/hqvc:$ver
