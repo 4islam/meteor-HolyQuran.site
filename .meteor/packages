@@ -25,3 +25,4 @@ ecmascript@0.16.6
 underscore@1.0.12
 ddp-rate-limiter@1.1.1
 twbs:bootstrap
+mdg:meteor-apm-agent

@@ -1,3 +1,6 @@
+## 6.16.2:
+  * Performance Monitoring for Meteor added
+
 ## 6.16.1:
   * Urdu is now enabled in default settings
   * Multiword query boosted

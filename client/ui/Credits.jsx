@@ -30,6 +30,11 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.16.2: </b>
+                        <li>Performance Monitoring features added to track oppurtunites</li>                        
+                      </ul>
+
+                      <ul>
                         <b>6.16.1: </b>
                         <li>Multiword search improved</li>
                         <li>Urdu is now enabled in default settings</li>

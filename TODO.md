@@ -1,4 +1,3 @@
-* TODO: Add Meteor APM to diagnose performance
 * TODO: URL parameter to retain page number of search results
 * TODO: Hashtag to set right panel settings
 * TODO: Add social media share buttons
