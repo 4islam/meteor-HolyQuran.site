@@ -19,7 +19,8 @@ div.searchButtons {
 
 div.searchButtonsDiv {
   /* display: flex; */
-  display: inline-grid;
+  /* display: inline-grid; */ /* TODO: need to fix aligment of sub menus of the layers */
+  display: grid;
   padding-bottom: 10px;
   font-size: x-small;
 }
