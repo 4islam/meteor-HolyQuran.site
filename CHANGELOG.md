@@ -1,3 +1,6 @@
+## 6.16.3:
+  * DB Collection cleanup functions added
+
 ## 6.16.2:
   * Performance Monitoring for Meteor added
 

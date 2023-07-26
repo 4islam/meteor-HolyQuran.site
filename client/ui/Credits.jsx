@@ -30,8 +30,13 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.16.3: </b>
+                        <li>DB Collection cleanup functions added</li>                        
+                      </ul>
+
+                      <ul>
                         <b>6.16.2: </b>
-                        <li>Performance Monitoring features added to track oppurtunites</li>                        
+                        <li>Performance Monitoring features added to track oppurtunites</li>
                       </ul>
 
                       <ul>

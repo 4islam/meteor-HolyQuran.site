@@ -856,11 +856,17 @@ Meteor.methods({
               }
               if (aggs!="all") {
                 ESCol.insert({query:tquery, optionshash:options_str_hash, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
+
+                cleanESCol()
+
               } else {
                 // ESCol.update({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]},{$set:{'session.$.date':date,'results':matches}});
                 console.log("inserting into aggregates", sessionId);
                 ESColAggregates.insert({query:tquery, optionshash:options_str_hash, options:options_str,page:page,limit:limit, session: [{id:sessionId,date:date}], results:matches, tags:highlights});
                 // console.log(ESColAggregates.find({$and:[{optionshash:options_str_hash}, {'session.id':{$in:[sessionId]}}]}).count());
+
+                cleanESColAggregates()
+
               }
               // console.log(matches.hits.hits.length)
               // console.log(date);
@@ -933,6 +939,20 @@ getMarkedTokens = function (r) {
     }
     })
   return ret.sort(function(a, b){return b.token.count - a.token.count});
+}
+
+cleanESCol = function(){
+  if(ESCol.find({}).count()>10) {
+    ESCol.remove({_id:ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})._id})
+    cleanESCol()
+  }
+}
+
+cleanESColAggregates = function() {
+  if(ESColAggregates.find({}).count()>10) {
+    ESColAggregates.remove({_id:ESColAggregates.findOne({query:{$exists:true}}, {sort:{'session.date':-1}})._id})
+    cleanESColAggregates()
+  }
 }
 
 DDPRateLimiter.addRule({

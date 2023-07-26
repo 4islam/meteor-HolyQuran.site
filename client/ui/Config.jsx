@@ -133,7 +133,7 @@ export default class Config extends Component {
    this.setState({showDisabled:false})
    $("#searchfilter")[0].value=""
 
-   this.setState(this.props.options.map((y,z)=>{y.id==="English"||z===0||z===1?y.state=true:y.state=false})) //Exceptions: 0 is Arabic and 1 is Chapters)
+   this.setState(this.props.options.map((y,z)=>{y.id==="English"||y.id==="Urdu"||z===0||z===1?y.state=true:y.state=false})) //Exceptions: 0 is Arabic and 1 is Chapters)
    this.props.search(query, this.props.options)
  }
  showEnabledToggle() {
