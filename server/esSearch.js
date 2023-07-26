@@ -47,11 +47,12 @@ Meteor.methods({
   //   return {...x, options: x.options.filter(y=>y.state)}
   // })
   // console.log(JSON.stringify(options))
-  options_str=JSON.stringify(options);
+  // options_str=JSON.stringify(options);
+  options_str=ub64Encode(options);
   // console.log(options_str);
   options_str_hash = query+options_str+page
-  options_str_hash = options_str_hash.hashCode()
-  // console.log(options_str_hash);
+  options_str_hash = options_str_hash
+  // console.log("options_str_hash: ",options_str_hash);
   // options_str=JSON.stringify(options.map(x=>x.state?{id:x.id,name:x.name,options:x.options.map(y=>y.state?{id:y.id,state:true}:null)}:null))
   // options_str=JSON.stringify(options.map(x=>x.state?x.id+","+x.options.map(y=>y.state?y.id:""):"")).replace(/\"/g,"").replace(/,+/g,",");
 

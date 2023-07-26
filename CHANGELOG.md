@@ -1,5 +1,7 @@
 ## 6.16.3:
   * DB Collection cleanup functions added
+  * Hashing function replaced with custom URL encoder
+  * Search results display reduced to 10 for performance
 
 ## 6.16.2:
   * Performance Monitoring for Meteor added

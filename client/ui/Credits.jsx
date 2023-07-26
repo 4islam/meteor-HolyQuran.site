@@ -31,7 +31,9 @@ export default class Credits extends Component {
 
                       <ul>
                         <b>6.16.3: </b>
-                        <li>DB Collection cleanup functions added</li>                        
+                        <li>DB Collection cleanup functions added</li>
+                        <li>Hashing function replaced with custom URL encoder</li>
+                        <li>Search results display reduced to 10 for performance</li>                        
                       </ul>
 
                       <ul>
