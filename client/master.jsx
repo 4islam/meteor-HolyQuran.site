@@ -164,7 +164,7 @@ export default class Master extends Component {
     this.showKeyboard = this.showKeyboard.bind(this);
     //this.openMenu = this.openMenu.bind(this);
 
-    this.ub64Decode = this.ub64Decode.bind(this);
+    // this.ub64Decode = this.ub64Decode.bind(this);
 
     window.encodingTab =
       "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -208,7 +208,7 @@ export default class Master extends Component {
     window.previousTO_search = 0  //Previous Timeout
 
     if (this.props.configStr) {
-      let configStrArray = this.ub64Decode(this.props.configStr)
+      let configStrArray = ub64Decode(this.props.configStr)
       // console.log(configStrArray);
       let option_types = this.state.option_types;
       option_types.map((i,j)=>{
@@ -260,10 +260,10 @@ export default class Master extends Component {
       // });
     });
 
-    $('[data-toggle="tab"]').click(function (e) {
-      window.test = e.target
-      console.log(e.target);
-    });
+    // $('[data-toggle="tab"]').click(function (e) {
+    //   window.test = e.target
+    //   console.log(e.target);
+    // });
 
     $(function(){
         $('div.Details').affix({offset: {top: 316} });
@@ -811,17 +811,6 @@ export default class Master extends Component {
       this.search(window.query, this.state.option_types)
     })
 
-  }
-
-  ub64Decode(encodedStr) {
-    let returnArray=[]
-    encodedStr.match(/.{1,2}/g).map((i)=>{
-      let layer=encodingTab.indexOf(i[0])
-      let settings=encodingTab.indexOf(i[1])
-      let settingsb=(settings >>> 0).toString(2)
-      returnArray[layer]=settingsb
-    })
-    return returnArray;
   }
 }
 
