@@ -736,10 +736,12 @@ export default class Master extends Component {
           //$(window.inputId)[0].value = window.query;    //  User experience issues when leading space
                                                   //  that you just typed disappears, moved this before next line
           window.scroll(0,0)  //scroll to top
-          Meteor.call('searchAggs', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
-            // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery, "secondary");
-            setTimeout(ui_ready, 333);
-          }.bind(this));
+          setTimeout(function(){
+            Meteor.call('searchAggs', trimq.replace(/ +/, ' '), window.sessionId, options, page, limit, function(error, result) {
+              // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery, "secondary");
+              setTimeout(ui_ready, 333);
+            }.bind(this));
+          },100)
           // console.log(Date(), "Call complete");
         }.bind(this));
 
