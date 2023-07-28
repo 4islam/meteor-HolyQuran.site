@@ -47,7 +47,7 @@ componentDidUpdate () {
              <div>
               {window.layersMessage=""}
                <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small></div>
-               {Object.keys(r.results.hits.hits).map((v) => (
+               {Object.keys(r.results.hits.hits).map((v,i) => (
                   <Verse key={r.results.hits.hits[v]._id}
                       highlights={r.results.hits.hits[v].highlight}
                       score={r.results.hits.hits[v]._score}
@@ -57,7 +57,8 @@ componentDidUpdate () {
                       search={this.props.search.bind(this)}
                       hideUnmatched={this.props.hideUnmatched}
                       analyzers={this.props.analyzers}
-                      switchLayers={this.props.switchLayers}/>
+                      switchLayers={this.props.switchLayers}
+                      delay={i}/>
 
                ))}
                <Paging total={r.results.hits.total.value}

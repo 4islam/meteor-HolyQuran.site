@@ -30,10 +30,16 @@ export default class Credits extends Component {
                       <h5><b>Release information</b></h5>
 
                       <ul>
+                        <b>6.16.4: </b>
+                        <li>React-based performance enhancements</li>
+                        <li>Recent Search issue fixed</li>
+                      </ul>
+
+                      <ul>
                         <b>6.16.3: </b>
                         <li>DB Collection cleanup functions added</li>
                         <li>Hashing function replaced with custom URL encoder</li>
-                        <li>Search results display reduced to 10 for performance</li>                        
+                        <li>Search results display reduced to 10 for performance</li>
                       </ul>
 
                       <ul>

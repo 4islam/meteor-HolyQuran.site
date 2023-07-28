@@ -10,13 +10,24 @@ export default class Verse extends Component {
     super();
     this.state = {
       display: 'none',
-      showAnalyzer: 'none'
+      showAnalyzer: 'none',
+      hidden : "hidden"
     };
     this.handleChange = this.handleChange.bind(this);
     this.showAnalyzer = this.showAnalyzer.bind(this);
     this.showDetails = this.showDetails.bind(this);
     this.showDetailsButton = this.showDetailsButton.bind(this);
     this.hideDetailsButton = this.hideDetailsButton.bind(this);
+  }
+
+  componentWillMount () {
+      var that = this;
+      setTimeout(function() {
+          that.show();
+      }, 100*this.props.delay);
+  }
+  show () {
+      this.setState({hidden : ""});
   }
 
 componentDidMount() {
@@ -32,7 +43,7 @@ componentDidMount() {
   //   console.log(Object.keys(this.props.highlights).find((k)=>(/^English(\b|_).*/.test(k))))
   // }
     return (
-        <div className="Verse base">
+        <div className={this.state.hidden + " Verse base"}>
           <a
           //onClick={this.handleChange}
            className="list-group-item Verse">

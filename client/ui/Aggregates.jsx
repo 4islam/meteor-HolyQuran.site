@@ -9,12 +9,29 @@ import { withTracker } from 'meteor/react-meteor-data';
 // App component - represents the whole app
 class Aggregates extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+         hidden : "hidden"
+    }
+  }
+
+  componentWillMount () {
+      var that = this;
+      setTimeout(function() {
+          that.show();
+      }, 150);
+  }
+  show () {
+      this.setState({hidden : ""});
+  }
+
  render() {
    //this.props.aggregates? console.log(this.props.aggregates.results.aggregations):'';
 
  var aggs=this.props.aggregates
 
- return <div className="Aggregates base tab-pane active" role="tabpanel" id="Summaries">
+ return <div className={this.state.hidden + " Aggregates base tab-pane active"} role="tabpanel" id="Summaries">
          <div className="English" dir="rtl"><span>Search cohorts:</span></div>
          <br/>
        {

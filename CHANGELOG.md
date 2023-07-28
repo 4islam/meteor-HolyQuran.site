@@ -1,3 +1,7 @@
+## 6.16.4:
+  * React-based performance enhancements
+  * Recent Search issue fixed
+
 ## 6.16.3:
   * DB Collection cleanup functions added
   * Hashing function replaced with custom URL encoder
