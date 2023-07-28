@@ -35,7 +35,8 @@ class Queries extends Component {
                    //    </span>:''
                    // )
                }
-               ({(x.results.hits)?(x.results.hits.total.value)?x.results.hits.total.value:'0':'0'})<span className="badge"> {x.options} </span>
+               ({(x.results.hits)?(x.results.hits.total.value)?x.results.hits.total.value:'0':'0'})
+               {x.options==defaultConfStr?"":<span className="badge"> {x.options} </span>}
                </a>
              </li>
          ) : '...'

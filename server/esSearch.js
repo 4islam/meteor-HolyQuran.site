@@ -943,14 +943,14 @@ getMarkedTokens = function (r) {
 }
 
 cleanESCol = function(){
-  if(ESCol.find({}).count()>10) {
+  if(ESCol.find({}).count()>mongoCacheCount) {
     ESCol.remove({_id:ESCol.findOne({query:{$exists:true}}, {sort:{'session.date':1}})._id})
     cleanESCol()
   }
 }
 
 cleanESColAggregates = function() {
-  if(ESColAggregates.find({}).count()>10) {
+  if(ESColAggregates.find({}).count()>mongoCacheCount) {
     ESColAggregates.remove({_id:ESColAggregates.findOne({query:{$exists:true}}, {sort:{'session.date':1}})._id})
     cleanESColAggregates()
   }

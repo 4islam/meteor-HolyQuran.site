@@ -719,7 +719,7 @@ export default class Master extends Component {
           window.optionStr = ub64Encode(options)
 
           let url=encodeURIComponent(tquery)      //used this instead of encodeURI to ensure slash (/) is also encoded
-          if (window.optionStr.length > 0 && window.optionStr !== "0X152353") {     //check for default value
+          if (window.optionStr.length > 0 && window.optionStr !== defaultConfStr) {     //check for default value
             url += "?o="+window.optionStr
           }
           if (window.hash !== "1:1") {             //check for default value
