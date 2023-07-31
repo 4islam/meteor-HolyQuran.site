@@ -1,10 +1,28 @@
 import React, { Component, state } from 'react';
 
 export default class VerseHighlights extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hidden : false
+    };
+  }
+
+  componentWillMount () {
+      var that = this;
+      setTimeout(function() {
+          that.show();
+      }, 250);
+  }
+  show () {
+      this.setState({hidden : true});
+  }
+
+
   render() {
     return (
         <div className={this.props.Type+" reference"}>
-            {(this.props.highlights)?Object.keys(this.props.highlights).map(function(k) {
+            {(this.props.highlights && this.state.hidden)?Object.keys(this.props.highlights).map(function(k) {
                 var re = new RegExp('^'+this.props.Type + '(_.*)?$', 'g')              //Must end with either '_' or end of line
                 return (k.search(re)!=-1?
                   <div key={k} className={"highlights noselect " + k.replace(/\.|_/g,' ')}
