@@ -19,20 +19,23 @@ class Iframe extends Component {
  render() {
    return <div className="Iframe base modal-content">
      <div className="modal-header">
-       { (this.props.showClose)?
-         <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>:''
-       }
        <div className="head" dir="ltr">
-         <h4>
-           Verse:
-           <a className="previous" onClick={(e)=>this.getNextVerse(this.props.verse, "previous")}>
-            <span className="glyphicon glyphicon-menu-right"></span>
-           </a>
-             {" " + this.props.verse}
-             <a className="next" onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
-              <span className="glyphicon glyphicon-menu-left"></span>
-             </a>
-         </h4>
+        <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+           <button type="button" className="btn btn-secondary input-group" onClick={(e)=>this.getNextVerse(this.props.verse, "previous")}>
+             <span className="glyphicon glyphicon-menu-down"></span>
+           </button>
+           <span className="btn btn-secondary input-group">
+            <b>Verse {" " + this.props.verse}</b>
+           </span>
+           <button type="button" className="btn btn-secondary input-group" onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
+             <span className="glyphicon glyphicon-menu-up"></span>
+           </button>
+           { (this.props.showClose)?
+             <button type="button" className="btn btn-secondary input-group pull-right" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>:''
+           }
+        </div>
        </div>
      </div>
      <div className="modal-body">
