@@ -857,10 +857,11 @@ window.suggest_e = function(query) {
                     + "<span class=\"btn-xs pull-right\">" + (i.count) + "</span>"
                   +"</a></li>");
           })
-          $('#datalistUl').append("<button type=\"button\" class=\"close\" style=\"float:left\" \
+          $('#datalistUl').prepend("<button type=\"button\" class=\"btn btn-secondary input-group smaller pull-right\" \
           onClick=\"$('#datalistUl').css({display:'none'});$(window.inputId)[0].value=$(window.inputId)[0].value.trim()+' ';$(window.inputId).attr('readonly', false);$(window.inputId).focus();\"> \
-          <span aria-hidden=\"true\">&times;</span> \
+            <span aria-hidden=\"true\">&times;</span> \
           </button>")
+
           $(window.inputId).attr('readonly', false);
           //$(window.inputId).attr('placeholder', complete[complete.length-1].key); // TODO: Make use of right/left arrow keys to crystalize the values there.
         }
