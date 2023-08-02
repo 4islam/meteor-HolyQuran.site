@@ -741,7 +741,7 @@ export default class Master extends Component {
               // console.log("calling search for: '"+tquery+"'", "page:" ,page, "testing: " , window.query,"=" , tquery, "secondary");
               setTimeout(ui_ready, 333);
             }.bind(this));
-          },100)
+          },150)
           // console.log(Date(), "Call complete");
         }.bind(this));
 

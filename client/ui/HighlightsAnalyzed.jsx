@@ -6,27 +6,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import TokenHighlights from './TokenHighlights.jsx';
 
 class HighlightsAnalyzed extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-         hidden : "hidden"
-    }
-  }
-
-  componentWillMount () {
-      var that = this;
-      setTimeout(function() {
-          that.show();
-      }, 150);
-  }
-  show () {
-      this.setState({hidden : ""});
-  }
-
+  
  render() {
    //console.log(this.props.highlights);
-   return <div className={this.state.hidden + " HighlightsAnalyzed base tab-pane"} role="tabpanel" id="Etymology">
+   return <div className="HighlightsAnalyzed base tab-pane" role="tabpanel" id="Etymology">
            <table><tbody>
              <tr>
                <td><span className="Arabic">:أصل الكلمة</span></td>
