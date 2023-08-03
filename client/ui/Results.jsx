@@ -11,6 +11,13 @@ import Paging from './Paging.jsx';
 // App component - represents the whole app
 class Results extends Component {
 
+constructor() {
+  super();
+  this.state = {
+    hidden : "hidden"
+  };
+}
+
 componentDidMount() {
   window.autosearch=false
   window.searchedQuery=""
@@ -19,6 +26,13 @@ componentDidMount() {
 
 componentWillMount() {
   window.layersMessage=""
+    var that = this;
+    setTimeout(function() {
+        that.show();
+    }, 2995);
+}
+show () {
+    this.setState({hidden : ""});
 }
 
 componentDidUpdate () {
@@ -46,7 +60,9 @@ componentDidUpdate () {
              (r.results.hits.hits && r.results.hits.total.value>0)?
              <div>
               {window.layersMessage=""}
-               <div className='resultCount' dir='ltr'><small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small></div>
+               <div className='resultCount' dir='ltr'>
+                <small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small>
+                </div>
                {Object.keys(r.results.hits.hits).map((v,i) => (
                   <Verse key={r.results.hits.hits[v]._id}
                       highlights={r.results.hits.hits[v].highlight}
@@ -61,12 +77,14 @@ componentDidUpdate () {
                       delay={i}/>
 
                ))}
-               <Paging total={r.results.hits.total.value}
-                  setPage={this.setPage.bind(this)}
-                  options={this.props.options}
-                  search={this.props.search.bind(this)}
-                  page={this.props.page}
-                  limit={this.props.limit} />
+               <div className={this.state.hidden}>
+                 <Paging total={r.results.hits.total.value}
+                    setPage={this.setPage.bind(this)}
+                    options={this.props.options}
+                    search={this.props.search.bind(this)}
+                    page={this.props.page}
+                    limit={this.props.limit} />
+                </div>
               </div>:<div className="NoResult"><h4>Sorry, no results found {window.layersMessage}</h4><hr/><h5><br/>See advance filter examples below for more details</h5><hr/><Help/></div>:"...":<Help/>
        }
        </div>
