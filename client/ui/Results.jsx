@@ -61,6 +61,7 @@ componentDidUpdate () {
              <div>
               {window.layersMessage=""}
                <div className='resultCount' dir='ltr'>
+                <small className="pull-right">Page {this.props.page} of {Math.round(r.results.hits.total.value / this.props.limit)}</small>
                 <small>{r.results.hits.total.value} verses found ({r.results.took}ms).</small>
                 </div>
                {Object.keys(r.results.hits.hits).map((v,i) => (
