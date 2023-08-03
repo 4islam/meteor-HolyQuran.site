@@ -20,14 +20,14 @@ class Iframe extends Component {
    return <div className="Iframe base modal-content">
      <div className="modal-header">
        <div className="head" dir="ltr">
-        <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups pull-left">
            <button type="button" className="btn btn-secondary input-group" onClick={(e)=>this.getNextVerse(this.props.verse, "previous")}>
              <span className="glyphicon glyphicon-menu-down"></span>
            </button>
-           <span className="btn btn-secondary input-group">
+           <span className="btn btn-secondary input-group" style={{width: '-webkit-calc(100% - 150px)'}}>
             <b>Verse {" " + this.props.verse}</b>
            </span>
-           <button type="button" className="btn btn-secondary input-group" onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
+           <button type="button" className="btn btn-secondary input-group pull-right" onClick={(e)=>this.getNextVerse(this.props.verse, "next")}>
              <span className="glyphicon glyphicon-menu-up"></span>
            </button>
            { (this.props.showClose)?
