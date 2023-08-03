@@ -12,7 +12,7 @@ export default class VerseHighlights extends Component {
       var that = this;
       setTimeout(function() {
           that.show();
-      }, 250);
+      }, 955);
   }
   show () {
       this.setState({hidden : true});

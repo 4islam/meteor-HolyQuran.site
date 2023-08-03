@@ -879,7 +879,7 @@ Meteor.methods({
                   update_analyzers(options[0].id)
                   Meteor.setTimeout(function() {
                     getAnalysis(analyzers.slice(0,3),text_array,tquery,sessionId,date,0,ESAnalyzerHighlightsCol,options[0].id)
-                  },315)
+                  },1315)
                 }
               }
             } else {

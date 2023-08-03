@@ -22,9 +22,11 @@ export default class Verse extends Component {
 
   componentWillMount () {
       var that = this;
+      var i=this.props.delay
       setTimeout(function() {
           that.show();
-      }, 100*this.props.delay+5);
+      // }, 100*this.props.delay+5);
+    }, i*(Math.pow(i,-i)*1000+505))
   }
   show () {
       this.setState({hidden : ""});
