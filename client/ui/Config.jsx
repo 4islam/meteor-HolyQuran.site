@@ -87,14 +87,14 @@ export default class Config extends Component {
    let option_types = this.props.options;
    option_types.find(o=>o.id===y).options.find(p=>p.id===x).state = !option_types.find(o=>o.id===y).options.find(p=>p.id===x).state;
    this.setState(option_types);
-   this.props.search(window.query, option_types);
+   this.props.search(window.query, option_types,1,limit);
  }
  handleChange(name) {
    var option_types = this.props.options;
    option_types.find(x=>x.id===name).state = !option_types.find(x=>x.id===name).state;
    //console.log($('input#'+event.target.name).prop('checked'))
    this.setState(option_types);
-   this.props.search(window.query, option_types);
+   this.props.search(window.query, option_types,1,limit);
  }
  filterLayers(layer) {
    window.query="";$(window.inputId)[0].value=window.query
@@ -120,21 +120,21 @@ export default class Config extends Component {
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
         y.state=false:y.state=true}
     ))
-   this.props.search(query, this.props.options)
+   this.props.search(query, this.props.options,1,limit)
  }
  filterLayersForward(layer) {
    this.setState(this.props.options.map((y,z)=>{
      (new RegExp('.*'+layer+'.*','i').test(y.name)||new RegExp('.*'+layer+'.*', 'i').test(y.id))?
         y.state=true:y.state=false}
     ))
-   this.props.search(query, this.props.options)
+   this.props.search(query, this.props.options,1,limit)
  }
  filterLayersDefault() {
    this.setState({showDisabled:false})
    $("#searchfilter")[0].value=""
 
    this.setState(this.props.options.map((y,z)=>{y.id==="English"||y.id==="Urdu"||z===0||z===1?y.state=true:y.state=false})) //Exceptions: 0 is Arabic and 1 is Chapters)
-   this.props.search(query, this.props.options)
+   this.props.search(query, this.props.options,1,limit)
  }
  showEnabledToggle() {
    this.setState({showDisabled:!this.state.showDisabled})
