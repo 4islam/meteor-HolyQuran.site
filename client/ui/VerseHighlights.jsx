@@ -10,9 +10,10 @@ export default class VerseHighlights extends Component {
 
   componentWillMount () {
       var that = this;
+      var i=this.props.delay
       setTimeout(function() {
           that.show();
-      }, 1955);
+      }, i*(Math.pow(i,-i)*1000+905));
   }
   show () {
       this.setState({hidden : true});

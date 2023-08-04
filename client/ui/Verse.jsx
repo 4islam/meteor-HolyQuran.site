@@ -52,7 +52,8 @@ componentDidMount() {
              <VerseHighlights
                 base={this.props[this.props.options[0].id]}
                 Type={this.props.options[0].id}
-                highlights={this.props.highlights}/>
+                highlights={this.props.highlights}
+                delay={this.props.delay}/>
           </a>
               <div className="" style={{display:this.state.display}}>
               { this.state.display!='none'?
