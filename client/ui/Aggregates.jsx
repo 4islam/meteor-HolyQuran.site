@@ -20,7 +20,7 @@ class Aggregates extends Component {
       var that = this;
       setTimeout(function() {
           that.show();
-      }, 150);
+      }, 850);
   }
   show () {
       this.setState({hidden : ""});
