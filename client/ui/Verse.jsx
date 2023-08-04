@@ -26,7 +26,8 @@ export default class Verse extends Component {
       setTimeout(function() {
           that.show();
       // }, 100*this.props.delay+5);
-    }, i*(Math.pow(i,-i)*1000+505))
+    }, i*(Math.pow(i,-i)*1000+500)+5)
+    // console.log("Delay: ",i, i*(Math.pow(i,-i)*1000+500)+5);
   }
   show () {
       this.setState({hidden : ""});
